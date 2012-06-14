@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="../style.css">
+<h5>Различия в web-платформах</h5>
+<p>Для String.prototype имеется ещё несколько дополнительных методов для завёрстывания текста в элементах HTML (все эти методы являются родовыми: не требуется, чтобы значение this было объектом типа String):
+</p><p>Алгоритм ToHTMLTag(tag_name, content, attribute_name, attribute_value):
+</p>
+<ol><li>если attribute_name равно undefined, вернуть &quot;&lt;&quot; + tag_name + &quot;&gt;&quot; + content + &quot;&lt;/&quot; + tag_name + &quot;&gt;&quot;
+</li><li>иначе вернуть &quot;&lt;&quot; + tag_name + &quot; &quot; + attribute_name + &quot;=\&quot;&quot; + attribute_value + &quot;\&quot;&gt;&quot; + content + &quot;&lt;/&quot; + tag_name + &quot;&gt;&quot;
+</li></ol>
+<p>Также см. <a
+href="http://wiki.whatwg.org/wiki/Web_ECMAScript#15.5.4_Properties_of_the_String_Prototype_Object">http://wiki.whatwg.org/wiki/Web_ECMAScript#15.5.4_Properties_of_the_String_Prototype_Object</a></p>
+<h5> <span class="mw-headline" id="String.prototype.anchor.28name.29"> String.prototype.anchor(name) </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Пусть attribute_value будет ToString(name)
+</li><li> Вернуть ToHTMLTag(&quot;a&quot;, content, &quot;name&quot;, attribute_value)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.big.28.29"> String.prototype.big() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;big&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.blink.28.29"> String.prototype.blink() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;blink&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.bold.28.29"> String.prototype.bold() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;b&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.fixed.28.29"> String.prototype.fixed() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;tt&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.fontcolor.28color.29"> String.prototype.fontcolor(color) </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Пусть attribute_value будет ToString(color)
+</li><li> Вернуть ToHTMLTag(&quot;font&quot;, content, &quot;color&quot;, attribute_value)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.fontsize.28size.29"> String.prototype.fontsize(size) </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Пусть attribute_value будет ToString(size)
+</li><li> Вернуть ToHTMLTag(&quot;font&quot;, content, &quot;size&quot;, attribute_value)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.italics.28.29"> String.prototype.italics() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;i&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.link.28href.29"> String.prototype.link(href) </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Пусть attribute_value будет ToString(href)
+</li><li> Вернуть ToHTMLTag(&quot;a&quot;, content, &quot;href&quot;, attribute_value)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.small.28.29"> String.prototype.small() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;small&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.strike.28.29"> String.prototype.strike() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;strike&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.sub.28.29"> String.prototype.sub() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;sub&quot;, content)
+</li></ol>
+<h5> <span class="mw-headline" id="String.prototype.sup.28.29"> String.prototype.sup() </span></h5>
+<ol><li> Пусть content будет ToString(this)
+</li><li> Вернуть ToHTMLTag(&quot;sup&quot;, content)
+</li></ol>

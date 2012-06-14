@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>13 Определение функции # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x12.html" title="12 Инструкции " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x14.html" title="14 Программа " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav><a href="x12.html">
+   <a href="x12.html">&#8592; 12 Инструкции </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x14.html">14 Программа  &#8594;</a>
+
+  <ol class="toc"><li><a href="x13.html#x13" id="x13-toc">13 Определение функции</a>
+    <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x13.html#x13.1" id="x13.1-toc">13.1 Ограничения строгого режима</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x13.html#x13.2" id="x13.2-toc">13.2 Создание объектов типа Function</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x13.html#x13.2.1" id="x13.2.1-toc">13.2.1 [[Call]]</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x13.html#x13.2.2" id="x13.2.2-toc">13.2.2 [[Construct]]</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x13.html#x13.2.3" id="x13.2.3-toc">13.2.3 Объект типа Function</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></nav>
+
+    <h2 id="x13">13 Определение функции <a href="#x13">#</a> <a href="#x13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>FunctionDeclaration </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>function</b></code> <i>Identifier </i><code><b>(</b></code> <i>FormalParameterList</i><sub>opt</sub><code><b>)</b></code> <code><b>{</b></code> <i>FunctionBody </i><code><b>}</b></code></p>
+	<p class="keep">
+	<i>FunctionExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>function</b></code> <i>Identifier</i><sub>opt</sub><code><b>(</b></code> <i>FormalParameterList</i><sub>opt</sub><code><b>)</b></code> <code><b>{</b></code> <i>FunctionBody </i><code><b>}</b></code></p>
+	<p class="keep">
+	<i>FormalParameterList </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Identifier<br>FormalParameterList </i><code><b>,</b></code> <i>Identifier</i></p>
+	<p class="keep">
+	<i>FunctionBody </i><b>:</b></p>
+	<p class="def1-btm">
+	<i><a href="x14.html#x14">SourceElements</a></i><sub>opt</sub></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Инстанциирование <br><i>FunctionDeclaration </i><b>:</b><i> </i><code><b>function</b></code> <i>Identifier </i><code><b>(</b></code> <i>FormalParameterList</i><sub>opt</sub><code><b>)</b></code> <code><b>{</b></code> <i><a href="#x13">FunctionBody</a></i> <code><b>}</b></code><br>производится во время Инстанциирования привязки объявления&nbsp;(<a href="x10.html#x10.5">10.5</a>) следующим образом:</p>
+	<ol><li><p>
+		Вернуть результат создания нового объекта типа Function, как описано в пункте&nbsp;13.2, при этом параметры заданы посредством <i>FormalParameterList</i><sub>opt</sub> <tt>Список формальных параметров (необязательный)</tt>, а тело определено посредством <i><a href="#x13">FunctionBody</a></i>. Передать VariableEnvironment активного контекста исполнения в качестве области видимости <i>Scope</i>. Передать <b>true</b> в качестве флага <i>Strict</i>, если <i>FunctionDeclaration</i> содержится в <a href="x10.html#x10.1.1">строгом коде</a>, или если <i><a href="#x13">FunctionBody</a></i> &ndash; <a href="x10.html#x10.1.1">строгий код</a>.</p>
+	</li></ol><p>
+	Для вычисления<br><i>FunctionExpression </i><b>:</b><i> </i><code><b>function</b></code> <code><b>(</b></code> <i>FormalParameterList</i><sub>opt</sub><code><b>)</b></code> <code><b>{</b></code> <i><a href="#x13">FunctionBody</a></i> <code><b>}</b></code> <br>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат создания нового объекта Function, как описано в пункте&nbsp;13.2, при этом параметры заданы посредством <i>FormalParameterList</i><sub>opt</sub>, а тело определено посредством <i><a href="#x13">FunctionBody</a></i>. Передать <a href="x10.html#x10.2">LexicalEnvironment</a> активного контекста исполнения в качестве области видимости <i>Scope</i>. Передать <b>true</b> в качестве флага <i>Strict</i>, если <i>FunctionExpression</i> содержится в <a href="x10.html#x10.1.1">строгом коде</a>, или если <i><a href="#x13">FunctionBody</a></i> &ndash; <a href="x10.html#x10.1.1">строгий код</a>.</p>
+	</li></ol><p>
+	Для вычисления<br><i>FunctionExpression</i> <b>:</b> <code><b>function</b></code> <i>Identifier</i> <code><b>(</b></code> <i>FormalParameterList</i><sub>opt</sub><code><b>)</b></code> <code><b>{</b></code> <i><a href="#x13">FunctionBody</a></i> <code><b>}</b></code><br>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>funcEnv </i><tt>Окружение функции</tt> будет результатом вызова абстрактной операции <a href="x10.html#x10.2.2.2">NewDeclarativeEnvironment</a> с передачей в качестве аргумента <a href="x10.html#x10.2">Lexical Environment</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>envRec</i> будет записью окружения для <i>funcEnv</i>.</p>
+		</li>
+		<li><p>
+		Вызвать конкретный метод <a href="x10.html#x10.2.1.1.7">CreateImmutableBinding</a>(N) для <i>envRec</i>, передавая в качестве аргумента&nbsp;<i>Identifier</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>closure </i>будет результатом создания нового объекта Function, как описано в пункте 13.2, при этом параметры заданы посредством <I><i>FormalParameterList</i><sub>opt</sub></I>, а тело определено посредством&nbsp;<i><a href="#x13">FunctionBody</a></i>. Передать <i>funcEnv </i>в качестве <i>Scope</i>. Передать <b>true</b> в качестве флага <i>Strict</i>, если <i>FunctionExpression</i> содержится в <a href="x10.html#x10.1.1">строгом коде</a>, или если <i><a href="#x13">FunctionBody</a></i> &ndash; <a href="x10.html#x10.1.1">строгий код</a>.</p>
+		</li>
+		<li><p>
+		Вызвать конкретный метод <a href="x10.html#x10.2.1.1.8">InitializeImmutableBinding</a>(<i>N,V</i>) для <i>envRec</i>, передавая в качестве аргументов строковое значения для <i>Identifier </i>и <i>closure</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>closure</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> На идентификатор в <i>FunctionExpression</i> <tt>Выражение функции</tt> можно ссылаться из тела функции <i><a href="#x13">FunctionBody</a></i> этого выражения функции, что позволяет функции рекурсивно вызывать саму себя. Однако из области видимости, в которую вложено <i>FunctionExpression</i>, невозможно ссылаться на идентификатор <i>Identifier</i> в этом <i>FunctionExpression</i>, и этот идентификатор не влияет на эту область видимости (в отличие от идентификатора в объявлении функции <I>FunctionDeclaration</I>).</p>
+	<p>
+	Для вычисления <i>FunctionBody </i><b>:</b> <i>SourceElements</i><sub>opt</sub> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Код этого тела функции <i>FunctionBody </i>является <a href="x10.html#x10.1.1" class="term-ref">кодом в строгом режиме</a>, если он является частью <i>FunctionDeclaration</i> или <i>FunctionExpression</i>, которые содержатся в <a href="x10.html#x10.1.1" class="term-ref">коде в строгом режиме</a>, или если Директивный пролог&nbsp;(<a href="x14.html#x14.1">14.1</a>) его <i>SourceElements</i> <tt>Элементы исходного кода</tt> содержит директиву &quot;Use Strict&quot;, или если применимо какое-либо из условий, указанных в пункте&nbsp;<a href="x10.html#x10.1.1">10.1.1</a>.  Если код этого <i>FunctionBody </i>является <a href="x10.html#x10.1.1" class="term-ref">кодом в строгом режиме</a>, то <i>SourceElements</i> в следующих шагах вычисляется как <a href="x10.html#x10.1.1" class="term-ref">код в строгом режиме</a>. Если это не так, то <i>SourceElements</i> в следующих шагах вычисляется как код, не являющийся <a href="x10.html#x10.1.1" class="term-ref">кодом в строгом режиме</a>.</p>
+		</li>
+		<li><p>
+		Если <i>SourceElements</i> присутствует, вернуть результат вычисления&nbsp;<i>SourceElements</i>.</p>
+		</li>
+		<li><p>
+		Иначе, вернуть (normal, <b>undefined</b>, empty).</p>
+	</li></ol>
+	<h3 id="x13.1">13.1 Ограничения строгого режима <a href="#x13.1">#</a> <a href="#x13.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Если значение идентификатора <i>Identifier</i> более одного раза встречается в <i>FormalParameterList</i> <tt>Список формальных параметров</tt> для <i>FunctionDeclaration</i> или <i>FunctionExpression</i> в строгом режиме, то генерируется <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+	<p>
+	Если <i>Identifier</i> <code><b>&quot;eval&quot;</b></code> или <i>Identifier </i><code><b>&quot;arguments&quot;</b></code> встречается в <i>FormalParameterList</i> для <i>FunctionDeclaration</i> или <i>FunctionExpression</i> в строгом режиме, то генерируется <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+	<p>
+	Если <i>Identifier</i> <code><b>&quot;eval&quot;</b></code> или <i>Identifier </i><code><b>&quot;arguments&quot;</b></code> встречается в качестве идентификатора <i>Identifier</i> для <i>FunctionDeclaration</i> или <i>FunctionExpression</i> в строгом режиме, то генерируется <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+	<h3 id="x13.2">13.2 Создание объектов типа Function <a href="#x13.2">#</a> <a href="#x13.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Используя необязательный список параметров, заданный посредством <i>FormalParameterList</i>, тело, заданное посредством <i><a href="#x13">FunctionBody</a></i>, <a href="x10.html#x10.2">Лексическое Окружение</a>, заданное областью видимости <i>Scope</i>, и булев флаг&nbsp;<i>Strict</i>, объект типа Function создаётся следующим образом:</p>
+	<ol><li><p>
+		Создать новый родной объект&nbsp;ECMAScript. Пусть <i>F</i> будет этим объектом.</p>
+		</li>
+		<li><p>
+		Установить все внутренние методы для <i>F</i>, кроме метода&nbsp;[[Get]], как описано в пункте&nbsp;<a href="x8.html#x8.12">8.12</a>.</p>
+		</li>
+		<li><p>
+		Внутреннему свойству [[Class]] для <i>F</i> присвоить  <code><b>&quot;Function&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Prototype]]  для <i>F</i> значение стандартного встроенного объекта-прототипа Function, как описано в пункте&nbsp;<a href="x15.3.html#x15.3.3.1">15.3.3.1</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[Get]] для <i>F</i>, как описано в пункте&nbsp;<a href="x15.3.html#x15.3.5.4">15.3.5.4</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[Call]] для <i>F</i>, как описано в пункте&nbsp;<a href="#x13.2.1">13.2.1</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[Construct]] для <i>F</i>, как описано в пункте&nbsp;<a href="#x13.2.2">13.2.2</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[HasInstance]] для <i>F</i>, как описано в пункте&nbsp;<a href="x15.3.html#x15.3.5.3">15.3.5.3</a>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Scope]] для <i>F</i> значение&nbsp;<i>Scope</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>names </i>будет списком <a href="x8.html#x8.8">List</a>, содержащим слева направо строки, соответствующие идентификаторам для <i>FormalParameterList</i>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[FormalParameters]] для <i>F </i>значение <i>names</i>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Code]]  для <i>F </i>значение&nbsp;<i><a href="#x13">FunctionBody</a></i>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Extensible]] для <i>F </i>значение <b>true</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет количеством формальных параметров, заданных в <i>FormalParameterList</i>. Если в этом списке не заданы параметры, пусть <i>len</i> будет 0.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]]  для <i>F</i> с аргументами <code><b>&quot;</b></code><code><b>length</b></code><code><b>&quot;</b></code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>len</i>, [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>} и <b>false</b>.
+		
+		</p>
+		</li>
+		<li><p>
+		Пусть <i>proto</i> будет результатом создания нового объекта, как если бы этот объект был создан выражением <code><b>new Object()</b></code>, где <code><b>Object</b></code> является <a href="x15.2.html#x15.2">стандартным встроенным конструктором с этим именем</a>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>proto</i> с аргументами <code><b>&quot;</b></code><code><b>constructor</b></code><code><b>&quot;</b></code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>F</i>, { [[Writable]]: <b>true</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]]  для <i>F</i> с аргументами <code><b>&quot;</b></code><code><b>prototype</b></code><code><b>&quot;</b></code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>proto</i>, { [[Writable]]: <b>true</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Если <i>Strict </i>&ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>thrower</i> будет объектом функции [[ThrowTypeError]]&nbsp;(<a href="#x13.2.3">13.2.3</a>).</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] для <i><i>F</i></i> с аргументами <code><b>&quot;caller&quot;</b></code>, PropertyDescriptor {[[Get]]: <i>thrower</i>, [[Set]]: <i>thrower</i>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>} и <b>false</b>.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] для <i>F</i> с аргументами <code><b>&quot;arguments&quot;</b></code>, PropertyDescriptor {[[Get]]: <i>thrower</i>, [[Set]]: <i>thrower</i>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>} и <b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>F</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Для каждой функции автоматически создаётся свойство <code><b>prototype</b></code>, чтобы предусмотреть возможность использования этой функции в качестве конструктора.</p>
+	<h4 id="x13.2.1">13.2.1 [[Call]] <a href="#x13.2.1">#</a> <a href="#x13.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[Call]] для объекта Function, называемого <i>F</i>, со значением this и списком аргументов выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>funcCtx </i>будет результатом установления нового контекста исполнения для <a href="x10.html#function-code">кода функции</a> с использованием значения  внутреннего свойства [[FormalParameters]] для <i>F</i>, переданного списка аргументов <a href="x8.html#x8.8">List</a>, называемого <i>args</i>, и значения <b>this</b>, как описано в пункте&nbsp;<a href="x10.html#x10.4.3">10.4.3</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>result </i>будет результатом вычисления <i><a href="#x13">FunctionBody</a></i>, представляющим собой значение внутреннего свойства [[Code]] для <i>F</i>. Если у <i>F</i> нет внутреннего свойства [[Code]], или если его значение представляет собой пустое тело функции <i><a href="#x13">FunctionBody</a></i>, то <i>result</i> равен (normal, undefined, empty).</p>
+		</li>
+		<li><p>
+		Выйти из контекста исполнения <i>funcCtx</i>, восстановив предыдущий контекст исполнения.</p>
+		</li>
+		<li><p>
+		Если <i>result</i>.type равно throw, то сгенерировать <i>result</i>.value.</p>
+		</li>
+		<li><p>
+		Если <i>result</i>.type равно return, то вернуть <i>result</i>.value.</p>
+		</li>
+		<li><p>
+		Иначе, <i>result</i>.type должен быть normal. Вернуть <b>undefined</b>.</p>
+	</li></ol>
+	<h4 id="x13.2.2">13.2.2 [[Construct]] <a href="#x13.2.2">#</a> <a href="#x13.2.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[Construct]] для объекта Function, называемого <i>F</i>, с возможно пустым списком аргументов выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>obj </i>будет новым родным объектом ECMAScript.</p>
+		</li>
+		<li><p>
+		Установить все внутренние методы для <i>obj</i>, как описано в пункте&nbsp;<a href="x8.html#x8.12">8.12</a>.</p>
+		</li>
+		<li><p>
+		Внутреннему свойству [[Class]] для <I>obj </I>присвоить  <code><b>&quot;Object&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Extensible]] для <i>obj </i>значение <b>true</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>proto </i>будет значением вызова внутреннего свойства [[Get]] для <i>F</i> с аргументом <code><b>&quot;prototype&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>proto</i>) равно Object, присвоить внутреннему свойству [[Prototype]] для <i>obj </i>значение <i>proto</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>proto</i>) не равно Object, присвоить внутреннему свойству [[Prototype]]  для <i>obj </i>значение стандартного встроенного объекта-прототипа Object, как описано в пункте&nbsp;<a href="x15.2.html#x15.2.4">15.2.4</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>result </i>будет результатом вызова внутреннего свойства [[Call]] для&nbsp;<i>F</i>, передавая <i>obj </i>в качестве значения <b>this</b>, и передавая список аргументов, переданный во внутренний метод [[Construct]] в качестве <i>args</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>result</i>) равно Object, вернуть <i>result</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>obj</i>.</p>
+	</li></ol>
+	<h4 id="x13.2.3">13.2.3 Объект типа Function  [[ThrowTypeError]] <a href="#x13.2.3">#</a> <a href="#x13.2.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<ol><li><p>
+		Объект [[ThrowTypeError]] является уникальным объектом функции, определение которого производится один раз следующим образом:</p>
+		</li>
+		<li><p>
+		Создать новый родной объект&nbsp;ECMAScript. Пусть <i>F</i> будет этим объектом.</p>
+		</li>
+		<li><p>
+		Установить все внутренние методы для <i>F</i>, как описано в пункте&nbsp;<a href="x8.html#x8.12">8.12</a>.</p>
+		</li>
+		<li><p>
+		Внутреннему свойству [[Class]] для <i>F</i> присвоить  <code><b>&quot;Function&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Prototype]]  для <i>F</i> значение стандартного встроенного объекта-прототипа Function, как описано в пункте&nbsp;<a href="x15.3.html#x15.3.3.1">15.3.3.1</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[Call]] для <i>F</i>, как описано в пункте&nbsp;<a href="#x13.2.1">13.2.1</a>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Scope]]  для <i>F</i> значение <a href="x10.html#x10.2.3">Глобального Окружения</a>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[FormalParameters]] для <i>F </i>значение пустого списка <a href="x8.html#x8.8">List</a>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Code]] для <i>F </i>значение <i><a href="#x13">FunctionBody</a></i>, которое безусловно генерирует исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b> и больше никаких действий не производит.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]]  для <i>F</i> с аргументами <code><b>&quot;</b></code><code><b>length</b></code><code><b>&quot;</b></code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>0</i>, [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>} и <b>false</b>.
+		
+		</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Extensible]] для <i>F </i>значение <b>false</b>.</p>
+		</li>
+		<li><p>
+		Пусть [[ThrowTypeError]] будет <i>F</i>.</p>
+	</li></ol></body><script src="anno.js"></script></html>

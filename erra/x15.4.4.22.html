@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="../style.css">
+<p class="ed">(Четвёртый параграф)</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>reduceRight</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова <code><b>reduceRight</b></code>. Если существующие элементы массива изменяются, их значением, передаваемым в функцию <i>callbackfn</i>,  будет их значение в то время, как их посетит <code><b>reduceRight</b></code>. Элементы, которые удаляются после начала вызова
+	<ins><code><b>reduceRight </b></code></ins>
+	<del><code><b>filter</b></code></del>
+	и перед их посещением, не будут посещены.</p>
+
+<p class="ed">(Алгоритм, шаг 9.c.ii)</p>
+
+<ol>
+<li value="9"><p>
+		Повторить, пока <i>k</i> &#8805; 0</p>
+		<ol>
+			<li><p>
+			Пусть <i>Pk</i> будет ToString(<i>k</i>).</p>
+			</li><li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li><li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol>
+				<li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li><li><p>
+				Пусть <i>accumulator</i> будет результатом вызова внутреннего метода [[Call]] для <I>callbackfn</I> с 
+				<del><b>null</b></del>
+				<ins><b>undefined</b></ins>
+				в качестве значения <b>this</b>, и списком аргументов, содержащим <i>accumulator</i>, <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+			</li></ol>
+			</li><li><p>
+			Уменьшить <i>k</i> на 1.</p>
+		</li></ol>
+		</li>
+</ol>

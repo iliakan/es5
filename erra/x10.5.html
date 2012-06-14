@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="../style.css">
+	<P CLASS="cjk" STYLE="margin-bottom: 0.42cm"><FONT FACE="Arial, sans-serif"><SPAN LANG="en-GB">(Способ переопределения существующих глобальных объявлений функции, изложенный в шаге 5 исходного алгоритма, несовместим с версией Спецификации ES3, и в некоторых случаях может непреднамеренно вызвать функции доступа).</SPAN></FONT></P>
+	<OL START=5>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%">
+		<FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Для каждого <I>FunctionDeclaration</I> <I>f</I> в <I>code</I>, по порядку исходного текста выполняется следующее:</SPAN></FONT></P>
+	</OL>
+	<OL>
+		<OL style="list-style-type: lower-alpha">
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>fn</I> будет <I>Identifier</I> в <I>FunctionDeclaration</I>&nbsp;<I>f.</I></SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>fo</I> будет результатом инстанциирования <I>FunctionDeclaration f</I>, в соответствии в описанием приведенным в&nbsp;Главе&nbsp;13.</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>funcAlreadyDeclared </I>будет результатом вызова конкретного метода
+             HasBinding для <I>env</I>, с передачей <I>fn</I> в качестве аргумента.</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Если <I>funcAlreadyDeclared </I>равно <B>false</B>, то вызвать конкретный метод  CreateMutableBinding для <I>env</I>, с передачей в качестве аргументов <I>fn</I> и <I>configurableBindings</I>.</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Иначе, если </FONT><FONT COLOR="#ff0000"><I>env</I></FONT><FONT COLOR="#ff0000"> является компонентом записи окружения для глобального окружения, то</FONT></SPAN></FONT></P>
+			<OL style="list-style-type: lower-roman">
+				<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Пусть </FONT><FONT COLOR="#ff0000"><I>go</I></FONT><FONT COLOR="#ff0000"> будет глобальным объектом. </FONT></SPAN></FONT></P>
+				<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Пусть </FONT><FONT COLOR="#ff0000"><I>existingProp</I></FONT> <FONT COLOR="#ff0000">будет результатом выдова внутреннего метода [[GetProperty]] для </FONT><FONT COLOR="#ff0000"><I>go </I></FONT><FONT COLOR="#ff0000">с аргументом </FONT><FONT COLOR="#ff0000"><I>fn</I></FONT><FONT COLOR="#ff0000">.</FONT></SPAN></FONT></P>
+				<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Если </FONT><FONT COLOR="#ff0000"><I>existingProp</I></FONT><FONT COLOR="#ff0000">.[[Configurable]] равно </FONT><FONT COLOR="#ff0000"><B>true</B></FONT><FONT COLOR="#ff0000">, то </FONT></SPAN></FONT></P>
+				<OL style="list-style-type: decimal">
+					<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Вызвать внутренний метод [[DefineOwnProperty]] для </FONT><FONT COLOR="#ff0000"><I>go</I></FONT><FONT COLOR="#ff0000">, передавая в качестве аргументов </FONT><FONT COLOR="#ff0000"><I>fn</I></FONT><FONT COLOR="#ff0000">, Property Descriptor {[[Value]]:</FONT><FONT COLOR="#ff0000"><B>undefined</B></FONT><FONT COLOR="#ff0000">, [[Writable]]: </FONT><FONT COLOR="#ff0000"><B>true</B></FONT><FONT COLOR="#ff0000">, [[Enumerable]]: </FONT><FONT COLOR="#ff0000"><B>true</B></FONT><FONT COLOR="#ff0000">, [[Configurable]]: </FONT><FONT COLOR="#ff0000"><I>configurableBindings</I></FONT><FONT COLOR="#ff0000">} и </FONT><FONT COLOR="#ff0000"><B>true</B></FONT><FONT COLOR="#ff0000">.</FONT></SPAN></FONT></P>
+				</OL>
+				<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Иначе, если IsAccessorDescrptor(</FONT><FONT COLOR="#ff0000"><I>existingProp</I></FONT><FONT COLOR="#ff0000">) или </FONT><FONT COLOR="#ff0000"><I>existingProp</I></FONT><FONT COLOR="#ff0000"> не имеет значений атрибута {[[Writable]]: </FONT><FONT COLOR="#ff0000"><B>true</B></FONT><FONT COLOR="#ff0000">, [[Enumerable]]: </FONT><FONT COLOR="#ff0000"><B>true</B></FONT><FONT COLOR="#ff0000">}, то</FONT></SPAN></FONT></P>
+				<OL style="list-style-type: decimal">
+					<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Сгенерировать исключение TypeError.</FONT></SPAN></FONT></P>
+				</OL>
+			</OL>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Вызвать конкретный метод SetMutableBinding для env, передавая в качестве аргументов <I>fn</I>, <I>fo </I>и <I>strict</I>.</SPAN></FONT></P>
+		</OL>
+	</OL>

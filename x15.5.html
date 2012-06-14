@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.5 Объекты String # &#9417; &#9402; &#9312; &#9398; &#8212; Annotated ES5</title><link rel="stylesheet" href="style.css"><link href="x15.4.html" title="15.2 Объекты Array " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.6.html" title="15.6 Объекты Boolean " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x15.4.html">&#8592; 15.4 Объекты Array </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.6.html">15.6 Объекты Boolean &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.5.html#x15.5" id="x15.5-toc">15.5 Объекты String</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.5.html#x15.5.1" id="x15.5.1-toc">15.5.1 Вызов конструктора String как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.5.html#x15.5.1.1" id="x15.5.1.1-toc">15.5.1.1 String ( [ value ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.5.html#x15.5.2" id="x15.5.2-toc">15.5.2 The Конструктор String</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.5.html#x15.5.2.1" id="x15.5.2.1-toc">15.5.2.1 new String ( [ value ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.5.html#x15.5.3" id="x15.5.3-toc">15.5.3 Свойства конструктора String</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.5.html#x15.5.3.1" id="x15.5.3.1-toc">15.5.3.1 String.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.3.2" id="x15.5.3.2-toc">15.5.3.2 String.fromCharCode ( [ char0 [ , char1 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.5.html#x15.5.4" id="x15.5.4-toc">15.5.4 Свойства объекта-прототипа String</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.5.html#x15.5.4.1" id="x15.5.4.1-toc">15.5.4.1 String.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.2" id="x15.5.4.2-toc">15.5.4.2 String.prototype.toString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.3" id="x15.5.4.3-toc">15.5.4.3 String.prototype.valueOf ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.4" id="x15.5.4.4-toc">15.5.4.4 String.prototype.charAt (pos)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.5" id="x15.5.4.5-toc">15.5.4.5 String.prototype.charCodeAt (pos)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.6" id="x15.5.4.6-toc">15.5.4.6 String.prototype.concat ( [ string1 [ , string2 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.7" id="x15.5.4.7-toc">15.5.4.7 String.prototype.indexOf (searchString, position)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.8" id="x15.5.4.8-toc">15.5.4.8 String.prototype.lastIndexOf (searchString, position)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.9" id="x15.5.4.9-toc">15.5.4.9 String.prototype.localeCompare (that)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.10" id="x15.5.4.10-toc">15.5.4.10 String.prototype.match (regexp)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.11" id="x15.5.4.11-toc">15.5.4.11 String.prototype.replace (searchValue, replaceValue)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.12" id="x15.5.4.12-toc">15.5.4.12 String.prototype.search (regexp)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.13" id="x15.5.4.13-toc">15.5.4.13 String.prototype.slice (start, end)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.14" id="x15.5.4.14-toc">15.5.4.14 String.prototype.split (separator, limit)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.15" id="x15.5.4.15-toc">15.5.4.15 String.prototype.substring (start, end)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.16" id="x15.5.4.16-toc">15.5.4.16 String.prototype.toLowerCase ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.17" id="x15.5.4.17-toc">15.5.4.17 String.prototype.toLocaleLowerCase ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.18" id="x15.5.4.18-toc">15.5.4.18 String.prototype.toUpperCase ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.19" id="x15.5.4.19-toc">15.5.4.19 String.prototype.toLocaleUpperCase ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.4.20" id="x15.5.4.20-toc">15.5.4.20 String.prototype.trim ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.5.html#x15.5.5" id="x15.5.5-toc">15.5.5 Свойства экземпляров String</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.5.html#x15.5.5.1" id="x15.5.5.1-toc">15.5.5.1 length</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.5.html#x15.5.5.2" id="x15.5.5.2-toc">15.5.5.2 [[GetOwnProperty]] ( P )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.5" class="splitme">15.5 Объекты String <a href="#x15.5">#</a> <a href="#x15.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<h4 id="x15.5.1">15.5.1 Вызов конструктора String как функции <a href="#x15.5.1">#</a> <a href="#x15.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове <code><b>String</b></code> не в качестве конструктора, а в качестве функции, производится преобразование типов.</p>
+	<h5 id="x15.5.1.1">15.5.1.1 String ( [ value ] ) <a href="#x15.5.1.1">#</a> <a href="#x15.5.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строковое значение (а не объект String), вычисляемое абстрактной операцией <a href="x9.html#x9.8">ToString</a>(<i>value</i>). Если аргумент <i>value</i> не передаётся, возвращается пустая строка <code><b>&quot;&quot;</b></code>.</p>
+	<h4 id="x15.5.2">15.5.2 Конструктор String <a href="#x15.5.2">#</a> <a href="#x15.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><b>String</b></code> вызывается в рамках выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует создаваемый им же объект.</p>
+	<h5 id="x15.5.2.1">15.5.2.1 new String ( [ value ] ) <a href="#x15.5.2.1">#</a> <a href="#x15.5.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным стандартному встроенному объекту-прототипу String, который представляет собой начальное значение свойства <code><b>String.prototype</b></code> (<a href="#x15.5.3.1">15.5.3.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;String&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] создаваемого объекта устанавливается равным <a href="x9.html#x9.8">ToString</a>(<i>value</i>), или равным пустой строке, если аргумент <i>value</i> не передаётся.</p>
+	<h4 id="x15.5.3">15.5.3 Свойства конструктора String <a href="#x15.5.3">#</a> <a href="#x15.5.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора String является стандартный встроенный объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Кроме внутренних свойств и свойства <code><b>length</b></code> со значением <b>1</b>, конструктор String имеет следующие свойства:</p>
+	<h5 id="x15.5.3.1">15.5.3.1 String.prototype <a href="#x15.5.3.1">#</a> <a href="#x15.5.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>String.prototype</b></code> является стандартный встроенный объект-прототип String (<a href="#x15.5.4">15.5.4</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.5.3.2">15.5.3.2 String.fromCharCode ( [ char0 [ , char1 [ , &#8230; ] ] ] ) <a href="#x15.5.3.2">#</a> <a href="#x15.5.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строковое значение, содержащее столько символов, сколько имеется передаваемых аргументов. Каждый аргумент задаёт один символ результирующей строки: первый аргумент задаёт первый символ, и так далее, слева направо. Аргумент преобразовывается в символ посредством операции <a href="x9.html#x9.7">ToUint16</a> (<a href="x9.html#x9.7">9.7</a>), после чего полученное 16-битовое целое число рассматривается как кодовое значение символа. Если аргументы не передавались, полученная строка является пустой.</p>
+	<p>
+	Свойство <code><b>length</b></code> для <code><B>fromCharCode</B></code> равно <b>1</b>.</p>
+	<h4 id="x15.5.4">15.5.4 Свойства объекта-прототипа String <a href="#x15.5.4">#</a> <a href="#x15.5.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Объект-прототип String сам по себе является объектом типа String (его класс [[Class]] &ndash; <code><b>&quot;String&quot;</b></code>), значение которого &ndash; пустая строка.</p>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа String является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>).</p>
+	<h5 id="x15.5.4.1">15.5.4.1 String.prototype.constructor <a href="#x15.5.4.1">#</a> <a href="#x15.5.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>String.prototype.constructor</b></code> является встроенный конструктор <code><b>String</b></code>.</p>
+	<h5 id="x15.5.4.2">15.5.4.2 String.prototype.toString ( ) <a href="#x15.5.4.2">#</a> <a href="#x15.5.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строковое значение. (Обратите внимание, что для объекта String метод <code><b>toString</b></code> возвращает то же значение, что и метод <code><b>valueOf</b></code>.)</p>
+	<p>
+	Функция <code><b>toString</b></code> не является родовой функцией. Если её значение <b>this</b> &ndash; не строка или не объект String, она генерирует исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Поэтому она не может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.3">15.5.4.3 String.prototype.valueOf ( ) <a href="#x15.5.4.3">#</a> <a href="#x15.5.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строковое значение.</p>
+	<p>
+	Функция <code><b>valueOf</b></code> не является родовой функцией. Если её значение <b>this</b> &ndash; не строка или не объект типа String, она генерирует исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Поэтому она не может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.4">15.5.4.4 String.prototype.charAt (pos) <a href="#x15.5.4.4">#</a> <a href="#x15.5.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строку, содержащую символ, который находится в позиции <i>pos</i> в строке, полученной в результате преобразования данного объекта в тип String. Если в этой позиции нет символов, результат представляет собой пустую строку. Результатом является строковое значение, а не объект String.</p>
+	<p>
+	Если <i>pos</i> является целочисленным значением типа Number, то результат <code><b>x.charAt(</b></code> <i>pos</i><code><b>)</b></code> равен результату <code><b>x.substring(</b></code> <i>pos</i><code><b>,</b></code> <i>pos</i><code><b>+1)</b></code>.</p>
+	<p>
+	При вызове метода <code>charAt</code> с одним аргументом&nbsp;<I>pos</I> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>position</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>pos</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>size</i> будет количеством символов в&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Если <i>position</i> &lt; 0 или <i>position</i> &#8805; <i>size</i>, вернуть пустую строку.</p>
+		</li>
+		<li><p>
+		Вернуть строку длиной 1, содержащую один символ из&nbsp;<i>S</i>, а именно &ndash; символ в позиции <i>position</i>, где считается, что первый (крайний левый) символ в <i>S</i> находится в позиции&nbsp;0, следующий символ &ndash; в позиции&nbsp;1, и так далее.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>charAt</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.5">15.5.4.5 String.prototype.charCodeAt (pos) <a href="#x15.5.4.5">#</a> <a href="#x15.5.4.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает значение типа Number (неотрицательное целое число, меньше чем 2<sup>16</sup>), представляющее собой кодовое значение символа в позиции <i>pos</i> в строке, полученной в результате преобразования данного объекта в тип String. Если в этой позиции нет символов, результатом является <B>NaN</B>.</p>
+	<p>
+	При вызове метода <code><B>charCodeAt</B></code> с одним аргументом&nbsp;<I>pos</I> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>position</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>pos</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>size</i> будет количеством символов в&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Если <i>position</i> &lt; 0 или <i>position</i> &#8805; <i>size</i>, вернуть <B>NaN</B>.</p>
+		</li>
+		<li><p>
+		Вернуть значение типа Number, которое представляет собой кодовое значение символа в позиции <i>position</i> в строке <i>S</i>, где считается, что первый символ (крайний левый) находится в позиции 0, следующий &ndash; в позиции 1, и так далее.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>charCodeAt</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.6">15.5.4.6 String.prototype.concat ( [ string1 [ , string2 [ , &#8230; ] ] ] ) <a href="#x15.5.4.6">#</a> <a href="#x15.5.4.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове метода <code><b>concat</b></code> с аргументами <i>string1</i>, <i>string2</i>, и т.д. в количестве ноль или более, возвращается строка, состоящая из символов этого объекта (преобразованного в тип String), за которыми следуют символы каждого из аргументов <i>string1</i>, <i>string2</i>, и т.д. (где каждый аргумент был преобразован в тип String). Результатом является строковое значение, а не объект String. При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>args</i> будет внутренним списком, который является копией списка аргументов, переданных в эту функцию.</p>
+		</li>
+		<li><p>
+		Пусть <i>R</i> будет <i>S</i>.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>args</i> не равно пусто.</p>
+		<ol><li><p>
+			Удалить из <i>args</i> первый элемент, и пусть <I>next</I> будет значением этого элемента.</p>
+			</li>
+			<li><p>
+			Пусть <i>R</i> будет строковым значением, состоящим из предыдущего значения <i>R</i>, за которым следуют символы из <a href="x9.html#x9.8">ToString</a>(<i>next</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть&nbsp;<i><i>R</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><b>concat</b></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>concat</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.7">15.5.4.7 String.prototype.indexOf (searchString, position) <a href="#x15.5.4.7">#</a> <a href="#x15.5.4.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если результатом преобразования этого объекта в тип String является подстрока <i>searchString</i> в одной или нескольких позициях, больших или равных <i>position</i>, то возвращается индекс наименьшей из таких позиций. В противном случае возвращается <code><b>-1</b></code>. Если <i>position</i> равно <b>undefined</b>, он принимает значение 0, что означает, что поиск будет производиться по всей строке.</p>
+	<p>
+	Метод <code><b>indexOf</b></code> принимает два аргумента <i>searchString </i>и <i>position</i> и выполняет следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>searchStr</i> будет <a href="x9.html#x9.8">ToString</a>(<i>searchString</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>pos</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>position</i>). (Если <i>position</i> равно <b>undefined</b>, значение, полученное на этом шаге, равно <code><b>0</b></code>).</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет количеством символов в&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>start</i> будет min(max(<i>pos</i>, 0), <i>len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>searchLen</i> будет количеством символов в <i>searchStr</i>.</p>
+		</li>
+		<li><p>
+		Вернуть наименьшее возможное целое число <i>k</i>, не меньше чем <i>start</i>, таким образом, чтобы <i>k</i>+<i> searchLen</i> было не больше чем <i>len</i>, и чтобы для всех неотрицательных целых чисел <i>j</i>, меньшим чем <i>searchLen</i>, символ в  позиции <i>k</i>+<i>j</i> в строке <i>S</i> был бы таким же, что и символ в позиции <i>j</i> в строке <i>searchStr</i>). Если же такого целого числа <i>k</i> не существует, вернуть значение <code><b>-1</b></code>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>indexOf</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code>indexOf</code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.8">15.5.4.8 String.prototype.lastIndexOf (searchString, position) <a href="#x15.5.4.8">#</a> <a href="#x15.5.4.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если результатом преобразования этого объекта в тип String является подстрока <i>searchString</i> в одной или нескольких позициях, меньших или равных <i>position</i>, то возвращается индекс наибольшей из таких позиций. В противном случае возвращается <code><b>-1</b></code>. Если <i>position</i> равно <b>undefined</b>, он принимает значение длины строки, что означает, что поиск будет производиться по всей строке.</p>
+	<p>
+	Метод <code><b>lastIndexOf</b></code> принимает два аргумента <i>searchString </i>и <i>position</i> и выполняет следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>searchStr</i> будет <a href="x9.html#x9.8">ToString</a>(<i>searchString</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>numPos</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>position</i>). (Если <i>position</i> равно <b>undefined</b>, значение, полученное на этом шаге, равно <B>NaN</B>).</p>
+		</li>
+		<li><p>
+		Если <i>numPos</i> равно <b>NaN</b>, пусть <i>pos</i> будет <b>+</b><span class="symbol"><b>&#8734;</b></span>. В противному случае пусть <i>pos</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>numPos</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет количеством символов в&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>start</i> будет min(max(<i>pos</i>, 0), <i>len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>searchLen</i> будет количеством символов в <i>searchStr</i>.</p>
+		</li>
+		<li><p>
+		Вернуть наибольшее возможное неотрицательное целое число <i>k</i>, не больше чем <i>start</i>, таким образом, чтобы <i>k</i>+<i> searchLen</i> было не больше чем <i>len</i>, и чтобы для всех неотрицательных целых чисел <i>j</i>, меньшим чем <i>searchLen</i>, символ в  позиции <i>k</i>+<i>j</i> в строке <i>S</i> был бы таким же, что и символ в позиции <i>j</i> в строке <i>searchStr</i>). Если же такого целого числа <i>k</i> не существует, вернуть значение <code><b>-1</b></code>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>lastIndexOf</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>lastIndexOf</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.9">15.5.4.9 String.prototype.localeCompare (that) <a href="#x15.5.4.9">#</a> <a href="#x15.5.4.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове метода <code><b>localeCompare</b></code> с одним аргументом <i>that</i> возвращается число, отличное от <b>NaN</b>, которое представляет собой результат строкового сравнения (выполненного с учётом языковых настроек) этого значения, преобразованного в строку, с <i>that</i>, преобразованного в строку. Эти две строки &ndash; <i>S</i> и <i>That</i>. Они сравниваются способом, заданным реализацией.  Полученный результат должен располагать строковые значения в порядке сортировки, заданной в соответствии с системными языковыми настройками по умолчанию. Результат будет отрицательным, если в этом порядке сортировки <i>S</i> находится перед <i>That</i>, нулевым, если строки равны, и положительным, если <i>S</i> находится перед <i>That</i>.</p>
+	<p>
+	Прежде чем производить сравнение, для подготовки строк необходимо выполнить следующие действия:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>That</i> будет <a href="x9.html#x9.8">ToString</a>(<i>that</i>).</p>
+	</li></ol><p>
+	Если рассматривать метод <code><b>localeCompare</b></code> как функцию с двумя аругментами <b>this</b> и <i>that</i>, он является последовательной функцией сравнения (в соответствии с определением в главе <a href="x15.4.html#x15.4.4.11">15.4.4.11</a>), производимого над множеством всех строк.</p>
+	<p>
+	Точные величины возвращаемых значений зависят от реализации и позволяют средствам реализации кодировать в полученном значении дополнительную информацию, но функция должна задавать нестрогий порядок для всех строк и возвращать <code><b>0</b></code> при сравнении строк, которые стандарт Юникод рассматривает как канонически эквивалентные.</p>
+	<p>
+	Если внешняя среда не предоставляет совсем никакой возможности сравнения в соответствии с языковыми настройками, то функции разрешается производить побитовое сравнение.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Сам по себе метод <code><b>localeCompare</b></code> не подходит в качестве аргумента для <code><b><a href="x15.4.html#x15.4.4.11">Array.prototype.sort</a></b></code>, поскольку последний требует функции с двумя аргументами.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Эта функция должна полагаться на тот набор функциональных возможностей сравнения в соответствии с языковыми настройками, который доступен среде ECMAScript  из внешней среды, и должна производить сравнение в соответствии с правилами текущих языковых настроек внешней среды. Настоятельно рекомендуется, чтобы эта функция рассматривала строки, являющиеся канонически эквивалентными в соответствии со стандартом Юникода, как идентичные (иными словами, чтобы она сравнивала строки, как если бы они обе были сначала преобразованы в соответствии с Формой нормализации &quot;C&quot; или &quot;D&quot;). Кроме того, рекомендуется, чтобы эта функция не соблюдала юникодные эквивалентности по совместимости и декомпозиции совместимости.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 3</b> Второй параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 4</b> Функция <code><B>localeCompare</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.10">15.5.4.10 String.prototype.match (regexp) <a href="#x15.5.4.10">#</a> <a href="#x15.5.4.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове метода <code><b>match</b></code> с аргументом <I>regexp</I> выполняются следующие шаги:</p>
+	<ol><li value="1"><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>regexp</i>) равен Object, а значение внутреннего свойства [[Class]] для <i>regexp</i> равно <code><b>&quot;RegExp&quot;</b></code>, то пусть <i>rx</i> будет <i>regexp</i>;</p>
+		</li>
+		<li><p>
+		Иначе, пусть <i>rx</i> будет новым объектом RegExp, как если бы он был создан выражением <code><b>new RegExp(</b></code> <i>regexp</i><code><b>)</b></code>, где <code><b>RegExp</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>global</i> будет результатом вызова внутреннего метода [[Get]] для <i>rx</i> с аргументом <code><b>&quot;global&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>exec</i> будет стандартной встроенной функцией <code><b><a href="x15.10.html#x15.10.6.2">RegExp.prototype.exec</a></b></code> (см. <a href="x15.10.html#x15.10.6.2">15.10.6.2</a>)</p>
+		</li>
+		<li><p>
+		Если <i>global</i> не равно <b>true</b>, то </p>
+		<ol><li><p>
+			Вернуть результат вызова внутреннего метода [[Call]] для <i>exec</i> с <i>rx</i> в качестве значения <b>this</b> и со списком аргументов, содержащим <i>S</i>.</p>
+		</li></ol></li></ol><ol start="8"><li><p>
+		Иначе <i>global</i> равно <B>true</B>.</p>
+		<ol><li><p>
+			Вызвать внутренний метод [[Put]] для <i>rx</i> с аргументами <code><b>&quot;lastIndex&quot;</b></code> и 0.</p>
+			</li>
+			<li><p>
+			Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array()</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем.</p>
+			</li>
+			<li><p>
+			Пусть <I>previousLastIndex</I> будет 0.</p>
+			</li>
+			<li><p>
+			Пусть <i>n</i> будет 0.</p>
+			</li>
+			<li><p>
+			Пусть <i>lastMatch</i> будет <b>true</b>.</p>
+			</li>
+			<li><p>
+			Повторять, пока <i>lastMatch</i> равно <b>true</b>.</p>
+			<ol><li><p>
+				Пусть <i>result</i> будет результатом вызова внутреннего метода [[Call]] для <i>exec</i> с <i>rx</i> в качестве значения <b>this</b> и со списком аргументов, содержащим <i>S</i>.</p>
+				</li>
+				<li><p>
+				Если <i>result</i> равно <b>null</b>, то присвоить <i>lastMatch</i> значение <b>false</b>.</p>
+				</li>
+				<li><p>
+				Иначе <i>result</i> не равно <b>null</b></p>
+				<ol><li><p>
+					Пусть <i>thisIndex</i> будет результатом вызова внутреннего метода [[Get]] для <i>rx</i> с аргументом <code><b>&quot;lastIndex&quot;</b></code>.</p>
+					</li>
+					<li><p>
+					Если <i>thisIndex</i> = <i>previousLastIndex</i>, то</p>
+					<ol><li><p>
+						Вызвать внутренний метод [[Put]] для <i>rx</i> с аргументами <code><b>&quot;lastIndex&quot;</b></code> и <I>thisIndex</I>+1.</p>
+						</li>
+						<li><p>
+						Присвоить <i>previousLastIndex</i> значение <i>thisIndex</i>+1.</p>
+					</li></ol></li>
+					<li><p>
+					Иначе присвоить <i>previousLastIndex</i> значение <i>thisIndex</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>matchStr </i>будет результатом вызова внутреннего метода [[Get]] для <I>result </I>с аргументом <code><b>&quot;0&quot;</b></code>.</p>
+					</li>
+					<li><p>
+					Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>n</i>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>matchStr</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[configurable]]: <b>true</b>} и <b>false</b>.</p>
+					</li>
+					<li><p>
+					Увеличить <i><i>n</i></i>.</p>
+				</li></ol></li></ol></li>
+			<li><p>
+			Если <i>n</i> = 0, вернуть <b>null</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <i>А</i>.</p>
+		</li></ol></li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><b>match</b></B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.11">15.5.4.11 String.prototype.replace (searchValue, replaceValue) <a href="#x15.5.4.11">#</a> <a href="#x15.5.4.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Сначала необходимо присвоить <i>string</i> значение, как указано ниже:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <I>string</I> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+	</li></ol><p>
+	Если <i>searchValue</i> является регулярным выражением (объектом, внутреннее свойство [[Class]] которого равно <code><b>&quot;RegExp&quot;</b></code>), необходимо выполнить следующее: Если <i>searchValue</i>.global равно <b>false</b>, выполнить поиск по строке <i>string</i> и найти первое совпадение с регулярным выражением <i>searchValue</i>. Если <i>searchValue</i>.global равно <b>true</b>, выполнить поиск по строке <i>string</i> и найти все совпадения с регулярным выражением <i>searchValue</i>. Поиск необходимо производить так же, как и в <code><b><a href="#x15.5.4.10">String.prototype.match</a></b></code>, включая обновление значения <i>searchValue</i>.<code><b>lastIndex</b></code>. Пусть <i>m</i> &ndash; количество левых захватывающих скобок <em>capturing parentheses</em> в <i>searchValue</i> (при использовании <i>NcapturingParens</i>, как указано в <a href="x15.10.html#x15.10.2.1">15.10.2.1</a>).</p>
+	<p>
+	Если <i>searchValue</i> не является регулярным выражением, пусть <i>searchString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>searchValue</i>), и выполнить поиск по <i>string</i>, чтобы найти первое вхождение<i> searchString</i>. Пусть <i>m</i> будет равно 0.</p>
+	<p>
+	Если <i>replaceValue</i> является функцией, то для каждой найденной подстроки вызвать функцию с аргументами в количестве <i>m</i> + 3, описанными далее: Аргумент 1 &ndash; это найденная подстрока. Если <i>searchValue</i> &ndash; регулярное выражение, то все следующие <i>m&nbsp;</i>аргументов являются <a href="x15.10.html#captures">захваченными элементами</a> <em>captures</em> в <a href="x15.10.html#MatchResult">MatchResult</a> (см. пункт&nbsp;<a href="x15.10.html#x15.10.2.1">15.10.2.1</a>). Аргумент <i>m</i> + 2 &ndash; смещение в строке <i>string</i>, где было найдено совпадение, а аргумент <i>m</i> + 3 равен&nbsp;<i>string</i>. Результатом является строковое значение, полученное в результате замены в начальном входном значении каждой найденной подстроки на результат соответствующего вызова функции, преобразованный в строку (в случае необходимости). </p>
+	<p>
+	Иначе, пусть <i>newstring</i> означает результат преобразования <i>replaceValue</i> в строку. Результатом является строковое значение, полученное в результате замены в начальной входной строке каждой найденной подстроки на строку, полученную из <i>newstring</i> посредством замены символов в <i>newstring</i> на заменяющий текст, приведённый в Таблице&nbsp;22. Эти заамены с использованием <code><b>$</b></code> производится слева направо. После выполнения такой замены вставленный заменяющий текст уже не должен подвергаться дальнейшей процедуре замены. Например, <code><b>&quot;$1,$2&quot;.replace(/(\$(\d))/g, &quot;$$1-$1$2&quot;)</b></code> возвращает <code><b>&quot;$1-$11,$1-$22&quot;</b></code>. Если символ <code><b>$</b></code> в подстроке <i>newstring</i> не соответствует ни одной из нижеуказанных форм, его следует оставить как есть.</p>
+<center>
+	<table width="708" border="1" bordercolor="#000000" cellpadding="0" cellspacing="0" rules="ROWS"><caption>Таблица 22 &mdash; Замена символов на текст</caption>
+		<colgroup><col width="132"><col width="574"></colgroup><tbody><tr valign="TOP"><td width="132" bgcolor="#c0c0c0">
+				<p class="sm-btm">
+				<span class="table-header">Символ</span></p>
+			</td>
+			<td width="574" bgcolor="#c0c0c0">
+				<p class="sm-btm">
+				<span class="table-header">Заменяющий текст</span></p>
+			</td>
+		</tr><tr valign="TOP"><td width="132">
+				<p>
+				<code><b>$$</b></code></p>
+			</td>
+			<td width="574">
+				<p>
+				<code><b>$</b></code></p>
+			</td>
+		</tr><tr valign="TOP"><td width="132">
+				<p>
+				<code><b>$&amp;</b></code></p>
+			</td>
+			<td width="574">
+				<p>
+				Найденная подстрока.</p>
+			</td>
+		</tr><tr valign="TOP"><td width="132">
+				<p>
+				<code><b>$&lsquo;</b></code></p>
+			</td>
+			<td width="574">
+				<p>
+				Часть строки <i>string</i>, предшествующая найденной подстроке.</p>
+			</td>
+		</tr><tr valign="TOP"><td width="132">
+				<p>
+				<code><b>$&rsquo;</b></code></p>
+			</td>
+			<td width="574">
+				<p>
+				Часть строки <i>string</i>, следующая за найденной подстрокой.</p>
+			</td>
+		</tr><tr valign="TOP"><td width="132">
+				<p>
+				<code><b>$n</b></code></p>
+			</td>
+			<td width="574">
+				<p>
+				Захваченный элемент № <i>n</i>, где <i>n</i> &ndash; одиночное число от 1 до 9, и при этом за <code><b>$</b></code><i>n</i> не следует десятичных цифр. Если <i>n</i><span class="symbol">&#8804;</span><i>m</i>, и захваченный элемент № <i>n</i> равен <b>undefined</b>, вместо него используют пустую строку. Если <i>n</i>&gt;<i>m</i>, то результат зависит от реализации.</p>
+			</td>
+		</tr><tr valign="TOP"><td width="132">
+				<p>
+				<code><b>$nn</b></code></p>
+			</td>
+			<td width="574">
+				<p>
+				Захваченный элемент № <i>nn</i>, где <i>nn</i> &ndash; двузначное десятичное число от 01 до 99. Если <I>nn</I><span class="symbol">&#8804;</span><i>m</i>, и захваченный элемент № <I>nn</I> равен <b>undefined</b>, вместо него используют пустую строку. Если <i>n<i>n</i></i>&gt;<i>m</i>, то результат зависит от реализации.</p>
+			</td>
+		</tr></tbody></table></center>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><b>replace</b></B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.12">15.5.4.12 String.prototype.search (regexp) <a href="#x15.5.4.12">#</a> <a href="#x15.5.4.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове метода search с аргументом <I>regexp</I> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <I>string</I> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>regexp</i>) равен Object, а значение внутреннего свойства [[Class]] для <i>regexp</i> равно <code><b>&quot;RegExp&quot;</b></code>, то пусть <i>rx</i> будет <i>regexp</i>;</p>
+		</li>
+		<li><p>
+		Иначе, пусть <i>rx</i> будет новым объектом RegExp, как если бы он был создан выражением <code><b>new RegExp(</b></code> <i>regexp</i><code><b>)</b></code>, где <code><b>RegExp</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Произвести поиск по <i>string</i> с самого начала и найти вхождение шаблона регулярного выражения&nbsp;<i>rx</i>. Пусть <i>result</i> будет равен числу, обозначающему смещение в строке <i>string</i>, где был найден такой шаблон, или будет равен &ndash;1, если такой шаблон не был найден. При осуществлении этого поиска свойства <code><b>lastIndex</b></code> и <code><b>global</b></code> для regexp игнорируются. Свойство <code><b>lastIndex</b></code> для regexp остаётся без изменений.</p>
+		</li>
+		<li><p>
+		Вернуть <i>result</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><b>search</b></B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.13">15.5.4.13 String.prototype.slice (start, end) <a href="#x15.5.4.13">#</a> <a href="#x15.5.4.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Метод <code><b>slice</b></code> принимает два аргумента <i>start</i> и <i>end</i> и возвращает подстроку, полученную в результате преобразования в строку этого объекта, начиная с позиции <i>start</i> и до позиции <i>end</i> не включительно (или до конца строки, если <i>end</i> равно <b>undefined</b>). Если <i>start</i> имеет отрицательное значение, вместо него используется <i>sourceLength</i>+<i>start</i>, где <i>sourceLength</i> является длиной строки. Если <i>end</i> имеет отрицательное значение, вместо него используется <i>sourceLength</i>+<i>end</i>, где <i>sourceLength</i> является длиной строки. Результатом является строковое значение, а не объект String. При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет количеством символов в&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>intStart</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>start</i>).</p>
+		</li>
+		<li><p>
+		Если <i>end</i> &ndash; <b>undefined</b>, пусть <i>intEnd</i> будет <i>len</i>; иначе пусть <i>intEnd</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>end</i>).</p>
+		</li>
+		<li><p>
+		Если <i>intStart </i>имеет отрицательное значение, пусть <i>from</i> будет max(<i>len</i> + <i>intStart</i>,0); иначе, пусть <i>from</i> будет min(<i>intStart</i>,<i>len</i>).</p>
+		</li>
+		<li><p>
+		Если <i>intEnd</i> имеет отрицательное значение, пусть <i>to</i> будет max(<i>len</i> +<i>intEnd</i>,0); иначе, пусть <i>to</i> будет min(<i>intEnd</i>,<i> len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>span</i> будет max(<i>to</i> &ndash;<i> from</i>,0).</p>
+		</li>
+		<li><p>
+		Вернуть строку, содержащую последовательные символы в количестве <i>span</i> из <i>S</i>, начиная с символа в позиции <i>from</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>slice</B></code> равно <b>2</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><b>slice</b></B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.14">15.5.4.14 String.prototype.split (separator, limit) <a href="#x15.5.4.14">#</a> <a href="#x15.5.4.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает объект Array, в который запоминались подстроки, полученные в  результате преобразования этого объекта в строку. Для выявления этих подстрок слева направо производится поиск экземпляров разделителя <i>separator</i>. При этом данные экземпляры разделителя не являются частью подстроки в результирующем массиве, а служат для разделения строкового значения.  Значением разделителя <i>separator</i> может быть строка любой длины или объект RegExp (то есть, объект, внутреннее свойство [[Class]]  которого равно <code><b>&quot;RegExp&quot;</b></code>; см. пункт <a href="x15.10.html#x15.10">15.10</a>).</p>
+	<p>
+	Значением разделителя <i>separator</i> может быть пустая строка, пустое регулярное выражение, или регулярное выражение, которое может соответствовать пустой строке. В этом случае <i>separator</i> не соответствует пустой подстроке в начале или в конце входной строки. Он также не соответствует пустой подстроке в конце предыдущего найденного разделителя. (Например, если <i>separator</i> &ndash; пустая строка, то строка разделяется на отдельные символы. Длина результирующего массива равна длине строки, при этом каждая подстрока содержит один символ). Если <i>separator</i> &ndash; регулярное выражение, то рассматривается только первое найденное совпадение в определённой позиции строки <b>this</b>, даже если в результате поиска с возвратами в этой позиции может быть обнаружена непустая подстрока. (Например, <code><b>&quot;ab&quot;.split(/a*?/)</b></code> преобразовывается к массиву <code><b>[&quot;a&quot;,&quot;b&quot;]</b></code>, а <code><b>&quot;ab&quot;.split(/a*/)</b></code> преобразовывается к массиву <code><b>[&quot;&quot;,&quot;b&quot;]</b></code>.)</p>
+	<p>
+	Если объект <b>this</b> является пустой строкой (или может быть преобразован к ней), то результат зависит от того, может ли <i>separator</i> совпадать с пустой строкой. Если да, то результирующий массив не содержит <a href="x15.4.html#array-element">элементов</a>. В противном случае результирующий массив содержит один элемент &ndash; пустую строку.</p>
+	<p>Если <i>separator</i> является регулярным выражением, содержащим захватывающие скобки, то каждый раз при обнаружении разделителя <i>separator</i> результаты (в том числе, результаты со значением <b>undefined</b>) захватывающих скобок присоединяются к содержимому результирующего массива. Например,</p>
+	<p class="code-example">
+	<code><b>&quot;A&lt;B&gt;bold&lt;/B&gt;and&lt;CODE&gt;coded&lt;/CODE&gt;&quot;.split(/&lt;(\/)?([^&lt;&gt;]+)&gt;/)</b></code></p>
+	<p>преобразовывается к массиву</p>
+	<p class="code-example">
+	<code><b>[&quot;A&quot;, undefined, &quot;B&quot;, &quot;bold&quot;, &quot;/&quot;, &quot;B&quot;, &quot;and&quot;, undefined,<br> &quot;CODE&quot;, &quot;coded&quot;, &quot;/&quot;, &quot;CODE&quot;, &quot;&quot;]</b></code></p>
+	<p>
+	Если <i>separator</i> равно <b>undefined</b>, то результирующий массив содержит только одну строку, представляющую собой значение <b>this</b> (преобразованное в строку). Если <i>limit</i> не равно <b>undefined</b>, то результирующий массив усекается таким образом, чтобы он содержал <a href="x15.4.html#array-element">элементы</a> в количестве, не превышающем <I>limit</I>.</p>
+	<p>
+	При вызове метода <code><b>split</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array()</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>lengthA</i> будет 0.</p>
+		</li>
+		<li><p>
+		Если <i>limit</i> равен <b>undefined</b>, пусть <i>lim</i> = 2<sup>32</sup>&ndash;1; иначе пусть <i>lim</i> = <a href="x9.html#x9.6">ToUint32</a>(<i>limit</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i><i>s</i></i> будет количеством символов в&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>p</i> = 0.</p>
+		</li>
+		<li><p>
+		Если <i>separator</i> &ndash; объект RegExp (то есть, его [[Class]] равен <code><b>&quot;RegExp&quot;</b></code>), то пусть <i>R</i> = <i>separator</i>; в противном случае пусть <i>R</i> = <a href="x9.html#x9.8">ToString</a>(<i>separator</i>).</p>
+		</li>
+		<li><p>
+		Если <i>lim</i> = 0, вернуть <i>A</i>.</p>
+		</li>
+		<li><p>
+		Если <i>separator</i> &ndash; <b>undefined</b>, то</p>
+		<ol><li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <code>&quot;</code><code><b>0</b></code><code>&quot;</code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>S</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <i>А</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>s</i> = 0, то</p>
+		<ol><li><p>
+			Вызвать <i><a href="#SplitMatch">SplitMatch</a></i>(<i>S</i>, 0, <i>R</i>), и пусть <i>z</i> будет его результатом <a href="x15.10.html#MatchResult">MatchResult</a>.</p>
+			</li>
+			<li><p>
+			Если <i>z</i> &ndash; не <b>failure</b>, вернуть <i>A</i>.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <code>&quot;</code><code><b>0</b></code><code>&quot;</code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>S</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <i>А</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>q</i> = <i>p</i>.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>q</i> <span class="symbol">&#8800;</span> <i>s</i></p>
+		<ol><li><p>
+			Вызвать <i><a href="#SplitMatch">SplitMatch</a></i>(<i>S</i>, <i>q</i>, <i>R</i>), и пусть <i>z</i> будет его результатом <a href="x15.10.html#MatchResult">MatchResult</a>.</p>
+			</li>
+
+			<li><p>
+			Если <i>z</i> &ndash; <b>failure</b>, то пусть <i>q</i> = <i>q</i>+1.</p>
+			</li>
+			<li><p>
+			Иначе, <i>z</i> &ndash; не <b>failure</b></p>
+			<ol><li><p>
+				<i>z</i> должно быть State. Пусть <i>e</i> будет <i><a href="x15.10.html#endIndex">endIndex</a></i> для <i>z</i>, и пусть <i>cap</i> будет массивом <i><a href="x15.10.html#captures">захваченных результатов</a></i> для <i>z</i>.</p>
+				</li>
+				<li><p>
+				Если <i>e</i> = <i>p</i>, то пусть <i>q</i> = <i>q</i>+1.</p>
+				</li>
+				<li><p>
+				Иначе, <i>e</i> <span class="symbol">&#8800;</span> <i>p</i></p>
+				<ol><li><p>
+					Пусть <i>T</i> будет строковым значением, равным подстроке <i>S</i>, состоящей из символов в позициях с&nbsp;<i>p</i> (включительно) по&nbsp;<i>q</i> (не включительно)</p>
+					</li>
+					<li><p>
+					Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<I>lengthA</I>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>T</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+					</li>
+					<li><p>
+					Увеличить <i>lengthA</i> на 1.</p>
+					</li>
+					<li><p>
+					Если <i>lengthA</i> = <i>lim</i>, вернуть <i>A</i>.</p>
+					</li>
+					<li><p>
+					Пусть p = e.</p>
+					</li>
+					<li><p>
+					Пусть <i>i</i> = 0.</p>
+					</li>
+					<li><p>
+					Повторить, пока <i>i</i> не будет равно количеству элементов в <i>cap</i>.</p>
+					<ol><li><p>
+						Пусть <i>i</i> = <i>i</i>+1.</p>
+						</li>
+						<li><p>
+						Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<I>lengthA</I>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>cap</i>[<i>i</i>], [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+						</li>
+						<li><p>
+						Увеличить <i>lengthA</i> на 1.</p>
+						</li>
+
+			<li><p>
+						Если <i>lengthA</i> = <i>lim</i>, вернуть <i>A</i>.</p>
+					</li>
+
+</ol></li>
+					<li><p>
+					Пусть <i>q</i> = <i>p</i>.</p>
+				</li></ol></li></ol></li></ol></li>
+		<li><p>
+		Пусть <i>T</i> будет строковым значением, равным подстроке <i>S</i>, состоящей из символов в позициях с&nbsp;<i>p</i> (включительно) по&nbsp;<i>s</i> (не включительно)</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<I>lengthA</I>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>T</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>А</i>.</p>
+	</li></ol><p>
+	Абстрактная операция <dfn id="SplitMatch"><i>SplitMatch</i></dfn> принимает три параметра: строку <i>S</i>, целое число&nbsp;<i>q</i>, и строку или RegExp&nbsp;<i>R</i>, и, с целью вернуть <a href="x15.10.html#MatchResult">MatchResult</a> (см. пункт&nbsp;<a href="x15.10.html#x15.10.2.1">15.10.2.1</a>), выполняет следующие действия:</p>
+	<ol><li><p>
+		Если <i>R</i> &ndash; объект RegExp (его [[Class]] равен <code><b>&quot;RegExp&quot;</b></code>), то</p>
+		<ol><li><p>
+			Вызвать внутренний метод [[Match]] для <i>R</i>, передавая аргументы <i>S</i> и&nbsp;<i>q</i>, и вернуть результат <a href="x15.10.html#MatchResult">MatchResult</a>.</p>
+		</li></ol></li>
+		<li><p>
+		<a href="x8.html#Type">Type</a>(<i>R</i>) должен быть String. Пусть <i>r</i> будет количеством символов в&nbsp;<i>R</i>.</p>
+		</li>
+		<li><p>
+		Пусть <I>s</I> будет количеством символов в&nbsp;<I>S</I>.</p>
+		</li>
+		<li><p>
+		Если <i>q</i>+<i>r</i> &gt; <i>s</i>, то вернуть <B>failure </B>для <a href="x15.10.html#MatchResult">MatchResult</a>.</p>
+		</li>
+		<li><p>
+		Если существует такое целое число <i>i</i> в промежутке от 0 (включительно) до <i>r</i> (исключительно), чтобы символ в позиции <i>q</i>+<i>i</i> в <i>S</i> отличался от символа в позиции <i>i</i> в&nbsp;<i>R</i>, то вернуть <b>failure</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>cap</i> будет пустым массивом <a href="x15.10.html#captures">захваченных элементов</a> (см. пункт <a href="x15.10.html#x15.10.2.1">15.10.2.1</a>).</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x15.10.html#State">State</a> (<i>q</i>+<i>r</i>, <i>cap</i>). (см. <a href="x15.10.html#x15.10.2.1">15.10.2.1</a>)</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>split</B></code> равно <b>2</b>.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Метод <code><b>split</b></code> игнорирует значение разделителя <code><b>.global</b></code> для разделителей, которые являются объектами RegExp.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Функция <code><B>split</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.15">15.5.4.15 String.prototype.substring (start, end) <a href="#x15.5.4.15">#</a> <a href="#x15.5.4.15-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Метод <b>substring</b> принимает два аргумента <i>start</i> и <i>end</i> и возвращает подстроку, полученную в результате преобразования в строку этого объекта, начиная с позиции <i>start</i> и до позиции <i>end</i> не включительно (или до конца строки, если <i>end</i> равно <b>undefined</b>). Результатом является строковое значение, а не объект String.</p>
+	<p>
+	Если какой-либо из аргументов является либо <b>NaN</b>, либо отрицательным числом, он заменяется на ноль. Если какой-либо из аргументов больше, чем длина строки, он заменяется значением длины строки.</p>
+	<p>
+	Если <i>start</i> больше, чем <i>end</i>, аргументы меняются местами.</p>
+	<p>
+	При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет количеством символов в&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>intStart</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>start</i>).</p>
+		</li>
+		<li><p>
+		Если <i>end</i> &ndash; <b>undefined</b>, пусть <i>intEnd</i> будет <i>len</i>; иначе пусть <i>intEnd</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>end</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>finalStart</i> будет min(max(<i>intStart</i>, 0), <i>len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>finalEnd</i> будет min(max(<i>intEnd</i>, 0), <i>len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>from</i> будет min(<i>finalStart</i>, <i>finalEnd</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>to</i> будет max(<i>finalStart</i>, <i>finalEnd</i>).</p>
+		</li>
+		<li><p>
+		Вернуть строку, длина которой равна <i>to</i> - <i>from</i>, и которая содержит символы из&nbsp;<i>S</i>, а именно: символы с индексами от <i>from</i> до <i>to</i> <span class="symbol">&#8800;</span>1 в восходящем порядке.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>substring</B></code> равно <b>2</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><b>substring</b></B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.16">15.5.4.16 String.prototype.toLowerCase ( ) <a href="#x15.5.4.16">#</a> <a href="#x15.5.4.16-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>L</i> будет строкой, в которой каждый символ из <i>L</i> является либо символом Юникода в нижнем регистре, эквивалентным соответствующему символу из&nbsp;<i>S</i>, либо действительным соответствующим символом из&nbsp;<i>S</i>, если такого эквивалентного символа Юникода в нижнем регистре не существует.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>L</i></i>.</p>
+	</li></ol><p>
+	В целях данной операции 16-битовые кодовые единицы строки вычисляются как кодовые точки Основной многоязычной матрицы Юникода. Суррогатные кодовые точки напрямую передаются из&nbsp;<i>S</i> в&nbsp;<i>L</i> без нахождения соответствий.</p>
+	<p class="sp">Результат должен быть получен в соответствии с отображением регистров в Базе данных символов Юникода (в неё однозначно входит не только файл UnicodeData.txt file, но и файл SpecialCasings.txt, сопровождающий его в стандарте Юникод версии 2.1.8 и более поздних).</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Отображение регистров для некоторых символов может привести к возникновению различных символов.  В этом случае длина результирующей строки может отличаться от длины исходной строки. Поскольку поведение функций <code><b>toUpperCase</b></code> и <code><b>toLowerCase</b></code> является контекстно-зависимым, эти функции не симметричны. Иными словами, <code><b>s.toUpperCase().toLowerCase()</b></code> не обязательно будет равно <code><b>s.toLowerCase()</b></code>.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Функция <code><B>toLowerCase</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.17">15.5.4.17 String.prototype.toLocaleLowerCase ( ) <a href="#x15.5.4.17">#</a> <a href="#x15.5.4.17-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция действует точно так же, как и функция <code><b>toLowerCase</b></code>, с той только разницей, что её результат не является независимым от языковых настроек, он должен соответствовать текущим языковым настройкам внешней среды. Отличия будут лишь в некоторых случаях (например, для турецкого языка), когда правила языка конфликтуют со стандартным отображением регистров в Юникоде.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Первый параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Функция <code><B>toLocaleLowerCase</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.18">15.5.4.18 String.prototype.toUpperCase ( ) <a href="#x15.5.4.18">#</a> <a href="#x15.5.4.18-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Данная функция действует точно так же, как и <code><b><a href="#x15.5.4.16">String.prototype.toLowerCase</a></b></code>, с той лишь разницей, что эквиваленты символов в <i>верхнем регистре</i> отображаются в соответствии с Базой данных символов Юникода.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><b>toUpperCase</b></B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.19">15.5.4.19 String.prototype.toLocaleUpperCase ( ) <a href="#x15.5.4.19">#</a> <a href="#x15.5.4.19-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция действует точно так же, как и функция <code><b>toUpperCase</b></code>, с той только разницей, что её результат не является независимым от языковых настроек, он должен соответствовать текущим языковым настройкам внешней среды. Отличия будут лишь в некоторых случаях (например, для турецкого языка), когда правила языка конфликтуют со стандартным отображением регистров в Юникоде.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Первый параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Функция <code><B>toLocaleUpperCase</B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.5.4.20">15.5.4.20 String.prototype.trim ( ) <a href="#x15.5.4.20">#</a> <a href="#x15.5.4.20-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>, передавая <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет результатом вызова <a href="x9.html#x9.8">ToString</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>T</i> будет строковым значением, представляющим собой копию строки <i>S</i>, у которой удалены начальный и конечный пробелы. Определение пробела объединяет в себе <i><a href="x7.html#WhiteSpace">Пробельный символ</a></i> <tt>WhiteSpace</tt> и <i><a href="x7.html#LineTerminator">Символ окончания строки</a> </i><tt>LineTerminator</tt>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>T</i></i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><b>trim</b></B></code> специально является родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;типа String. Поэтому она может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h4 id="x15.5.5">15.5.5 Свойства экземпляров String <a href="#x15.5.5">#</a> <a href="#x15.5.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Экземпляры String наследуют свойства объекта-прототипа String. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;String&quot;</b></code>. Кроме того, у экземпляров String имеются внутреннее свойство [[PrimitiveValue]], свойство <code><b>length</b></code>, а также набор перечислимых свойств, имена которых соответствуют индексам массива.</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] представляет собой строковое значение, представленное этим объектом String. Свойства с именами-индексами массива соответствуют отдельным символам строкового значения. Специальный внутренний метод [[GetOwnProperty]] используется для указания количества, значений и атрибутов свойств с именами-индексами массива. 
+	</p>
+	<h5 id="x15.5.5.1">15.5.5.1 length <a href="#x15.5.5.1">#</a> <a href="#x15.5.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Количество символов в строковом значении, представленном этим объектом String.</p>
+	<p>
+	После создания объекта String это свойство уже не изменяется. Оно имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.5.5.2">15.5.5.2 [[GetOwnProperty]] ( P ) <a href="#x15.5.5.2">#</a> <a href="#x15.5.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Объекты String используют разновидность внутреннего метода [[GetOwnProperty]], применяемого и для других родных объектов ECMAScript (см. пункт <a href="x8.html#x8.12.1">8.12.1</a>).
+
+ Этот специальный внутренний метод используется для добавления доступа для именованных свойств, соответствующих отдельным символам объектов String.</p>
+	<p>
+	Допустим, <i>S </i>&ndash; это объект String, а <i>P </i>&ndash; строка.</p>
+	<p>
+	При вызове внутреннего метода [[GetOwnProperty]] объекта <i>S</i> с именем свойства <i>P</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>desc</i> будет результатом вызова внутреннего метода по умолчанию [[GetOwnProperty]] (пункт&nbsp;<a href="x8.html#x8.12.1">8.12.1</a>) для&nbsp;<i>S </i>с аргументом&nbsp;<i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>desc</i> &ndash; не <b>undefined</b>, вернуть <i>desc</i>. 
+		</p>
+		</li>
+
+		<li><p>
+		Если <a href="x9.html#x9.8">ToString</a>(<a href="x5.html#abs">abs</a>(<a href="x9.html#x9.4">ToInteger</a>(<i>P</i>))) не имеет такого же значения, что и <i>P</i>, вернуть <b>undefined</b>.</p>
+		</li>
+
+		<li><p>
+		Пусть <i>str</i> будет строковым значением внутреннего свойства [[PrimitiveValue]] для <i>S</i>.</p>
+		</li>
+
+		<li><p>
+		Пусть <i>index</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>P</i>).</p> </li>
+
+		<li><p>
+		Пусть <i>len</i> будет количеством символов в&nbsp;<i>str</i>.</p>
+		</li>
+		<li><p>
+		Если <i>len</i> &#8804; <i>index</i>, вернуть&nbsp;<b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <I>resultStr </I>будет строкой длиной 1, содержащей один символ из&nbsp;<I>str</I>, а именно &ndash; символ в позиции <i>index</i>, где считается, что первый (крайний левый) символ в <I>str</I> находится в позиции&nbsp;0, следующий символ &ndash; в позиции&nbsp;1, и так далее.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#x8.10">Property Descriptor</a> { [[Value]]: <i>resultStr</i>, [[Enumerable]]: <b>true</b>, [[Writable]]: <b>false</b>, [[Configurable]]: <b>false </b>}</p>
+	</li></ol></body><script src="anno.js"></script></html>

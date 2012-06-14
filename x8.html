@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html class="split chapter">
+<head>
+ 
+<meta charset="utf-8">
+<title>8 Типы # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x7.html" title="7 Лексические соглашения " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x9.html" title="9 Преобразование и проверка типов " rel="next">
+  </head>
+
+  <body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x7.html">&#8592; 7 Лексические соглашения </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x9.html">9 Преобразование и проверка типов  &#8594;</a>
+
+  <ol class="toc"><li><a href="x8.html#x8" id="x8-toc">8 Типы</a>
+    <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x8.html#x8.1" id="x8.1-toc">8.1 Тип Undefined</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.2" id="x8.2-toc">8.2 Тип Null</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.3" id="x8.3-toc">8.3 Тип Boolean</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.4" id="x8.4-toc">8.4 Тип String</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.5" id="x8.5-toc">8.5 Тип Number</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.6" id="x8.6-toc">8.6 Тип Object</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x8.html#x8.6.1" id="x8.6.1-toc">8.6.1 Атрибуты свойства</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.6.2" id="x8.6.2-toc">8.6.2 Внутренние свойства и методы объекта</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x8.html#x8.7" id="x8.7-toc">8.7 Тип спецификации Reference</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x8.html#x8.7.1" id="x8.7.1-toc">8.7.1 GetValue (V)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.7.2" id="x8.7.2-toc">8.7.2 PutValue (V, W)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x8.html#x8.8" id="x8.8-toc">8.8 Тип спецификации List</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.9" id="x8.9-toc">8.9 Тип спецификации Completion</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.10" id="x8.10-toc">8.10 Типы спецификации Property Descriptor и Property Identifier</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x8.html#x8.10.1" id="x8.10.1-toc">8.10.1 IsAccessorDescriptor(Desc)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.10.2" id="x8.10.2-toc">8.10.2 IsDataDescriptor(Desc)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.10.3" id="x8.10.3-toc">8.10.3 IsGenericDescriptor(Desc)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.10.4" id="x8.10.4-toc">8.10.4 FromPropertyDescriptor(Desc)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.10.5" id="x8.10.5-toc">8.10.5 ToPropertyDescriptor(Obj)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x8.html#x8.11" id="x8.11-toc">8.11 Типы спецификации Lexical Environment и Environment Record</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12" id="x8.12-toc">8.12 Алгоритмы для внутренних методов объектов</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x8.html#x8.12.1" id="x8.12.1-toc">8.12.1 [[GetOwnProperty]](P)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.2" id="x8.12.2-toc">8.12.2 [[GetProperty]](P)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.3" id="x8.12.3-toc">8.12.3 [[Get]](P)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.4" id="x8.12.4-toc">8.12.4 [[CanPut]](P)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.5" id="x8.12.5-toc">8.12.5 [[Put]](P, V, Throw)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.6" id="x8.12.6-toc">8.12.6 [[HasProperty]](P)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.7" id="x8.12.7-toc">8.12.7 [[Delete]](P, Throw)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.8" id="x8.12.8-toc">8.12.8 [[DefaultValue]](подсказка)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x8.html#x8.12.9" id="x8.12.9-toc">8.12.9 [[DefineOwnProperty]](P, Desc, Throw)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></nav>
+
+ <h2 id="x8">8 Типы <a href="#x8">#</a> <a href="#x8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+	<p>
+	Алгоритмы, рассматриваемые в данной спецификации, манипулируют значениями, у каждого из которых есть тип, к которому он относится. В данной главе описаны все возможные типы значений. Они делятся на две категории: <a href="#language-type">языковые типы</a> <em>language types</em> и <a href="#specification-type">типы спецификации</a> <em>specification types</em>.</p>
+	<p>
+	<dfn id="language-type">Языковые типы</dfn> соответствуют значениям, которыми непосредственно манипулирует создатель кода на языке ECMAScript. К типам спецификации относятся: <a href="#x8.1">Undefined</a>, <a href="#x8.2">Null</a>, <a href="#x8.3">Boolean</a>, <a href="#x8.4">String</a>, <a href="#x8.5">Number</a> и <a href="#x8.6">Object</a>.</p>
+	<p>
+	<dfn id="specification-type">Типы спецификации </dfn> соответствуют мета-значениям, используемым в алгоритмах для описания семантики конструкций языка ECMAScript и <a href="#language-type">языковых типов</a> ECMAScript. К ним относятся типы <a href="#x8.7">Reference</a>, <a href="#x8.8">List</a>, <a href="#x8.9">Completion</a>, <a href="#x8.10">Property Descriptor</a>, <a href="#property-identifier">Property Identifier</a>, <a href="x10.html#x10.2">Lexical Environment</a> и <a href="x10.html#x10.2.1">Environment Record</a>. Значения типов спецификации представляют собой артефакты спецификации, которые вовсе не обязательно соответствуют каким-либо конкретным сущностям в реализации ECMAScript. Они могут использоваться для описания промежуточных результатов вычисления выражения ECMAScript, при этом такие значения не могут храниться как свойства объектов или значения переменных языка ECMAScript.</p>
+	<p>
+	В тексте данной спецификации выражение <dfn id="Type">&quot;Type(<i>x</i>)&quot;</dfn> используется в качестве сокращения для фразы &quot;тип, к которому относится <i>x</i>&quot;, где &quot;тип&quot; означает языковой тип и тип спецификации, описываемые в данной главе.</p>
+	<h3 id="x8.1">8.1 Тип Undefined <a href="#x8.1">#</a> <a href="#x8.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип Undefined <tt>Неопределенный</tt> имеет только одно значение &ndash; <b>undefined</b>. Всякая переменная, которой не было присвоено значения, имеет значение <b>undefined</b>.</p>
+	<h3 id="x8.2">8.2 Тип Null <a href="#x8.2">#</a> <a href="#x8.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип Null имеет только одно значение &ndash; <b>null</b>.</p>
+	<h3 id="x8.3">8.3 Тип Boolean <a href="#x8.3">#</a> <a href="#x8.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип Boolean <tt>Булев тип</tt> представляет собой логическую сущность, имеющую два значения &ndash; <b>true </b>и <b>false</b>.</p>
+	<h3 id="x8.4">8.4 Тип String <a href="#x8.4">#</a> <a href="#x8.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип String <tt>Строковый тип</tt> представляет собой множество всех конечных упорядоченных последовательностей, состоящих из 16-битовых беззнаковых целочисленных значений (&quot;элементов&quot;) в количестве ноль или более. В целом тип String используется для представления текстовых данных в активной программе на ECMAScript, при этом каждый элемент в строке String рассматривается как значение кодовой единицы (см. <a href="x6.html#x6">Главу&nbsp;6</a>). Каждый элемент считается занимающим свою позицию в последовательности, и все позиции этих элементов пронумерованы неотрицательными целыми числами. Первый элемент (если есть) находится в позиции&nbsp;0, следующий элемент (если есть) &ndash; в позиции 1, и так далее. Длина строки представляет собой количество элементов в ней (то есть, 16-битовых значений). Пустая строка имеет нулевую длину и, следовательно, не содержит ни одного элемента.</p>
+	<p>
+	Если строка содержит реальные текстовые данные, каждый элемент считается отдельной кодовой единицей в формате UTF-16. Независимо от того, действительно ли UTF-16 является фактическим форматом хранения строки, символы в этой строке пронумерованы по их начальным позициям элементов, как если бы они были представлены именно в формате UTF-16. Все операции со строками (если явно указано иначе) интерпретируют их как недифференцированные 16-битовые беззнаковые целые. Они не обеспечивают нормализованной формы результирующей строки, и не гарантируют результатов, ориентированных на язык.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Основная цель этой схемы &ndash; сделать реализацию строки как можно проще и как можно более высокоэффективной. Смысл в том, чтобы текстовые данные, поступающие в среду выполнения извне (например, вводимые пользователем, полученные при считывании текста из файла, или скачанные из сети, и т.д.), преобразовывались в соответствии с Формой нормализации Юникода&nbsp;&quot;С&quot; еще до того, как их увидит активная программа. Обычно это происходит в то же время, когда входящий текст преобразовывается из своей исходной схемы кодирования символов в формат Юникода (при этом никаких дополнительных потерь не происходит). Поскольку рекомендуется, чтобы исходный код на ECMAScript был приведен в соответствие с Формой нормализации &quot;С&quot;, строковые литералы будут гарантированно нормализованными (если гарантированно нормализованным является исходный текст), если они не содержат управляющих последовательностей Юникода.</p>
+	<h3 id="x8.5">8.5 Тип Number <a href="#x8.5">#</a> <a href="#x8.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип Number <tt>Числовой тип</tt> имеет ровно 18437736874454810627 (то есть, 2<sup>64</sup><span class="symbol">&#8722;</span>2<sup>53</sup>+3) значений, представляющих собой 64-битовые значения с удвоенной точностью в формате IEEE&nbsp;754 в соответствии со Стандартом IEEE для двоичной арифметики с плавающей точкой, за исключением того, что 9007199254740990 (то есть, 2<sup>53</sup><span class="symbol">&#8722;</span>2) индивидуальных  значений &quot;не число&quot; по стандарту IEEE представлены в языке ECMAScript как одно специальное значение <b>NaN</b>. (Обратите внимание, что значение <b>NaN</b> получается в программе с помощью выражения <code><b>NaN</b></code>.) В некоторых реализациях разницу между различными значениями &quot;не число&quot; смог бы выявить внешний код, но такое поведение зависит от реализации. Для кода ECMAScript все значения NaN неотличимы друг от друга.</p>
+	<p>
+	Есть еще два специальные значения &ndash; <b>положительная Бесконечность </b>и <b>отрицательная Бесконечность</b>. Для краткости эти значения также передаются поясняющими символами <b>+</b><span class="symbol"><b>&#8734;</b></span> и <span class="symbol"><b>&#8722;&#8734;</b></span> соответственно. (Обратите внимание, что эти два бесконечные числовые значения образуются с помощью выражений <code><b>+Infinity</b></code> (или просто <code><b>Infinity</b></code>) и <code><b>-Infinity</b></code>.)</p>
+	<p>
+	Остальные 18437736874454810624 (то есть, 2<sup>64</sup><span class="symbol">&#8722;</span>2<sup>53</sup>) значения называются конечными числами. Половина из них является положительными числами, а другая половина &ndash; отрицательными. Для каждого конечного положительного числового значения существует соответствующее отрицательное значение такой же величины.</p>
+	<p>
+	Обратите внимание, что существует как <b>положительный ноль</b>, так и <b>отрицательный ноль</b>. Для краткости, эти значения также передаются поясняющими символами <b>+0</b> и <span class="symbol"><b>&#8722;</b></span><b>0</b> соответственно. (Обратите внимание, что эти два различные нулевые числовые значения образуются с помощью выражений <code><b>+0</b></code> (или просто <code><b><b>0</b></b></code>) и <code><b>-0</b></code>.)</p>
+	<p>
+	Остальные 18437736874454810622 (то есть, 2<sup>64</sup><span class="symbol">&#8722;</span>2<sup>53</sup><span class="symbol">&#8722;</span>2) конечные ненулевые значения бывают двух типов:</p>
+	<p>
+	18428729675200069632 (то есть, 2<sup>64</sup><span class="symbol">&#8722;</span>2<sup>54</sup>) из них являются нормализованными и имеют вид</p>
+	<p class="code-example">
+	<i>s</i> <span class="symbol">&#215;</span> <i>m</i> <span class="symbol">&#215;</span> 2<sup><i>e</i></sup></p>
+	<p>
+	где <i>s</i> равно +1 или <span class="symbol">&#8722;</span>1, <i>m</i> &ndash; положительное целое число меньше чем 2<sup>53</sup>, но не меньше чем 2<sup>52</sup>, а <i>e</i> &ndash; целое число от <span class="symbol">&#8722;</span>1074 до 971 включительно.</p>
+	<p>
+	Остальные 9007199254740990 (то есть, 2<sup>53</sup><span class="symbol">&#8722;</span>2) значения являются денормализованными и имеют вид</p>
+	<p class="code-example">
+	<i>s</i> <span class="symbol">&#215;</span> <i>m</i> <span class="symbol">&#215;</span> 2<sup><i>e</i></sup></p>
+	<p>
+	где <i>s</i> равно +1 или <span class="symbol">&#8722;</span>1, <i>m</i> &ndash; положительное целое число меньше чем&nbsp;2<sup>52</sup>, а <i>e</i> равно <span class="symbol">&#8722;</span>1074.</p>
+	<p>
+	Обратите внимание, что все положительные и отрицательные целые числа, значение которых по модулю не превышает 2<sup>53</sup>, представимы типом Number (в действительности, целое число 0 имеет два представления: <code><b>+0</b></code> и <code><b>-0</b></code>).</p>
+	<p>
+	Конечное число имеет <I>нечётную значащую часть</I>, если оно является ненулевым числом и при этом целое число <i>m</i>, используемое для его выражения (в одной из двух приведенных выше форм), является нечётным. В противном случае оно имеет <I>чётную значащую часть</I>.</p>
+	<p>
+	В данной спецификации фраза &quot;значение Number для <i>x</i>&quot; <em>the Number value for <i>x</i></em>, где <i>x</i> представляет точную ненулевую вещественную математическую величину (которая может быть даже иррациональным числом типа <span class="symbol">&#960;</span>), означает значение Number, выбранное следующим образом: рассмотрим множество всех конечных значений типа Number, без <span class="symbol"><b>&#8722;</b></span><b>0</b>, но с двумя дополнительными значениями, которые не представимы типом Number, а именно: 2<sup>1024</sup> (то есть, +1 <span class="symbol">&#215;</span> 2<sup>53</sup><span class="symbol">&#215;</span> 2<sup>971</sup>) и <span class="symbol">&#8722;</span>2<sup>1024</sup> (то есть, <span class="symbol">&#8722;</span>1 <span class="symbol">&#215;</span> 2<sup>53</sup><span class="symbol">&#215;</span> 2<sup>971</sup>). Выберем из этого множества элемент, наиболее близкий по значению к <i>x</i>. Если одинаково близкими являются два значения, выберем то, у которого чётная значащая часть. При этом считается, что два дополнительные значения  2<sup>1024</sup> и <span class="symbol">&#8722;</span>2<sup>1024</sup> имеют чётные значащие части. Наконец, если было выбрано 2<sup>1024</sup>, заменим его на <b>+</b><span class="symbol"><b>&#8734;</b></span>; если было выбрано <span class="symbol">&#8722;</span>2<sup>1024</sup>, заменим его на <span class="symbol"><b>&#8722;&#8734;</b></span>; если был выбран <b>+0, </b>заменим его на <span class="symbol"><b>&#8722;</b></span><b>0</b> лишь в том случае, если <i>x</i> менее нуля. Если выбрано любое другое значение, его следует использовать без изменений. Результатом будет являться значение Number  для <i>x</i>. (Эта процедура в точности соответствует поведению режима &quot;округления до ближайшего значения&quot; в соответствии со стандартом IEEE&nbsp;754.)</p>
+	<p>
+	Некоторые операторы ECMAScript обрабатывают только целые числа от <span class="symbol">&#8722;</span>2<sup>31</sup> до 2<sup>31</sup><span class="symbol">&#8722;</span>1 включительно, или от 0 до 2<sup>32</sup><span class="symbol">&#8722;</span>1 включительно. Эти операторы допускают любое значение типа Number, но предварительно они приводят каждое такое значение к одному из 2<sup>32</sup> целочисленных значений. Описание операторов <a href="x9.html#x9.5">ToInt32</a> и <a href="x9.html#x9.6">ToUint32</a> содержится в пунктах <a href="x9.html#x9.5">9.5</a> и <a href="x9.html#x9.6">9.6</a> соответственно.</p>
+	<h3 id="x8.6">8.6 Тип Object <a href="#x8.6">#</a> <a href="#x8.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Объект <em>Object</em> представляет собой набор свойств.<i> </i>Каждое свойство является либо именованным свойством данных, либо именованным свойством-аксессором, либо внутренним свойством.</p>
+	<ul><li><p>
+		<I>Именованное свойство данных</I> <em>named data property</em> ассоциирует имя со значением в языке ECMAScript и с набором булевых атрибутов.</p>
+		</li>
+		<li><p>
+		<I>Именованное свойство-аксессор </I> <em>named accessor property</em> ассоциирует имя с одной или двумя функциями доступа <em>accessor functions</em> и с набором булевых атрибутов. Функции доступа используются для хранения или извлечения значения в языке ECMAScript, связанного с этим свойством.
+		</p>
+		</li>
+		<li><p>
+		<I>Внутреннее свойство</I> <em>internal property</em> не имеет имени и не является напрямую доступным через операторов ECMAScript. Внутренние свойства существуют исключительно в целях спецификации.
+		</p>
+	</li></ul><p>
+	Именованные (не внутренние) свойства имеют два типа доступа: <i>get </i>и <i>put</i>, обозначающие извлечение и присвоение соответственно.</p>
+	<h4 id="x8.6.1">8.6.1 Атрибуты свойства <a href="#x8.6.1">#</a> <a href="#x8.6.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Атрибуты используются в данной спецификации для определения и описания состояния именованных свойств. Именованное свойство данных ассоциирует имя с атрибутами, перечисленными в Таблице&nbsp;5.</p>
+	<dl><dd>
+	<center>
+		<table width="709" border="2" bordercolor="#000000" cellpadding="8" cellspacing="0"><caption>Таблица 5. Атрибуты именованных свойств данных</caption>
+			<colgroup><col width="115"><col width="134"><col width="408"></colgroup><tbody><tr valign="TOP"><td width="115" bgcolor="#d8d8d8">
+					<p>
+					<i><b>Наименование</b></i></p>
+				</td>
+				<td width="134" bgcolor="#d8d8d8">
+					<p>
+					<i><b>Область значений</b></i></p>
+				</td>
+				<td width="408" bgcolor="#d8d8d8">
+					<p>
+					<i><b>Описание</b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="8">
+					<p>
+					[[Value]]
+
+					</p>
+				</td>
+				<td width="134">
+					<p>
+					Любой <a href="#language-type">тип языка</a> ECMAScript </p>
+				</td>
+				<td width="408">
+					<p>
+					Значение, извлеченное посредством чтения свойства.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="17">
+					<p>
+					[[Writable]]
+
+					</p>
+				</td>
+				<td width="134">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="408">
+					<p>
+					Если <B>false</B>, то попытки кода на ECMAScript изменить атрибут [[Value]] данного свойства с помощью [[Put]] не возымеют успеха.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="1">
+					<p>
+					[[Enumerable]]</p>
+				</td>
+				<td width="134">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="408">
+					<p>
+					Если <B>true</B>, то данное свойство будет перечислено в &quot;for-in&quot; (см. <a href="x12.html#x12.6.4">12.6.4</a>). В противном случае данное свойство не будет участвовать в перечислении.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="12">
+					<p>
+					[[Configurable]]</p>
+				</td>
+				<td width="134">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="408">
+					<p>
+					Если <b>false</b>, то попытки удалить данное свойство, изменить его, сделав свойством-аксессором, или изменить его атрибуты (кроме [[Value]]) не возымеют успеха.</p>
+				</td>
+			</tr></tbody></table></center>
+	</dd></dl><p class="sm-btm">
+	Именованное свойство-аксессор ассоциирует имя с атрибутами, перечисленными в Таблице&nbsp;6.</p>
+	<dl><dd>
+	<center>
+		<table width="709" border="2" bordercolor="#000000" cellpadding="8" cellspacing="0"><caption>Таблица 6. Атрибуты именованных свойство-аксессоров.</caption>
+			<colgroup><col width="115"><col width="131"><col width="411"></colgroup><tbody><tr valign="TOP"><td width="115" bgcolor="#c0c0c0">
+					<p align="CENTER" class="keep">
+					<i><b>Наименование</b></i></p>
+				</td>
+				<td width="131" bgcolor="#c0c0c0">
+					<p align="CENTER" class="keep">
+					<i><b>Область значений</b></i></p>
+				</td>
+				<td width="411" bgcolor="#c0c0c0">
+					<p align="CENTER" class="keep">
+					<i><b>Описание</b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="25">
+					<p class="keep">
+					[[Get]]</p>
+				</td>
+				<td width="131">
+					<p class="keep">
+					Object <i>или </i>Undefined</p>
+				</td>
+				<td width="411">
+					<p class="keep">
+					Если значением является Object, это должен быть объект функции.  Каждый раз, когда производится выполнение get-доступа некого свойства, вызывается внутренний метод функции [Call]] (<a href="#x8.6.2">8.6.2</a>) с пустым списком аргументов для возврата значения этого свойства.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="25">
+					<p class="keep">
+					[[Set]]</p>
+				</td>
+				<td width="131">
+					<p class="keep">
+					Object <i>или </i>Undefined</p>
+				</td>
+				<td width="411">
+					<p class="keep">
+					Если значением является Object, это должен быть объект функции.  Каждый раз, когда производится выполнение set-доступа некого свойства, вызывается внутренний метод функции [Call]] (<a href="#x8.6.2">8.6.2</a>) со списком аргументов, содержащим единственный аргумент &ndash; присвоенное значение. Действие внутреннего метода свойства [[Set]] может (хотя и не обязательно) повлиять на значение, возвращаемое последующими вызовами во внутренний метод свойства [[Get]].</p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="45">
+					<p class="keep">
+					[[Enumerable]]</p>
+				</td>
+				<td width="131">
+					<p class="keep">
+					Boolean</p>
+				</td>
+				<td width="411">
+					<p class="keep">
+					Если <b>true</b>, данное свойство должно быть перечислено в &quot;for-in&quot; (см. <a href="x12.html#x12.6.4">12.6.4</a>). В противном случае это свойство не будет участвовать в перечислении.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="115" height="27">
+					<p>
+					[[Configurable]]</p>
+				</td>
+				<td width="131">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="411">
+					<p>
+					Если <B>false</B>, попытки удалить данное свойство, изменить его, сделав свойством данных, или изменить его атрибуты не возымеют успеха.</p>
+				</td>
+			</tr></tbody></table></center>
+	</dd></dl><p>
+	Если значение атрибута для именованного свойства (из списка выше &ndash; прим. перев.) не указано явно в данной спецификации, будет использоваться значение по умолчанию, приведенное в Таблице&nbsp;7 ниже.</p>
+	<dl><dl><dl><dl><dl><dl><dd>
+	<center>
+							<table width="278" border="2" bordercolor="#000000" cellpadding="8" cellspacing="0"><caption>Таблица 7. Значения атрибутов по умолчанию</caption>
+								<colgroup><col width="129"><col width="113"></colgroup><tbody><tr valign="TOP"><td width="129" bgcolor="#c0c0c0">
+										<p align="CENTER" class="keep">
+										<b>Наименование атрибута</b></p>
+									</td>
+									<td width="113" bgcolor="#c0c0c0">
+										<p align="CENTER" class="keep">
+										<b>Значение по умолчанию</b></p>
+									</td>
+								</tr><tr valign="TOP"><td width="129">
+										<p class="keep">
+										[[Value]]</p>
+									</td>
+									<td width="113">
+										<p class="keep">
+										<b>undefined</b></p>
+									</td>
+								</tr><tr valign="TOP"><td width="129">
+										<p class="keep">
+										[[Get]]</p>
+									</td>
+									<td width="113">
+										<p class="keep">
+										<b>undefined</b></p>
+									</td>
+								</tr><tr valign="TOP"><td width="129">
+										<p class="keep">
+										[[Set]]</p>
+									</td>
+									<td width="113">
+										<p class="keep">
+										<b>undefined</b></p>
+									</td>
+								</tr><tr valign="TOP"><td width="129">
+										<p class="keep">
+										[[Writable]]</p>
+									</td>
+									<td width="113">
+										<p class="keep">
+										<b>false</b></p>
+									</td>
+								</tr><tr valign="TOP"><td width="129">
+										<p class="keep">
+										[[Enumerable]]</p>
+									</td>
+									<td width="113">
+										<p class="keep">
+										<b>false</b></p>
+									</td>
+								</tr><tr valign="TOP"><td width="129">
+										<p>
+										[[Configurable]]</p>
+									</td>
+									<td width="113">
+										<p>
+										<b>false</b></p>
+									</td>
+								</tr></tbody></table></center>
+						</dd></dl></dl></dl></dl></dl></dl>
+	<h4 id="x8.6.2">8.6.2 Внутренние свойства и методы объекта <a href="#x8.6.2">#</a> <a href="#x8.6.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	В данной спецификации используются различные внутренние свойства для определения семантики значений объекта. Эти внутренние свойства не являются частью языка ECMAScript, их определение даётся в данной спецификации исключительно с пояснительной целью. Реализация ECMAScript должна вести себя, как если бы она создала внутренние свойства и работала с ними в соответствии с описаниями в данной спецификации. Названия внутренних свойств заключены в двойные квадратные скобки [[ ]]. Если при использовании алгоритмом какого-либо внутреннего свойства объекта данный объект не реализовывает это внутреннее свойство, будет сгенерировано исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<p>
+	В Таблице 8 перечислены внутренние свойства, используемые в данной спецификации, которые применимы ко всем объектам ECMAScript. В Таблице 9 перечислены внутренние свойства, используемые в данной спецификации, которые применимы только к некоторым объектам ECMAScript. В этих таблицах описано поведение свойств родных объектов ECMAScript  (если для некоторых видов родных объектов ECMAScript это поведение не будет описано иначе в данном документе). Объекты среды могут поддерживать эти внутренние свойства своим поведением, зависящим от реализации, если оно согласуется с ограничениями для конкретного объекта среды, описанными в данном документе.</p>
+	<p>
+	В столбце &ldquo;Область типов значений&rdquo; в этих таблицах указаны типы значений, связанные с внутренними свойствами. Названия типов означают типы, описанные в <a href="#x8">Главе&nbsp;8</a>, с последующими дополнительными названиями. Слово &ldquo;<i>любое</i>&rdquo; означает, что это значение может быть любым <a href="#language-type">типом языка</a> ECMAScript. Слово &ldquo;<i>примитивный </i>&rdquo; означает Undefined, Null, Boolean, String или Number. <dfn id="SpecOp">&ldquo;<i>SpecOp</i>&rdquo;</dfn> означает, что данное внутреннее свойство является внутренним методом &ndash; предоставляемой реализацией процедурой, которая описывается абстрактной спецификацией операции. После &ldquo;SpecOp&rdquo; приводится список описательных имен параметров. Если имя параметра в точности совпадает с именем типа, значит это имя описывает тип этого параметра. Если &ldquo;SpecOp&rdquo; возвращает значение, тогда после списка его параметров идет символ&nbsp;&ldquo;>&rdquo;, а затем тип возвращаемого значения.</p>
+	<div align="RIGHT">
+	<center>
+		<table width="740" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 8. Внутренние свойства, общие для всех  объектов</caption>
+			<colgroup><col width="158"><col width="194"><col width="338"></colgroup><tbody><tr valign="TOP"><td width="158" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Внутреннее свойство</span></b></i></p>
+				</td>
+				<td width="194" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Область типов значений</span></b></i></p>
+				</td>
+				<td width="338" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Описание</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[Prototype]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					Object <i>или </i>Null</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Прототип данного объекта.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[Class]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					String</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Строковое значение, означающее классификацию объектов, заданных спецификацией.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[Extensible]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					Boolean</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Если <b>true</b>, к объекту могут быть добавлены собственные свойства.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[Get]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName</i>) <i><b>&#8594;</b></i> любое</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Возвращает значение именованного свойства.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[GetOwnProperty]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName</i>) <i><b>&#8594;</b></i> </p>
+					<p class="keep">
+					Undefined <i>или</i> <a href="#x8.10">Property Descriptor</a></p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Возвращает <a href="#x8.10">Дескриптор свойства</a> именованного собственного свойства данного объекта, или <b>undefined </b>(в случае отсутствия).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[GetProperty]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName</i>) <i><b>&#8594;</b></i></p>
+					<p class="keep">
+					Undefined<i> или</i> <a href="#x8.10">Property Descriptor</a></p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Возвращает <a href="#fully-populated">полностью заполненный</a>  <a href="#fully-populated">Дескриптор свойства</a> именованного свойства данного объекта, или <b>undefined </b>(в случае отсутствия).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[Put]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName</i>, <i>любое, Boolean</i>)</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Присваивает значению второго параметра заданное именованное свойство. Обработка отказов контролируется с помощью флага.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[CanPut]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName</i>) <i><b>&#8594;</b></i> Boolean</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Возвращает булево значение, означающее возможность выполнения операции [[Put]] с именем свойства <i>propertyName</i>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[HasProperty]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName</i>) <i><b>&#8594;</b></i> Boolean</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Возвращает булево значение, которое указывает, есть ли уже у данного объекта свойство с таким именем.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[Delete]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName, Boolean</i>) <i><b>&#8594;</b></i> Boolean</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Удаляет из объекта заданное именованное собственное свойство. Обработка отказов контролируется с помощью флага.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[DefaultValue]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>Подсказка</i>) <i><b>&#8594;</b></i> <i>примитивный</i></p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Подсказка представляет собой строку. Возвращает значение по умолчанию для данного объекта.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="158">
+					<p class="keep">
+					[[DefineOwnProperty]]</p>
+				</td>
+				<td width="194">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>propertyName, PropertyDescriptor, Boolean</i>) <i><b>&#8594;</b></i> Boolean</p>
+				</td>
+				<td width="338">
+					<p class="keep">
+					Создает или изменяет именованное собственное свойство таким образом, чтобы оно имело состояние, описанное <a href="#x8.10">Дексриптором свойства</a>. Обработка отказов контролируется с помощью флага.</p>
+				</td>
+			</tr></tbody></table></center>
+	</div>
+	<p>
+	Каждый объект, в том числе объект среды, должен реализовывать все внутренние свойства, перечисленные в Таблице&nbsp;8. Однако внутренний метод [[DefaultValue]] для некоторых объектов может просто сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<p>
+	Все объекты имеют внутреннее свойство [[Prototype]]. Значением этого свойства является либо <b>null</b>, либо объект. Это значение используется для реализации наследования. Может ли объект среды выступать в качестве свойства [[Prototype]] для родного объекта, зависит от реализации. Каждая цепочка свойств [[Prototype]] должна быть конечной длины (то есть, если начать с любого объекта и рекурсивно производить переход к внутреннему свойству [[Prototype]], то в результате должно обязательно получиться значение <b>null</b>). Именованные свойства данных объекта [[Prototype]] наследуются (то есть, видимы как свойства дочернего объекта) для get-доступа, но не наследуются для put-доступа, а именованные свойства-аксессоры наследуются как для get-доступа, так и для put-доступа.</p>
+	<p>
+	Каждый объект ECMAScript имеет внутреннее свойство [[Extensible]] с булевым значением, управляющее возможностью добавления к объекту именованных свойств. Если внутреннее свойство [[Extensible]] имеет значение <b>false</b>, добавление дополнительных именованных свойство к объекту невозможно.  Кроме того, если значение [[Extensible]] &ndash; <b>false</b>, то значение внутренних свойств [[Class]] и [[Prototype]] данного объекта не может быть изменено.  После того как значение внутреннего свойства [[Extensible]] было установлено в <b>false</b>, его уже невозможно изменить на <B>true</B>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Данная спецификация не определяет операторов или встроенных функций языка ECMAScript, которые бы позволили программе изменить внутренние свойства [[Class]] или [[Prototype]] определенного объекта или поменять значение [[Extensible]] с <b>false</b> на <b>true</b>. Расширения языка, зависящие от конкретной реализации, которые изменяют [[Class]], [[Prototype]] или [[Extensible]], не должны нарушать инварианты, описанные в предыдущем параграфе.</p>
+	<p>
+	Значение внутреннего свойства [[Class]] определяется в данной спецификации для каждого вида встроенного объекта. Значением внутреннего свойства [[Class]] объекта среды может быть любое строковое значение, кроме перечисленных далее: <code><b>&quot;Arguments&quot;</b></code>, <code><b>&quot;Array&quot;</b></code>, <code><b>&quot;Boolean&quot;</b></code>, <code><b>&quot;Date&quot;</b></code>, <code><b>&quot;Error&quot;</b></code>, <code><b>&quot;Function&quot;</b></code>, <code><b>&quot;JSON&quot;</b></code>, <code><b>&quot;Math&quot;</b></code>, <code><b>&quot;Number&quot;</b></code>, <code><b>&quot;Object&quot;</b></code>, <code><b>&quot;RegExp&quot;</b></code> и <code><b>&quot;String&quot;</b></code>. Значение внутреннего свойства [[Class]] имеет внутреннее использование для различения различных видов объектов. Обратите внимание, что данная спецификация не предоставляет программе никаких средств для доступа к этому значению, кроме как посредством <code><b><a href="x15.2.html#x15.2.4.2">Object.prototype.toString</a></b></code> (см.&nbsp;<a href="x15.2.html#x15.2.4.2">15.2.4.2</a>).</p>
+	<p>
+	Если не указано иначе, общие внутренние методы родных объектов ECMAScript ведут себя, как описано в пункте&nbsp;<a href="#x8.12">8.12</a>. Несколько отличается реализация внутреннего метода [[DefineOwnProperty]] объектов Array (см.&nbsp;<a href="x15.4.html#x15.4.5.1">15.4.5.1</a>) и реализация внутреннего метода [[GetOwnProperty]] объектов String (см.&nbsp;<a href="x15.5.html#x15.5.5.2">15.5.5.2</a>). Объекты Arguments (<a href="x10.html#x10.6">10.6</a>) имеют другие реализации методов [[Get]], [[GetOwnProperty]], [[DefineOwnProperty]] и [[Delete]]. Объекты Function (<a href="x15.3.html#x15.3">15.3</a>) имеют другую реализацию метода [[Get]].</p>
+	<p>
+	Объекты среды могут реализовывать эти внутренние методы любым образом, если не указано иначе. Например, вполне возможно, что методы [[Get]] и [[Put]] для какого-либо конкретного объекта среды действительно извлекают и сохраняют значения свойства, но при этом метод [[HasProperty]] всегда генерирует <b>false</b>. Однако, если реализация не поддерживает какой-либо конкретной обработки внутренних свойств объекта среды, при попытке такой обработки будет сгенерировано исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<p class="sm-btm">
+	Внутренний метод [[GetOwnProperty]] объекта среды должен подчиняться следующим инвариантам для каждого свойства объекта среды:</p>
+	<ul><li><p>
+		Если свойство описано как свойство данных, при этом оно может со временем возвращать различные значения, тогда либо один из атрибутов [[Writable]] и [[Configurable], либо оба эти атрибута должны быть <b>true</b>, даже если через другие внутренние методы не излагается никакого механизма для изменения этого значения.</p>
+		</li>
+		<li><p>
+		Если свойство описано как свойство данных, и при этом и [[Writable]], и [[Configurable]] являются <b>false</b>, тогда по всем вызовам [[GetOwnProperty]] для атрибута [[Value]] этого свойства необходимо возвращать <a href="x9.html#x9.12">SameValue</a> <tt>Аналогичное значение</tt> в соответствии с п.&nbsp;<a href="x9.html#x9.12">9.12</a>.</p>
+		</li>
+		<li><p>
+		Если атрибуты кроме [[Writable]] со временем могут изменяться, или если это свойство может исчезнуть, тогда атрибут [[Configurable]] должен быть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если атрибут [[Writable]] может измениться с <b>false</b> на <b>true</b>, тогда атрибут [[Configurable]]  должен быть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если в коде ECMAScript значение внутреннего свойства [[Extensible]] объекта среды соблюдалось как <b>false</b>, тогда, если вызов метода [[GetOwnProperty]] описывает свойство как несуществующее, то и все последующие вызовы также должны описывать это свойство как несуществующее.</p>
+	</li></ul><p>
+	Внутренний метод [[DefineOwnProperty]] объекта среды не должен позволять добавлять к объекту среды новое свойство, если в коде ECMAScript внутреннее свойство [[Extensible]] этого объекта среды соблюдалось как <b>false</b>.
+	</p>
+	<p>
+	Если в коде ECMAScript внутреннее свойство [[Extensible]] этого объекта среды соблюдалось как <b>false</b>, оно не должно впоследствии становиться&nbsp;<b>true</b>.</p>
+	<center>
+		<table width="765" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 9. Внутренние свойства, определяемые только для некоторых объектов</caption>
+			<colgroup><col width="153"><col width="143"><col width="418"></colgroup><tbody><tr valign="TOP"><td width="153" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Внутреннее свойство</span></b></i></p>
+				</td>
+				<td width="143" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Область типов значений</span></b></i></p>
+				</td>
+				<td width="418" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Описание</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[PrimitiveValue]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					<i>примитивный</i></p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Информация о внутреннем состоянии, связанная с этим объектом. Из всех стандартных встроенных объектов ECMAScript свойство [[PrimitiveValue]] реализуют только объекты Boolean, Date, Number и String.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[Construct]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<a href="#x8.8">List</a> <i>любых</i>) <i><b>&#8594;</b> </i>Object</p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Создает объект. Вызывается посредством оператора <code><b>new</b></code>. Аргументами в <a href="#SpecOp">SpecOp</a> являются аргументы, передаваемые в оператор <b>new</b>. Объекты, реализующие этот внутренний метод, называются <i>конструкторами</i>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					<dfn id="callable">[[Call]]</dfn></p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>любой</i>, <a href="#x8.8">List</a> <i>любых</i>) <i><b>&#8594;</b></i> <i>любой </i>или <a href="#x8.7">Reference</a></p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Исполняет код, связанный с объектом. Вызывается посредством выражения вызова функции. Аргументами в <a href="#SpecOp">SpecOp</a> являются объект this и список, содержащий аргументы, передаваемые в выражение вызова функции. Объекты, реализующие этот внутренний метод, являются <i>вызываемыми</i>. Возвращать значения <a href="#x8.7">Reference</a> могут только те вызываемые объекты, которые являются объектами среды.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[HasInstance]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>любое</i>) <i><b>&#8594;</b></i>  Boolean</p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Возвращает значение Boolean, которое указывает, возможно ли, что данный аргумент &ndash; это Object, который был создан данным объектом. Из всех стандартных встроенных объектов ECMAScript свойство [[HasInstance]] реализуют только объекты Function.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[Scope]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+				 <a href="x10.html#x10.2">Lexical Environment</a></p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					<a href="x10.html#x10.2">Лексическое окружение</a>, определяющее окружение, в котором исполняется объект Function. Из всех стандартных встроенных объектов ECMAScript свойство [[Scope]] реализуют только объекты Function.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[FormalParameters]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+				 <a href="#x8.8">List</a> строк</p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Возможно пустой <a href="#x8.8">Список</a>, содержащий строки идентификатора <i>СпискаФормальныхПараметров</i> функции. Из всех стандартных встроенных объектов ECMAScript свойство [[FormalParameterList]] реализуют только объекты Function.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[Code]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					Код на ECMAScript</p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Код функции, написанный на ECMAScript. Из всех стандартных встроенных объектов ECMAScript свойство [[Code]] реализуют только объекты Function.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[TargetFunction]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					Объект</p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Целевая функция объекта функции, созданная посредством стандартного встроенного метода <a href="x15.3.html#x15.3.4.5">Function.prototype.bind</a>. Внутреннее свойство [[TargetFunction]] имеют только объекты ECMAScript, созданные посредством метода <a href="x15.3.html#x15.3.4.5">Function.prototype.bind</a>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[BoundThis]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					<i>любое</i></p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Предварительно связанное значение this объекта функции, созданного посредством стандартного встроенного метода <a href="x15.3.html#x15.3.4.5">Function.prototype.bind</a>. Внутреннее свойство [[BoundThis]] имеют только объекты ECMAScript, созданные посредством метода <a href="x15.3.html#x15.3.4.5">Function.prototype.bind</a>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p>
+					[[BoundArguments]]</p>
+				</td>
+				<td width="143">
+					<p>
+				 <a href="#x8.8">List</a> <I>любых</I></p>
+				</td>
+				<td width="418">
+					<p>
+					Предварительно связанное значение аргументов объекта функции, созданного посредством стандартного встроенного метода <a href="x15.3.html#x15.3.4.5">Function.prototype.bind</a>. Внутреннее свойство [[BoundArguments]] имеют только объекты ECMAScript, созданные посредством метода <a href="x15.3.html#x15.3.4.5">Function.prototype.bind</a>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[Match]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					<a href="#SpecOp">SpecOp</a>(<i>Строка</i>, <i>индекс</i>) <i><b>&#8594;</b></i> <i><a href="x15.10.html#MatchResult">РезультатСличения</a></i></p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Производит сличение с регулярным выражением и возвращает значение <a href="x15.10.html#MatchResult">РезультатаСличения</a> (см.&nbsp;<a href="x15.10.html#x15.10.2.1">15.10.2.1</a>). Из всех стандартных встроенных объектов ECMAScript свойство [[Match]] реализуют только объекты RegExp.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="153">
+					<p class="keep">
+					[[ParameterMap]]</p>
+				</td>
+				<td width="143">
+					<p class="keep">
+					Object</p>
+				</td>
+				<td width="418">
+					<p class="keep">
+					Выстраивает соответствия между свойствами объекта аргументов (см.&nbsp;<a href="x10.html#x10.6">10.6</a>) и формальными параметрами связанной с ними функции. Внутреннее свойство [[ParameterMap]] имеют только те объекты ECMAScript, которые являются объектами аргументов.</p>
+				</td>
+			</tr></tbody></table></center>
+	<h3 id="x8.7">8.7 Тип спецификации Reference <a href="#x8.7">#</a> <a href="#x8.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип Reference <tt>Cсылка</tt> используется, чтобы объяснить поведение операторов <code><b>delete</b></code> и <code><b>typeof</b></code> и операторов присваивания. 
+	Например, можно сказать, что "левосторонний операнд присваивания создаёт ссылку". Поведение операторов присваивания можно также объяснить и анализом синтаксической формы левостороннего оператора. Но здесь есть одна сложность: вызовы функции могут возвращать ссылки. Правда, эта возможность применима только к объектам среды: возврат ссылки не предусмотрен ни для функций ECMAScript, определяемых данной спецификацией, ни для функций, определяемых пользователем.  (Еще один довод против синтаксического анализа заключается в том, что это было бы долго и неудобно, и затрагивало бы многие части спецификации.)</p>
+	<p>
+	<b>Reference</b> является предвычисленной <em>resolved</em> привязкой имени. Ссылка состоит из трех компонентов: значения <I>базы </I> <em>base value</em>, <I>имени по ссылке</I> <em>referenced name</em>, и флага <I>строгой ссылки</I> <em>strict reference</em> с булевым значением. Значение базы &ndash; это  <b>undefined</b>, Object, Boolean, String, Number, или запись окружения (<a href="x10.html#x10.2.1">10.2.1</a>). Если значение базы &ndash; <b>undefined</b>, это означает, что значение по ссылке не удалось вычислить. Имя по ссылке &ndash; это строка.</p>
+	<p>
+	Для доступа к компонентам ссылок в данной спецификации используются следующие абстрактные операции:</p>
+	<ul><li><p><dfn id="GetBase">GetBase(V)</dfn> <tt>Получить базу(V)</tt>. Возвращает компонент со значением базы ссылки&nbsp;V.</p>
+		</li>
+		<li><p><dfn id="GetReferencedName">GetReferencedName(V)</dfn> <tt>Получить имя по ссылке(V)</tt>. Возвращает компонент имени по ссылке для ссылки&nbsp;V.</p>
+		</li>
+		<li><p><dfn id="IsStrictReference">IsStrictReference(V)</dfn> <tt>Является строгой ссылкой(V)</tt>. Возвращает компонент строгой ссылки для ссылки&nbsp;V.</p>
+		</li>
+		<li><p><dfn id="HasPrimitiveBase">HasPrimitiveBase(V)</dfn> <tt>Имеет примитивную базу(V)</tt>. Возвращает <b>true</b>, если значение базы &ndash; Boolean, String или Number.</p>
+		</li>
+		<li><p><dfn id="IsPropertyReference">IsPropertyReference</dfn>(V) <tt>Является ссылкой на свойство(V)</tt>. Возвращает <b>true</b>, если либо значение базы является объектом, либо <a href="#HasPrimitiveBase">HasPrimitiveBase</a>(V) &ndash; <b>true</b>; в противном случае возвращает <b>false</b>.</p>
+		</li>
+		<li><p><dfn id="IsUnresolvableReference">IsUnresolvableReference</dfn>(V) <tt>Является неразрешимой ссылкой(V)</tt>. Возвращает <b>true</b>, если значение базы &ndash; <b>undefined</b>, в противном случае возвращает <b>false</b>.</p>
+	</li></ul><p>
+	Для работы со ссылками в данной спецификации используются следующие абстрактные операции:</p>
+	<h4 id="x8.7.1">8.7.1 GetValue (V) <a href="#x8.7.1">#</a> <a href="#x8.7.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<ol><li><p>
+		Если <a href="#Type">Тип</a>(<i>V</i>) не является <a href->Reference</a>, вернуть&nbsp;<i>V</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>base </i>будет результатом вызова  <a href="#GetBase">GetBase</a>(<i>V</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="#IsUnresolvableReference">IsUnresolvableReference</a>(<i>V</i>), то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.3" class="term-ref">ReferenceError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <a href="#IsPropertyReference">IsPropertyReference</a>(<i>V</i>), то</p>
+		<ol><li><p>
+			Если <a href="#HasPrimitiveBase">HasPrimitiveBase</a>(<i>V</i>) &ndash; <b>false</b>, тогда пусть <i>get</i> будет внутренним методом [[Get]] для <i>base</i>, в противном случае пусть <i>get</i> будет специальным внутренним методом [[Get]], описанным далее.</p>
+			</li>
+			<li><p>
+			Вернуть результат вызова внутреннего метода <i>get</i>, используя <i>base </i>в качестве его значения <b>this</b>, и передавая как аргумент <a href="#GetReferencedName">GetReferencedName</a>(<i>V</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>base</i> должно быть <a href="x10.html#x10.2">environment record</a>.</p>
+		<ol><li><p>
+			Вернуть результат вызова конкретного метода GetBindingValue (см.&nbsp;<a href="x10.html#x10.2.1">10.2.1</a>) для <i>base</i>, передавая в качестве аргументов <a href="#GetReferencedName">GetReferencedName</a>(<i>V</i>) и <a href="#IsStrictReference">IsStrictReference</a>(<i>V</i>).</p>
+		</li></ol></li></ol><p>
+	Описанный ниже внутренний метод [[Get]] используется в GetValue, когда&nbsp;<i>V </i>является <a href="#IsPropertyReference">ссылкой на свойство</a> с примитивным значением базы. Этот внутренний метод вызывается с использованием <I>base </I>в качестве <b>this</b> и свойства&nbsp;<i>P</i> в качестве аргумента. При этом производятся следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O</i> будет <a href="x9.html#x9.9">ToObject</a>(<i>base</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>desc </i>будет результатом вызова внутреннего метода [[GetProperty]] объекта <i>O </i> с именем свойства&nbsp;<i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>desc</i> &ndash; <b>undefined</b>, вернуть <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="#x8.10.2">IsDataDescriptor</a>(<i>desc</i>) &ndash; <b>true</b>, вернуть <i>desc</i>.[[Value]].</p>
+		</li>
+		<li><p>
+		В противном случае <a href="#x8.10.1">IsAccessorDescriptor</a>(<i>desc</i>) должен быть <b>true</b>, поэтому пусть <I>getter </I>будет <i>desc</i>.[[Get]].</p>
+		</li>
+		<li><p>
+		Если <i>getter </i>является <b>undefined</b>, вернуть <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат, вызывая внутренний метод [[Call]] для <I>getter</I><i>, </i>передавая <i>base </i>в качестве значения <b>this</b>, без аргументов.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Объект, который может быть создан при выполнении шага&nbsp;1, вне вышеуказанного метода недоступен. По выбору реализации фактическое создание этого объекта может не производиться.
+	Единственная ситуация, когда такой фактический доступ к свойству, использующий этот внутренний метод, может иметь видимый эффект &ndash; когда он вызывает функцию доступа <em>accessor function</em>.</p>
+	<h4 id="x8.7.2">8.7.2 PutValue (V, W) <a href="#x8.7.2">#</a> <a href="#x8.7.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<ol><li><p>
+		Если <a href="#Type">Тип</a>(<i>V</i>) не является <a href="#x8.7">Reference</a>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.3" class="term-ref">ReferenceError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>base </i>будет результатом вызова  <a href="#GetBase">GetBase</a>(<i>V</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="#IsUnresolvableReference">IsUnresolvableReference</a>(<i>V</i>), то</p>
+		<ol><li><p>
+			Если <a href="#IsStrictReference">IsStrictReference</a>(<i>V</i>) &ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				сгенерировать исключение <b><a href="x15.11.html#x15.11.6.3" class="term-ref">ReferenceError</a></b>.</p>
+			</li></ol></li>
+			<li><p>
+			Вызвать внутренний метод [[Put]] объекта <a href="x15.1.html#x15.1" class="term-ref">global object</a>, передавая в качестве имени свойства <a href="#GetReferencedName">GetReferencedName</a>(<i>V</i>), в качестве значения &ndash; <i>W</i> , а в качестве флага <I>Throw </I>&ndash; <b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе если <a href="#IsPropertyReference">IsPropertyReference</a>(<i>V</i>), то</p>
+		<ol><li><p>
+			Если <a href="#HasPrimitiveBase">HasPrimitiveBase</a>(<i>V</i>) &ndash; <b>false</b>, тогда пусть <i>put</i> будет внутренним методом [[Put]] <i>base</i>, в противном случае пусть <i><i>put</i></i> будет специальным внутренним методом [[Put]], описанным далее.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод <I>put</I>, используя <I>base </I>в качестве <B>this</B>, и передавая в качестве имени свойства <a href="#GetReferencedName">GetReferencedName</a>(<i>V</i>), в качестве значения &ndash; <i>W</i>, а в качестве флага <I>Throw </I> &ndash; <a href="#IsStrictReference">IsStrictReference</a>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <I>base </I>должна быть ссылкой, база которой &ndash; <a href="x10.html#x10.2">environment record</a>. Таким образом,</p>
+		<ol><li><p>
+			Вызвать конкретный метод SetMutableBinding (<a href="x10.html#x10.2.1">10.2.1</a>) для <i>base</i>, передавая в качестве аргументов <a href="#GetReferencedName">GetReferencedName</a>(<i>V</i>), <i>W</i> и <a href="#IsStrictReference">IsStrictReference</a>(<i>V</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат.</p>
+	</li></ol><p>
+	Операция PutValue использует следующий внутренний метод [[Put]], когда&nbsp;<i>V </i> является <a href="#IsPropertyReference">ссылкой на свойство</a> с примитивным значением базы. Этот внутренний метод вызывается с использованием <i>base</i> в качестве его значения <b>this</b>, а его аргументами являются свойство <i>P</i>, значение <i>W</i> и булев флаг <i>Throw</i>. При этом производятся следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O</i> будет <a href="x9.html#x9.9">ToObject</a>(<i>base</i>).</p>
+		</li>
+		<li><p>
+		Если результат вызова внутреннего метода [[CanPut]] объекта <i>O</i> с аргументом <i>P</i> &ndash; <b>false</b>, то</p>
+		<ol><li><p>
+			Если <i>Throw</i> &ndash; <b>true</b>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+			</li>
+			<li><p>
+			Иначе вернуть результат.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>ownDesc</i> будет результатом вызова внутреннего метода  [[GetOwnProperty]] объекта <i>O</i>  с аргументом&nbsp;<i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="#x8.10.2">IsDataDescriptor</a>(<I>ownDesc</I>) &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Если <i>Throw</i> &ndash; <b>true</b>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+			</li>
+			<li><p>
+			Иначе вернуть результат.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>desc</i> будет результатом вызова внутреннего метода [[GetProperty]] объекта <i>O</i>  с аргументом&nbsp;<i>P</i>. Это может быть либо собственный или наследуемый <a href="#accessor-property-descriptor">дескриптор свойства-аксессора</a>, либо наследуемый <a href="#data-property-descriptor">дескриптор свойства данных</a>.</p>
+		</li>
+		<li><p>
+		Если <a href="#x8.10.1">IsAccessorDescriptor</a>(<I>desc</I>) &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>setter</i> будет <i>desc</i>.[[Set]], который не может быть <b>undefined</b>.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[Call]] для <I>setter</I>, передавая <I>base </I>в качестве значения <b>this</b>, и список аргументов, содержащий только <i>W</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, это &ndash; запрос на создание собственного свойства временного объекта <i>O.</i></p>
+		<ol><li><p>
+			Если <i>Throw</i> &ndash; <b>true</b>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Объект, который может быть создан при выполнении шага&nbsp;1, вне вышеуказанного метода недоступен.  По выбору реализации фактическое создание этого временного объекта может не производиться. Единственные ситуации, когда возможен видимый эффект такого реального присваивания свойства, использующего этот внутренний метод &ndash; это когда он либо вызывает функцию доступа, либо нарушает контроль ошибок с предикатом <I>Throw</I>. Если <i>Throw</i> &ndash; <b>true</b>, то любое присваивание свойства, которое могло бы создать новое свойство временного объекта, вызовет ошибку.</p>
+	<h3 id="x8.8">8.8 Тип спецификации List <a href="#x8.8">#</a> <a href="#x8.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип List <tt>Cписок</tt> используется для описания вычисления списков аргументов (см.&nbsp;<a href="x11.html#x11.2.4">11.2.4</a>) в выражениях <code><b>new</b></code>, в вызовах функции, а также в других алгоритмах, в которых необходим простой список значений. Значения типа List представляют собой простые упорядоченные последовательности значений, которые могут быть любой длины.</p>
+	<h3 id="x8.9">8.9 Тип спецификации Completion <a href="#x8.9">#</a> <a href="#x8.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип Completion <tt>Завершение</tt> используется для объяснения поведения инструкций (<code><b>break</b></code>, <code><b>continue</b></code>, <code><b>return</b></code> и <code><b>throw</b></code>), производящих нелокальную передачу управления. Значения типа Completion представляют собой триады в формате (<i>тип</i>, <i>значение</i>, <i>цель</i>), где <i>тип</i> &ndash; один из следующих: <b>normal</b>, <b>break</b>, <b>continue</b>, <b>return</b> или <b>throw</b>, <i>значение </i>&ndash; любое значение языка ECMAScript или <b>empty</b>, а <i>цель</i> &ndash; любой идентификатор ECMAScript или <B>empty</B>.</p>
+	<p>
+	Термин &quot;непредвиденное завершение&quot; <em>abrupt completion</em> означает любое завершение с типом, отличным от <b>normal</b>.</p>
+	<h3 id="x8.10">8.10 Типы спецификации Property Descriptor и Property Identifier <a href="#x8.10">#</a> <a href="#x8.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Тип Property Descriptor используется для объяснения манипуляций с атрибутами именованных свойств и для построения соответствующей модели данных. Значения типа Property Descriptor представляют собой записи, состоящие из именованных полей, где имя каждого поля является именем атрибута, а его значение является значением соответствующего атрибута, согласно <a href="#x8.6.1">п.&nbsp;8.6.1</a>. Кроме того, любое поле может присутствовать или отсутствовать.</p>
+	<p>
+	И в зависимости от наличия или использования определенных полей, значения Property Descriptor еще делятся на дескрипторы свойств данных и дескрипторы свойств-аксессоров. <dfn id="data-property-descriptor">Дескриптор свойств данных</dfn> имеет поля с названием или [[Value]], или [[Writable]]. <dfn id="accessor-property-descriptor">Дескриптор свойств-аксессоров</dfn> имеет поля с названием или [[Get]], или [[Set]]. Любой дескриптор свойств может иметь поля с названием [[Enumerable]] и [[Configurable]]. Значение Property Descriptor не может быть одновременно и дескриптором свойств данных, и дескриптором свойств-аксессоров. Однако оно может одновременно являться ни тем, ни другим. Родовой дескриптор свойства (ориг. &quot;generic property descriptor&quot; &ndash; прим. перев.) представляет собой значение Property Descriptor, которое не является ни дескриптором свойств данных, ни дескриптором свойств-аксессоров. <dfn id="fully-populated">Полностью заполненный</dfn> дескриптор свойств является либо дескриптором свойств-аксессоров, либо дескриптором свойств данных, при этом все его поля соответствуют атрибутам свойства, описанных либо в Таблице&nbsp;5, либо в Таблице&nbsp;6 пункта <a href="#x8.6.1">8.6.1</a>.</p>
+	<p>
+	Для удобства обозначений в тексте данной спецификации может использоваться объектно-буквенный синтаксис для определения значения дескриптора свойства. Например, фраза: Property Descriptor {[[Value]]: 42, [[Writable]]: <b>false</b>, [[Configurable]]: <b>true</b>} определяет дескриптор свойств данных. Порядок имен полей не имеет значения. Поля, которые явно не указаны, считаются отсутствующими.</p>
+	<p>
+	В тексте и алгоритмах спецификации для указания на определенное поле Property Descriptor может использоваться написание через точку. Например, если D является дескриптором свойства, то фраза D.[[Value]] является сокращенным вариантом написания фразы &ldquo;поле дескриптора D с именем [[Value]]&rdquo;.</p>
+	<p>
+	Тип <dfn id="property-identifier">Property Identifier</dfn> <tt>Идентификатор свойства</tt> используется для связывания имени свойства с Дескриптором свойства.  Значения типа Property Identifier представляют собой пары формата (имя, дескриптор), где имя &ndash; значение String, а дескриптор &ndash; значение Property Descriptor.
+	</p>
+	<p>
+	Для оперирования значениями Property Descriptor в данной спецификации используются следующие абстрактные операции:</p>
+	<h4 id="x8.10.1">8.10.1 IsAccessorDescriptor(Desc) <a href="#x8.10.1">#</a> <a href="#x8.10.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове абстрактной операции IsAccessorDescriptor <tt>Является дескриптором аксессора</tt> с <a href="#x8.10">дескриптором свойства</a> <i>Desc</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		<span class="tr">Если <i>Desc &ndash; </i><b>undefined</b>, вернуть <b>false</b>.</span></p>
+		</li>
+		<li><p>
+		<span class="tr">Если отсутствуют и <i>Desc</i>.[[Get]], и <i>Desc</i>.[[Set]], вернуть <b>false</b>.</span></p>
+		</li>
+		<li><p class="sm-btm">
+		<span class="tr">Вернуть <b>true</b>.</span></p>
+	</li></ol>
+	<h4 id="x8.10.2">8.10.2 IsDataDescriptor(Desc) <a href="#x8.10.2">#</a> <a href="#x8.10.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове абстрактной операции IsDataDescriptor <tt>Является дескриптором данных</tt> с <a href="#x8.10">дескриптором свойства</a> <i>Desc</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		<span class="tr">Если <i>Desc </i>&ndash; <b>undefined</b>, вернуть <b>false</b>.</span></p>
+		</li>
+		<li><p>
+		<span class="tr">Если отсутствуют и <i>Desc</i>.[[Value]], и <i>Desc</i>.[[Writable]], вернуть <b>false</b>.</span></p>
+		</li>
+		<li><p class="sm-btm">
+		<span class="tr">Вернуть <b>true</b>.</span></p>
+	</li></ol>
+	<h4 id="x8.10.3">8.10.3 IsGenericDescriptor(Desc) <a href="#x8.10.3">#</a> <a href="#x8.10.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове абстрактной операции IsGenericDescriptor с <a href="#x8.10">дескриптором свойства</a> <i>Desc</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		<span class="tr">Если <i>Desc </i>&ndash; <b>undefined</b>, вернуть <b>false</b>.</span></p>
+		</li>
+		<li><p>
+		<span class="tr">Если и <a href="#x8.10.1">IsAccessorDescriptor</a>(<i>Desc</i>) и <a href="#x8.10.2">IsDataDescriptor</a>(<i>Desc</i>) &ndash; <b>false</b>, вернуть <b>true</b>.</span></p>
+		</li>
+		<li><p class="sm-btm">
+		<span class="tr">Вернуть <b>false</b>.</span></p>
+	</li></ol>
+	<h4 id="x8.10.4">8.10.4 FromPropertyDescriptor(Desc) <a href="#x8.10.4">#</a> <a href="#x8.10.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове абстрактной операции FromPropertyDescriptor <tt>Из дескриптора свойства</tt> с <a href="#x8.10">дескриптором свойства</a> <i>Desc</i> выполняются следующие шаги:</p>
+	<p>
+	В следующем алгоритме предполагается, что <i>Desc </i>&ndash; <a href="#fully-populated">полностью заполненный</a> <a href="#x8.10">Property Descriptor</a>, такой, как дескриптор свойств, возвращенный методом [[GetOwnProperty]] (см.&nbsp;<a href="#x8.12.1">8.12.1</a>).</p>
+	<ol><li><p>
+		<span class="tr">Если <i>Desc </i><b>&ndash; undefined</b>, вернуть <b>undefined</b>.</span></p>
+		</li>
+		<li><p>
+		<span class="tr">Пусть <i>obj </i>будет результатом создания нового объекта, как если бы этот объект был создан выражением <b>new Object()</b>, где <b>Object </b>является стандартным встроенным конструктором с этим именем.</span></p>
+		</li>
+		<li><p>
+		<span class="tr">Если <a href="#x8.10.2">IsDataDescriptor</a>(<I>Desc</I>) &ndash; <b>true</b>, то </span>
+		</p>
+		<ol><li><p>
+			<span class="tr">Вызываем внутренний метод [[DefineOwnProperty]] объекта <i>obj</i> с аргументами &quot;<code><b>value</b></code>&quot;, <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>Desc</i>.[[Value]], [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</span>
+			</p>
+			</li>
+			<li><p>
+			<span class="tr">Вызываем внутренний метод [[DefineOwnProperty]] объекта <i>obj</i> с аргументами &quot;<code><b>writable</b></code>&quot;, <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>Desc</i>.[[Writable]], [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</span>
+			</p>
+		</li></ol></li>
+		<li><p>
+		<span class="tr">Иначе, <a href="#x8.10.1">IsAccessorDescriptor</a>(<i>Desc</i>) должен быть <b>true</b>, поэтому</span></p>
+		<ol><li><p>
+			<span class="tr">Вызываем внутренний метод [[DefineOwnProperty]] объекта <i>obj</i> с аргументами &quot;<code><b>get</b></code>&quot;, <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>Desc</i>.[[Get]], [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</span></p>
+			</li>
+			<li><p>
+			<span class="tr">Вызываем внутренний метод [[DefineOwnProperty]] объекта <i>obj</i> с аргументами &quot;<code><b>set</b></code>&quot;, <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>Desc</i>.[[Set]], [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</span>
+			</p>
+		</li></ol></li>
+		<li><p>
+		<span class="tr">Вызываем внутренний метод [[DefineOwnProperty]] объекта <i>obj</i> с аргументами &quot;<code><b>enumerable</b></code>&quot;, <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>Desc</i>.[[Enumerable]], [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</span>
+		</p>
+		</li>
+		<li><p>
+		<span class="tr">Вызываем внутренний метод [[DefineOwnProperty]] объекта <i>obj</i> с аргументами &quot;<code><b>configurable</b></code>&quot;, <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>Desc</i>.[[Configurable]], [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</span>
+		</p>
+		</li>
+		<li><p class="sm-btm">
+		<span class="tr">Вернуть <i>obj</i>.</span></p>
+	</li></ol>
+	<h4 id="x8.10.5">8.10.5 ToPropertyDescriptor(Obj) <a href="#x8.10.5">#</a> <a href="#x8.10.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове абстрактной операции ToPropertyDescriptor <tt>В дескриптор свойства</tt> с объектом <I>Desc </I>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если <a href="#Type">Type</a>(<i>Obj</i>) &ndash; не Object, сгенерировать исключение <b>TypeError</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>desc</i> будет результатом создания нового <a href->Property Descriptor</a>, который вначале не имеет полей.</p>
+		</li>
+		<li><p>
+		Если результат вызова внутреннего метода [[HasProperty]] объекта <I>Obj </I>с аргументом &quot;<code><b>enumerable</b></code>&quot; &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>enum</i> будет результатом вызова внутреннего метода [[Get]] объекта <I>Obj </I>с аргументом &quot;<code><b>enumerable</b></code>&quot;.</p>
+			</li>
+			<li><p>
+			Полю [[Enumerable]] дексриптора <I>desc </I>присвоить <a href="x9.html#x9.2">ToBoolean</a>(<i>enum</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Если результат вызова внутреннего метода [[HasProperty]] объекта <I>Obj</I> с аргументом &quot;<code><b>configurable</b></code>&quot; &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>conf</i> будет результатом вызова внутреннего метода <I>Obj </I>[[Get]] с аргументом <code><b>configurable</b></code>&quot;.</p>
+			</li>
+			<li><p>
+			Полю [[Configurable]] дескриптора <I>desc </I>присвоить <a href="x9.html#x9.2">ToBoolean</a>(<i>conf</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Если результат вызова внутреннего метода [[HasProperty]] объекта <I>Obj </I>с аргументом &quot;<code><b>value</b></code>&quot; &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <I>value</I> будет результатом вызова внутреннего метода [[Get]] объекта <I>Obj </I>с аргументом <code><b>value</b></code>&quot;.</p>
+			</li>
+			<li><p>
+			Полю [[Value]] дескриптора <I>desc </I>присвоить <i>value</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если результат вызова внутреннего метода [[HasProperty]] объекта <I>Obj </I>с аргументом &quot;<code><b>writable</b></code>&quot; &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>writable</i> будет результатом вызова внутреннего метода [[Get]] объекта <I>Obj </I>с аргументом <code><b>writable</b></code>&quot;.</p>
+			</li>
+			<li><p>
+			Полю [[Writable]] дескриптора <I>desc </I>присвоить <a href="x9.html#x9.2">ToBoolean</a>(<i>writable</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Если результат вызова внутреннего метода [[HasProperty]] объекта <I>Obj </I>с аргументом &quot;<code><b>get</b></code>&quot; &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>getter </i>будет результатом вызова внутреннего метода [[Get]] объекта <I>Obj </I>с аргументом &quot;<code><b>get</b></code>&quot;.</p>
+			</li>
+			<li><p>
+			Если <a href="x9.html#x9.11">IsCallable</a>(<i>getter</i>) &ndash; <b>false</b>, и <i>getter</i> не является <b>undefined</b>, то сгенерировать исключение <b>TypeError </b>exception</p>
+			</li>
+			<li><p>
+			Полю <I>desc </I>[[Get]] присвоить <I>getter</I>.</p>
+		</li></ol></li>
+		<li><p>
+		Если результат вызова внутреннего метода [[HasProperty]] объекта <I>Obj </I>с аргументом &quot;<code><b>set</b></code>&quot; &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>setter</i> будет результатом вызова внутреннего метода [[Get]] объекта <I>Obj </I> с аргументом &quot;<code>set</code>&quot;.</p>
+			</li>
+			<li><p>
+			Если <a href="x9.html#x9.11">IsCallable</a>(<I>setter</I>) &ndash; <b>false</b>, и <i>setter</i> не является <b>undefined</b>, то сгенерировать исключение <a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError </a>.</p>
+			</li>
+			<li><p>
+			Полю <I>desc </I>[[Set]] присвоить <i>setter</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если присутствует либо <i>desc</i>.[[Get]], либо <i>desc</i>.[[Set]], то</p>
+		<ol><li><p>
+			Если присутствует либо <i>desc</i>.[[Value]], либо <i>desc</i>.[[Writable]], то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>desc</i>.</p>
+	</li></ol>
+	<h3 id="x8.11">8.11 Типы спецификации Lexical Environment и Environment Record <a href="#x8.11">#</a> <a href="#x8.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Типы <a href="x10.html#x10.2">Lexical Environment</a> <tt>Лексическое окружение</tt> и <a href="x10.html#x10.2.1">Environment Record</a> <tt>Запись окружения</tt> используются для объяснения поведения разрешения имён во вложенных функциях и блоках. Эти типы и операции с ними описаны в <a href="x10.html#x10">Главе&nbsp;10</a>.</p>
+	<h3 id="x8.12">8.12 Алгоритмы для внутренних методов объектов <a href="#x8.12">#</a> <a href="#x8.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	В приведенных далее описаниях алгоритмов предположим, что <i>O</i> &ndash; родной объект ECMAScript, <i>P</i> &ndash; строка, <i>Desc</i> &ndash; запись Property Description, а <i>Throw</i>  &ndash; булев флаг.</p>
+	<h4 id="x8.12.1">8.12.1 [[GetOwnProperty]](P) <a href="#x8.12.1">#</a> <a href="#x8.12.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[GetOwnProperty]] объекта <i>O</i>  с именем свойства <i>P</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если у <i>O </i>нет собственного свойства с именем <i>P</i>, вернуть <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>D </i>будет вновь созданным <a href="#x8.10">Property Descriptor</a> без полей.</p>
+		</li>
+		<li><p>
+		Пусть <i>X </i>будет собственным свойством объекта <i>O </i> с именем <i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>X </i>&ndash; свойство данных, то </p>
+		<ol><li><p>
+			Присвоить <i>D</i>.[[Value]] значение атрибута [[Value]] свойства <i>X</i> .</p>
+			</li>
+			<li><p>
+			Присвоить <i>D</i>.[[Writable]] значение атрибута [[Writable]] свойства <i>X</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>X </i>&ndash; свойство-аксессор, то</p>
+		<ol><li><p>
+			Присвоить <i>D</i>.[[Get]] значение атрибута [[Get]] свойства <i>X</i> .</p>
+			</li>
+			<li><p>
+			Присвоить <i>D</i>.[[Set]] значение атрибута [[Set]] свойства <i>X</i> .</p>
+		</li></ol></li>
+		<li><p>
+		Присвоить <i>D</i>.[[Enumerable]] значение атрибута [[Enumerable]] свойства <i>X</i> .</p>
+		</li>
+		<li><p>
+		Присвоить <i>D</i>.[[Configurable]] значение атрибута [[Configurable]] свойства <i>X</i> .</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>D</i></i>.</p>
+	</li></ol><p>
+	Если же <i>O </i>&ndash; объект String, он имеет более сложный внутренний метод [[GetOwnProperty]], описанный в <a href="x15.5.html#x15.5.5.2">пункте&nbsp;15.5.5.2</a>.</p>
+	<h4 id="x8.12.2">8.12.2 [[GetProperty]](P) <a href="#x8.12.2">#</a> <a href="#x8.12.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[GetProperty]] объекта <i>O</i> с именем свойства <i>P</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>prop </i>будет результатом вызова внутреннего метода [[GetOwnProperty]] объекта <i>O </i> с именем свойства <i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>prop </i>&ndash; не <b>undefined</b>, вернуть <i>prop</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>proto</i> будет значением внутреннего свойства [[Prototype]] объекта <i>O.</i></p>
+		</li>
+		<li><p>
+		Если <i>proto &ndash; </i><b>null</b>, вернуть <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[GetProperty]] объекта <i>proto</i> с аргументом <i>P</i>.</p>
+	</li></ol>
+	<h4 id="x8.12.3">8.12.3 [[Get]](P) <a href="#x8.12.3">#</a> <a href="#x8.12.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[Get]] объекта <i>O</i> с именем свойства <i>P</i> выполняются следующие шаги:</p>
+	<ol start="8"><li><p>
+		Пусть <i>desc </i>будет результатом вызова внутреннего метода [[GetProperty]] объекта <i>O </i> с именем свойства <i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>desc &ndash; </i><b>undefined</b>, вернуть <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="#x8.10.2">IsDataDescriptor</a>(<i>desc</i>) &ndash; <b>true</b>, вернуть <i>desc</i>.[[Value]].</p>
+		</li>
+		<li><p>
+		В противном случае <a href="#x8.10.1">IsAccessorDescriptor</a>(<i>desc</i>) должен быть <B>true</B>, поэтому пусть <i>getter</i> будет <i>desc</i>.[[Get]].</p>
+		</li>
+		<li><p>
+		Если <i>getter &ndash; </i><b>undefined</b>, вернуть <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат, вызывая внутренний метод [[Call]] для <I>getter</I><i>, </i>передавая <i><i>O</i> </i>в качестве значения <b>this</b>, и не передавая никаких аргументов.</p>
+	</li></ol>
+	<h4 id="x8.12.4">8.12.4 [[CanPut]](P) <a href="#x8.12.4">#</a> <a href="#x8.12.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[CanPut]] объекта <i>O</i> с именем свойства <i>P</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>desc</i> будет результатом вызова внутреннего метода [[GetOwnProperty]] объекта <I>O </I>с аргументом&nbsp;<i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>desc</i> &ndash; не <b>undefined</b>, то</p>
+		<ol><li><p>
+			Если <a href="#x8.10.1">IsAccessorDescriptor</a>(<I>desc</I>) &ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Если <i>desc</i>.[[Set]] &ndash; <b>undefined</b>, то вернуть <b>false</b>.</p>
+				</li>
+				<li><p>
+				Иначе вернуть <B>true</B>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, <i>desc</i> должен быть Дескриптором данных, поэтому вернуть значение <i>desc</i>.[[Writable]].</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>proto</i> будет внутренним свойством [[Prototype]] объекта <i>O.</i></p>
+		</li>
+		<li><p>
+		Если <i>proto</i> &ndash; <b>null</b>, то вернуть значение внутреннего свойства [[Extensible]] объекта <i>O</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>inherited </i>будет результатом вызова внутреннего метода [[GetProperty]] объекта <I>proto</I> с именем свойства <i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>inherited</i> &ndash; <b>undefined</b>, то вернуть значение внутреннего свойства [[Extensible]] объекта <i>O</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="#x8.10.1">IsAccessorDescriptor</a>(<I>inherited</I>) <b>true</b>, то</p>
+		<ol><li><p>
+			Если <i>inherited</i>.[[Set]] &ndash; <b>undefined</b>, то вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Иначе вернуть <B>true</B>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе <i>inherited</i> должен быть ДескприпторомДанных.</p>
+		<ol><li><p>
+			Если внутреннее свойство [[Extensible]] объекта <i>O</i> &ndash; <b>false</b>, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Иначе вернуть значение <i>inherited</i>.[[Writable]].</p>
+		</li></ol></li></ol><p class="sp">Объекты среды могут определять дополнительные ограничения для операций [[Put]]. По возможности, объекты среды не должны допускать операций [[Put]] в тех ситуациях, когда это определение внутреннего метода [[CanPut]] возвращает false.</p>
+	<h4 id="x8.12.5">8.12.5 [[Put]](P, V, Throw) <a href="#x8.12.5">#</a> <a href="#x8.12.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[Put]] объекта <i>O</i> с именем свойства <i>P</i>, значением <i>V</i>  и булевым флагом <i>Throw</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если результат вызова внутреннего метода [[CanPut]] объекта <i>O</i> с аргументом <i>P</i> &ndash; <b>false</b>, то</p>
+		<ol><li><p>
+			Если <i>Throw</i> &ndash; <b>true</b>, то сгенерировать исключение <b>TypeError</b>.</p>
+			</li>
+			<li><p>
+			Иначе вернуть результат.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>ownDesc</i> будет результатом вызова внутреннего метода  [[GetOwnProperty]] объекта <I>O </I>с аргументом&nbsp;<i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="#x8.10.2">IsDataDescriptor</a>(<I>ownDesc</I>) <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>valueDesc</i> будет <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>V</i>}.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] объекта <i>O</i>, передавая в качестве аргументов <i>P</i>, <i>valueDesc</i> и <i>Throw</i> .</p>
+			</li>
+			<li><p>
+			Вернуть результат.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>desc</i> будет результатом вызова внутреннего метода [[GetProperty]] объекта <I>O </I>с аргументом&nbsp;<i>P</i>. Это может быть либо собственный или наследуемый <a href="#accessor-property-descriptor">дескриптор свойства-аксессора</a>, либо наследуемый <a href="#data-property-descriptor">дескриптор свойства данных</a>.</p>
+		</li>
+		<li><p>
+		Если <a href="#x8.10.1">IsAccessorDescriptor</a>(<I>desc</I>) <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <I>setter </I>будет <i>desc</i>.[[Set]], который не может быть <b>undefined</b>.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[Call]] для <I>setter</I>, передавая <i>O </i>в качестве значения <b>this</b>, и передавая <i>V </i>в качестве единственного аргумента.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, создать именованное свойство данных <i>P </i>объекта <i>O </i>следующим образом:</p>
+		<ol><li><p>
+			Пусть <i>newDesc</i> будет <a href="#x8.10">Property Descriptor</a> {[[Value]]: <i>V</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>}.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] объекта <i>O</i>, передавая в качестве аргументов <i>P</i>, <i>newDesc</i> и <i>Throw</i> .</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат.</p>
+	</li></ol>
+	<h4 id="x8.12.6">8.12.6 [[HasProperty]](P) <a href="#x8.12.6">#</a> <a href="#x8.12.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[HasProperty]] объекта <i>O</i> с именем свойства <i>P</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>desc </i>будет результатом вызова внутреннего метода [[GetProperty]] объекта <i>O </i> с именем свойства <i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>desc </i><b>undefined</b>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Иначе вернуть <B>true</B>.</p>
+	</li></ol>
+	<h4 id="x8.12.7">8.12.7 [[Delete]](P, Throw) <a href="#x8.12.7">#</a> <a href="#x8.12.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[Put]] объекта <i>O</i> с именем свойства <i>P</i>  и булевым флагом Throw выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>desc </i>будет результатом вызова внутреннего метода [[GetOwnProperty]] объекта <i>O </i> с именем свойства <i>P</i>.</p>
+		</li>
+		<li><p>
+		Если <i>desc &ndash; </i><b>undefined</b>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <i>desc</i>.[[Configurable]] &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Убрать из объекта <I>О </I>собственное свойство с именем <i>P</i>.</p>
+			</li>
+			<li><p>
+			Вернуть <b>true</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, если <i>Throw</i>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol>
+	<h4 id="x8.12.8">8.12.8 [[DefaultValue]](подсказка) <a href="#x8.12.8">#</a> <a href="#x8.12.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове внутреннего метода [[DefaultValue]] объекта <i>O</i> с подсказкой&nbsp;String выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>toString </i>будет результатом вызова внутреннего метода [[Get]] объекта <I><i>O</i></I> с аргументом <code>toString</code>&quot;.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<I>toString</I>) <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>str</i> будет результатом вызова внутреннего метода [[Call]] метода <i>toString</i>, с объектом<i>O</i> в качестве значения&nbsp;<b>this</b> и с пустым списком аргументов.</p>
+			</li>
+			<li><p>
+			Если <i>str</i> &ndash; <a href="x4.html#primitive_value" class="term-ref">примитивное значение</a>, вернуть <i>str</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>valueOf </i>будет результатом вызова внутреннего метода [[Get]] объекта <I><i>O</i></I> с аргументом <code>valueOf</code>&quot;.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<I>valueOf</I>) <b>true</b>, то
+		</p>
+		<ol><li><p>
+			Пусть <i>val</i> будет результатом вызова внутреннего метода [[Call]] метода <i>valueOf</i>, с <i>O</i> в качестве значения&nbsp;<B>this </B>и с пустым списком аргументов.</p>
+			</li>
+			<li><p>
+			Если <i>val</i> &ndash; <a href="x4.html#primitive_value" class="term-ref">примитивное значение</a>, вернуть <i>val</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	</li></ol><p>
+	При вызове внутреннего метода [[DefaultValue]] объекта <i>O</i> с подсказкой&nbsp;Number выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>valueOf </i>будет результатом вызова внутреннего метода [[Get]] объекта <I><i>O</i></I> с аргументом <code>valueOf</code>&quot;.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<I>valueOf</I>) <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>val</i> будет результатом вызова внутреннего метода [[Call]] метода <i>valueOf</i>, с <i>O</i> в качестве значения&nbsp;<B>this </B>и с пустым списком аргументов.</p>
+			</li>
+			<li><p>
+			Если <i>val</i> &ndash; <a href="x4.html#primitive_value" class="term-ref">примитивное значение</a>, вернуть <i>val</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>toString </i>будет результатом вызова внутреннего метода [[Get]] объекта <I><i>O</i></I> с аргументом <code>toString</code>&quot;.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<I>toString</I>) <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>str</i> будет результатом вызова внутреннего метода [[Call]] метода <i>toString</i>, с объектом <i>O</i> в качестве значения&nbsp;<B>this </B>и с пустым списком аргументов.</p>
+			</li>
+			<li><p>
+			Если <i>str</i> &ndash; <a href="x4.html#primitive_value" class="term-ref">примитивное значение</a>, вернуть <i>str</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Сгенерировать исключение <b>TypeError</b>.</p>
+	</li></ol><p>
+	Если внутренний метод [[DefaultValue]] объекта <i>O</i> вызывается без подсказки, он ведет себя так, как если бы подсказка была Number, кроме случаев, когда <i>O</i> &ndash; объект&nbsp;Date (см.&nbsp;<a href="x15.9.html#x15.9.6">15.9.6</a>), и в этой ситуации он ведет себя, как если бы подсказка была String.</p>
+	<p>
+	Приведенная выше спецификация [[DefaultValue]] для родных объектов может возвращать только <a href="x4.html#primitive_value" class="term-ref">примитивные значения</a>. Если родной объект выполняет собственный внутренний метод [[DefaultValue]], он должен убедиться, что его внутренний метод [[DefaultValue]] может возвращать только <a href="x4.html#primitive_value" class="term-ref">примитивные значения</a>.</p>
+	<h4 id="x8.12.9">8.12.9 [[DefineOwnProperty]](P, Desc, Throw) <a href="#x8.12.9">#</a> <a href="#x8.12.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	В приведенном ниже алгоритме термин <dfn id="reject-DefineOwnProperty">&ldquo;Отказать&rdquo;</dfn> (ориг. &quot;Reject&quot; &ndash; прим. перев.) означает &ldquo;Если <i>Throw</i> &ndash; <b>true</b>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>, иначе вернуть <b>false</b>&rdquo;. Этот алгоритм содержит шаги, проверяющие различны поля <I>Desc </I><a href="#x8.10">Property Descriptor</a> на наличие определенных значений. Проверяемые таким образом поля не обязательно должны существовать в&nbsp;<i>Desc</i>. Если поле отсутствует, его значение считается <b>false</b>.</p>
+	<p>
+	При вызове внутреннего метода [[DefineOwnProperty]] объекта <i>O</i> с именем свойства <i>P</i>, <a href="#x8.10">дескриптором свойства</a> <i>Desc</i> и булевым флагом <i>Throw</i>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>current </i>будет результатом вызова внутреннего метода [[GetOwnProperty]] объекта <i>O </i> с именем свойства <i>P</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>extensible </i>будет значением внутреннего свойства [[Extensible]] объекта <i>O.</i></p>
+		</li>
+		<li><p>
+		Если <i>current </i>&ndash; <b>undefined</b>, а <i>extensible</i> &ndash; <b>false</b>, то <a href="#reject-DefineOwnProperty">Отказать</a>.</p>
+		</li>
+		<li><p>
+		Если <i>current </i>&ndash; <b>undefined</b>, а <i>extensible</i> &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Если <a href="#x8.10.3">IsGenericDescriptor</a>(<i>Desc</i>) или <a href="#x8.10.2">IsDataDescriptor</a>(<i>Desc</i>) &ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Создать собственное свойство данных с именем <i>P</i> объекта <i>O</i>, у которых значения атрибутов [[Value]], [[Writable]], [[Enumerable]] и [[Configurable]] описывает дескриптор <i>Desc</i>. Если значение поля атрибута <i>Desc</i> отсутствует, атрибуту только что созданного свойства присваивается его значение по умолчанию.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе <i>Desc</i> должен быть <a href="#accessor-property-descriptor">Дескриптором свойств-аксессоров</a>, поэтому</p>
+			<ol><li><p>
+				Создать собственное свойство-аксессор с именем <i>P</i> объекта <i>O</i>, у которых значения атрибутов [[Get]], [[Set]], [[Enumerable]] и [[Configurable]] описывает <i>Desc</i>. Если значение поля атрибута <i>Desc</i> отсутствует, атрибуту только что созданного свойства присваивается его значение по умолчанию.</p>
+			</li></ol></li>
+			<li><p>
+			Вернуть <b>true</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <b>true</b>, если все поля в <i>Desc</i> отсутствуют.</p>
+		</li>
+		<li><p>
+		Вернуть <b>true</b>, если все поля в <i>Desc </i>также встречаются в <i>current</i>, и значение каждого поля в <i>Desc </i>оказывается таким же, что и у соответствующего поля в <i>current </i>при сравнении с помощью алгоритма <a href="x9.html#x9.12">SameValue</a> (<a href="x9.html#x9.12">9.12</a>).</p>
+		</li>
+		<li><p>
+		Если поле [[Configurable]] у <i>current</i> &ndash; <b>false</b>, то </p>
+		<ol><li><p>
+			<a href="#reject-DefineOwnProperty">Отказать</a>, если поле [[Configurable]] у <i>Desc</i> &ndash; <b>true</b>.</p>
+			</li>
+			<li><p>
+			<a href="#reject-DefineOwnProperty">Отказать</a>, если имеется поле [[Enumerable]] у <i>Desc</i>, и поля [[Enumerable]] у <i>current</i> и <i>Desc</i> являются булевыми отрицаниями друг друга.</p>
+		</li></ol></li>
+		<li><p>
+		Если <a href="#x8.10.3">IsGenericDescriptor </a>(<i>Desc</i>) &ndash; <b>true</b>, то дальнейшей проверки не требуется.</p>
+		</li>
+		<li><p>
+		Иначе, если <a href="#x8.10.2">IsDataDescriptor</a>(<i>current</i>) и <a href="#x8.10.2">IsDataDescriptor</a>(<i>Desc</i>) имеют различные результаты, то</p>
+		<ol><li><p>
+			<a href="#reject-DefineOwnProperty">Отказать</a>, если поле [[Configurable]] у <i>current</i> &ndash; <b>false</b>.
+			</p>
+			</li>
+			<li><p>
+			Если <a href="#x8.10.2">IsDataDescriptor</a>(<I>current</I>) &ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Преобразовать свойство с именем&nbsp;<i>P</i> объекта <i>O</i> из свойства данных в свойство-аксессор. Сохранить существующие значения атрибутов [[Configurable]] и [[Enumerable]] преобразованных свойств и присвоить атрибутам остальных свойств их значения по умолчанию.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе</p>
+			<ol><li><p>
+				Преобразовать свойство с именем&nbsp;<i>P</i> объекта <i>O</i> из свойства-аксессора в свойство данных. Сохранить существующие значения атрибутов [[Configurable]] и [[Enumerable]] преобразованных свойств и присвоить атрибутам остальных свойств их значения по умолчанию.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Иначе, если и <a href="#x8.10.2">IsDataDescriptor</a>(<i>current</i>) и <a href="#x8.10.2">IsDataDescriptor</a>(<i>Desc</i>) &ndash; <B>true</B>, то</p>
+		<ol><li><p>
+			Если поле [[Configurable]] у <i>current</i> &ndash; <b>false</b>, то</p>
+			<ol><li><p>
+				<a href="#reject-DefineOwnProperty">Отказать</a>, если поле [[Writable]] у <i>current</i> &ndash; <b>false</b>, и поле [[Writable]] у <i>Desc</i> &ndash; <b>true</b>.</p>
+				</li>
+				<li><p>
+				Если поле [[Writable]] у <i>current</i> &ndash; <b>false</b>, то</p>
+				<ol><li><p>
+					<a href="#reject-DefineOwnProperty">Отказать</a>, если у <i>Desc</i> имеется поле [[Value]] и <a href="x9.html#x9.12">SameValue</a>(<i>Desc</i>.[[Value]], <i>current</i>.[[Value]]) &ndash; <b>false</b>.
+					</p>
+				</li></ol></li></ol></li>
+			<li><p>
+			иначе, поле [[Configurable]] у <i>current</i> &ndash; <b>true</b>, поэтому любое изменение является допустимым.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, и <a href="#x8.10.1">IsAccessorDescriptor</a>(<i>current</i>), и <a href="#x8.10.1">IsAccessorDescriptor</a>(<i>Desc</i>) &ndash; <b>true</b>,  поэтому</p>
+		<ol><li><p>
+			Если поле [[Configurable]] у <i>current</i> &ndash; <b>false</b>, то</p>
+			<ol><li><p>
+				<a href="#reject-DefineOwnProperty">Отказать</a>, если у <i>Desc</i> имеется поле [[Set]] и <a href="x9.html#x9.12">SameValue</a>(<i>Desc</i>.[[Set]], <i>current</i>.[[Set]]) &ndash; <b>false</b>.</p>
+				</li>
+				<li><p>
+				<a href="#reject-DefineOwnProperty">Отказать</a>, если у <i>Desc</i> имеется поле [[Get]] и <a href="x9.html#x9.12">SameValue</a>(<i>Desc</i>.[[Get]], <i>current</i>.[[Get]]) &ndash; <b>false</b>.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Для каждого имеющегося поля атрибута у <i>Desc</i> присвоить значению этого поля атрибут с соответствующим именем, принадлежащий свойству с именем <i>P</i> объекта <i>O</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>true</b>.</p>
+	</li></ol><p>
+	Если же <i>O </i>&ndash; объект Array, он имеет более сложный внутренний метод [[DefineOwnProperty]], описанный в <a href="x15.4.html#x15.4.5.1">пункте&nbsp;15.4.5.1</a>.</p>
+	<p><B>ПРИМЕЧАНИЕ</B> Шаг 10.b позволяет, чтобы любое поле у Desc отличалось от соответствующего поля у current, если поле [[Configurable]] у current &ndash; <b>true</b>. Он даже позволяет изменить [[Value]] свойства, у которого атрибут [[Writable]] &ndash; <b>false</b>. Это возможно, поскольку атрибут  [[Configurable]] со значением <B>true </B>допускает эквивалентную последовательность вызовов, в которых сначала [[Writable]] присваивается <b>true</b>, устанавливает новое [[Value]], а затем [[Writable]] присваивается <b>false</b>.</p>
+	</body><script src="anno.js"></script></html>

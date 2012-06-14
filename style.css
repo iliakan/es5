@@ -1,0 +1,758 @@
+
+
+#alt-version-notice {
+  padding-left: 60px;
+}
+
+.toc-nav {
+  color: green !important;
+  font-weight: bold;
+}
+
+#timestamp {
+  color: #bbb;
+  font-weight: normal;
+  padding-left: 8px;
+}
+
+p.url {
+  margin-left: 40px;
+}
+
+a,
+a:visited
+{
+  color: #B82E00;
+  /* color: #B8002E; */
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: yellow;
+}
+
+a.mdcr,
+a.mdcg,
+a.dmas,
+a.bugs,
+a.mdcr:visited,
+a.mdcg:visited,
+a.dmas:visited,
+a.bugs:visited
+{
+  color: green;
+}
+
+i {
+  font-family: serif;
+}
+
+dfn {
+  font-style: normal;
+}
+
+body {
+  margin-left: 200px;
+  margin-right: 20%;
+  font-family: sans-serif;
+  line-height: 150%;
+}
+h1, h2, h3, h4, h5, h6 {
+  color: green;
+}
+
+#toc a,
+#toc-full a {
+  text-decoration: none !important;
+  border: none;
+}
+.toc-anno {
+  color: green;
+  padding-left: 4px;
+  font-weight: bold;
+}
+
+h1:after,
+h2:after,
+h3:after,
+h4:after,
+h5:after,
+h6:after {
+  content: " ?";
+  opacity: 0;
+}
+
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a
+{
+  text-decoration: none;
+  border: none;
+  font-weight: normal;
+  color: #bbb;
+}
+
+
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover
+{
+  border: none;
+  text-decoration: none;
+  font-weight: normal;
+  color: green !important;
+}
+
+b.erra,
+b.rev1,
+b.anno
+{
+  display: none;
+}
+
+h2 a:visited,
+h3 a:visited,
+h4 a:visited,
+h5 a:visited,
+h6 a:visited
+{
+  color: inherit;
+  color: #bbb;
+}
+
+h2 {
+  margin-top: 48px;
+}
+
+#prolog h2 {
+  margin-top: 0px;
+}
+h3 {
+  margin-top: 36px;
+}
+h3, h4, h5, h6 {
+  margin-bottom: 4px;
+}
+h3 + p, h4 + p, h5 + p, h6 + p {
+  margin-top: 4px;
+}
+h1 {
+  font-size: 180%;
+}
+h2 {
+  font-size: 160%;
+}
+h3 {
+  font-size: 130%;
+}
+h4 {
+  font-size: 120%;
+}
+h5 {
+  font-size: 110%;
+}
+h6 {
+  font-size: 100%;
+}
+
+b a {
+  color: green !important;
+}
+
+b.other {
+  color: inherit
+}
+
+#doc-title {
+  background-color: green;
+  color: white;
+  padding: 4px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 8px;
+}
+#toc > ol,
+#toc-full > ol {
+  padding-left: 24px;
+}
+#toc > ol ol,
+#toc-full > ol ol {
+  padding-left: 24px;
+}
+#toc li,
+#toc-full li,
+.toc li {
+  list-style-type: none;
+}
+#toc ol > li,
+#toc-full ol > li {
+  margin-top: 8px;
+}
+#toc,
+#toc-full {
+  margin-top: 36px;
+}
+#toc li,
+#toc-full li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow:hidden;
+  line-height: 18px;
+}
+/* note that ES5 source does not use monospace for symbols */
+.symbol {
+}
+/* below are based on other font names used in the original;
+ * we retained them here just for the sake of not discarding
+ * info from the source that could be useful */
+  .a { } /* = arial in orig */
+  .h { } /* = helvetica in orig */
+  .t { } /* = times new roman in orig */
+  .tr { } /* = literal "tms-rmn" in orig */
+  .cgt { } /* = "cg-times" in orig */
+  .figure {
+    margin: 8px;
+}
+.figure > p:first-child {
+  border: 1px solid #999;
+  padding: 6px;
+}
+.caption {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+#copyright {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#license {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #000000;
+  padding: 4px;
+}
+#disclaimer {
+  background-color: lightgoldenrodyellow;
+  padding: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 6px;
+}
+b {
+  font-weight: bold;
+  color: green;
+}
+.note {
+  font-weight: bold;
+  color: green;
+}
+.note::after {
+  content: "   ";
+}
+.keeps {
+  margin-top: 0cm;
+  margin-bottom: 0.42cm;
+  page-break-inside: avoid;
+  page-break-after: avoid
+}
+.keep {
+  margin-top: 24px;
+  margin-bottom: 0cm;
+  page-break-after: avoid
+}
+.keep + p {
+  margin-top: 0;
+}
+p.sp {
+  margin-top: 0cm;
+  margin-bottom: 0.42cm;
+}
+p.sm-btm {
+  margin-top: 0cm;
+  margin-bottom: 0.21cm;
+}
+p.tiny-btm {
+  margin-bottom: 0.21cm;
+  page-break-inside: avoid;
+  page-break-after: avoid;
+}
+.def1 {
+  margin-left: 1.02cm;
+  margin-top: 0;
+  margin-bottom: 0;
+  page-break-after: avoid;
+}
+.def1-btm {
+  margin-left: 1.02cm;
+  margin-top: 0;
+  margin-bottom: 0.39cm;
+  page-break-inside: avoid:
+}
+.def2 {
+  margin-left: 2.03cm;
+  margin-top: 0cm;
+  margin-bottom: 0.39cm;
+  page-break-inside: avoid;
+}
+.def2-alt {
+  margin-left: 2.03cm;
+  margin-top: 0cm;
+  margin-bottom: 0.39cm;
+  font-style: normal;
+  page-break-inside: avoid;
+}
+.code-example {
+  margin-left: 2.23cm;
+  margin-right: 2.23cm;
+  margin-top: 0cm;
+  margin-bottom: 0cm;
+}
+.code-example + p:not(.code-example) {
+  margin-top: 1em;
+}
+.date-definition {
+  margin-left: 3.23cm;
+  margin-right: 2.23cm;
+  text-indent: -1cm;
+  margin-top: 0cm;
+  margin-bottom: 12px;
+}
+caption {
+  font-weight: bold;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  page-break-after: avoid;
+}
+.biblio {
+  margin-left: 1.16cm;
+  margin-top: 0cm;
+  margin-bottom: 0.42cm;
+}
+td {
+  padding: 4px;
+}
+td > p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+ul.outer {}
+ul.inner {}
+ol.inner {}
+ol > li > ol {
+  list-style-type: lower-alpha;
+}
+ol > li > ol > li > ol {
+  list-style-type: lower-roman;
+}
+ol > li > ol > li > ol > li > ol {
+  list-style-type: decimal;
+}
+ol > li > ol > li > ol > li > ol > li > ol {
+  list-style-type: lower-alpha;
+}
+ol ul {
+  margin-top: 8px;
+  margin-left: 0;
+  list-style-type: disc;
+  padding-left: 20px
+}
+li > p {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+.indent-1 {
+  margin-left: 1.59cm;
+  margin-top: 0cm;
+  margin-bottom: 0.21cm;
+  letter-spacing: 0.3pt;
+}
+li p.indent-1 {
+  margin-left: 1.59cm;
+  margin-top: 0cm;
+  margin-bottom: 0.21cm;
+  letter-spacing: 0.3pt;
+}
+li p.indent-1-no-bottom {
+  margin-left: 1.59cm;
+  margin-top: 0cm;
+  margin-bottom: 0.21cm;
+}
+.pre {
+  white-space: pre;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 20px;
+}
+.small-caps {
+  font-variant: small-caps;
+}
+.lower-alpha {
+  list-style-type: lower-alpha;
+}
+.lower-roman {
+  list-style-type: lower-roman;
+}
+.decimal {
+  list-style-type: decimal;
+}
+.see {
+  float: right;
+}
+
+ol.indent1 {
+  margin-left: 40px;
+}
+
+span.table-header { }
+
+@page { margin-right: 1.3cm; margin-top: 1.25cm; margin-bottom: 0.5cm }
+@page:first { margin-top: 7.75cm; margin-bottom: 0.5cm }
+
+#mascot-treehouse {
+  position: fixed;
+  top: 70px;
+  left: 10px;
+}
+
+#mascot {
+  width: 150px;
+  float: left;
+}
+
+#bubble {
+  display: none;
+  position: fixed;
+  top: 75px;
+  left: 157px;
+  z-index: 10;
+}
+
+#slogan {
+  width: 150px;
+  position: fixed;
+  top: 215px;
+  left: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  color: green;
+}
+
+#annotations {
+  position: fixed;
+  top: 48px;
+  left: 177px;
+  width: 80%;
+}
+
+.annoPanel {
+  display: inline;
+  position: absolute;
+  height: auto;
+  width: 80%;
+  font-size: 90%;
+  margin: 4px;
+  padding: 0.5em 0.75em;
+  padding-top: 8px;
+  padding-bottom: 1em;
+  /* font-size: 90%; */
+  background: rgba(245, 245, 245,.9);
+  color: black;
+  border: 1px solid #ccc;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 4px 4px 4px #888;
+  -moz-box-shadow: 4px 4px 4px #888;
+  box-shadow: 4px 4px 4px #888;
+}
+
+.annoPanel > p:first-of-type {
+  margin-top: 0;
+}
+
+.annoPanel > p:first-of-type a {
+  color: green;
+}
+
+.annoPanel > p:first-of-type i {
+  color: green;
+  font-weight: bold;
+  font-style: normal;
+  padding-left: 10px;
+}
+
+.nope {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.nope i {
+  color: green;
+}
+
+del {
+  color: red;
+}
+
+del b {
+  color: red;
+}
+
+ins {
+  color: blue;
+  text-decoration: none;
+  font-weight: bold;
+  /* text-decoration: red double line-through; */
+}
+
+ins b {
+  color: blue;
+  font-weight: bold;
+}
+
+font b {
+  color: inherit;
+}
+
+ol li {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#closeBox {
+  cursor: pointer;
+  padding: 4px;
+  float: right;
+}
+
+#newWin {
+  text-decoration: none;
+  float: right;
+  padding: 4px;
+  font-weight: bold;
+  border: none;
+}
+
+#newWin:hover,
+#closeBox:hover,
+#anno-section-id:hover {
+  background-color: #ccc;
+}
+
+table#date-format {
+  padding-left: 40px;
+  margin-bottom: 18px;
+}
+
+table#date-format td {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+p.ed {
+  color: #777;
+  margin-bottom: 4px;
+}
+p.ed + p.keep {
+  margin-top: 4px;
+}
+#anno-section-id {
+  padding: 4px;
+  border: none;
+}
+#anno-type {
+  padding: 4px;
+}
+
+.erra:hover,
+.rev1:hover,
+.anno:hover {
+  background-color: yellow;
+}
+
+#toc-full .erra:hover,
+#toc-full .rev1:hover,
+#toc-full .anno:hover {
+  background-color: inherit;
+}
+
+#x7\.1 .erra,
+#x10\.2\.1\.1\.3 .erra,
+#x10\.2\.1\.2\.2 .erra,
+#x10\.5 .erra,
+#x12\.6\.4 .erra,
+#x15\.2\.3\.7 .erra,
+#x15\.2\.4\.2 .erra,
+#x15\.3\.4\.3 .erra,
+#x15\.4\.4\.18 .erra,
+#x15\.4\.4\.21 .erra,
+#x15\.4\.4\.22 .erra,
+#x15\.4\.5\.1 .erra,
+#x15\.5\.5\.2 .erra,
+#x15\.9\.1\.15 .erra,
+#x15\.11\.1\.1 .erra,
+#x15\.11\.2\.1 .erra,
+#x15\.11\.4\.4 .erra,
+#x15\.11\.7\.4 .erra,
+#A\.1 .erra,
+#A\.8\.1 .erra,
+#C .erra
+{
+  display: inline;
+  cursor: pointer;
+  color: green;
+}
+
+#x7\.1-toc ~ .erra,
+#x10\.2\.1\.1\.3-toc ~ .erra,
+#x10\.2\.1\.2\.2-toc ~ .erra,
+#x10\.5-toc ~ .erra,
+#x12\.6\.4-toc ~ .erra,
+#x15\.2\.3\.7-toc ~ .erra,
+#x15\.2\.4\.2-toc ~ .erra,
+#x15\.3\.4\.3-toc ~ .erra,
+#x15\.4\.4\.18-toc ~ .erra,
+#x15\.4\.4\.21-toc ~ .erra,
+#x15\.4\.4\.22-toc ~ .erra,
+#x15\.4\.5\.1-toc ~ .erra,
+#x15\.5\.5\.2-toc ~ .erra,
+#x15\.9\.1\.15-toc ~ .erra,
+#x15\.11\.1\.1-toc ~ .erra,
+#x15\.11\.2\.1-toc ~ .erra,
+#x15\.11\.4\.4-toc ~ .erra,
+#x15\.11\.7\.4-toc ~ .erra,
+#A\.1-toc ~ .erra,
+#A\.8\.1-toc ~ .erra,
+#C-toc ~ .erra
+{
+  display: inline;
+  color: green;
+}
+
+#x7\.8\.4 .rev1,
+#x11\.5\.3 .rev1,
+#x12\.6\.3 .rev1,
+#x12\.7 .rev1,
+#x12\.8 .rev1,
+#x12\.9 .rev1,
+#x12\.14 .rev1,
+#x15\.1\.2\.2 .rev1,
+#x15\.1\.2\.3 .rev1,
+#x15\.1\.3 .rev1,
+#x15\.4\.4\.12 .rev1,
+#x15\.4\.4\.15 .rev1,
+#x15\.5\.4\.9 .rev1,
+#x15\.5\.4\.14 .rev1,
+#x15\.10\.2\.2 .rev1,
+#x15\.10\.2\.6 .rev1,
+#x15\.10\.2\.8 .rev1,
+#x15\.10\.6\.2 .rev1,
+#x15\.12\.3 .rev1,
+#B\.2\.1 .rev1
+{
+  display: inline;
+  cursor: pointer;
+  color: green;
+}
+
+#x7\.8\.4-toc ~ .rev1,
+#x11\.5\.3-toc ~ .rev1,
+#x12\.6\.3-toc ~ .rev1,
+#x12\.7-toc ~ .rev1,
+#x12\.8-toc ~ .rev1,
+#x12\.9-toc ~ .rev1,
+#x12\.14-toc ~ .rev1,
+#x15\.1\.2\.2-toc ~ .rev1,
+#x15\.1\.2\.3-toc ~ .rev1,
+#x15\.1\.3-toc ~ .rev1,
+#x15\.4\.4\.12-toc ~ .rev1,
+#x15\.4\.4\.15-toc ~ .rev1,
+#x15\.5\.4\.9-toc ~ .rev1,
+#x15\.5\.4\.14-toc ~ .rev1,
+#x15\.10\.2\.2-toc ~ .rev1,
+#x15\.10\.2\.6-toc ~ .rev1,
+#x15\.10\.2\.8-toc ~ .rev1,
+#x15\.10\.6\.2-toc ~ .rev1,
+#x15\.12\.3-toc ~ .rev1,
+#B\.2\.1-toc ~ .rev1
+{
+  display: inline;
+  color: green;
+}
+
+#x4\.2 .anno,
+#x7\.4 .anno,
+#x7\.6 .anno,
+#x8\.6 .anno,
+#x12\.6\.4 .anno,
+#x10\.4\.1\.1 .anno,
+#x10\.5 .anno,
+#x15\.1\.2\.2 .anno,
+#x15\.2\.4 .anno,
+#x15\.3\.4\.3 .anno,
+#x15\.5\.4 .anno,
+#x15\.9\.4\.3 .anno,
+#x15\.10\.2\.15 .anno,
+#x15\.10\.5 .anno,
+#x15\.10\.6 .anno
+{
+  display: inline;
+  cursor: pointer;
+  color: green;
+}
+
+#x4\.2-toc ~ .anno,
+#x7\.4-toc ~ .anno,
+#x7\.6-toc ~ .anno,
+#x8\.6-toc ~ .anno,
+#x12\.6\.4-toc ~ .anno,
+#x10\.4\.1\.1-toc ~ .anno,
+#x10\.5-toc ~ .anno,
+#x15\.1\.2\.2-toc ~ .anno,
+#x15\.2\.4-toc ~ .anno,
+#x15\.3\.4\.3-toc ~ .anno,
+#x15\.5\.4-toc ~ .anno,
+#x15\.9\.4\.3-toc ~ .anno,
+#x15\.10\.2\.15-toc ~ .anno,
+#x15\.10\.5-toc ~ .anno,
+#x15\.10\.6-toc ~ .anno
+{
+  display: inline;
+  color: green;
+}
+
+tt:before {
+  content: '("';
+}
+
+tt:after {
+  content: '")';
+}
+
+
+em {
+  font-style: normal;
+}
+em:before {
+  content: '(îðèã. "';
+}
+
+em:after {
+  content: '")';
+}
+
+
+@media all and (max-width: 900px) {
+	#mascot-treehouse, #slogan {
+		display: none;
+	}
+
+	body {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}

@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="../style.css">
+	<P CLASS="cjk" STYLE="margin-bottom: 0.42cm"><FONT FACE="Arial, sans-serif"><SPAN LANG="en-GB">(сбивающее с толку использование <I>P</I> в шагах 5 и 6 алгоритма)</SPAN></FONT></P>
+	<OL START=5>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Для каждого элемента <I>P</I> в&nbsp;<I>names</I> по порядку списка выполняется следующее:</SPAN></FONT></P>
+		<OL>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>descObj</I> будет результатом вызова внутреннего метода [[Get]] для <I>props</I> с передачей <I>P</I> в качестве аргумента.</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>desc </I>будет результатом вызова абстрактной операции ToPropertyDescriptor с передачей <I>descObj</I> в качестве аргумента.</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Присоединить <FONT COLOR="#ff0000">пару (список List из двух элементов), состоящую из </FONT><FONT COLOR="#ff0000"><I>P</I></FONT> и <I>desc</I> к концу <I>descriptors</I>.</SPAN></FONT></P>
+		</OL>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Для каждого элемента <FONT COLOR="#ff0000"><I>pair</I></FONT><FONT COLOR="#ff0000"> из</FONT> <FONT COLOR="#ff0000"><STRIKE><I>desc</I></STRIKE></FONT> <FONT COLOR="#ff0000"><STRIKE>в</STRIKE></FONT> <I>descriptors</I> по порядку списка:</SPAN></FONT></P>
+		<OL>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Пусть </FONT><FONT COLOR="#ff0000"><I>P</I></FONT><FONT COLOR="#ff0000"> будет первым элементом в </FONT><FONT COLOR="#ff0000"><I>pair</I></FONT><FONT COLOR="#ff0000">.</FONT></SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000">Пусть </FONT><FONT COLOR="#ff0000"><I>desc</I></FONT><FONT COLOR="#ff0000"> будет вторым элементом в </FONT><FONT COLOR="#ff0000"><I>pair</I></FONT><FONT COLOR="#ff0000">.</FONT></SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000"><STRIKE>a.</STRIKE></FONT> Вызвать внутренний метод [[DefineOwnProperty]] для&nbsp;<I>O</I> с аргументами <I>P</I>, <I>desc </I>и <B>true</B>.</SPAN></FONT></P></li>
+		</OL>
+	</OL>

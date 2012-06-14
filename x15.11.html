@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.11 Объекты Error # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.10.html" title="15.10 Объекты RegExp (Регулярного выражения) " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.12.html" title="15.12 Объект JSON " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+   <a href="x15.10.html">&#8592; 15.10 Объекты RegExp (Регулярное выражение) </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.12.html">15.12 Объект JSON  &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.11.html#x15.11" id="x15.11-toc">15.11 Объекты Error</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.11.html#x15.11.1" id="x15.11.1-toc">15.11.1 Вызов конструктора Error как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.11.html#x15.11.1.1" id="x15.11.1.1-toc">15.11.1.1 Error (message)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.11.html#x15.11.2" id="x15.11.2-toc">15.11.2 Конструктор Error</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.11.html#x15.11.2.1" id="x15.11.2.1-toc">15.11.2.1 new Error (message)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.11.html#x15.11.3" id="x15.11.3-toc">15.11.3 Свойства конструктора Error</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.11.html#x15.11.3.1" id="x15.11.3.1-toc">15.11.3.1 Error.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.11.html#x15.11.4" id="x15.11.4-toc">15.11.4 Свойства объекта-прототипа Error</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.11.html#x15.11.4.1" id="x15.11.4.1-toc">15.11.4.1 Error.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.4.2" id="x15.11.4.2-toc">15.11.4.2 Error.prototype.name</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.4.3" id="x15.11.4.3-toc">15.11.4.3 Error.prototype.message</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.4.4" id="x15.11.4.4-toc">15.11.4.4 Error.prototype.toString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.11.html#x15.11.5" id="x15.11.5-toc">15.11.5 Свойства экземпляров Error</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.6" id="x15.11.6-toc">15.11.6 Собственные типы ошибок, используемые в данном стандарте</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.11.html#x15.11.6.1" id="x15.11.6.1-toc">15.11.6.1 EvalError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.6.2" id="x15.11.6.2-toc">15.11.6.2 RangeError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.6.3" id="x15.11.6.3-toc">15.11.6.3 ReferenceError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.6.4" id="x15.11.6.4-toc">15.11.6.4 SyntaxError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.6.5" id="x15.11.6.5-toc">15.11.6.5 TypeError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.6.6" id="x15.11.6.6-toc">15.11.6.6 URIError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.11.html#x15.11.7" id="x15.11.7-toc">15.11.7 Структура объекта NativeError</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.11.html#x15.11.7.1" id="x15.11.7.1-toc">15.11.7.1 Вызов конструкторов NativeError как функций</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.2" id="x15.11.7.2-toc">15.11.7.2 NativeError (message)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.3" id="x15.11.7.3-toc">15.11.7.3 Конструкторы NativeError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.4" id="x15.11.7.4-toc">15.11.7.4 New NativeError (message)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.5" id="x15.11.7.5-toc">15.11.7.5 Свойства конструкторов NativeError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.6" id="x15.11.7.6-toc">15.11.7.6 NativeError.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.7" id="x15.11.7.7-toc">15.11.7.7 Свойства объектов-прототипов NativeError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.8" id="x15.11.7.8-toc">15.11.7.8 NativeError.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.9" id="x15.11.7.9-toc">15.11.7.9 NativeError.prototype.name</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.10" id="x15.11.7.10-toc">15.11.7.10 NativeError.prototype.message</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.11.html#x15.11.7.11" id="x15.11.7.11-toc">15.11.7.11 Свойства экземпляров NativeError</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.11" class="splitme">15.11 Объекты Error <a href="#x15.11">#</a> <a href="#x15.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Экземпляры объектов типа Error &ndash; исключения, генерируемые при возникновении ошибки времени исполнения. Объекты Error также могут служить базовыми объектами для пользовательских классов-исключений.</p>
+	<h4 id="x15.11.1">15.11.1 Вызов конструктора Error как функции <a href="#x15.11.1">#</a> <a href="#x15.11.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове <code><b>Error</b></code> не в качестве конструктора, а в качестве функции, создается и инициализируется новый объект Function. Таким образом, вызов функции <code><b>Error(</b></code><code>…</code><code><b>)</b></code> эквивалентен выражению для создания объекта <code><b>new Error(</b></code><code>…</code><code><b>)</b></code> с теми же аргументами.</p>
+	<h5 id="x15.11.1.1">15.11.1.1 Error (message) <a href="#x15.11.1.1">#</a> <a href="#x15.11.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Error, который представляет собой начальное значение свойства <code><b>Error.prototype</b></code> (<a href="#x15.11.3.1">15.11.3.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;Error&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Если аргумент <i>message</i> не равен <b>undefined</b>, то собственное свойство <code><b>message</b></code> <tt>сообщение</tt> создаваемого объекта устанавливается равным <a href="x9.html#x9.8">ToString</a>(<i>message</i>).</p>
+	<h4 id="x15.11.2">15.11.2 Конструктор Error <a href="#x15.11.2">#</a> <a href="#x15.11.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><b>Error</b></code> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует созданный объект.</p>
+	<h5 id="x15.11.2.1">15.11.2.1 new Error (message) <a href="#x15.11.2.1">#</a> <a href="#x15.11.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Error, который представляет собой начальное значение свойства <code><b>Error.prototype</b></code> (<a href="#x15.11.3.1">15.11.3.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта типа Error устанавливается равным <code><b>&quot;Error&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Если аргумент <i>message</i> не равен <b>undefined</b>, то собственное свойство <code><b>message</b></code> создаваемого объекта устанавливается равным <a href="x9.html#x9.8">ToString</a>(<i>message</i>).</p>
+	<h4 id="x15.11.3">15.11.3 Свойства конструктора  Error <a href="#x15.11.3">#</a> <a href="#x15.11.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора Error является объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Кроме внутренних свойств и свойства <code><b>length</b></code> со значением <b>1</b>, конструктор Error имеет следующее свойство:</p>
+	<h5 id="x15.11.3.1">15.11.3.1 Error.prototype <a href="#x15.11.3.1">#</a> <a href="#x15.11.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Error.prototype</b></code> является объект-прототип Error (<a href="#x15.11.4">15.11.4</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }</p>
+	<h4 id="x15.11.4">15.11.4 Свойства объекта-прототипа Error <a href="#x15.11.4">#</a> <a href="#x15.11.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Объект-прототип Error сам по себе является объектом типа Error (его [[Class]] равен <code><b>&quot;Error&quot;</b></code>).</p>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа Error является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>).</p>
+	<h5 id="x15.11.4.1">15.11.4.1 Error.prototype.constructor <a href="#x15.11.4.1">#</a> <a href="#x15.11.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Error.prototype.constructor</b></code> является встроенный конструктор <code><b>Error</b></code>.</p>
+	<h5 id="x15.11.4.2">15.11.4.2 Error.prototype.name <a href="#x15.11.4.2">#</a> <a href="#x15.11.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Error.prototype.name</b></code> является <code>&quot;</code><code><b>Error</b></code><code>&quot;</code>.</p>
+	<h5 id="x15.11.4.3">15.11.4.3 Error.prototype.message <a href="#x15.11.4.3">#</a> <a href="#x15.11.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Error.prototype.message</b></code> является пустая строка.</p>
+	<h5 id="x15.11.4.4">15.11.4.4 Error.prototype.toString ( ) <a href="#x15.11.4.4">#</a> <a href="#x15.11.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O</i> будет значением <b>this</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>O</i>) &ndash; не Object, сгенерировать исключение <a href="#x15.11.6.5" class="term-ref">TypeError</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>name</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом <code>&quot;</code><code><b>name</b></code><code>&quot;</code>.</p>
+		</li>
+		<li><p>
+		Если <i>name</i> равно <b>undefined</b>, пусть <i>name</i> буедт <code>&quot;</code><code><b>Error</b></code><code>&quot;</code>; иначе пусть <i>name</i> будет <a href="x9.html#x9.8">ToString</a>(<i>name</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>msg</i> будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;message&quot;</code></b>.</p>
+		</li>
+		<li><p>Если <i>msg</i> равно <B>undefined</B>, пусть <i>msg</i> будет пустой строкой, иначе пусть <i>msg</i> будет <a href="x9.html#x9.8">ToString</a>(<i>msg</i>).</p></li>
+		<li><p>Если и <I>name </I>и <i>msg</i> являются пустыми строками, вернуть <code>&quot;Error&quot;</code>.</p></li>
+		<li><p>Если <i>name</i> равно пустой строке, вернуть <i>msg</i>.</p></li>
+		<li><p>Если <i>msg</i> равно пустой строке, вернуть <i>name</i>.</p></li>
+		<li><p>Вернуть результат конкатенации <i>name</i>, <code>&quot;:&quot;</code>, символа одиночного пробела и <i>msg</i>.</p></li>
+</ol>
+	<h4 id="x15.11.5">15.11.5 Свойства экземпляров Error <a href="#x15.11.5">#</a> <a href="#x15.11.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Экземпляры Error наследуют свойства объекта-прототипа Error. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;Error&quot;</b></code>. У экземпляров Error отсутствуют специальные свойства.</p>
+	<h4 id="x15.11.6">15.11.6 Собственные типы ошибок, используемые в данном стандарте <a href="#x15.11.6">#</a> <a href="#x15.11.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При обнаружении ошибки времени исполнения генерируется один из перечисленных ниже объектов <i>NativeError</i>. У всех этих объектов одинаковая структура, как описано в пункте&nbsp;<a href="#x15.11.7">15.11.7</a>.</p>
+	<h5 id="x15.11.6.1">15.11.6.1 EvalError <a href="#x15.11.6.1">#</a> <a href="#x15.11.6.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	В текущей версии данной спецификации это исключение не генерируется. Этот объект остался в тексте в целях совместимости с предыдущими редакциями этой спецификации.</p>
+	<h5 id="x15.11.6.2">15.11.6.2 RangeError <a href="#x15.11.6.2">#</a> <a href="#x15.11.6.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Означает, что числовое значение выходит за пределы допустимого диапазона. См. пункты&nbsp;<a href="x15.4.html#x15.4.2.2">15.4.2.2</a>, <a href="x15.4.html#x15.4.5.1">15.4.5.1</a>, <a href="x15.7.html#x15.7.4.2">15.7.4.2</a>, <a href="x15.7.html#x15.7.4.5">15.7.4.5</a>, <a href="x15.7.html#x15.7.4.6">15.7.4.6</a> и <a href="x15.7.html#x15.7.4.7">15.7.4.7</a>, <a href="x15.9.html#x15.9.5.43">15.9.5.43</a>.</p>
+	<h5 id="x15.11.6.3">15.11.6.3 ReferenceError <a href="#x15.11.6.3">#</a> <a href="#x15.11.6.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Означает, что было обнаружено некорректное контрольное значение. См. пункты&nbsp;<a href="x8.html#x8.7.1">8.7.1</a>, <a href="x8.html#x8.7.2">8.7.2</a>, <a href="x10.html#x10.2.1">10.2.1</a>, <a href="x10.html#x10.2.1.1.4">10.2.1.1.4</a>, <a href="x10.html#x10.2.1.2.4">10.2.1.2.4</a> и <a href="x11.html#x11.13.1">11.13.1</a>.</p>
+	<h5 id="x15.11.6.4">15.11.6.4 SyntaxError <a href="#x15.11.6.4">#</a> <a href="#x15.11.6.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Означает, что произошла ошибка синтаксического разбора. См. пункты <a href="x11.html#x11.1.5">11.1.5</a>, <a href="x11.html#x11.3.1">11.3.1</a>, <a href="x11.html#x11.3.2">11.3.2</a>, <a href="x11.html#x11.4.1">11.4.1</a>, <a href="x11.html#x11.4.4">11.4.4</a>, <a href="x11.html#x11.4.5">11.4.5</a>, <a href="x11.html#x11.13.1">11.13.1</a>, <a href="x11.html#x11.13.2">11.13.2</a>, <a href="x12.html#x12.2.1">12.2.1</a>, <a href="x12.html#x12.10.1">12.10.1</a>, <a href="x12.html#x12.14.1">12.14.1</a>, <a href="x13.html#x13.1">13.1</a>, <a href="x15.1.html#x15.1.2.1">15.1.2.1</a>, <a href="x15.3.html#x15.3.2.1">15.3.2.1</a>, <a href="x15.10.html#x15.10.2.2">15.10.2.2</a>, <a href="x15.10.html#x15.10.2.5">15.10.2.5</a>, <a href="x15.10.html#x15.10.2.9">15.10.2.9</a>, <a href="x15.10.html#x15.10.2.15">15.10.2.15</a>, <a href="x15.10.html#x15.10.2.19">15.10.2.19</a>, <a href="x15.10.html#x15.10.4.1">15.10.4.1</a>, and <a href="x15.12.html#x15.12.2">15.12.2</a>.</p>
+	<h5 id="x15.11.6.5">15.11.6.5 TypeError <a href="#x15.11.6.5">#</a> <a href="#x15.11.6.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Означает, что полученный тип операнда не соответствует ожидаемому. См. пункты&nbsp;<a href="x8.html#x8.6.2">8.6.2</a>, <a href="x8.html#x8.7.2">8.7.2</a>, <a href="x8.html#x8.10.5">8.10.5</a>, <a href="x8.html#x8.12.5">8.12.5</a>, <a href="x8.html#x8.12.7">8.12.7</a>, <a href="x8.html#x8.12.8">8.12.8</a>, <a href="x8.html#x8.12.9">8.12.9</a>, <a href="x9.html#x9.9">9.9</a>, <a href="x9.html#x9.10">9.10</a>, <a href="x10.html#x10.2.1">10.2.1</a>, <a href="x10.html#x10.2.1.1.3">10.2.1.1.3</a>, <a href="x10.html#x10.6">10.6</a>, <a href="x11.html#x11.2.2">11.2.2</a>, <a href="x11.html#x11.2.3">11.2.3</a>, <a href="x11.html#x11.4.1">11.4.1</a>, <a href="x11.html#x11.8.6">11.8.6</a>, <a href="x11.html#x11.8.7">11.8.7</a>, <a href="x11.html#x11.3.1">11.3.1</a>, <a href="x13.html#x13.2">13.2</a>, <a href="x13.html#x13.2.3">13.2.3</a>, <a href="x15.html#x15">15</a>, <a href="x15.2.html#x15.2.3.2">15.2.3.2</a>, <a href="x15.2.html#x15.2.3.3">15.2.3.3</a>, <a href="x15.2.html#x15.2.3.4">15.2.3.4</a>, <a href="x15.2.html#x15.2.3.5">15.2.3.5</a>, <a href="x15.2.html#x15.2.3.6">15.2.3.6</a>, <a href="x15.2.html#x15.2.3.7">15.2.3.7</a>, <a href="x15.2.html#x15.2.3.8">15.2.3.8</a>, <a href="x15.2.html#x15.2.3.9">15.2.3.9</a>, <a href="x15.2.html#x15.2.3.10">15.2.3.10</a>, <a href="x15.2.html#x15.2.3.11">15.2.3.11</a>, <a href="x15.2.html#x15.2.3.12">15.2.3.12</a>, <a href="x15.2.html#x15.2.3.13">15.2.3.13</a>, <a href="x15.2.html#x15.2.3.14">15.2.3.14</a>, <a href="x15.2.html#x15.2.4.3">15.2.4.3</a>, <a href="x15.3.html#x15.3.4.2">15.3.4.2</a>, <a href="x15.3.html#x15.3.4.3">15.3.4.3</a>, <a href="x15.3.html#x15.3.4.4">15.3.4.4</a>, <a href="x15.3.html#x15.3.4.5">15.3.4.5</a>, <a href="x15.3.html#x15.3.4.5.2">15.3.4.5.2</a>, <a href="x15.3.html#x15.3.4.5.3">15.3.4.5.3</a>, <a href="x15.3.html#x15.3.5">15.3.5</a>, <a href="x15.3.html#x15.3.5.3">15.3.5.3</a>, <a href="x15.3.html#x15.3.5.4">15.3.5.4</a>, <a href="x15.4.html#x15.4.4.3">15.4.4.3</a>, <a href="x15.4.html#x15.4.4.11">15.4.4.11</a>, <a href="x15.4.html#x15.4.4.16">15.4.4.16</a>, <a href="x15.4.html#x15.4.4.17">15.4.4.17</a>, <a href="x15.4.html#x15.4.4.18">15.4.4.18</a>, <a href="x15.4.html#x15.4.4.19">15.4.4.19</a>, <a href="x15.4.html#x15.4.4.20">15.4.4.20</a>, <a href="x15.4.html#x15.4.4.21">15.4.4.21</a>, <a href="x15.4.html#x15.4.4.22">15.4.4.22</a>, <a href="x15.4.html#x15.4.5.1">15.4.5.1</a>, <a href="x15.5.html#x15.5.4.2">15.5.4.2</a>, <a href="x15.5.html#x15.5.4.3">15.5.4.3</a>, <a href="x15.6.html#x15.6.4.2">15.6.4.2</a>, <a href="x15.6.html#x15.6.4.3">15.6.4.3</a>, <a href="x15.7.html#x15.7.4">15.7.4</a>, <a href="x15.7.html#x15.7.4.2">15.7.4.2</a>, <a href="x15.7.html#x15.7.4.4">15.7.4.4</a>, <a>15.7.4.8</a> [?]<!-- FIXME -->, <a href="x15.9.html#x15.9.5">15.9.5</a>, <a href="x15.9.html#x15.9.5.44">15.9.5.44</a>, <a href="x15.10.html#x15.10.4.1">15.10.4.1</a>, <a href="x15.10.html#x15.10.6">15.10.6</a>, <a href="#x15.11.4.4">15.11.4.4</a> и <a href="x15.12.html#x15.12.3">15.12.3</a>.</p>
+	<h5 id="x15.11.6.6">15.11.6.6 URIError <a href="#x15.11.6.6">#</a> <a href="#x15.11.6.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Означает, что одна из глобальных функций для обработки URI была использована несовместимым с её определением образом. См. пункт&nbsp;<a href="x15.1.html#x15.1.3">15.1.3</a>.</p>
+	<h4 id="x15.11.7">15.11.7 Структура объекта NativeError <a href="#x15.11.7">#</a> <a href="#x15.11.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Когда реализация ECMAScript обнаруживает ошибку времени исполнения, она генерирует экземпляр одного из объектов типа&nbsp;<i>NativeError</i>, определение которых содержится в пункте&nbsp;<a href="#x15.11.6">15.11.6</a>. Каждый из этих объектов имеет структуру, описанную ниже. Они отличаются только именем, используемым в качестве имени конструктора вместо <i>NativeError</i>, свойством <b>name</b> объекта-прототипа, и зависящим от реализации свойством <code><b>message</b></code> объекта-прототипа.</p>
+	<p>
+	Для каждого объекта error ссылки на <i>NativeError</i> в определении необходимо заменять на соответствующее имя объекта error из пункта&nbsp;<a href="#x15.11.6">15.11.6</a>.</p>
+	<h5 id="x15.11.7.1">15.11.7.1 Вызов конструкторов NativeError как функций <a href="#x15.11.7.1">#</a> <a href="#x15.11.7.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове <i><a href="#x15.11.6">NativeError</a></i> не в качестве конструктора, а в качестве функции, создается и инициализируется новый объект.  Вызов объекта в качестве функции эквивалентен его вызову в качестве конструктора с такими же аргументами.</p>
+	<h5 id="x15.11.7.2">15.11.7.2 NativeError (message) <a href="#x15.11.7.2">#</a> <a href="#x15.11.7.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным объекту-прототипу этого конструктора error.  Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <b><code>&quot;Error&quot;</code></b>. Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Если аргумент <i>message</i> равен <b>undefined</b>, то собственное свойство <code><b>message</b></code> создаваемого объекта устанавливается равным <a href="x9.html#x9.8">ToString</a>(<i>message</i>).</p>
+	<h5 id="x15.11.7.3">15.11.7.3 Конструкторы NativeError <a href="#x15.11.7.3">#</a> <a href="#x15.11.7.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i><a href="#x15.11.6">NativeError</a></i> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует созданный объект.</p>
+	<h5 id="x15.11.7.4">15.11.7.4 New NativeError (message) <a href="#x15.11.7.4">#</a> <a href="#x15.11.7.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным объекту-прототипу этого конструктора <i><a href="#x15.11.6">NativeError</a></i>. Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <b><code>&quot;Error&quot;</code></b>. Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Если аргумент <i>message</i> не равен <b>undefined</b>, то свойство <code><b>message</b></code> создаваемого объекта устанавливается равным <a href="x9.html#x9.8">ToString</a>(<i>message</i>).</p>
+	<h5 id="x15.11.7.5">15.11.7.5 Свойства конструкторов NativeError <a href="#x15.11.7.5">#</a> <a href="#x15.11.7.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора <i><a href="#x15.11.6">NativeError</a></i> является объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Кроме внутренних свойств и свойства <code><b>length</b></code> со значением <b>1</b>, каждый конструктор <i><a href="#x15.11.6">NativeError</a></i> имеет следующее свойство:</p>
+	<h5 id="x15.11.7.6">15.11.7.6 NativeError.prototype <a href="#x15.11.7.6">#</a> <a href="#x15.11.7.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <i><b><a href="#x15.11.6">NativeError</a></b></i><code><b>.prototype</b></code> является объект-прототип <i>NativeError</i> (<a href="#x15.11.7.7">15.11.7.7</a>). У каждого конструктора <i><a href="#x15.11.6">NativeError</a></i> есит отдельный объект-прототип.</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }</p>
+	<h5 id="x15.11.7.7">15.11.7.7 Свойства объектов-прототипов NativeError <a href="#x15.11.7.7">#</a> <a href="#x15.11.7.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Каждый объект-прототип <i><a href="#x15.11.6">NativeError</a></i> является объектом типа Error (его [[Class]] равен <code>&quot;</code><code><b>Error</b></code><code>&quot;</code>).</p>
+	<p>
+	Значением внутреннего свойства [[Prototype]] каждого объекта-прототипа <i><a href="#x15.11.6">NativeError</a></i> является стандартный встроенный объект-прототип Error (<a href="#x15.11.4">15.11.4</a>).</p>
+	<h5 id="x15.11.7.8">15.11.7.8 NativeError.prototype.constructor <a href="#x15.11.7.8">#</a> <a href="#x15.11.7.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением свойства <code><b>constructor</b></code> прототипа для заданного конструктора <i><a href="#x15.11.6">NativeError</a></i> является непосредственно функция-конструктор <i><a href="#x15.11.6">NativeError</a></i> (см. пункт&nbsp;<a href="#x15.11.7">15.11.7</a>).</p>
+	<h5 id="x15.11.7.9">15.11.7.9 NativeError.prototype.name <a href="#x15.11.7.9">#</a> <a href="#x15.11.7.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением свойства <code><b>name</b></code> прототипа для заданного конструктора <i><a href="#x15.11.6">NativeError</a></i> является имя конструктора (имя, используемое вместо&nbsp;<i>NativeError</i>).</p>
+	<h5 id="x15.11.7.10">15.11.7.10 NativeError.prototype.message <a href="#x15.11.7.10">#</a> <a href="#x15.11.7.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением свойства <code><b>message</b></code> прототипа для заданного конструктора <i><a href="#x15.11.6">NativeError</a></i> является пустая строка.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Прототипы конструкторов NativeError сами по себе не определяют функцию <code><b>toString</b></code> &ndash; экземпляры ошибок наследуют её у объекта-прототипа Error.</p>
+	<h5 id="x15.11.7.11">15.11.7.11 Properties of NativeError Instances <a href="#x15.11.7.11">#</a> <a href="#x15.11.7.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Экземпляры <i><a href="#x15.11.6">NativeError</a></i> наследуют свойства объекта-прототипа <i><a href="#x15.11.6">NativeError</a></i>. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;Error&quot;</b></code>. У экземпляров <i><a href="#x15.11.6">NativeError</a></i> отсутствуют специальные свойства.</p>
+	</body><script src="anno.js"></script></html>

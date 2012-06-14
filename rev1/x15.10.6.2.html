@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="../style.css">
+<p class="ed">(Был удалён шаг 9.e, поскольку в нём выполнялось дополнительное приращение&nbsp;<i>i</i>.)</p>
+
+<ol>
+		<li value="9"><p>
+		Повторять, пока <i>matchSucceeded</i> равно <b>false</b>.</p>
+		<ol>
+			<li><p>
+			Если <i>i </i>&lt; 0 или <i>i </i>&gt; <i>length</i>, то</p>
+			<ol>
+				<li><p>
+				Вызвать внутренний метод [[Put]] для <i>R</i> с аргументами &quot;<code><b>lastIndex</b></code><code><b>&quot;</b></code>, 0 и <b>true</b>.</p>
+				</li>
+				<li><p>
+				Вернуть <code><b>null</b></code>.</p>
+			</li></ol>
+			</li>
+			<li><p>
+			Вызвать <i>внутренний</i> метод [[Match]] для <i>R</i> с аргументами <i>S</i> и <i>i</i>.</p>
+			</li>
+			<li><p>
+			Если [[Match]] вернол <b>failure</b>, то 
+			</p>
+			<ol>
+				<li><p>
+				<i><I><I>Пусть </I></I>i = i+1.</i></p>
+			</li></ol>
+			</li>
+			</li>
+			<li><p>
+			else
+			
+			</p>
+			<ol>
+				<li><p>
+				Пусть <i>r</i> будет результатом State для вызова [[Match]].</p>
+				</li>
+				<li><p>
+				Присвоить <i>matchSucceeded</i> значение <b>true</b>.</p>
+			</li></ol>
+			</li>
+			<li><p><del>
+			Пусть <i>i</i> = <i>i</i>+1.</del></p>
+		</li></ol>
+		</li>
+</ol>

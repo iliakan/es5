@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>14 Программа &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x13.html" title="13 Определение функции " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.html" title="15 Стандартные встроенные объекты ECMAScript " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x13.html">&#8592; 13 Определение функции </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.html">15 Стандартные встроенные объекты ECMAScript  &#8594;</a>
+  <ol class="toc"><li><a href="x14.html#x14" id="x14-toc">14 Программа</a>
+    <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x14.html#x14.1" id="x14.1-toc">14.1 Директивные прологи и директива &quot;Use Strict&quot;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></nav>
+
+  <h2 id="x14">14 Программа <a href="#x14">#</a> <a href="#x14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Program </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>SourceElements</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>SourceElements </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>SourceElement<br>SourceElements SourceElement</i></p>
+	<p class="keep">
+	<i>SourceElement </i><b>:</b></p>
+	<p class="def1-btm">
+	<i><a href="x12.html#x12">Statement</a><br><a href="x13.html#x13">FunctionDeclaration</a></i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>Program </i><b>: </b><i>SourceElements</i><sub>opt</sub><code></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Код этой программы <i>Program</i> является <a href="x10.html#x10.1.1" class="term-ref">кодом в строгом режиме</a>, если Директивный пролог&nbsp;(<a href="#x14.1">14.1</a>) для его <i>SourceElements</i> <tt>Элементы исходного кода</tt> содержит директиву &quot;Use Strict&quot;, или если применимо какое-либо из условий, указанных в пункте <a href="x10.html#x10.1.1">10.1.1</a>. Если код этой программы <i>Program </i>является <a href="x10.html#x10.1.1" class="term-ref">кодом в строгом режиме</a>, то <i>SourceElements</i> в следующих шагах вычисляется как <a href="x10.html#x10.1.1" class="term-ref">код в строгом режиме</a>.  В противном случае <i>SourceElements</i> в следующих шагах вычисляется как код не <a href="x10.html#x10.1.1" class="term-ref">в строгом режиме</a>.</p>
+		</li>
+		<li><p>
+		Если <i>SourceElements</i> отсутствует, вернуть (normal, empty, empty).</p>
+		</li>
+		<li><p>
+		Пусть <i>progCxt</i> будет новым контекстом исполнения для <a href="x10.html#global-code">глобального кода</a>, как описано в пункте&nbsp;<a href="x10.html#x10.4.1">10.4.1</a>. 
+		</p>
+		</li>
+		<li><p>
+		Пусть <i>result </i>будет результатом вычисления <i>SourceElements</i>.</p>
+		</li>
+		<li><p>
+		Выйти из контекста исполнения <i>progCxt</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>result</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Процесс инициирования вычисления программы <i>Program</i>, а также процесс обработки результата этого вычисления определяются не данной спецификацией, а реализацией&nbsp;ECMAScript.</p>
+	<p>
+	Для вычисления <i>SourceElements</i> <b>:</b> <i>SourceElements</i> <i>SourceElement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>headResult </i>будет результатом вычисления <i>SourceElements</i>.</p>
+		</li>
+		<li><p>
+		Если <i>headResult</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>headResult</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>tailResult </i>будет результатом вычисления <i>SourceElement</i>.</p>
+		</li>
+		<li><p>
+		Если <i>tailResult</i>.value равно empty, пусть <i>V</i> = <i>headResult</i>.value, в противном случае пусть <i>V</i> = <i>tailResult</i>.value.</p>
+		</li>
+		<li><p>
+		Вернуть (tailResult.type, V, tailResult.target) 
+		</p>
+	</li></ol><p>
+	Для вычисления <i>SourceElement </i><b>:</b> <i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <a href="x12.html#x12"><I>Statement</I></a>.</p>
+	</li></ol><p>
+	Для вычисления <i>SourceElement </i><b>:</b> <a href="x13.html#x13"><I>FunctionDeclaration</I></a> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть (normal, empty, empty).</p>
+	</li></ol>
+	<h3 id="x14.1">14.1 Директивные прологи и директива &quot;Use Strict&quot; <a href="#x14.1">#</a> <a href="#x14.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Директивный пролог является самой длинной последовательностью порождающих правил <i>ExpressionStatement </i><tt>Инструкция-выражение</tt>, встречающихся в <i><a href="#x14">Program</a></i> или в <i><a href="x13.html#x13">FunctionBody</a></i> в качестве исходных порождающих правил <i>SourceElement</i> <tt>Элемент исходного кода</tt>, где каждая <i>ExpressionStatement </i>в последовательности полностью состоит из токена <i>StringLiteral</i> <tt>Строковый литерал</tt> с последующей точкой с запятой. Точка с запятой может быть указана явно, или может быть вставлена посредством <a href="x7.html#x7.9">автоматической подстановки точки с запятой</a>. Директивный пролог может представлять собой пустую последовательность.</p>
+	<p>
+	Директива &quot;Use Strict&quot; представляет собой инструкцию-выражение <i>ExpressionStatement</i> в Директивном прологе, строковый литерал которой &ndash; точная последовательность символов <code><b>&quot;use</b></code><code>&nbsp;</code><code><b>strict&quot;</b></code> или <code><b> 'use</b></code><code>&nbsp;</code><code><b>strict'</b></code>. Директива &quot;Use Strict&quot; не может содержать <i>EscapeSequence</i> <tt>Управляющая последовательность</tt> или <i>LineContinuation</i> <tt>Продолжение строки</tt>.</p>
+	<p>
+	Директивный пролог может содержать более одной директивы &quot;Use Strict&quot;,  однако в этом случае реализация может сгенерировать предупреждение.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Порождающие правила <i>ExpressionStatement</i> для Директивного пролога, как правило, вычисляются во время вычисления правила <i>SourceElements</i>, в которое они вложены. Реализации могут определять обусловленные реализацией значения для правил <i>ExpressionStatement</i>, не являющихся Директивой &quot;Use Strict&quot;, которые встречаются в Директивном прологе.  При наличии соответствующего механизма  уведомлений реализация должна сгенерировать исключение, если в Директивном прологе ей встретится <i>ExpressionStatement</i>, которое не является директивой &quot;Use Strict&quot; или которое не имеет определяемого реализацией значения.</p>
+	</body><script src="anno.js"></script></html>

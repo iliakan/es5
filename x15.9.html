@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.9 Объекты Date # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.8.html" title="15.8 Объект Math " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.10.html" title="15.10 Объекты RegExp (Регулярного выражения) " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x15.8.html">&#8592; 15.8 Объект Math </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.10.html">15.10 Объекты RegExp (регулярное выражение)  &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.9.html#x15.9" id="x15.9-toc">15.9 Объекты Date</a>
+			 <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.9.html#x15.9.1" id="x15.9.1-toc">15.9.1 Обзор объектов Date и определение абстрактных операторов</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.9.html#x15.9.1.1" id="x15.9.1.1-toc">15.9.1.1 Значения времени и временной диапазон</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.2" id="x15.9.1.2-toc">15.9.1.2 Номер дня и время дня</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.3" id="x15.9.1.3-toc">15.9.1.3 Номер года</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.4" id="x15.9.1.4-toc">15.9.1.4 Номер месяца</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.5" id="x15.9.1.5-toc">15.9.1.5 Номер даты</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.6" id="x15.9.1.6-toc">15.9.1.6 День недели</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.7" id="x15.9.1.7-toc">15.9.1.7 Поправка на местное время</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.8" id="x15.9.1.8-toc">15.9.1.8 Поправка на летнее время</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.9" id="x15.9.1.9-toc">15.9.1.9 Местное время</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.10" id="x15.9.1.10-toc">15.9.1.10 Часы, минуты, секунды и миллисекунды</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.11" id="x15.9.1.11-toc">15.9.1.11 MakeTime (hour, min, sec, ms)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.12" id="x15.9.1.12-toc">15.9.1.12 MakeDay (year, month, date)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.13" id="x15.9.1.13-toc">15.9.1.13 MakeDate (day, time)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.14" id="x15.9.1.14-toc">15.9.1.14 TimeClip (time)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.1.15" id="x15.9.1.15-toc">15.9.1.15 Строковый формат &quot;дата и время&quot;</a>
+                <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.9.html#x15.9.1.15.1" id="x15.9.1.15.1-toc">15.9.1.15.1 Увеличенное количество лет</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li><li><a href="x15.9.html#x15.9.2" id="x15.9.2-toc">15.9.2 Вызов конструктора Date как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.9.html#x15.9.2.1" id="x15.9.2.1-toc">15.9.2.1 Date ( [ year [, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.9.html#x15.9.3" id="x15.9.3-toc">15.9.3 Конструктор Date</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.9.html#x15.9.3.1" id="x15.9.3.1-toc">15.9.3.1 new Date (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.3.2" id="x15.9.3.2-toc">15.9.3.2 new Date (value)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.3.3" id="x15.9.3.3-toc">15.9.3.3 new Date ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.9.html#x15.9.4" id="x15.9.4-toc">15.9.4 Свойства конструктора Date</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.9.html#x15.9.4.1" id="x15.9.4.1-toc">15.9.4.1 Date.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.4.2" id="x15.9.4.2-toc">15.9.4.2 Date.parse (string)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.4.3" id="x15.9.4.3-toc">15.9.4.3 Date.UTC (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ])</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.4.4" id="x15.9.4.4-toc">15.9.4.4 Date.now ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.9.html#x15.9.5" id="x15.9.5-toc">15.9.5 Свойства объекта-прототипа Date</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.9.html#x15.9.5.1" id="x15.9.5.1-toc">15.9.5.1 Date.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.2" id="x15.9.5.2-toc">15.9.5.2 Date.prototype.toString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.3" id="x15.9.5.3-toc">15.9.5.3 Date.prototype.toDateString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.4" id="x15.9.5.4-toc">15.9.5.4 Date.prototype.toTimeString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.5" id="x15.9.5.5-toc">15.9.5.5 Date.prototype.toLocaleString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.6" id="x15.9.5.6-toc">15.9.5.6 Date.prototype.toLocaleDateString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.7" id="x15.9.5.7-toc">15.9.5.7 Date.prototype.toLocaleTimeString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.8" id="x15.9.5.8-toc">15.9.5.8 Date.prototype.valueOf ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.9" id="x15.9.5.9-toc">15.9.5.9 Date.prototype.getTime ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.10" id="x15.9.5.10-toc">15.9.5.10 Date.prototype.getFullYear ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.11" id="x15.9.5.11-toc">15.9.5.11 Date.prototype.getUTCFullYear ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.12" id="x15.9.5.12-toc">15.9.5.12 Date.prototype.getMonth ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.13" id="x15.9.5.13-toc">15.9.5.13 Date.prototype.getUTCMonth ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.14" id="x15.9.5.14-toc">15.9.5.14 Date.prototype.getDate ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.15" id="x15.9.5.15-toc">15.9.5.15 Date.prototype.getUTCDate ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.16" id="x15.9.5.16-toc">15.9.5.16 Date.prototype.getDay ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.17" id="x15.9.5.17-toc">15.9.5.17 Date.prototype.getUTCDay ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.18" id="x15.9.5.18-toc">15.9.5.18 Date.prototype.getHours ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.19" id="x15.9.5.19-toc">15.9.5.19 Date.prototype.getUTCHours ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.20" id="x15.9.5.20-toc">15.9.5.20 Date.prototype.getMinutes ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.21" id="x15.9.5.21-toc">15.9.5.21 Date.prototype.getUTCMinutes ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.22" id="x15.9.5.22-toc">15.9.5.22 Date.prototype.getSeconds ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.23" id="x15.9.5.23-toc">15.9.5.23 Date.prototype.getUTCSeconds ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.24" id="x15.9.5.24-toc">15.9.5.24 Date.prototype.getMilliseconds ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.25" id="x15.9.5.25-toc">15.9.5.25 Date.prototype.getUTCMilliseconds ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.26" id="x15.9.5.26-toc">15.9.5.26 Date.prototype.getTimezoneOffset ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.27" id="x15.9.5.27-toc">15.9.5.27 Date.prototype.setTime (time)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.28" id="x15.9.5.28-toc">15.9.5.28 Date.prototype.setMilliseconds (ms)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.29" id="x15.9.5.29-toc">15.9.5.29 Date.prototype.setUTCMilliseconds (ms)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.30" id="x15.9.5.30-toc">15.9.5.30 Date.prototype.setSeconds (sec [, ms ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.31" id="x15.9.5.31-toc">15.9.5.31 Date.prototype.setUTCSeconds (sec [, ms ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.32" id="x15.9.5.32-toc">15.9.5.32 Date.prototype.setMinutes (min [, sec [, ms ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.33" id="x15.9.5.33-toc">15.9.5.33 Date.prototype.setUTCMinutes (min [, sec [, ms ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.34" id="x15.9.5.34-toc">15.9.5.34 Date.prototype.setHours (hour [, min [, sec [, ms ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.35" id="x15.9.5.35-toc">15.9.5.35 Date.prototype.setUTCHours (hour [, min [, sec [, ms ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.36" id="x15.9.5.36-toc">15.9.5.36 Date.prototype.setDate (date)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.37" id="x15.9.5.37-toc">15.9.5.37 Date.prototype.setUTCDate (date)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.38" id="x15.9.5.38-toc">15.9.5.38 Date.prototype.setMonth (month [, date ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.39" id="x15.9.5.39-toc">15.9.5.39 Date.prototype.setUTCMonth (month [, date ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.40" id="x15.9.5.40-toc">15.9.5.40 Date.prototype.setFullYear (year [, month [, date ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.41" id="x15.9.5.41-toc">15.9.5.41 Date.prototype.setUTCFullYear (year [, month [, date ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.42" id="x15.9.5.42-toc">15.9.5.42 Date.prototype.toUTCString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.43" id="x15.9.5.43-toc">15.9.5.43 Date.prototype.toISOString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.9.html#x15.9.5.44" id="x15.9.5.44-toc">15.9.5.44 Date.prototype.toJSON ( key )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.9.html#x15.9.6" id="x15.9.6-toc">15.9.6 Свойства экземпляров Date</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></nav>
+
+   <h3 id="x15.9" class="splitme">15.9 Объекты Date <a href="#x15.9">#</a> <a href="#x15.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<h4 id="x15.9.1">15.9.1 Обзор объектов Date и определение абстрактных операторов <a href="#x15.9.1">#</a> <a href="#x15.9.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Перечисленные ниже функции являются абстрактными операторами, оперирующими значениями времени (определение которым приводится в пункте&nbsp;<a href="#x15.9.1.1">15.9.1.1</a>). Обратите внимание, что, для каждой из этих функций, если какой-либо из её аргументов является <b>NaN</b>, то и результат будет <b>NaN</b>.</p>
+	<h5 id="x15.9.1.1">15.9.1.1 Значения времени и временной диапазон <a href="#x15.9.1.1">#</a> <a href="#x15.9.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Объект типа Date содержит число, означающее конкретный момент времени с точностью до миллисекунды. Это число называется <i>значением времени</i>  <tt>time value</tt>. Значение времени может быть&nbsp;<b>NaN</b>, и в этом случае объект&nbsp;Date не представляет собой какого-либо конкретного момента времени.</p>
+	<p>
+	В ECMAScript время измеряется в миллисекундах с 01&nbsp;января 1970г. по всемирному координированному времени (UTC). Корректировочные секунды, или секунды координации всемирного времени игнорируются. Предполагается, что каждый день содержит ровно 86&nbsp;400&nbsp;000 миллисекунд. Числовые значения в языке ECMAScript могут представить все целые числа от &ndash;9&nbsp;007&nbsp;199&nbsp;254&nbsp;740&nbsp;991 до 9&nbsp;007&nbsp;199&nbsp;254&nbsp;740&nbsp;991. Этого диапазона достаточно для измерения с точностью до миллисекунды любого момента времени в пределах приблизительно до 285&nbsp;616&nbsp;лет назад или вперёд с даты 01 января 1970г. по UTC.</p>
+	<p>
+	Фактический диапазон времени, поддерживаемый объектами Date в языке ECMAScript, немного меньше: ровно от &ndash;100&nbsp;000&nbsp;000 до 100&nbsp;000&nbsp;000 дней, измеряемых относительно полуночи, с которой начинается 01&nbsp;января 1970г. по UTC. Это равно 8&nbsp;640&nbsp;000&nbsp;000&nbsp;000&nbsp;000&nbsp;миллисекундам в обоих направлениях от 01&nbsp;января 1970г. по UTC.</p>
+	<p>
+	Точный момент полуночи, с которого начинается 01&nbsp;января 1970г. по UTC, представлен значением&nbsp;<b>+0</b>.</p>
+	<h5 id="x15.9.1.2">15.9.1.2 Номер дня и время дня <a href="#x15.9.1.2">#</a> <a href="#x15.9.1.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	Заданное значение времени <i>t</i> означает номер дня</p>
+	<p class="code-example">
+	<a href="#x15.9.1.2">Day</a>(<i>t</i>) = <a href="x5.html#floor">floor</a>(<i>t</i> / msPerDay),</p>
+	<p class="sm-btm">
+	где количество миллисекунд в день равно</p>
+	<p class="code-example">
+	msPerDay = 86400000</p>
+	<p class="sm-btm">
+	Остаток называется временем дня:</p>
+	<p class="code-example">
+	TimeWithinDay(<i>t</i>) = <i>t </i><a href="x5.html#modulo">modulo</a> msPerDay</p>
+	<h5 id="x15.9.1.3">15.9.1.3 Номер года <a href="#x15.9.1.3">#</a> <a href="#x15.9.1.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	В языке ECMAScript используется экстраполированный григорианский календарь для приведения номера дня к номеру года и определения месяца и даты в этом году. В соответствии с этим календарём, високосный год &ndash; это год, который (кратен&nbsp;4) и ((не кратен&nbsp;100) или (кратен&nbsp;400)). Таким образом, количество дней в году&nbsp;<i>y</i> определяется следующим представлением:</p>
+	<p class="code-example">
+	DaysInYear(<i>y</i>) = 365  если (<i>y</i> <a href="x5.html#modulo">modulo</a> 4) <span class="symbol">&#8800;</span> 0<br>= 366  если (<i>y</i> <a href="x5.html#modulo">modulo</a> 4) = 0 и (y <a href="x5.html#modulo">modulo</a> 100) <span class="symbol">&#8800;</span> 0<br>= 365  если (<i>y</i> <a href="x5.html#modulo">modulo</a> 100) = 0 и (y <a href="x5.html#modulo">modulo</a> 400) <span class="symbol">&#8800;</span> 0<br>= 366  если (<i>y</i> <a href="x5.html#modulo">modulo</a> 400) = 0</p>
+	<p class="sm-btm">
+	Все невисокосные годы имеют 365 дней с обычным количеством дней в месяц, а високосные годы имеют дополнительный день в феврале. <dfn id="DayFromYear">Номер дня первого дня года&nbsp;<i>y</i></dfn> получается следующим образом:</p>
+	<p class="code-example">
+	DayFromYear(<i>y</i>)	= 365 <span class="symbol">&#215;</span> (<i>y</i><span class="symbol">&#8722;</span>1970) + <a href="x5.html#floor">floor</a>((<i>y</i><span class="symbol">&#8722;</span>1969)/4) <span class="symbol">&#8722;</span> <a href="x5.html#floor">floor</a>((<i>y</i><span class="symbol">&#8722;</span>1901)/100) + <a href="x5.html#floor">floor</a>((<i>y</i><span class="symbol">&#8722;</span>1601)/400)</p>
+	<p class="sm-btm">
+	<dfn id="TimeFromYear">Значение времени на начало года </dfn> получается следующим образом:</p>
+	<p class="code-example">
+	TimeFromYear(<i>y</i>)	= msPerDay <span class="symbol">&#215;</span> <a href="#DayFromYear">DayFromYear</a>(<i>y</i>)</p>
+	<p class="sm-btm">
+	<dfn id="YearFromTime">Значение времени определяет год следующим образом</dfn>:</p>
+	<p class="code-example">
+	YearFromTime(<i>t</i>)	= такое наибольшее целое число&nbsp;<i>y</i> (ближайшее к положительной бесконечности), чтобы <a href="#TimeFromYear">TimeFromYear</a>(<i>y</i>) <span class="symbol">&#8804;</span> <i>t</i></p>
+	<p class="sm-btm">
+	Если время имеет место в течение високосного года, то функция <dfn id="InLeapYear">високосного года</dfn> производит 1, в противном случае &ndash; ноль:</p>
+	<p class="code-example">
+	<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	= 0  если DaysInYear(<a href="#YearFromTime">YearFromTime</a>(<i>t</i>)) = 365<br>= 1  если DaysInYear(<a href="#YearFromTime">YearFromTime</a><i>(t</i>)) = 366</p>
+	<h5 id="x15.9.1.4">15.9.1.4 Номер месяца <a href="#x15.9.1.4">#</a> <a href="#x15.9.1.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	Для обозначения месяцев используется целое число от 0 до 11 включительно. MonthFromTime(<i>t</i>) &ndash; преобразование значения времени&nbsp;<i>t</i> в номер месяца &ndash; производится следующим образом:</p>
+	<p class="date-definition">
+		MonthFromTime(<i>t</i>)	= 0	если	0	<span class="symbol">&#8804;</span> DayWithinYear(<i>t</i>) &lt; 31<br>			= 1	если	31	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 59+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 2	если	59+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 90+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 3	если	90+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 120+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 4	если	120+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 151+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 5	если	151+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 181+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 6	если	181+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 212+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 7	если	212+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 243+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 8	если	243+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 273+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 9	если	273+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 304+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 10	если	304+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 334+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)<br>			= 11	если	334+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>) 	<span class="symbol">&#8804;</span> DayWithinYear (<i>t</i>) &lt; 365+<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)</p>
+	<p>где</p>
+	<p class="date-definition">
+	<dfn id="DayWithinYear">DayWithinYear(<i>t</i>)</dfn>	= <a href="#x15.9.1.2">Day</a>(<i>t</i>)<span class="symbol">&#8722;</span><a href="#DayFromYear">DayFromYear</a>(<a href="#YearFromTime">YearFromTime</a>(<i>t)</i>)</p>
+	<p>
+	Значение месяца 0 означает январь; 1 означает февраль; 2 &ndash; март; 3 &ndash; апрель; 4&nbsp;&ndash; май; 5 &ndash; июнь; 6 &ndash; июль; 7 &ndash; август; 8 &ndash; сентябрь; 9 &ndash; октябрь; 10 &ndash; ноябрь; 11 &ndash; декабрь. Обратите внимание, что <a href="#x15.9.1.4">MonthFromTime</a>(0) = 0, что соответствует вторнику, 01&nbsp;января, 1970г.</p>
+	<h5 id="x15.9.1.5">15.9.1.5 Номер даты <a href="#x15.9.1.5">#</a> <a href="#x15.9.1.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для обозначения даты используется целое число от 1 до 31 включительно. DateFromTime(<i>t</i>) &ndash; преобразование значения времени&nbsp;<i>t</i> в номер месяца &ndash; производится следующим образом:</p>
+	<p class="date-definition">
+	DateFromTime(<i>t</i>)	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)+1	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=0<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>30	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=1<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>58<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=2<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>89<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=3<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>119<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>) если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=4<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>150<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=5<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>180<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=6<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>211<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=7<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>242<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>) если<a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=8<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>272<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=9<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>303<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=10<br>	= <a href="#DayWithinYear">DayWithinYear</a>(<i>t</i>)<span class="symbol">&#8722;</span>333<span class="symbol">&#8722;</span><a href="#InLeapYear">InLeapYear</a>(<i>t</i>)	если <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>)=11</p>
+	<h5 id="x15.9.1.6">15.9.1.6 День недели <a href="#x15.9.1.6">#</a> <a href="#x15.9.1.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	День недели для конкретного значения времени&nbsp;<i>t</i> определяется следующим образом:</p>
+	<p class="code-example">
+	WeekDay(<i>t</i>) = (<a href="#x15.9.1.2">Day</a>(<i>t</i>) + 4) <a href="x5.html#modulo">modulo</a> 7</p>
+	<p>
+	Значение дня недели 0 означает воскресенье; 1 &ndash; понедельник; 2 &ndash; вторник; 3 &ndash; среду; 4&nbsp;&ndash; четверг; 5 &ndash; пятницу; 6 &ndash; субботу. Обратите внимание, что <a href="#x15.9.1.6">WeekDay</a>(0) = 4, что соответствует вторнику, 01&nbsp;января, 1970г.</p>
+	<h5 id="x15.9.1.7">15.9.1.7 Поправка на местное время <a href="#x15.9.1.7">#</a> <a href="#x15.9.1.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Реализация ECMAScript должна определять поправку на местное время. Поправка на местное время представляет собой значение LocalTZA, измеряемое в миллисекундах, которые при добавлении к времени UTC представляют <i>стандартное</i> местное время. Значение LocalTZA <i>не</i> отражает переход на летнее время. Значение LocalTZA не изменяется со временем, а зависит исключительно от географического местоположения.</p>
+	<h5 id="x15.9.1.8">15.9.1.8 Поправка на летнее время <a href="#x15.9.1.8">#</a> <a href="#x15.9.1.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Реализация ECMAScript должна определять алгоритм перехода на летнее время. Алгоритм для определения поправки на летнее время DaylightSavingTA(<i>t</i>), измеряемый в миллисекундах, должен зависеть только от четырёх моментов:</p>
+	<p class="sm-btm">
+	(1) времени с начала года</p>
+	<p class="code-example">
+	<i>t</i> &ndash; <a href="#TimeFromYear">TimeFromYear</a>(<a href="#YearFromTime">YearFromTime</a>(<i>t</i>))</p>
+	<p class="sm-btm">
+	(2) приходится ли время <i>t</i> на високосный год</p>
+	<p class="code-example">
+	<a href="#InLeapYear">InLeapYear</a>(<i>t</i>)</p>
+	<p class="sm-btm">
+	(3) дня недели, на который выпадает начало года</p>
+	<p class="code-example">
+	<a href="#x15.9.1.6">WeekDay</a>(<a href="#TimeFromYear">TimeFromYear</a>(<a href="#YearFromTime">YearFromTime</a>(<i>t</i>))</p>
+	<p>
+	и (4) географического местоположения.</p>
+	<p>
+	Реализация ECMAScript не должна пытаться определить, подвергалось ли фактическое время переходу на летнее время. Она должна только определять, действовало бы летнее время, если бы в тот момент применить текущий алгоритм определения поправки на летнее время. Это позволит избежать таких осложнений, как учёт лет, когда в конкретной местности летнее время использовалось круглый год.</p>
+	<p>
+	Если внешняя среда обеспечивает функциональные возможности для определения летнего времени, то реализация на ECMAScript может сопоставить заданный год с эквивалентным годом (аналогичной високосности и с таким же днём недели, выпадающим на начало года), для которого внешняя среда предоставляет информацию о летнем времени. Единственное ограничение заключается в том, что все эквивалентные годы должны производить один и тот же результат.</p>
+	<h5 id="x15.9.1.9">15.9.1.9 Местное время <a href="#x15.9.1.9">#</a> <a href="#x15.9.1.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	Преобразование из времени по UTC в местное время определяется следующим образом:</p>
+	<p class="code-example">
+	LocalTime(<i>t</i>) = <i>t</i> + <a href="#x15.9.1.7">LocalTZA</a> + DaylightSavingTA(<i>t</i>)</p>
+	<p class="sm-btm">
+	Преобразование из местного времени в формат времени по UTC определяется следующим образом:</p>
+	<p class="code-example">
+	UTC(<i>t</i>) = <i>t</i> &ndash; <a href="#x15.9.1.7">LocalTZA</a> &ndash; DaylightSavingTA(<i>t</i> &ndash; <a href="#x15.9.1.7">LocalTZA</a>)</p>
+	<p>
+	Обратите внимание, что <a href="#x15.9.1.9">UTC</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)) не обязательно всегда равно&nbsp;<i>t</i>.</p>
+	<h5 id="x15.9.1.10">15.9.1.10 Часы, минуты, секунды и миллисекунды <a href="#x15.9.1.10">#</a> <a href="#x15.9.1.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	Для разложения значений времени используются следующие функции:</p>
+	<p class="code-example">
+	HourFromTime(<i>t</i>)	= <a href="x5.html#floor">floor</a>(<i>t</i> / msPerHour) <a href="x5.html#modulo">modulo</a> HoursPerDay</p>
+	<p class="code-example">
+	MinFromTime(<i>t</i>)	= <a href="x5.html#floor">floor</a>(<i>t</i> / msPerMinute) <a href="x5.html#modulo">modulo</a> MinutesPerHour</p>
+	<p class="code-example">
+	SecFromTime(<i>t</i>)	= <a href="x5.html#floor">floor</a>(<i>t</i> / msPerSecond) <a href="x5.html#modulo">modulo</a> SecondsPerMinute</p>
+	<p class="code-example">
+	msFromTime(<i>t</i>)	= t <a href="x5.html#modulo">modulo</a> msPerSecond</p>
+	<p class="sm-btm">
+	где</p>
+	<p class="code-example">
+	HoursPerDay <tt>часов в дне</tt>	= 24</p>
+	<p class="code-example">
+	MinutesPerHour <tt>минут в часе</tt>	= 60</p>
+	<p class="code-example">
+	SecondsPerMinute <tt>секунд в минуту</tt>	= 60</p>
+	<p class="code-example">
+	<dfn id="msPerSecond">msPerSecond</dfn> <tt>миллисекунд в секунду</tt>	= 1000</p>
+	<p class="code-example">
+	<dfn id="msPerMinute">msPerMinute</dfn> <tt>миллисекунд в минуту</tt>	= 60000	= msPerSecond <span class="symbol">&#215;</span> SecondsPerMinute</p>
+	<p class="code-example">
+	<dfn id="msPerHour">msPerHour</dfn> <tt>миллисекунд в час</tt>	= 3600000	= msPerMinute <span class="symbol">&#215;</span> MinutesPerHour</p>
+	<h5 id="x15.9.1.11">15.9.1.11 MakeTime (hour, min, sec, ms) <a href="#x15.9.1.11">#</a> <a href="#x15.9.1.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Оператор MakeTime вычисляет количество миллисекунд, используя значения своих четырёх аргументов, которые должны быть числовыми значениями ECMAScript. Он действует следующим образом:</p>
+	<ol><li><p>
+		Если <i>hour</i> не является конечным числом или <i>min</i> не является конечным числом, или <i>sec</i> не является конечным числом, или <i>ms</i> не является конечным числом, вернуть&nbsp;<b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>h</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>hour</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>min</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>s</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>sec</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>milli</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>ms</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>t</i> будет <i>h</i> <code><b>*</b></code> <a href="#msPerHour">msPerHour</a> <code><b>+</b></code> <i>m</i> <code><b>*</b></code> <a href="#msPerMinute">msPerMinute</a> <code><b>+</b></code> <i>s</i> <code><b>*</b></code> <a href="#msPerSecond">msPerSecond</a> <code><b>+</b></code> <i>milli</i>, при этом арифметические действия выполняются в соответствии с правилами стандарта&nbsp;IEEE 754 (то есть, как если бы с использованием операторов ECMAScript <code><b>*</b></code> и <code><b>+</b></code>).</p>
+		</li>
+		<li><p>
+		Вернуть <i>t</i>.</p>
+	</li></ol>
+	<h5 id="x15.9.1.12">15.9.1.12 MakeDay (year, month, date) <a href="#x15.9.1.12">#</a> <a href="#x15.9.1.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Оператор MakeDay вычисляет количество дней, используя значения своих трёх аргументов, которые должны быть числовыми значениями ECMAScript. Он действует следующим образом:</p>
+	<ol><li><p>
+		Если <i>year</i> не является конечным числом или <i>month</i> не является конечным числом, или <i>date</i> не является конечным числом, вернуть&nbsp;<b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>y</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>year</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>month</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>dt</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>ym</i> будет <i>y</i> + <a href="x5.html#floor">floor</a>(<i>m</i> /12).</p>
+		</li>
+		<li><p>
+		Пусть <i>mn</i> будет <i>m</i> <a href="x5.html#modulo">modulo</a> 12.</p>
+		</li>
+		<li><p>
+		Найти такое значение&nbsp;<i>t</i>, чтобы <a href="#YearFromTime">YearFromTime</a>(<i>t</i>) <code><b>==</b></code> <i>ym</i> и <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>) <code><b>==</b></code> <i>mn</i>) и <a href="#x15.9.1.5">DateFromTime</a>(<i>t</i>) <code><b>==</b></code> 1; но если это невозможно (из-за того, что один из аргументов находится вне допустимого диапазона), вернуть&nbsp;<b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.2">Day</a>(<i>t</i>) + <i>dt</i> <span class="symbol">&#8722;</span> 1.</p>
+	</li></ol>
+	<h5 id="x15.9.1.13">15.9.1.13 MakeDate (day, time) <a href="#x15.9.1.13">#</a> <a href="#x15.9.1.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Оператор MakeDate вычисляет количество миллисекунд, используя значения своих двух аргументов, которые должны быть числовыми значениями ECMAScript. Он действует следующим образом:</p>
+	<ol><li><p>
+		Если <i>day</i> не является конечным числом или <i>time</i> не является конечным числом, вернуть&nbsp;<b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>day</i> <span class="symbol">&#215;</span> msPerDay + <i>time</i>.</p>
+	</li></ol>
+	<h5 id="x15.9.1.14">15.9.1.14 TimeClip (time) <a href="#x15.9.1.14">#</a> <a href="#x15.9.1.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Оператор TimeClip вычисляет количество миллисекунд, используя значение своего аргумента, которое должно быть числовым значением ECMAScript. Он действует следующим образом:</p>
+	<ol><li><p>
+		Если <i>time</i> не является конечным числом, вернуть&nbsp;<b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x5.html#abs">abs</a>(<i>time</i>) &gt; 8.64&nbsp;x&nbsp;10<sup>15</sup>, вернуть&nbsp;<b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть либо <a href="x9.html#x9.4">ToInteger</a>(<i>time</i>), либо <a href="x9.html#x9.4">ToInteger</a>(<i>time</i>) + (<b>+0</b>), выбор которых зависит от реализации. (При добавлении положительного нуля <span class="symbol"><b>&#8722;</b></span><b>0</b> преобразуется в <b>+0</b>).</p>
+	</li></ol><p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Смысл шага&nbsp;3 заключается в том, что реализации разрешается выбирать из внутренних представлений значений времени, например &ndash; представление в виде знакового 64-битового целого, или в виде 64-битового значения с плавающей точкой. В зависимости от реализации, это внутреннее представление может различать между <span class="symbol"><b>&#8722;</b></span><b>0</b> и <b>+0</b>, или нет. </p>
+	<h5 id="x15.9.1.15">15.9.1.15 Строковый формат &quot;дата и время&quot; <a href="#x15.9.1.15">#</a> <a href="#x15.9.1.15-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	ECMAScript определяет строковый формат замены для даты-времени на основании упрощения Расширенного формата&nbsp;ISO&nbsp;8601.  Этот формат выглядит следующим образом: <code><b>YYYY-MM-DDTHH:mm:ss.sss</b></code><code><i><b>Z</b></i></code></p>
+	<p>
+	где поля имеют следующие значения:</p>
+<table id="date-format"><tbody><tr><td><code><b>YYYY</b></code></td><td>десятичные цифры, обозначающие год по григорианскому календарю.</td></tr><tr><td><code><b>-</b></code></td><td>буквальное изображение &ldquo;<code>-</code>&rdquo; (дефис) встречается в строке дважды.</td></tr><tr><td><code><b>MM</b></code></td><td>месяц года с 01 (январь) по 12 (декабрь).</td></tr><tr><td><code><b>DD</b></code></td><td>день месяца с 01 по 31.</td></tr><tr><td><code><b>T</b></code></td><td>буквальное изображение &ldquo;<code><b>T</b></code>&rdquo; встречается в строке, чтобы обозначить начало элемента, указывающего время.</td></tr><tr><td><code><b>HH</b></code></td><td>количество полных часов, прошедших с полуночи, представленных в виде двух десятичных цифр.</td></tr><tr><td><code><b>:</b></code></td><td>буквальное изображение &ldquo;<code><b>:</b></code>&rdquo; (двоеточие) встречается в строке дважды.</td></tr><tr><td><code><b>mm</b></code></td><td>количество полных минут, прошедших с начала часа, представленных в виде двух десятичных цифр.</td></tr><tr><td><code><b>ss</b></code></td><td>количество полных секунд, прошедших с начала минуты, представленных в виде двух десятичных цифр.</td></tr><tr><td><code><b>.</b></code></td><td>буквальное изображение &ldquo;<code><b>.</b></code>&rdquo; (точка) встречается в строке.</td></tr><tr><td><code><b>sss</b></code></td><td>количество полных миллисекунд, прошедших с начала секунды, представленных в виде трёх десятичных цифр.</td></tr><tr><td><code><b>Z</b></code></td><td>смещение на часовой пояс, указанное в виде &ldquo;<code><b>Z</b></code>&rdquo; (для UTC), либо в виде знака &ldquo;<code><b>+</b></code>&rdquo; или &ldquo;<code><b>-</b></code>&rdquo;, после которого следует выражение <code><b>hh:mm</b></code></td></tr></tbody></table><p class="sp">Этот формат включает в себя следующие формы представления &quot;только дата&quot;:</p>
+	<p class="sp"><code><b>YYYY<br>YYYY-MM<br>YYYY-MM-DD</b></code></p>
+	<p>Он также включает в себя формы &quot;дата и время&quot;, состоящие из одной из вышеуказанных форм типа &quot;только дата&quot;, за которой сразу же следует &ldquo;<code>T</code>&rdquo;, а затем одна из нижеследующих форм представления времени, а за ней  – необязательное значение смещения на часовой пояс:</p>
+	<p>
+	<code><b>THH:mm<br>THH:mm:ss<br>THH:mm:ss.sss</b></code></p>
+
+
+	<p>Все числа должны иметь основание 10. Если поле <code>MM</code> или <code>DD</code> отсутствует, в качестве значений используется &ldquo;<code>01</code>&rdquo;. Если поле <code>mm</code> или <code>ss</code> отсутствует, в качестве значений используется &ldquo;<code>00</code>&rdquo;, а если отсутствует поле <code>sss</code>, в качестве его значения используется &ldquo;<code>000</code>&rdquo;. Значение отсутствующего смещения на часовой пояс равно &ldquo;<code>Z</code>&rdquo;.</p>
+
+	<p>
+	Если в строке данного формата встречаются некорректные значения (то есть, выходящие за предписанные рамки, или содержащие синтаксические ошибки), это значит, что эта строка не является действительным экземпляром данного формата.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Поскольку и начало и конец каждого дня приходятся на полночь, существует два варианта записи &ndash; <code>00:00</code> и <code>24:00</code>, позволяющие различить две полуночи, относящиеся к одной и той же дате. Это значит, что две записи:  <code>1995-02-04T24:00</code> и <code>1995-02-05T00:00</code> &ndash; обозначают совершенно одинаковый момент времени.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Нет международных стандартов, которые бы задавали аббревиатуры для гражданских часовых поясов, таких как CET (центральноевропейское время), EST (стандартное восточное время), и т.д., и даже иногда одна и та же аббревиатура используется для обозначения двух совершенно разных часовых поясов. Поэтому стандарт ISO&nbsp;8601 и данный формат используют числовое представление даты и времени.</p>
+	<h6 id="x15.9.1.15.1">15.9.1.15.1 Увеличенное количество лет <a href="#x15.9.1.15.1">#</a> <a href="#x15.9.1.15.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h6>
+	<p>
+	В языке ECMAScript необходимо иметь возможность указать 6-значное количество лет (увеличенное количество лет) &ndash; приблизительно на 285&nbsp;616&nbsp;лет вперёд или назад с даты 01&nbsp;января 1970г. по UTC. Для представления лет до 0&nbsp;года или после 9999&nbsp;года стандарт ISO&nbsp;8601 позволяет расширить формат представления лет, но только после предварительной договорённости между отправителем и получателем. В упрощённом формате ECMAScript такое представление получит 2 дополнительные цифры для обозначения года, и перед обозначением года обязательно будет присутствовать знак &quot;+&quot; или&nbsp;&quot;&ndash;&quot;. Нулевой год (&quot;0&quot;) считается положительным, поэтому перед ним используется знак&nbsp;&quot;+&quot;.</p>
+	<h4 id="x15.9.2">15.9.2 Вызов конструктора Date как функции <a href="#x15.9.2">#</a> <a href="#x15.9.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове <code><b>Date</b></code> не в качестве конструктора, а в качестве функции, возвращается строка, представляющая собой текущее время (UTC).</p>
+	<p><B>ПРИМЕЧАНИЕ </B>Вызов функции <code><b>Date(</b></code><code>…</code><code><b>)</b></code> не эквивалентен выражению для создания объекта <code><b>new Date(</b></code><code>…</code><code><b>)</b></code> с теми же аргументами.</p>
+	<h5 id="x15.9.2.1">15.9.2.1 Date ( [ year [, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] ] ] ) <a href="#x15.9.2.1">#</a> <a href="#x15.9.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Все аргументы являются необязательными. Все передаваемые аргументы принимаются, но полностью игнорируются. Создаётся и возвращается строка, как если бы она была создана выражением <code><b>(new Date()).toString()</b></code>, где <code><b>Date</b></code> является стандартным встроенным конструктором с этим именем, а <code><b>toString</b></code> является стандартным встроенным методом <code><b><a href="#x15.9.5.2">Date.prototype.toString</a></b></code>.</p>
+	<h4 id="x15.9.3">15.9.3 Конструктор Date <a href="#x15.9.3">#</a> <a href="#x15.9.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><b>Date</b></code> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует создаваемый объект.</p>
+	<h5 id="x15.9.3.1">15.9.3.1 new Date (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] ) <a href="#x15.9.3.1">#</a> <a href="#x15.9.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове конструктора <b>Date</b> с аргументами в количестве от двух до семи вычисляется дата, состоящая из <i>year</i>, <i>month</i>, и (необязательно) <i>date</i>, <i>hours</i>, <i>minutes</i>, <i>seconds</i> и&nbsp;<i>ms</i>.</p>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Date, который представляет собой начальное значение свойства <code><b>Date.prototype</b></code> (<a href="#x15.9.4.1">15.9.4.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;Date&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] создаваемого объекта устанавливается следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>y</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>year</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>month</i>).</p>
+		</li>
+		<li><p>
+		Если <i>date</i> передаётся, пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>); иначе пусть <i>dt</i> будет <b>1</b>.</p>
+		</li>
+		<li><p>
+		Если <i>hours</i> передаётся, пусть <i>h</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>hours</i>); иначе пусть <i>h</i> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>minutes</i> передаётся, пусть <I>min</I> будет <a href="x9.html#x9.3">ToNumber</a>(<i>minutes</i>); иначе пусть <I>min</I> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>seconds</i> передаётся, пусть <i>s</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>seconds</i>); иначе пусть <I><i>s</i></I> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> передаётся, пусть <I>milli</I> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>); иначе пусть <I>milli</I> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>y</i>&nbsp;не равно <b>NaN</b>, и 0&nbsp;<span class="symbol">&#8804;</span>&nbsp;<a href="x9.html#x9.4">ToInteger</a>(<i>y</i>)&nbsp;<span class="symbol">&#8804;</span>&nbsp;99,&nbsp;то пусть <i>yr</i> будет 1900+<a href="x9.html#x9.4">ToInteger</a>(<i>y</i>); иначе пусть <i>yr</i> будет <i>y</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>finalDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<i>yr</i>, <i>m</i>, <i>dt</i>), <a href="#x15.9.1.11">MakeTime</a>(<i>h</i>, <i>min</i>, <i>s</i>, <i>milli</i>)).</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[PrimitiveValue]] создаваемого объекта равным <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<i>finalDate</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.3.2">15.9.3.2 new Date (value) <a href="#x15.9.3.2">#</a> <a href="#x15.9.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Date, который представляет собой начальное значение свойства <code><b>Date.prototype</b></code> (<a href="#x15.9.4.1">15.9.4.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;Date&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] создаваемого объекта устанавливается следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>v</i> будет <a href="x9.html#x9.1">ToPrimitive</a>(<i>value</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>v</i>) равно String, то 
+		</p>
+		<ol><li><p>
+			Сделать разбор <i>v</i> как даты, точно таким же образом, как для метода <code><b>parse</b></code> (<a href="#x15.9.4.2">15.9.4.2</a>); пусть <i>V</i> будет значением времени для этой даты.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, пусть <i>V</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>v</i>).</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[PrimitiveValue]] создаваемого объекта равным <a href="#x15.9.1.14">TimeClip</a>(<i>V</i>) и вернуть.</p>
+	</li></ol>
+	<h5 id="x15.9.3.3">15.9.3.3 new Date ( ) <a href="#x15.9.3.3">#</a> <a href="#x15.9.3.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Date, который представляет собой начальное значение свойства <code><b>Date.prototype</b></code> (<a href="#x15.9.4.1">15.9.4.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;Date&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] создаваемого объекта устанавливается равным значению времени (UTC), обозначающему текущее время.</p>
+	<h4 id="x15.9.4">15.9.4 Свойства конструктора Date <a href="#x15.9.4">#</a> <a href="#x15.9.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора Date является объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Кроме внутренних свойств и свойства <code><b>length</b></code> со значением <b>7</b>, конструктор Date имеет следующие свойства:</p>
+	<h5 id="x15.9.4.1">15.9.4.1 Date.prototype <a href="#x15.9.4.1">#</a> <a href="#x15.9.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Date.prototype</b></code> является встроенный объект-прототип Date (<a href="#x15.9.5">15.9.5</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }</p>
+	<h5 id="x15.9.4.2">15.9.4.2 Date.parse (string) <a href="#x15.9.4.2">#</a> <a href="#x15.9.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>parse</b></code> применяет к своему аргументу оператор <a href="x9.html#x9.8">ToString</a> и интерпретирует полученную строку как дату и время. Эта функция возвращает число &ndash; значение времени по UTC, соответствующее этой дате и времени. Строка может быть интерпретирована как местное время, как время по UTC, или как время в любом другом часовом поясе, в зависимости от содержимого строки. Сначала функция пытается разобрать формат строки в соответствии с правилами Строкового формата &quot;дата и время&quot;&nbsp;<em>Date Time String Format</em>, см. пункт <a href="#x15.9.1.15">15.9.1.15</a>. Если строка не соответствует этому формату, функция может применить эвристические правила более низкого уровня или формат даты более низкого уровня, обусловленные реализацией. Если строка не распознаётся, или если дата содержит некорректные значения в формате String, функция <code><b>Date.parse</b></code> вернёт <b>NaN</b>.</p>
+	<p>Если <i>x</i> является объектом типа Date с количеством миллисекунд, равным нулю в конкретной реализации ECMAScript, то все нежеперечисленные выражения должны в этой реализации возвращать одинаковые числовые значения, если все упоминаемые свойства имеют первоначальные значения:</p>
+	<p class="code-example">
+	<code><i><b>x</b></i></code><code><b>.valueOf()</b></code></p>
+	<p class="code-example">
+	<code><b>Date.parse(</b></code><code><i><b>x</b></i></code><code><b>.toString())</b></code></p>
+	<p class="code-example">
+	<code><b>Date.parse(</b></code><code><i><b>x</b></i></code><code><b>.toUTCString())</b></code></p>
+	<p class="code-example">
+	<code><b>Date.parse(</b></code><code><i><b>x</b></i></code><code><b>.toISOString())</b></code></p>
+	<p>Однако, выражение</p>
+	<p class="code-example">
+	<code><b>Date.parse(</b></code> <i>x</i><code><b>.toLocaleString())</b></code></p>
+	<p>
+	не обязано возвращать такое же числовое значение, что и три предыдущие выражения, и, в целом, значение, возвращаемое функцией <code><b>Date.parse</b></code> зависит от реализации, если функции передаётся строковое значение, не соответствующее Строковому формату &quot;дата-время&quot; (<a href="#x15.9.1.15">15.9.1.15</a>), которое в этой реализации не может быть результатом метода <code><b>toString</b></code> или <code><b>toUTCString</b></code> .</p>
+	<h5 id="x15.9.4.3">15.9.4.3 Date.UTC (year, month [, date [, hours [, minutes [, seconds [, ms ] ] ] ] ] ) <a href="#x15.9.4.3">#</a> <a href="#x15.9.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове функции <code><b>UTC</b></code> менее чем с двумя аргументами ее поведение зависит от реализации. При вызове функции <code><b>UTC</b></code> с аргументами в количестве от двух до семи вычисляется дата, состоящая из <i>year</i>, <i>month</i>, и (необязательно) <i>date</i>, <i>hours</i>, <i>minutes</i>, <i>seconds</i> и&nbsp;<i>ms</i>. Выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>y</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>year</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>month</i>).</p>
+		</li>
+		<li><p>
+		Если <i>date</i> передаётся, пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>); иначе пусть <i>dt</i> будет <b>1</b>.</p>
+		</li>
+		<li><p>
+		Если <i>hours</i> передаётся, пусть <i>h</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>hours</i>); иначе пусть <i>h</i> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>minutes</i> передаётся, пусть <I>min</I> будет <a href="x9.html#x9.3">ToNumber</a>(<i>minutes</i>); иначе пусть <I>min</I> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Если seconds передаётся, пусть s будет <a href="x9.html#x9.3">ToNumber</a>(<i>seconds</i>); иначе пусть <I>s</I> будет <B>0</B>.</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> передаётся, пусть <I>milli</I> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>); иначе пусть <I>milli</I> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>y</i>&nbsp;не равно <b>NaN</b>, и 0&nbsp;<span class="symbol">&#8804;</span>&nbsp;<a href="x9.html#x9.4">ToInteger</a>(<i>y</i>)&nbsp;<span class="symbol">&#8804;</span>&nbsp;99,&nbsp;то пусть <i>yr</i> будет 1900+<a href="x9.html#x9.4">ToInteger</a>(<i>y</i>); иначе пусть <i>yr</i> будет <i>y</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<i>yr</i>, <i>m</i>, <i>dt</i>), <a href="#x15.9.1.11">MakeTime</a>(<i>h</i>, <i>min</i>, <i>s</i>, <i>milli</i>))).</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для <code><B><b>UTC</b></B></code> равно <b>7</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code>UTC</code> отличается от конструктора <code>Date</code> двумя моментами: она возвращает значение времени как число, а не создаёт объект Date, и она интерпретирует аргументы по&nbsp;UTC, а не по местному времени.</p>
+	<h5 id="x15.9.4.4">15.9.4.4 Date.now ( ) <a href="#x15.9.4.4">#</a> <a href="#x15.9.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>now</b></code> возвращает числовое значение, которое представляет собой значение времени, означающее дату и время вызова функции&nbsp;<code><b>now</b></code> по UTC.</p>
+	<h4 id="x15.9.5">15.9.5 Свойства объекта-прототипа Date <a href="#x15.9.5">#</a> <a href="#x15.9.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Объект-прототип Date представляет собой объект типа Date (его [[Class]] равен <code><b>&quot;Date&quot;</b></code>), у которого [[PrimitiveValue]] равно <b>NaN</b>.</p>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа Date является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>).</p>
+	<p>
+	В приведённых ниже описаниях функций, которые являются свойствами объекта-прототипа Date, фраза &quot;объект this типа Date&quot; означает объект, который представляет собой значение <b>this</b>, переданное при вызове функции. Если только явно не указано иначе, ни одна из этих функций не является родовой функцией: если значение <b>this</b> не является объектом, для которого значение внутреннего свойства [[Class]] равно <code><b>&quot;Date&quot;</b></code>, генерируется исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Кроме того, фраза &ldquo;<dfn id="this-time-value">значение времени this</dfn>&rdquo; означает числовое значение времени, представленное объектом this типа Date, то есть, значение внутреннего свойства [[PrimitiveValue]] объекта this типа Date.</p>
+	<h5 id="x15.9.5.1">15.9.5.1 Date.prototype.constructor <a href="#x15.9.5.1">#</a> <a href="#x15.9.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Date.prototype.constructor</b></code> является встроенный конструктор <code><b>Date</b></code>.</p>
+	<h5 id="x15.9.5.2">15.9.5.2 Date.prototype.toString ( ) <a href="#x15.9.5.2">#</a> <a href="#x15.9.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение. Содержимое этой строки зависит от реализации, но оно должно представлять полную дату в соответствии с текущим часовым поясом, и в формате, удобном для восприятия человеком.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Для всех значений Date <code><i>d</i></code>, у которых количество миллисекунд равно нулю, результат <code>Date.parse(</code><code><i>d</i></code><code>.toString())</code> равен результату <code><i>d</i></code><code>.valueOf()</code>. См. <a href="#x15.9.4.2">15.9.4.2</a>.</p>
+	<h5 id="x15.9.5.3">15.9.5.3 Date.prototype.toDateString ( ) <a href="#x15.9.5.3">#</a> <a href="#x15.9.5.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение. Содержимое этой строки зависит от реализации, но оно должно представлять часть, обозначающую дату, в соответствии с текущим часовым поясом, и в формате, удобном для восприятия человеком.</p>
+	<h5 id="x15.9.5.4">15.9.5.4 Date.prototype.toTimeString ( ) <a href="#x15.9.5.4">#</a> <a href="#x15.9.5.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение. Содержимое этой строки зависит от реализации, но оно должно представлять часть, обозначающую время, в соответствии с текущим часовым поясом, и в формате, удобном для восприятия человеком.</p>
+	<h5 id="x15.9.5.5">15.9.5.5 Date.prototype.toLocaleString ( ) <a href="#x15.9.5.5">#</a> <a href="#x15.9.5.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение. Содержимое этой строки зависит от реализации, но оно должно представлять полную дату в соответствии с текущим часовым поясом, в формате, удобном для восприятия человеком, и с соблюдением требований текущей языковой настройки внешней среды.</p>
+	<p><b>ПРИМЕЧАНИЕ </b>Первый параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<h5 id="x15.9.5.6">15.9.5.6 Date.prototype.toLocaleDateString ( ) <a href="#x15.9.5.6">#</a> <a href="#x15.9.5.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение. Содержимое этой строки зависит от реализации, но оно должно представлять часть, обозначающую дату, в соответствии с текущим часовым поясом, и в формате, удобном для восприятия человеком, и с соблюдением требований текущей языковой настройки внешней среды.</p>
+	<p><b>ПРИМЕЧАНИЕ </b>Первый параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<h5 id="x15.9.5.7">15.9.5.7 Date.prototype.toLocaleTimeString ( ) <a href="#x15.9.5.7">#</a> <a href="#x15.9.5.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение. Содержимое этой строки зависит от реализации, но оно должно представлять часть, обозначающую время, в соответствии с текущим часовым поясом, в формате, удобном для восприятия человеком, и с соблюдением требований текущей языковой настройки внешней среды.</p>
+	<p><b>ПРИМЕЧАНИЕ </b>Первый параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<h5 id="x15.9.5.8">15.9.5.8 Date.prototype.valueOf ( ) <a href="#x15.9.5.8">#</a> <a href="#x15.9.5.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>valueOf</b></code> возвращает число, которое является <a href="#this-time-value">значением времени this</a>.</p>
+	<h5 id="x15.9.5.9">15.9.5.9 Date.prototype.getTime ( ) <a href="#x15.9.5.9">#</a> <a href="#x15.9.5.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Возвращает <a href="#this-time-value">значение времени this</a>.</p>
+	</li></ol>
+	<h5 id="x15.9.5.10">15.9.5.10 Date.prototype.getFullYear ( ) <a href="#x15.9.5.10">#</a> <a href="#x15.9.5.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#YearFromTime">YearFromTime</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.11">15.9.5.11 Date.prototype.getUTCFullYear ( ) <a href="#x15.9.5.11">#</a> <a href="#x15.9.5.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#YearFromTime">YearFromTime</a>(<I>t</I>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.11">15.9.5.11 Date.prototype.getUTCFullYear ( ) <a href="#x15.9.5.11">#</a> <a href="#x15.9.5.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.4">MonthFromTime</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.13">15.9.5.13 Date.prototype.getUTCMonth ( ) <a href="#x15.9.5.13">#</a> <a href="#x15.9.5.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.14">15.9.5.14 Date.prototype.getDate ( ) <a href="#x15.9.5.14">#</a> <a href="#x15.9.5.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.5">DateFromTime</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.15">15.9.5.15 Date.prototype.getUTCDate ( ) <a href="#x15.9.5.15">#</a> <a href="#x15.9.5.15-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.5">DateFromTime</a>(<i>t</i>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.16">15.9.5.16 Date.prototype.getDay ( ) <a href="#x15.9.5.16">#</a> <a href="#x15.9.5.16-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.6">WeekDay</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.17">15.9.5.17 Date.prototype.getUTCDay ( ) <a href="#x15.9.5.17">#</a> <a href="#x15.9.5.17-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.6">WeekDay</a>(<i>t</i>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.18">15.9.5.18 Date.prototype.getHours ( ) <a href="#x15.9.5.18">#</a> <a href="#x15.9.5.18-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">HourFromTime</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.19">15.9.5.19 Date.prototype.getUTCHours ( ) <a href="#x15.9.5.19">#</a> <a href="#x15.9.5.19-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">HourFromTime</a>(<i>t</i>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.20">15.9.5.20 Date.prototype.getMinutes ( ) <a href="#x15.9.5.20">#</a> <a href="#x15.9.5.20-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">MinFromTime</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.21">15.9.5.21 Date.prototype.getUTCMinutes ( ) <a href="#x15.9.5.21">#</a> <a href="#x15.9.5.21-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">MinFromTime</a>(<i>t</i>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.22">15.9.5.22 Date.prototype.getSeconds ( ) <a href="#x15.9.5.22">#</a> <a href="#x15.9.5.22-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">SecFromTime</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.23">15.9.5.23 Date.prototype.getUTCSeconds ( ) <a href="#x15.9.5.23">#</a> <a href="#x15.9.5.23-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">SecFromTime</a>(<i>t</i>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.24">15.9.5.24 Date.prototype.getMilliseconds ( ) <a href="#x15.9.5.24">#</a> <a href="#x15.9.5.24-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">msFromTime</a>(<a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)).</p>
+	</li></ol>
+	<h5 id="x15.9.5.25">15.9.5.25 Date.prototype.getUTCMilliseconds ( ) <a href="#x15.9.5.25">#</a> <a href="#x15.9.5.25-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#x15.9.1.10">msFromTime</a>(<i>t</i>).</p>
+	</li></ol>
+	<h5 id="x15.9.5.26">15.9.5.26 Date.prototype.getTimezoneOffset ( ) <a href="#x15.9.5.26">#</a> <a href="#x15.9.5.26-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает разницу в минутах между местным временем и временем по UTC.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>t</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть (<i>t</i> <span class="symbol">&#8722;</span> <a href="#x15.9.1.9">LocalTime</a>(<i>t</i>)) / <a href="#msPerMinute">msPerMinute</a>.</p>
+	</li></ol>
+	<h5 id="x15.9.5.27">15.9.5.27 Date.prototype.setTime (time) <a href="#x15.9.5.27">#</a> <a href="#x15.9.5.27-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="x9.html#x9.3">ToNumber</a>(<i>time</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol>
+	<h5 id="x15.9.5.28">15.9.5.28 Date.prototype.setMilliseconds (ms) <a href="#x15.9.5.28">#</a> <a href="#x15.9.5.28-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет результатом <a href="#x15.9.1.9">LocalTime</a>(<a href="#this-time-value">значение времени this</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>time</i> будет <a href="#x15.9.1.11">MakeTime</a>(<a href="#x15.9.1.10">HourFromTime</a>(<i>t</i>), <a href="#x15.9.1.10">MinFromTime</a>(<i>t</i>), <a href="#x15.9.1.10">SecFromTime</a>(<i>t</i>), <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <i>time</i>))).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>u</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>u</i></i>.</p>
+	</li></ol>
+	<h5 id="x15.9.5.29">15.9.5.29 Date.prototype.setUTCMilliseconds (ms) <a href="#x15.9.5.29">#</a> <a href="#x15.9.5.29-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>time</i> будет <a href="#x15.9.1.11">MakeTime</a>(<a href="#x15.9.1.10">HourFromTime</a>(<i>t</i>), <a href="#x15.9.1.10">MinFromTime</a>(<i>t</i>), <a href="#x15.9.1.10">SecFromTime</a>(<i>t</i>), <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <i>time</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol>
+	<h5 id="x15.9.5.30">15.9.5.30 Date.prototype.setSeconds (sec [, ms ] ) <a href="#x15.9.5.30">#</a> <a href="#x15.9.5.30-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>ms</i> не задано, this ведёт себя так, как если бы <i>ms</i> было задано значением&nbsp;<code><b>getMilliseconds()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет результатом <a href="#x15.9.1.9">LocalTime</a>(<a href="#this-time-value">значение времени this</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>s</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>sec</i>).</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> не задано, пусть <i>milli</i> будет <a href="#x15.9.1.10">msFromTime</a>(<i>t</i>); иначе  пусть <i>milli</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>date</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <a href="#x15.9.1.11">MakeTime</a>(<a href="#x15.9.1.10">HourFromTime</a>(<i>t</i>), <a href="#x15.9.1.10">MinFromTime</a>(<i>t</i>), <i>s</i>, <i>milli</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<i>date</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>u</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>u</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setSeconds</B></code> равно <b>2</b>.</p>
+	<h5 id="x15.9.5.31">15.9.5.31 Date.prototype.setUTCSeconds (sec [, ms ] ) <a href="#x15.9.5.31">#</a> <a href="#x15.9.5.31-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>ms</i> не задано, this ведёт себя так, как если бы <i>ms</i> было задано значением&nbsp;<code><b>getUTCMilliseconds()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>s</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>sec</i>).</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> не задано, пусть <i>milli</i> будет <a href="#x15.9.1.10">msFromTime</a>(<i>t</i>); иначе  пусть <i>milli</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>date</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <a href="#x15.9.1.11">MakeTime</a>(<a href="#x15.9.1.10">HourFromTime</a>(<i>t</i>), <a href="#x15.9.1.10">MinFromTime</a>(<i>t</i>), <i>s</i>, <i>milli</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setUTCSeconds</B></code> равно <b>2</b>.</p>
+	<h5 id="x15.9.5.32">15.9.5.32 Date.prototype.setMinutes (min [, sec [, ms ] ] ) <a href="#x15.9.5.32">#</a> <a href="#x15.9.5.32-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>sec</i> не задано, this ведёт себя так, как если бы <i>sec</i> было задано значением&nbsp;<code><b>getSeconds()</b></code>.</p>
+	<p>
+	Если <i>ms</i> не задано, this ведёт себя так, как если бы <i>ms</i> было задано значением&nbsp;<code><b>getMilliseconds()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет результатом <a href="#x15.9.1.9">LocalTime</a>(<a href="#this-time-value">значение времени this</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>min</i>).</p>
+		</li>
+		<li><p>
+		Если <i>sec</i> не задано, пусть <i>s</i> будет <a href="#x15.9.1.10">SecFromTime</a>(<i>t</i>); иначе, пусть <i>s</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>sec</i>).</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> не задано, пусть <i>milli</i> будет <a href="#x15.9.1.10">msFromTime</a>(<i>t</i>); иначе  пусть <i>milli</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>date</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <a href="#x15.9.1.11">MakeTime</a>(<a href="#x15.9.1.10">HourFromTime</a>(<i>t</i>), <i>m</i>, <i>s</i>, <i>milli</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<i>date</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>u</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>u</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setMinutes</B></code> равно <b>3</b>.</p>
+	<h5 id="x15.9.5.33">15.9.5.33 Date.prototype.setUTCMinutes (min [, sec [, ms ] ] ) <a href="#x15.9.5.33">#</a> <a href="#x15.9.5.33-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>sec</i> не задано, this ведёт себя так, как если бы <i>sec</i> было задано значением&nbsp;<code><b>getUTCSeconds()</b></code>.</p>
+	<p>
+	Если <i>ms</i> не задано, эта функция ведёт себя так, как если бы <i>ms</i> было задано значением, полученным посредством &nbsp;<code><b>getUTCMilliseconds()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>min</i>).</p>
+		</li>
+		<li><p>
+		Если <i>sec</i> не задано, пусть <i>s</i> будет <a href="#x15.9.1.10">SecFromTime</a>(<i>t</i>); иначе, пусть <i>s</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>sec</i>).</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> не задано, пусть <i>milli</i> будет <a href="#x15.9.1.10">msFromTime</a>(<i>t</i>); иначе  пусть <i>milli</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>date</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <a href="#x15.9.1.11">MakeTime</a>(<a href="#x15.9.1.10">HourFromTime</a>(<i>t</i>), <i>m</i>, <i>s</i>, <i>milli</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setUTCMinutes</B></code> равно <b>3</b>.</p>
+	<h5 id="x15.9.5.34">15.9.5.34 Date.prototype.setHours (hour [, min [, sec [, ms ] ] ] ) <a href="#x15.9.5.34">#</a> <a href="#x15.9.5.34-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>min</i> не задано, this ведёт себя так, как если бы <i>min</i> было задано значением&nbsp;<code><b>getMinutes()</b></code>.</p>
+	<p>
+	Если <i>sec</i> не задано, this ведёт себя так, как если бы <i>sec</i> было задано значением&nbsp;<code><b>getSeconds()</b></code>.</p>
+	<p>
+	Если <i>ms</i> не задано, this ведёт себя так, как если бы <i>ms</i> было задано значением&nbsp;<code><b>getMilliseconds()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет результатом <a href="#x15.9.1.9">LocalTime</a>(<a href="#this-time-value">значение времени this</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>h</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>hour</i>).</p>
+		</li>
+		<li><p>
+		Если <I>min</I> не задано, пусть <i>m</i> будет <a href="#x15.9.1.10">MinFromTime</a>(<i>t</i>); иначе  пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>min</i>).</p>
+		</li>
+		<li><p>
+		Если <i>sec</i> не задано, пусть <i>s</i> будет <a href="#x15.9.1.10">SecFromTime</a>(<i>t</i>); иначе, пусть <i>s</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>sec</i>).</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> не задано, пусть <i>milli</i> будет <a href="#x15.9.1.10">msFromTime</a>(<i>t</i>); иначе  пусть <i>milli</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>date</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <a href="#x15.9.1.11">MakeTime</a>(<i>h</i>, <i>m</i>, <i>s</i>, <i>milli</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<i>date</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>u</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>u</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setHours</B></code> равно <b>4</b>.</p>
+	<h5 id="x15.9.5.35">15.9.5.35 Date.prototype.setUTCHours (hour [, min [, sec [, ms ] ] ] ) <a href="#x15.9.5.35">#</a> <a href="#x15.9.5.35-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>min</i> не задано, this ведёт себя так, как если бы <i>min</i> было задано значением&nbsp;<code><b>getUTCMinutes()</b></code>.</p>
+	<p>
+	Если <i>sec</i> не задано, this ведёт себя так, как если бы <i>sec</i> было задано значением&nbsp;<code><b>getUTCSeconds()</b></code>.</p>
+	<p>
+	Если <i>ms</i> не задано, this ведёт себя так, как если бы <i>ms</i> было задано значением&nbsp;<code><b>getUTCMilliseconds()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>h</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>hour</i>).</p>
+		</li>
+		<li><p>
+		Если <I>min</I> не задано, пусть <i>m</i> будет <a href="#x15.9.1.10">MinFromTime</a>(<i>t</i>); иначе  пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>min</i>).</p>
+		</li>
+		<li><p>
+		Если <i>sec</i> не задано, пусть <i>s</i> будет <a href="#x15.9.1.10">SecFromTime</a>(<i>t</i>); иначе, пусть <i>s</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>sec</i>).</p>
+		</li>
+		<li><p>
+		Если <i>ms</i> не задано, пусть <i>milli</i> будет <a href="#x15.9.1.10">msFromTime</a>(<i>t</i>); иначе  пусть <i>milli</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>ms</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>newDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.2">Day</a>(<i>t</i>), <a href="#x15.9.1.11">MakeTime</a>(<i>h</i>, <i>m</i>, <i>s</i>, <i>milli</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<i>newDate</i>).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setUTCHours</B></code> равно <b>4</b>.</p>
+	<h5 id="x15.9.5.36">15.9.5.36 Date.prototype.setDate (date) <a href="#x15.9.5.36">#</a> <a href="#x15.9.5.36-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет результатом <a href="#x15.9.1.9">LocalTime</a>(<a href="#this-time-value">значение времени this</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>newDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<a href="#YearFromTime">YearFromTime</a>(<i>t</i>), <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>), <i>dt</i>), <a href="#x15.9.1.2">TimeWithinDay</a>(<i>t</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<i>newDate</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>u</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>u</i>.</p>
+	</li></ol>
+	<h5 id="x15.9.5.37">15.9.5.37 Date.prototype.setUTCDate (date) <a href="#x15.9.5.37">#</a> <a href="#x15.9.5.37-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>newDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<a href="#YearFromTime">YearFromTime</a>(<i>t</i>), <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>), <i>dt</i>), <a href="#x15.9.1.2">TimeWithinDay</a>(<i>t</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<i>newDate</i>).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol>
+	<h5 id="x15.9.5.38">15.9.5.38 Date.prototype.setMonth (month [, date ] ) <a href="#x15.9.5.38">#</a> <a href="#x15.9.5.38-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>date</i> не задано, this ведёт себя так, как если бы <i>date</i> было задано значением&nbsp;<code><b>getDate()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет результатом <a href="#x15.9.1.9">LocalTime</a>(<a href="#this-time-value">значение времени this</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>month</i>).</p>
+		</li>
+		<li><p>
+		Если <i>date</i> не задано, пусть <i>dt</i> будет <a href="#x15.9.1.5">DateFromTime</a>(<i>t</i>); в противном случае, пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>newDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<a href="#YearFromTime">YearFromTime</a>(<i>t</i>), <i>m</i>, <i>dt</i>), <a href="#x15.9.1.2">TimeWithinDay</a>(<i>t</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<i>newDate</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>u</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>u</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setMonth</B></code> равно <b>2</b>.</p>
+	<h5 id="x15.9.5.39">15.9.5.39 Date.prototype.setUTCMonth (month [, date ] ) <a href="#x15.9.5.39">#</a> <a href="#x15.9.5.39-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>date</i> не задано, this ведёт себя так, как если бы <i>date</i> было задано значением&nbsp;<code><b>getUTCDate()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">числовым значением this</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>month</i>).</p>
+		</li>
+		<li><p>
+		Если <i>date</i> не задано, пусть <i>dt</i> будет <a href="#x15.9.1.5">DateFromTime</a>(<i>t</i>); в противном случае, пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>newDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<a href="#YearFromTime">YearFromTime</a>(<i>t</i>), <i>m</i>, <i>dt</i>), <a href="#x15.9.1.2">TimeWithinDay</a>(<i>t</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<i>newDate</i>).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setUTCMonth</B></code> равно <b>2</b>.</p>
+	<h5 id="x15.9.5.40">15.9.5.40 Date.prototype.setFullYear (year [, month [, date ] ] ) <a href="#x15.9.5.40">#</a> <a href="#x15.9.5.40-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <I>month</I> не задано, this ведёт себя так, как если бы <i>month</i> было задано значением&nbsp;<code><b>getMonth()</b></code>.</p>
+	<p>
+	Если <i>date</i> не задано, this ведёт себя так, как если бы <i>date</i> было задано значением&nbsp;<code><b>getDate()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет результатом <a href="#x15.9.1.9">LocalTime</a>(<a href="#this-time-value">значение времени this </a>); но если <a href="#this-time-value">значение времени this</a> равно&nbsp;<b>NaN</b>, пусть <i>t</i> будет <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>y</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>year</i>).</p>
+		</li>
+		<li><p>
+		Если <I>month</I> не задано, пусть <i>m</i> будет <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>); иначе  пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>month</i>).</p>
+		</li>
+		<li><p>
+		Если <i>date</i> не задано, пусть <i>dt</i> будет <a href="#x15.9.1.5">DateFromTime</a>(<i>t</i>); в противном случае, пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>newDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<i>y</i>, <i>m</i>, <i>dt</i>), <a href="#x15.9.1.2">TimeWithinDay</a>(<i>t</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет <a href="#x15.9.1.14">TimeClip</a>(<a href="#x15.9.1.9">UTC</a>(<i>newDate</i>)).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>u</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>u</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setFullYear</B></code> равно <b>3</b>.</p>
+	<h5 id="x15.9.5.41">15.9.5.41 Date.prototype.setUTCFullYear (year [, month [, date ] ] ) <a href="#x15.9.5.41">#</a> <a href="#x15.9.5.41-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <I>month</I> не задано, this ведёт себя так, как если бы <i>month</i> было задано значением&nbsp;<code><b>getUTCMonth()</b></code>.</p>
+	<p>
+	Если <i>date</i> не задано, this ведёт себя так, как если бы <i>date</i> было задано значением&nbsp;<code><b>getUTCDate()</b></code>.</p>
+	<ol><li><p>
+		Пусть <i>t</i> будет <a href="#this-time-value">значением времени this </a>; но если <a href="#this-time-value">значение времени this </a> равно <b>NaN</b>, пусть <i>t</i> будет <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>y</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>year</i>).</p>
+		</li>
+		<li><p>
+		Если <I>month</I> не задано, пусть <i>m</i> будет <a href="#x15.9.1.4">MonthFromTime</a>(<i>t</i>); иначе  пусть <i>m</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>month</i>).</p>
+		</li>
+		<li><p>
+		Если <i>date</i> не задано, пусть <i>dt</i> будет <a href="#x15.9.1.5">DateFromTime</a>(<i>t</i>); в противном случае, пусть <i>dt</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>date</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>newDate</i> будет <a href="#x15.9.1.13">MakeDate</a>(<a href="#x15.9.1.12">MakeDay</a>(<i>y</i>, <i>m</i>, <i>dt</i>), <a href="#x15.9.1.2">TimeWithinDay</a>(<i>t</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>v</i> будет <a href="#x15.9.1.14">TimeClip</a>(<i>newDate</i>).</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[PrimitiveValue]] для <a href="#this-date-object">объекта this типа Date</a> значение <i>v</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>setUTCFullYear</B></code> равно <b>3</b>.</p>
+	<h5 id="x15.9.5.42">15.9.5.42 Date.prototype.toUTCString ( ) <a href="#x15.9.5.42">#</a> <a href="#x15.9.5.42-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение. Содержимое этой строки зависит от реализации, но оно должно представлять полную дату по UTC в формате, удобном для восприятия человеком.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Смысл заключается в том, чтобы получить строковое представление даты, более удобочитаемое, чем формат, указанный в пункте&nbsp;<a href="#x15.9.1.15">15.9.1.15</a>. Выбранный формат не обязательно должен быть недвусмысленным или легко подвергаться машинному разбору. Если реализация не предоставляет предпочтительного формата, удобного для восприятия человеком, рекомендуется использовать формат, указанный в пункте&nbsp;<a href="#x15.9.1.15">15.9.1.15</a>, но вместо символа &ldquo;<code>T</code>&rdquo; для разделения элементов даты и времени следует использовать пробел.</p>
+	<h5 id="x15.9.5.43">15.9.5.43 Date.prototype.toISOString ( ) <a href="#x15.9.5.43">#</a> <a href="#x15.9.5.43-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция возвращает строковое значение, обозначающее момент времени, представленный <a href="#this-date-object">объектом this типа Date</a>. Строка возвращается в Строковом формате &quot;дата-время&quot;, указанном в пункте&nbsp;<a href="#x15.9.1.15">15.9.1.15</a>. В строке присутствуют все поля. Часовым поясом всегда является UTC, о чём свидетельствует суффикс&nbsp;Z. Если значение времени этого объекта не является конечным числом, генерируется исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+	<h5 id="x15.9.5.44">15.9.5.44 Date.prototype.toJSON ( key ) <a href="#x15.9.5.44">#</a> <a href="#x15.9.5.44-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Эта функция обеспечивает строковое представление объекта&nbsp;Date для использования функцией <code><b>JSON.stringify</b></code> (<a href="x15.12.html#x15.12.3">15.12.3</a>).</p>
+	<p>
+	При вызове метода <code><b>toJSON</b></code> с аргументом <I>key </I>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O</i> будет результатом вызова <a href="x9.html#x9.9">ToObject</a>, с передачей значения <b>this</b> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>tv</i> будет <a href="x9.html#x9.1">ToPrimitive</a>(<i>O</i>, hint Number).</p>
+		</li>
+		<li><p>
+		Если <i>tv</i> является числом и не является конечным числом, вернуть <b>null</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>toISO</i> будет результатом вызова внутреннего метода [[Get]] для&nbsp;<i>O </i>с аргументом&nbsp;&quot;<code><b>toISOString</b></code>&quot;.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>toISO</i>) &ndash; <b>false</b>, сгенерировать исключение <b>TypeError</b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода&nbsp;[[Call]] для <i>toISO</i>, с <i>O </i>в качестве значения <b>this </b>и с пустым списком аргументов.</p>
+	</li></ol><p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Аргумент игнорируется.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Функция <code><B>toJSON</B></code> специально является родовой функцией. Она не требует, чтобы её значение this было объектом&nbsp;типа Date. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Однако она требует, чтобы все эти объекты имели метод <code><b>toISOString</b></code>. Объект может использовать аргумент <i>key</i> в качестве фильтра. 
+	</p>
+	<h4 id="x15.9.6">15.9.6 Свойства экземпляров Date <a href="#x15.9.6">#</a> <a href="#x15.9.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Экземпляры Date наследуют свойства объекта-прототипа Date. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;Date&quot;</b></code>. Кроме того, экземпляры Date имеют внутреннее свойство [[PrimitiveValue]].</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] является значением времени, представленным <a href="#this-date-object">объектом this типа Date</a>.</p>
+	</body><script src="anno.js"></script></html>

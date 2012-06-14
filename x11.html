@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>11 Выражения # &#9417; &#9402; &#9312; &#9398; &#8212;  ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x10.html" title="10 Исполняемый код и контексты исполнения " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x12.html" title="12 Инструкции " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x10.html">&#8592; 10 Исполняемый код и контексты исполнения </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x12.html">12 Инструкции  &#8594;</a>
+
+  <ol class="toc"><li>
+  <ol class="toc"><li><a href="x11.html#x11" id="x11-toc">11 Выражения</a>
+    <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.1" id="x11.1-toc">11.1 Первичные выражения </a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.1.1" id="x11.1.1-toc">11.1.1 Ключевое слово this</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.1.2" id="x11.1.2-toc">11.1.2 Ссылка на идентификатор</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.1.3" id="x11.1.3-toc">11.1.3 Ссылка на литерал</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.1.4" id="x11.1.4-toc">11.1.4 Инициализатор массива</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.1.5" id="x11.1.5-toc">11.1.5 Инициализатор объекта</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.1.6" id="x11.1.6-toc">11.1.6 Оператор группировки</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.2" id="x11.2-toc">11.2 Левосторонние выражения</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.2.1" id="x11.2.1-toc">11.2.1 Доступ к свойствам</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.2.2" id="x11.2.2-toc">11.2.2 Оператор new</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.2.3" id="x11.2.3-toc">11.2.3 Вызовы функции</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.2.4" id="x11.2.4-toc">11.2.4 Списки аргументов</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.2.5" id="x11.2.5-toc">11.2.5 Выражения функции</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.3" id="x11.3-toc">11.3 Постфиксные выражения</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.3.1" id="x11.3.1-toc">11.3.1 Постфиксный оператор инкремента</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.3.2" id="x11.3.2-toc">11.3.2 Постфиксный оператор декремента</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.4" id="x11.4-toc">11.4 Унарные операторы</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.4.1" id="x11.4.1-toc">11.4.1 Оператор delete</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.2" id="x11.4.2-toc">11.4.2 Оператор void</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.3" id="x11.4.3-toc">11.4.3 Оператор typeof</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.4" id="x11.4.4-toc">11.4.4 Префиксный оператор инкремента</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.5" id="x11.4.5-toc">11.4.5 Префиксный оператор декремента</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.6" id="x11.4.6-toc">11.4.6 Унарный оператор +</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.7" id="x11.4.7-toc">11.4.7 Унарный оператор -</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.8" id="x11.4.8-toc">11.4.8 Побитовый оператор НЕ ( ~ )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.4.9" id="x11.4.9-toc">11.4.9 Логический оператор НЕ ( ! )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.5" id="x11.5-toc">11.5 Мультипликативные операторы</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.5.1" id="x11.5.1-toc">11.5.1 Применение оператора *</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.5.2" id="x11.5.2-toc">11.5.2 Применение оператора /</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.5.3" id="x11.5.3-toc">11.5.3 Применение оператора %</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.6" id="x11.6-toc">11.6 Аддитивные операторы</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.6.1" id="x11.6.1-toc">11.6.1 Оператор сложения ( + )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.6.2" id="x11.6.2-toc">11.6.2 Оператор вычитания ( - )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.6.3" id="x11.6.3-toc">11.6.3 Применение аддитивных операторов к объектам типа Number</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.7" id="x11.7-toc">11.7 Операторы побитового сдвига</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.7.1" id="x11.7.1-toc">11.7.1 Оператор сдвига влево ( &lt;&lt; )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.7.2" id="x11.7.2-toc">11.7.2 Оператор знакового сдвига вправо ( &gt;&gt; )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.7.3" id="x11.7.3-toc">11.7.3 Оператор беззнакового сдвига вправо ( &gt;&gt;&gt; )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.8" id="x11.8-toc">11.8 Операторы отношения</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.8.1" id="x11.8.1-toc">11.8.1 Оператор 'Меньше чем' ( &lt; )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.8.2" id="x11.8.2-toc">11.8.2 Оператор 'Больше чем' ( &gt; )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.8.3" id="x11.8.3-toc">11.8.3 Оператор 'Меньше или равно' ( &lt;= )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.8.4" id="x11.8.4-toc">11.8.4 Оператор 'Больше или равно' ( &gt;= )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.8.5" id="x11.8.5-toc">11.8.5 Алгоритм сравнения абстрактного отношения</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.8.6" id="x11.8.6-toc">11.8.6 Оператор instanceof</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.8.7" id="x11.8.7-toc">11.8.7 Оператор in</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.9" id="x11.9-toc">11.9 Операторы равенства</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.9.1" id="x11.9.1-toc">11.9.1 Оператор 'Равно' ( == )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.9.2" id="x11.9.2-toc">11.9.2 Оператор 'Не равно' ( != )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.9.3" id="x11.9.3-toc">11.9.3 Алгоритм сравнения абстрактного равенства</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.9.4" id="x11.9.4-toc">11.9.4 Оператор строгого равенства ( === )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.9.5" id="x11.9.5-toc">11.9.5 Оператор строгого неравенства ( !== )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.9.6" id="x11.9.6-toc">11.9.6 Алгоритм сравнения строгого равенства</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.10" id="x11.10-toc">11.10 Бинарные побитовые операторы</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.11" id="x11.11-toc">11.11 Бинарные логические операторы</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.12" id="x11.12-toc">11.12 Условный оператор ( ? : )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.13" id="x11.13-toc">11.13 Операторы присваивания</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x11.html#x11.13.1" id="x11.13.1-toc">11.13.1 Простое присваивание ( = )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x11.html#x11.13.2" id="x11.13.2-toc">11.13.2 Составное присваивание ( op= )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x11.html#x11.14" id="x11.14-toc">11.14 Оператор 'Запятая' ( , )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></nav>
+
+    <h2 id="x11">11 Выражения <a href="#x11">#</a> <a href="#x11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+	<h3 id="x11.1">11.1 Первичные выражения <a href="#x11.1">#</a> <a href="#x11.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b>
+	</p>
+	<p class="keep">
+	<i>PrimaryExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>this</b></code> <i><br>Identifier<br>Literal<br>ArrayLiteral<br>ObjectLiteral<br></i><code><b>(</b></code> <i>Expression </i><code><b>)</b></code></p>
+	<h4 id="x11.1.1">11.1.1 Ключевое слово this <a href="#x11.1.1">#</a> <a href="#x11.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Ключевое слово <code><b>this</b></code> имеет значение ThisBinding текущего контекста исполнения.</p>
+	<h4 id="x11.1.2">11.1.2 Ссылка на идентификатор <a href="#x11.1.2">#</a> <a href="#x11.1.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления значения <i>Identifier</i> <tt>Идентификатор</tt> выполняется Разрешение идентификатора, описание которого приводится в пункте&nbsp;<a href="x10.html#x10.3.1">10.3.1</a>. Результат вычисления значения <i>Identifier</i> всегда имеет значение типа <a href="x8.html#x8.7">Reference</a>.</p>
+	<h4 id="x11.1.3">11.1.3 Ссылка на литерал <a href="#x11.1.3">#</a> <a href="#x11.1.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Вычисление значения <i>Literal</i> <tt>Литерал</tt> производится в соответствии с описанием в пункте&nbsp;<a href="x7.html#x7.8">7.8</a>.</p>
+	<h4 id="x11.1.4">11.1.4 Инициализатор массива <a href="#x11.1.4">#</a> <a href="#x11.1.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Инициализатор массива представляет собой выражение, описывающее инициализацию объекта Array, записанное в виде литерала. Это список выражений в количестве ноль или более, каждое из которых представляет <a href="x15.4.html#array-element">элемент массива</a>, заключенный в квадратные скобки. Эти элементы не обязательно должны быть литералами &ndash; их значения вычисляются каждый раз при вычислении инициализатора массива.</p>
+	<p>
+ <a href="x15.4.html#array-element">Элементы массива</a> могут быть пропущены в начале, в середине или в конце списка элементов. Если перед запятой в списке элементов отсутствует <i>AssignmentExpression</i> <tt>Выражение присваивания</tt> &ndash; т.&nbsp;е., запятая находится сразу в начале списка или непосредственно перед другой запятой &ndash; то пропущенный <a href="x15.4.html#array-element">элемент массива</a> увеличивает длину Array и индекс последующих элементов. Определение пропущенных <a href="x15.4.html#array-element">элементов массива</a> не производится. Элемент, пропущенный в конце массива, не увеличивает длину объекта Array.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ArrayLiteral </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>[</b></code> <i>Elision</i><sub>opt</sub><code></code><code><b>]<br>[</b></code> <i>ElementList</i><code></code><code><b>]<br>[</b></code> <i>ElementList <b>,</b> Elision</i><sub>opt</sub><code></code><code><b>]</b></code></p>
+	<p class="keep">
+	<i>ElementList </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Elision</i><sub>opt</sub><sub><code></code></sub><i>AssignmentExpression<br>ElementList </i><code><b>,</b></code> <i>Elision</i><sub>opt</sub><sub><code></code></sub><i>AssignmentExpression</i></p>
+	<p class="keep">
+	<i>Elision </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>,</b></code> <i><br>Elision </i><code><b>,</b></code></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>ArrayLiteral</i> <b>:</b>  <code><b>[</b></code> <i>Elision</i><sub>opt</sub><code></code><code><b>]</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>array </i><tt>массив</tt> будет результатом создания нового объекта, как если бы этот объект был создан выражением <code><b>new Array()</b></code>, где <code><B>Array</B></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>pad </i>будет результатом вычисления <i>Elision</i>&nbsp;<tt>Пропуск</tt>; если он отсутствует, использовать числовое значение ноль.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[Put]] для <i>array </i>с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, <i>pad</i> и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>array</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>ArrayLiteral</i> <b>:</b> <code><b>[</b></code> <i>ElementList</i><code></code><code>]</code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>ElementList</i> <tt>Список элементов</tt>.</p>
+	</li></ol><p>
+	Для вычисления <i>ArrayLiteral</i> <b>: </b><code><b>[</b></code> <i>ElementList</i> <code><b>,</b></code> <i> </i><i>Elision</i><sub>opt</sub><code></code><code><b>]</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>array </i>будет результатом вычисления <i>ElementList</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>pad </i>будет результатом вычисления <i>Elision</i>; если он отсутствует, использовать числовое значение ноль.</p>
+		</li>
+		<li><p>
+		Пусть <i>len </i>будет результатом вызова внутреннего метода [[Get]] для <i>array </i>с аргументом <code>&quot;</code><code><b>length</b></code><code>&quot;</code>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[Put]] для <i>array </i>с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, <a href="x9.html#x9.6">ToUint32</a>(<i>pad</i>+<i>len</i>) и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>array</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>ElementList</i> <b>:</b>  <i>Elision</i><sub>opt</sub><code></code><i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>array </i>будет результатом создания нового объекта, как если бы этот объект был создан выражением <code><b>new Array()</b></code>, где <code><B>Array</B></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>firstIndex </i>будет результатом вычисления <i>Elision</i>; если он отсутствует, использовать числовое значение ноль.</p>
+		</li>
+		<li><p>
+		Пусть <i>initResult </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>initValue </i>будет <a href="x8.html#x8.7.1">GetValue</a>(<i>initResult</i>).</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]]  для <i>array </i>с  аргументами <a href="x9.html#x9.8">ToString</a>(<i>firstIndex)</i>, <a href="x8.html#x8.10">Property Descriptor</a> { [[Value]]: <i>initValue</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>array</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>ElementList</i> <b>:</b>  <i>ElementList</i> <b>,</b> <i>Elision</i><sub>opt</sub><code></code><i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>array </i>будет результатом вычисления <i>ElementList</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>pad </i>будет результатом вычисления <i>Elision</i>; если он отсутствует, использовать числовое значение ноль.</p>
+		</li>
+		<li><p>
+		Пусть <i>initResult </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>initValue </i>будет <a href="x8.html#x8.7.1">GetValue</a>(<i>initResult</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>len </i>будет результатом вызова внутреннего метода [[Get]] для <i>array </i>с аргументом <code>&quot;</code><code><b>length</b></code><code>&quot;</code>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]]  для <i>array </i>с аргументами <a href="x9.html#x9.8">ToString</a>(<a href="x9.html#x9.6">ToUint32</a>((<i>pad</i>+<i>len</i>)) и <a href="x8.html#x8.10">Property Descriptor</a> { [[Value]]: <i>initValue</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>array</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>Elision</i> <b>:</b>  <b>,</b>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть числовое значение 1.</p>
+	</li></ol><p>
+	Для вычисления <i>Elision</i> <b>:</b>  <i>Elision</i> <b>,</b>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>preceding</i> будет результатом вычисления <i>Elision</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>preceding</i>+1.</p>
+	</li></ol><p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Использование внутреннего метода [[DefineOwnProperty]] позволяет обеспечить определение собственных свойства для этого массива, даже если стандартный встроенный объект-прототип Array был изменен таким образом, который препятствует созданию новых собственных свойств с использованием внутреннего метода&nbsp;[[Put]].</p>
+	<h4 id="x11.1.5">11.1.5 Инициализатор объекта <a href="#x11.1.5">#</a> <a href="#x11.1.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Инициализатор объекта представляет собой выражение, описывающее инициализацию Object, записанное в виде литерала. Это список из нуля или более пар из имен свойств и ассоциированных значений, заключенный в фигурные скобки. Эти значения не обязательно должны быть литералами &ndash; их вычисление производится каждый раз при вычислении инициализатора объекта.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ObjectLiteral </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>{ }</b></code> <i><br></i><code><b>{</b></code> <i>PropertyNameAndValueList</i><code></code><code><b>}<br>{</b></code> <i>PropertyNameAndValueList</i><code>, </code><code><b>}</b></code></p>
+	<p class="keep">
+	<i>PropertyNameAndValueList </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>PropertyAssignment<br>PropertyNameAndValueList</i><code></code><code><b>,</b></code><code></code><i>PropertyAssignment</i></p>
+	<p class="keep">
+	<i>PropertyAssignment</i><b>:</b></p>
+	<p class="def1-btm">
+	<i>PropertyName </i><code><b>:</b></code> <i>AssignmentExpression<br></i><code><b>get</b></code> <i>PropertyName </i><code><b>( )</b></code> <i> </i><code><b>{</b></code> <i>FunctionBody </i><code><b>}</b></code> <i><b><br></b></i><code><b>set</b></code> <i>PropertyName </i><code><b>(</b></code> <i>PropertySetParameterList </i><code><b>) {</b></code> <i> FunctionBody </i><code><b>}</b></code></p>
+	<p class="keep">
+	<i>PropertyName </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>IdentifierName<br>StringLiteral<br>NumericLiteral</i></p>
+	<p class="keep">
+	<i>PropertySetParameterList</i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Identifier</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>ObjectLiteral</i> <b>:</b>  <code><b>{</b></code><code></code><code><b>}</b></code>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть новый объект, как если бы он был создан выражением  <code><b>new Object()</b></code>, где <code>Object</code> является <a href="x15.2.html#x15.2">стандартным встроенным конструктором с этим именем</a>.</p>
+	</li></ol><p>
+	Для вычисления <i>ObjectLiteral</i> <b>:</b> <code><b>{</b></code><code></code><i>PropertyNameAndValueList</i> <code><b>}</b></code> и <br><i>ObjectLiteral</i> <b>:</b> <code><b>{</b></code><code></code><i>PropertyNameAndValueList</i> <code>,</code><code><b>}</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>PropertyNameAndValueList</i> <tt>Список имен свойств и значений</tt>.</p>
+	</li></ol><p>
+	Для вычисления <i>PropertyNameAndValueList</i> <b>:</b>  <i>PropertyAssignment</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>obj </i>будет результатом создания нового объекта, как если бы этот объект был создан выражением <code><b>new Object()</b></code>, где <code>Object</code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>propId </i>будет результатом вычисления <i>PropertyAssignment</i> <tt>Присваивания свойства</tt>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>obj</i> с аргументами <i>propId</i>.name, <i>propId</i>.descriptor и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>obj</i>.</p>
+	</li></ol><p>
+	Для вычисления <br><i>PropertyNameAndValueList</i> <b>:</b>  <i>PropertyNameAndValueList</i> <b>,</b> <i>PropertyAssignment</i><br>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>obj</i> будет результатом вычисления <i>PropertyNameAndValueList</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>propId </i>будет результатом вычисления <i>PropertyAssignment</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>previous</i> будет результатом вызова внутреннего метода [[GetOwnProperty]] для <i>obj</i> с аргументом <i>propId</i>.name.</p>
+		</li>
+		<li><p>
+		Если <i>previous</i> не является <b>undefined</b>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если какое-либо из перечисленных ниже условий является истинным:</p>
+		<ol><li><p>
+			Это правило содержится в <a href="x10.html#x10.1.1">строгом коде</a>, и при этом <a href="x8.html#x8.10.2">IsDataDescriptor</a>(<i>previous</i>) &ndash; <b>true</b> и <a href="x8.html#x8.10.2">IsDataDescriptor</a>(<i>propId</i>.descriptor) &ndash; <b>true</b>.</p>
+			</li>
+			<li><p>
+			<a href="x8.html#x8.10.2">IsDataDescriptor</a>(<i>previous</i>) равно <b>true</b> и <a href="x8.html#x8.10.1">IsAccessorDescriptor</a>(<i>propId</i>.descriptor) равно <b>true.</b></p>
+			</li>
+			<li><p>
+			<a href="x8.html#x8.10.1">IsAccessorDescriptor</a>(<i>previous</i>) равно <b>true</b> и <a href="x8.html#x8.10.2">IsDataDescriptor</a>(<i>propId</i>.descriptor) равно <b>true.</b></p>
+			</li>
+			<li><p>
+			<a href="x8.html#x8.10.1">IsAccessorDescriptor</a>(<i>previous</i>) равно <b>true </b>и <a href="x8.html#x8.10.1">IsAccessorDescriptor</a>(<i>propId</i>.descriptor) равно <b>true</b>, и при этом либо и <i>previous</i> и <i>propId</i>.descriptor имеют поля [[Get]], либо и <i>previous</i> и <i>propId</i>.descriptor имеют поля [[Set]].</p>
+		</li></ol></li></ol><ol start="5"><li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>obj</i> с аргументами <i>propId</i>.name, <i>propId</i>.descriptor и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>obj</i>.</p>
+	</li></ol><p>
+	Если при выполнении вышеперечисленных шагов будет сгенерировано исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, то реализация должна интерпретировать эту ошибку как раннюю ошибку (<a href="x16.html#x16">Глава&nbsp;16</a>).</p>
+	<p>
+	Для вычисления <i>PropertyAssignment</i> <b>:</b> <i>PropertyName</i> <code><b>:</b></code> <i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>propName </i>будет результатом вычисления <i>PropertyName</i> <tt>Имя свойства</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>exprValue </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>propValue </i>будет <a href="x8.html#x8.7.1">GetValue</a>(<i>exprValue</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>desc </i>будет <a href="x8.html#x8.10">Property Descriptor</a>{[[Value]]: <i>propValue</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>}.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#property-identifier">Property Identifier</a> (<i>propName</i>, <i>desc</i>).</p>
+	</li></ol><p>
+	Для вычисления <i>PropertyAssignment</i> <b>:</b> <code><b>get</b></code> <i>PropertyName</i> <code><b>( ) {</b></code> <i><a href="x13.html#x13">FunctionBody</a></i><code></code><code><b>}</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>propName </i>будет результатом вычисления <i>PropertyName</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>closure </i>будет результатом создания нового объекта Function в соответствии с описанием в пункте&nbsp;<a href="x13.html#x13.2">13.2</a>, с пустым списком параметров, при этом тело определено посредством&nbsp;<i><a href="x13.html#x13">FunctionBody</a></i>. Передать <a href="x10.html#x10.2">LexicalEnvironment</a> активного контекста исполнения в качестве области видимости <i>Scope</i>. Передать <b>true</b> в качестве флага <i>Strict</i>, если <i>PropertyAssignment</i> содержится в <a href="x10.html#x10.1.1">строгом коде</a>, или если <i><a href="x13.html#x13">FunctionBody</a></i> &ndash; <a href="x10.html#x10.1.1">строгий код</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>desc </i>будет <a href="x8.html#x8.10">Property Descriptor</a>{[[Get]]: <i>closure</i>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>}.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#property-identifier">Property Identifier</a> (<i>propName</i>, <i>desc</i>).</p>
+	</li></ol><p>
+	Для вычисления <i>PropertyAssignment</i> <b>:</b> <code><b>set</b></code> <i>PropertyName</i> <code><b>(</b></code> <i>PropertySetParameterList</i><code><b>)</b></code><code> </code><code><b>{</b></code><code></code><i><a href="x13.html#x13">FunctionBody</a></i> <code><b>}</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>propName </i>будет результатом вычисления <i>PropertyName</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>closure </i>будет результатом создания нового объекта Function в соответствии с описанием в пункте&nbsp;<a href="x13.html#x13.2">13.2</a>, с параметрами, заданными посредством <I>PropertySetParameterList</I> <tt>Список параметров набора свойств</tt>, при этом тело определено посредством&nbsp;<i><a href="x13.html#x13">FunctionBody</a></i>. Передать <a href="x10.html#x10.2">LexicalEnvironment</a> активного контекста исполнения в качестве области видимости <i>Scope</i>. Передать <b>true</b> в качестве флага <i>Strict</i>, если <i>PropertyAssignment</i> содержится в <a href="x10.html#x10.1.1">строгом коде</a>, или если <i><a href="x13.html#x13">FunctionBody</a></i> &ndash; <a href="x10.html#x10.1.1">строгий код</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>desc </i>будет <a href="x8.html#x8.10">Property Descriptor</a>{[[Set]]: <i>closure</i>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>}.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#property-identifier">Property Identifier</a> (<i>propName</i>, <i>desc</i>).</p>
+	</li></ol><p>
+	Если <i>Identifier</i> <code><b>&quot;eval&quot;</b></code> или <i>Identifier </i><code><b>&quot;arguments&quot;</b></code> встречается как <i>Identifier</i> в <i>PropertySetParameterList</i><code></code> для <i>PropertyAssignment</i>, который содержится в <a href="x10.html#x10.1.1">строгом коде</a>, или если его <i><a href="x13.html#x13">FunctionBody</a></i> &ndash; <a href="x10.html#x10.1.1">строгий код</a>, то генерируется исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a>.</b> </p>
+	<p>
+	Для вычисления <i>PropertyName</i> <b>: </b> <i>IdentifierName</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть строковое значение, содержащее такую же последовательность символов, что и <i>IdentifierName</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>PropertyName</i> <b>: </b> <i>StringLiteral</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть строковое значение <i>StringLiteral</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>PropertyName</i> <b>:</b> <i>NumericLiteral</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>nbr </i>будет результатом формирования значения <i>NumericLiteral</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x9.html#x9.8">ToString</a>(<i>nbr</i>).</p>
+	</li></ol>
+	<h4 id="x11.1.6">11.1.6 Оператор группировки <a href="#x11.1.6">#</a> <a href="#x11.1.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>PrimaryExpression</i> <b>:</b><i> </i><code><b>(</b></code> <i>Expression</i> <code><b>)</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>Expression</i> <tt>Выражение</tt>. Он может иметь тип Reference.</p>
+	</li></ol><p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Этот алгоритм не применяет операцию <a href="x8.html#x8.7.1">GetValue</a> к результату вычисления выражения. Основная причина заключается в том, чтобы к выражениям, заключенным в круглые скобки, могли применяться операторы <code><b>delete</b></code> и <code><b>typeof</b></code>.</p>
+	<h3 id="x11.2">11.2 Левосторонние выражения <a href="#x11.2">#</a> <a href="#x11.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>MemberExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>PrimaryExpression<br>FunctionExpression<br>MemberExpression </i><code><b>[</b></code> <i>Expression </i><code><b>]<br></b></code> <i>MemberExpression </i><code><b>.</b></code> <i>IdentifierName<br></i><code><b>new</b></code> <i>MemberExpression</i><code></code> <i>Arguments</i></p>
+	<p class="keep">
+	<i>NewExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>MemberExpression</i><code><b><br>new</b></code> <i>NewExpression</i></p>
+	<p class="keep">
+	<i>CallExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>MemberExpression</i><code></code> <i>Arguments</i><code><b><br></b></code> <i>CallExpression</i><code></code> <i>Arguments</i><code><b><br></b></code> <i>CallExpression </i><code><b>[</b></code> <i>Expression </i><code><b>]<br></b></code> <i>CallExpression </i><code><b>.</b></code> <i>IdentifierName</i></p>
+	<p class="keep">
+	<i>Arguments </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>(</b></code> <code><b>)<br>(</b></code> <i>ArgumentList  </i><code><b>)</b></code></p>
+	<p class="keep">
+	<i>ArgumentList </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>AssignmentExpression<br>ArgumentList </i><code><b>,</b></code> <i>AssignmentExpression</i></p>
+	<p class="keep">
+	<i>LeftHandSideExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>NewExpression<br>CallExpression</i></p>
+	<h4 id="x11.2.1">11.2.1 Доступ к свойствам <a href="#x11.2.1">#</a> <a href="#x11.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Доступ к свойствам осуществляется по имени. Для этого используется либо точечная запись (точечная нотация):</p>
+	<p class="code-example">
+	<i>MemberExpression </i><code><b>.</b></code> <i>IdentifierName<br>CallExpression </i><code><b>.</b></code> <i>IdentifierName</i></p>
+	<p class="sm-btm">
+	либо скобочная запись:</p>
+	<p class="code-example">
+	<i>MemberExpression </i><code><b>[</b></code> <i>Expression </i><code><b>]</b></code> <i><br>CallExpression </i><code><b>[</b></code> <i>Expression </i><code><b>]</b></code></p>
+	<p class="sm-btm">
+	Для объяснения точечной записи используется следующее синтаксическое преобразование: <br>Запись</p>
+	<p class="code-example">
+	<i>MemberExpression </i><code><b>.</b></code> <i>IdentifierName</i></p>
+	<p class="sm-btm">
+	по своему поведению тождественна записи</p>
+	<p class="code-example">
+	<i>MemberExpression </i><code><b>[</b></code> <i>&lt;identifier-name-string&gt; </i><code><b>]</b></code></p>
+	<p class="sm-btm">
+	Аналогично, запись</p>
+	<p class="code-example">
+	<i>CallExpression </i><code><b>.</b></code> <i>IdentifierName</i></p>
+	<p>
+	по своему поведению тождественна записи</p>
+	<p class="code-example">
+	<i>CallExpression </i><code><b>[</b></code> <i>&lt;identifier-name-string&gt; </i><code><b>]</b></code></p>
+	<p>
+	где <i>&lt;identifier-name-string&gt;</i> <tt>строка имени идентификатора</tt> &ndash; строковый литерал, содержащий после обработки юникодных управляющих последовательностей такую же последовательность символов, что и <i>IdentifierName</i>.</p>
+	<p>
+	Для вычисления <i>MemberExpression</i> <b>:</b> <i>MemberExpression</i> <code><b>[</b></code> <i>Expression</i> <code><b>]</b></code> выполняются следующие шаги</p>
+	<ol><li><p>
+		Пусть <i>baseReference </i>будет результатом вычисления <i>MemberExpression</i> <tt>Выражение элемента</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>baseValue</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>baseReference</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>propertyNameReference </i><tt>Ссылка на имя свойства</tt> будет результатом вычисления <i>Expression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>propertyNameValue</i> <tt>Значение имени свойства</tt> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>propertyNameReference</i>).</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x9.html#x9.10">CheckObjectCoercible</a>(<i>baseValue</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>propertyNameString</i> <tt>Строка с именем свойства</tt> будет <a href="x9.html#x9.8">ToString</a>(<i>propertyNameValue</i>).</p>
+		</li>
+		<li><p>
+		Если преобразуемое синтаксическое правило содержится в <a href="x10.html#x10.1.1" class="term-ref">коде в строгом режиме</a>, то пусть <i>strict</i> будет <b>true</b>, иначе пусть <i>strict</i> будет <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть значение типа <a href="x8.html#x8.7">Reference</a> со значением базы <i>baseValue</i>, с именем ссылки <i>propertyNameString</i> и с флагом строгого режима&nbsp;<i>strict</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>CallExpression</i> <b>:</b><i> </i><i>CallExpression</i> <code><b>[</b></code> <i>Expression</i> <code><b>]</b></code> выполняются точно такие же шаги, за исключением того, что в шаге&nbsp;1 вычисляется вложенное <i>CallExpression</i>.</p>
+	<h4 id="x11.2.2">11.2.2 Оператор new <a href="#x11.2.2">#</a> <a href="#x11.2.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>NewExpression</i> <b>:</b><i> </i><code><b>new</b></code> <i>NewExpression</i> выполняются следующие шаги</p>
+	<ol><li><p>
+		Пусть <i>ref </i>будет результатом вычисления <i>NewExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>constructor</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>ref</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>constructor</i>) &ndash; не Object, сгенерировать исключение <a href="x15.11.html#x15.11.6.5" class="term-ref"><B>TypeError</B></a>.</p>
+		</li>
+		<li><p>
+		Если <i>constructor</i> не реализует внутренний метод [[Construct]], сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Construct]] для <i>constructor</i>, без передачи аргументов (то есть, с пустым списком аргументов).</p>
+	</li></ol><p>
+	Для вычисления <i>MemberExpression</i> <b>:</b> <code><b>new</b></code> <i>MemberExpression</i> <i>Arguments</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>ref </i>будет результатом вычисления <i>MemberExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>constructor</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>ref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>argList</i> будет результатом вычисления <i>Arguments</i> с созданием внутреннего списка значений аргументов&nbsp;(<a href="#x11.2.4">11.2.4</a>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>constructor</i>) &ndash; не Object, сгенерировать исключение <a href="x15.11.html#x15.11.6.5" class="term-ref"><B>TypeError</B></a>.</p>
+		</li>
+		<li><p>
+		Если <i>constructor</i> не реализует внутренний метод [[Construct]], сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Construct]] для <i>constructor</i>, передавая в качестве значений аргументов <i>argList</i>.</p>
+	</li></ol>
+	<h4 id="x11.2.3">11.2.3 Вызовы функции <a href="#x11.2.3">#</a> <a href="#x11.2.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>CallExpression</i> <b>:</b> <i>MemberExpression</i> <i>Arguments</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>ref </i>будет результатом вычисления <i>MemberExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>func</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>ref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>argList</i> будет результатом вычисления <i>Arguments</i> с созданием внутреннего списка значений аргументов&nbsp;(см.&nbsp;<a href="#x11.2.4">11.2.4</a>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>func</i>) &ndash; не Object, сгенерировать исключение <a href="x15.11.html#x15.11.6.5" class="term-ref"><B>TypeError</B></a>.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>func</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>ref</i>) &ndash; <a href="x8.html#x8.7">Reference</a>, то</p>
+		<ol><li><p>
+			Если <a href="x8.html#IsPropertyReference">IsPropertyReference</a>(<i>ref</i>) &ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>thisValue</i> будет <a href="x8.html#GetBase">GetBase</a>(<i>ref</i>).</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, база для <i>ref</i> &ndash; <a href="x10.html#x10.2.1">Environment Record</a></p>
+			<ol><li><p>
+				Пусть <i>thisValue</i> будет результатои вызова конкретного метода ImplicitThisValue для <a href="x8.html#GetBase">GetBase</a>(ref).</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Иначе, <a href="x8.html#Type">Type</a>(<i>ref</i>) не является <a href="x8.html#x8.7">Reference</a>.</p>
+		<ol><li><p>
+			Пусть <i>thisValue</i> будет <b>undefined</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода для  <i>func</i>, передавая <i>thisValue</i> в качестве значения&nbsp;<b>this</b>, и передавая список&nbsp;<i>argList</i> в качестве значений аргумента.</p>
+	</li></ol><p>
+	Для вычисления <i>CallExpression</i> <b>:</b> <i><i>CallExpression</i> <i>Arguments</i></i> выполняются точно такие же шаги, за исключением того, что в шаге&nbsp;1 вычисляется вложенное <i>CallExpression</i>.</p>
+	<p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Возвращаемый результат не будет иметь тип <a href="x8.html#x8.7">Reference</a>, если <i>func</i> представляет собой родной объект ECMAScript. Может ли вызываемый объект среды вернуть значение типа <a href="x8.html#x8.7">Reference</a>, зависит от реализации. Если возвращается значение типа <a href="x8.html#x8.7">Reference</a>, оно должно быть нестрогой <a href="x8.html#x8.7">ссылкой</a> на свойство.</p>
+	<h4 id="x11.2.4">11.2.4 Списки аргументов <a href="#x11.2.4">#</a> <a href="#x11.2.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	В результате вычисления списка аргументов получается список значений типа <a href="x8.html#x8.8">List</a> (см.&nbsp;<a href="x8.html#x8.8">8.8</a>).</p>
+	<p>
+	Для вычисления <i>Arguments </i><b>:</b> <code><b>( )</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть пустой список <a href="x8.html#x8.8">List</a>.</p>
+	</li></ol><p>
+	Для вычисления <i>Arguments </i><b>:</b><i> </i><code><b>(</b></code> <i>ArgumentList</i> <code><b>)</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>ArgumentList</i> <tt>Список аргументов</tt>.</p>
+	</li></ol><p>
+	Для вычисления <i>ArgumentList</i> <b>:</b><code><b></b></code> <i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>ref </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>arg</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>ref</i>).</p>
+		</li>
+		<li><p>
+		Вернуть список <a href="x8.html#x8.8">List</a> с единственным элементом&nbsp;<i>arg</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>ArgumentList</i> <b>:</b><code><b></b></code> <i>ArgumentList</i><code><b>,</b></code> <i>AssignmentExpression</i><code></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>precedingArgs</i> будет результатом вычисления <i>ArgumentList</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>ref </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>arg</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>ref</i>).</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#x8.8">List</a>, длина которого на одну единицу больше длины <i>precedingArgs</i>, элементы которого являются элементами <i>precedingArgs</i> по порядку, после которых находится <i>arg</i>, который является последним элементом нового списка.</p>
+	</li></ol>
+	<h4 id="x11.2.5">11.2.5 Выражения функции <a href="#x11.2.5">#</a> <a href="#x11.2.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>MemberExpression</i> <b>:</b> <i>FunctionExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>FunctionExpression</i> <tt>Выражение функции</tt>.</p>
+	</li></ol>
+	<h3 id="x11.3">11.3 Постфиксные выражения <a href="#x11.3">#</a> <a href="#x11.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>PostfixExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i><i>LeftHandSideExpression<br>LeftHandSideExpression</i></i><code></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <code><b>++</b></code> <i><br>LeftHandSideExpression</i><code></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <code><b>--</b></code></p>
+	<h4 id="x11.3.1">11.3.1 Постфиксный оператор инкремента <a href="#x11.3.1">#</a> <a href="#x11.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>PostfixExpression</i> <b>:</b> <i>LeftHandSideExpression</i><code></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a><code> </code><code><b>++</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lhs </i>будет результатом вычисления <i>LeftHandSideExpression</i> <tt>Левостороннее выражение</tt>.</p>
+		</li>
+		<li><p>
+		Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если все следующие условия являются истинными:</p>
+	<ul><li><p>
+		<a href="x8.html#Type">Type</a>(<i>lhs</i>) равно <a href="x8.html#x8.7">Reference</a> равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>lhs</i>) равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#Type">Type</a>(<a href="x8.html#GetBase">GetBase</a>(<i>lhs</i>)) равно <a href="x10.html#x10.2.1">Environment Record</a></p>
+		</li>
+		<li><p>
+		<a href="x8.html#GetReferencedName">GetReferencedName</a>(<i>lhs</i>) равно либо <code><b>&quot;eval&quot;</b></code>, либо <code><b> &quot;arguments&quot;</b></code></p>
+	</li></ul></li></ol><ol start="3"><li><p>
+		Пусть <i>oldValue</i> <tt>Старое значение</tt> будет <a href="x9.html#x9.3">ToNumber</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>lhs</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>newValue</i> <tt>Новое значение</tt> будет результатом прибавления значения&nbsp;<code><b>1</b></code> к значению <i>oldValue</i>, с применением таких же правил, что и для оператора <code><b>+</b></code>&nbsp;(см. пункт.&nbsp;<a href="#x11.6.3">11.6.3</a>).</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>lhs</i>, <i>newValue</i>).</p>
+		</li>
+		<li><p>
+		Вернуть <i>oldValue</i>.</p>
+	</li></ol>
+	<h4 id="x11.3.2">11.3.2 Постфиксный оператор декремента <a href="#x11.3.2">#</a> <a href="#x11.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>PostfixExpression</i> <b>:</b> <i>LeftHandSideExpression</i><code></code><code>[no <i>LineTerminator</i> here]</code><b> </b><code><b>--</b> </code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lhs </i>будет результатом вычисления <i>LeftHandSideExpression</i> <tt>Левостороннее выражение</tt>.</p>
+		</li>
+		<li><p>
+		Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если все следующие условия являются истинными:</p>
+	<ul><li><p>
+		<a href="x8.html#Type">Type</a>(<i>lhs</i>) равно <a href="x8.html#x8.7">Reference</a> равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>lhs</i>) равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#Type">Type</a>(<a href="x8.html#GetBase">GetBase</a>(<i>lhs</i>)) равно <a href="x10.html#x10.2.1">Environment Record</a></p>
+		</li>
+		<li><p>
+		<a href="x8.html#GetReferencedName">GetReferencedName</a>(<i>lhs</i>) равно либо <code><b>&quot;eval&quot;</b></code>, либо <code><b> &quot;arguments&quot;</b></code></p>
+	</li></ul></li></ol><ol start="3"><li><p>
+		Пусть <i>oldValue</i> будет <a href="x9.html#x9.3">ToNumber</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>lhs</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>newValue</i> будет результатом вычитания значения&nbsp;<code><b>1</b></code> из значения <i>oldValue</i>, с применением таких же правил, что и для оператора <code><b>-</b></code>&nbsp;(см. пункт.&nbsp;<a href="#x11.6.3">11.6.3</a>).</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>lhs</i>, <i>newValue</i>).</p>
+		</li>
+		<li><p>
+		Вернуть <i>oldValue</i>.</p>
+	</li></ol>
+	<h3 id="x11.4">11.4 Унарные операторы <a href="#x11.4">#</a> <a href="#x11.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>UnaryExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>PostfixExpression</i><code><b><br>delete</b></code> <i>UnaryExpression<br></i><code><b>void</b></code> <i>UnaryExpression<br></i><code><b>typeof</b></code> <i>UnaryExpression</i><code><b><br>++</b></code> <i>UnaryExpression<br></i><code><b>--</b></code> <i>UnaryExpression<br></i><code><b>+</b></code> <i>UnaryExpression<br></i><code><b>-</b></code> <i>UnaryExpression<br></i><code><b>~</b></code> <i>UnaryExpression<br></i><code><b>!</b></code> <i>UnaryExpression</i></p>
+	<h4 id="x11.4.1">11.4.1 Оператор delete <a href="#x11.4.1">#</a> <a href="#x11.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b> <code><b>delete</b></code> <i>UnaryExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>ref </i>будет результатом вычисления <i>UnaryExpression</i> <tt>Унарное выражение</tt>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>ref</i>) не является <a href="x8.html#x8.7">Reference</a>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#IsUnresolvableReference">IsUnresolvableReference</a>(<i>ref</i>), то</p>
+		<ol><li><p>
+			Если <a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>ref</i>) &ndash; <b>true</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+			</li>
+			<li><p>
+			Иначе, вернуть <B>true</B>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <a href="x8.html#IsPropertyReference">IsPropertyReference</a>(<i>ref</i>) &ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Вернуть результат вызова внутреннего метода [[Delete]] для абстрактной операции <a href="x9.html#x9.9">ToObject</a>(<a href="x8.html#GetBase">GetBase</a>(<i>ref</i>)), передавая в качестве аргументов <a href="x8.html#GetReferencedName">GetReferencedName</a>(<i>ref</i>) и <a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>ref</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>ref</i> является ссылкой <a href="x8.html#x8.10">Reference</a> на привязку к среде окружения <a href="x10.html#x10.2.1">Environment Record</a>, поэтому</p>
+		<ol><li><p>
+			Если <a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>ref</i>) &ndash; <b>true</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+			</li>
+			<li><p>
+			Пусть <i>bindings</i> будет <a href="x8.html#GetBase">GetBase</a>(<i>ref</i>).</p>
+			</li>
+			<li><p>
+			Вернуть результат вызова конкретного метода DeleteBinding для <i>bindings</i>, передавая в качестве аргумента <a href="x8.html#GetReferencedName">GetReferencedName</a>(<i>ref</i>).</p>
+		</li></ol></li></ol><p><b class="note">ПРИМЕЧАНИЕ</b> Если оператор <code><b>delete</b></code> встречается в рамках <a href="x10.html#x10.1.1" class="term-ref">кода в строгом режиме</a>, генерируется исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если его <i>UnaryExpression</i> является прямой ссылкой на переменную, аргумент функции или имя функции. Кроме того, исключение <b>TypeError </b>генерируется, если оператор <code><b>delete</b></code> встречается в рамках <a href="x10.html#x10.1.1" class="term-ref">кода в строгом режиме</a>, и при этом свойство, подлежащее удалению, имеет атрибут { [[Configurable]]: <b>false</b> }.</p>
+	<h4 id="x11.4.2">11.4.2 Оператор void <a href="#x11.4.2">#</a> <a href="#x11.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b> <code><b>void</b></code> <i>UnaryExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>expr </i>будет результатом вычисления <i>UnaryExpression</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.1">GetValue</a>(<i>expr</i>).</p>
+		</li>
+		<li><p>
+		Вернуть <b>undefined</b>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Несмотря на то, что значение абстрактной операции <a href="x8.html#x8.7.1">GetValue</a> не используется, её необходимо вызвать, поскольку она может иметь наблюдаемые побочные эффекты.</p>
+	<h4 id="x11.4.3">11.4.3 Оператор typeof <a href="#x11.4.3">#</a> <a href="#x11.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b> <code><b>typeof</b></code> <i>UnaryExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>val </I>будет результатом вычисления <i>UnaryExpression</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>val</i>) &ndash; <a href="x8.html#x8.10">Reference</a>, то</p>
+		<ol><li><p>
+			Если <a href="x8.html#IsUnresolvableReference">IsUnresolvableReference</a>(<i>val</i>) &ndash; <b>true</b>, вернуть <code><b>&quot;undefined&quot;</b></code>.</p>
+			</li>
+			<li><p>
+			Пусть <i>val </i>будет <a href="x8.html#x8.7.1">GetValue</a>(<i>val</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть строку в зависимости от типа <a href="x8.html#Type">Type</a>(<i>val</i>), в соответствии с Таблицей&nbsp;20.</p>
+	</li></ol><center>
+		<table width="479" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 20. Результаты&nbsp;оператора typeof</caption>
+			<colgroup><col width="186"><col width="259"></colgroup><tbody><tr valign="TOP"><td width="186" height="10" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Тип для </span></b></i><i><span class="table-header">val</span></i></p>
+				</td>
+				<td width="259" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="259">
+					<p>
+					<code><b>&quot;undefined&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>
+					Null</p>
+				</td>
+				<td width="259">
+					<p>
+					<code><b>&quot;object&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="259">
+					<p>
+					<code><b>&quot;boolean&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>
+					Number</p>
+				</td>
+				<td width="259">
+					<p>
+					<code><b>&quot;number&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>
+					String</p>
+				</td>
+				<td width="259">
+					<p>
+					<code><b>&quot;string&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>
+					Object (родной объект, не реализует [[Call]])</p>
+				</td>
+				<td width="259">
+					<p>
+					<code><b>&quot;object&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>Object (родной объект или объект среды, реализует [[Call]])</p>
+				</td>
+				<td width="259">
+					<p><code><b>&quot;function&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="186">
+					<p>Object (объект среды, не реализует [[Call]])</p>
+				</td>
+				<td width="259">
+					<p>
+					Зависит от реализации, но не может быть <code><b>&quot;undefined&quot;</b></code>, <code><b>&quot;boolean&quot;</b></code>, <code><b>&quot;number</b></code>&quot; или <code><b> &quot;string&quot;</b></code>.</p>
+				</td>
+			</tr></tbody></table></center>
+	<h4 id="x11.4.4">11.4.4 Префиксный оператор инкремента <a href="#x11.4.4">#</a> <a href="#x11.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для выполнения <i>UnaryExpression</i> <b>:</b><i> </i><code><b><b>++</b></b></code> <i>UnaryExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>expr </i>будет результатом вычисления UnaryExpression.</p>
+		</li>
+		<li><p>
+		Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если все следующие условия являются истинными:</p>
+	<ul><li><p>
+		<a href="x8.html#Type">Type</a>(<i>expr</i>) равно <a href="x8.html#x8.7">Reference</a> равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>expr</i>) равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#Type">Type</a>(<a href="x8.html#GetBase">GetBase</a>(<i>expr</i>)) равно <a href="x10.html#x10.2.1">Environment Record</a></p>
+		</li>
+		<li><p>
+		<a href="x8.html#GetReferencedName">GetReferencedName</a>(<i>expr</i>) равно либо <code><b>&quot;eval&quot;</b></code>, либо <code><b> &quot;arguments&quot;</b></code></p>
+	</li></ul></li></ol><ol start="3"><li><p>
+		Пусть <i>oldValue</i> будет <a href="x9.html#x9.3">ToNumber</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>expr</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>newValue</i> будет результатом прибавления значения&nbsp;<code><b>1</b></code> к значению <i>oldValue</i>, с применением таких же правил, что и для оператора&nbsp;<code><b>+</b></code>&nbsp;(см. пункт.&nbsp;<a href="#x11.6.3">11.6.3</a>).</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>expr</i>, <i>newValue</i>).</p>
+		</li>
+		<li><p>
+		Вернуть <i>newValue</i>.</p>
+	</li></ol>
+	<h4 id="x11.4.5">11.4.5 Префиксный оператор декремента <a href="#x11.4.5">#</a> <a href="#x11.4.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b><i> </i><code><b><b>--</b></b></code> <i>UnaryExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>expr </i>будет результатом вычисления UnaryExpression.</p>
+		</li>
+		<li><p>
+		Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если все следующие условия являются истинными:</p>
+	<ul><li><p>
+		<a href="x8.html#Type">Type</a>(<i>expr</i>) равно <a href="x8.html#x8.7">Reference</a> равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>expr</i>) равно <b>true</b></p>
+		</li>
+		<li><p>
+		<a href="x8.html#Type">Type</a>(<a href="x8.html#GetBase">GetBase</a>(<i>expr</i>)) равно <a href="x10.html#x10.2.1">Environment Record</a></p>
+		</li>
+		<li><p>
+		<a href="x8.html#GetReferencedName">GetReferencedName</a>(<i>expr</i>) равно либо <code><b>&quot;eval&quot;</b></code>, либо <code><b> &quot;arguments&quot;</b></code></p>
+	</li></ul></li></ol><ol start="3"><li><p>
+		Пусть <i>oldValue</i> будет <a href="x9.html#x9.3">ToNumber</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>expr</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>newValue</i> будет результатом вычитания значения&nbsp;<code><b>1</b></code> из значения <i>oldValue</i>, с применением таких же правил, что и для оператора&nbsp;<code><b>-</b></code>&nbsp;(см. пункт.&nbsp;<a href="#x11.6.3">11.6.3</a>).</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>expr</i>, <i>newValue</i>).</p>
+		</li>
+		<li><p>
+		Вернуть <i>newValue</i>.</p>
+	</li></ol>
+	<h4 id="x11.4.6">11.4.6 Унарный оператор + <a href="#x11.4.6">#</a> <a href="#x11.4.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Унарный оператор + преобразует свой операнд в тип&nbsp;Number.</p>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b><i> </i><code><b>+</b></code> UnaryExpression выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>expr </i>будет результатом вычисления UnaryExpression.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x9.html#x9.3">ToNumber</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>expr</i>)).</p>
+	</li></ol>
+	<h4 id="x11.4.7">11.4.7 Унарный оператор - <a href="#x11.4.7">#</a> <a href="#x11.4.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Унарный оператор <code><b>-</b></code> преобразует свой операнд в тип&nbsp;Number, а затем выполняет операцию отрицания. Обратите внимание, что при отрицании <b>+0</b> получается <span class="symbol"><b>&#8722;</b></span><b>0</b>, а при отрицании <span class="symbol"><b>&#8722;</b></span><b>0</b> получается <b>+0</b>.</p>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b><i> </i><code><b><b>-</b></b></code> <i>UnaryExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>expr </i>будет результатом вычисления UnaryExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>oldValue</i> будет <a href="x9.html#x9.3">ToNumber</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>expr</i>)).</p>
+		</li>
+		<li><p>
+		Если <i>oldValue</i> равно <b>NaN</b>, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат отрицания&nbsp;<i>oldValue</i>; то есть, вычислить числовое значение такой же величины по модулю, но с противоположным знаком.</p>
+	</li></ol>
+	<h4 id="x11.4.8">11.4.8 Побитовый оператор НЕ ( ~ ) <a href="#x11.4.8">#</a> <a href="#x11.4.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b><i> </i><code><b>~</b></code> UnaryExpression выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>expr </i>будет результатом вычисления UnaryExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>oldValue</i> будет <a href="x9.html#x9.5">ToInt32</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>expr</i>)).</p>
+		</li>
+		<li><p>
+		Вернуть результат применения к <i>oldValue</i> побитового дополнения. Результат является знаковым 32-битовым целым.</p>
+	</li></ol>
+	<h4 id="x11.4.9">11.4.9 Логический оператор НЕ ( ! ) <a href="#x11.4.9">#</a> <a href="#x11.4.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b><i> </i><code><b>!</b></code> <I>UnaryExpression выполняются следующие шаги:</I></p>
+	<ol><li><p>
+		Пусть <i>expr </i>будет результатом вычисления UnaryExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>oldValue</i> будет <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>expr</i>)).</p>
+		</li>
+		<li><p>
+		Если <i>oldValue</i> равно <B>true</B>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>true</b>.</p>
+	</li></ol>
+	<h3 id="x11.5">11.5 Мультипликативные операторы <a href="#x11.5">#</a> <a href="#x11.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>MultiplicativeExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>UnaryExpression<br>MultiplicativeExpression </i><code><b>*</b></code> <i>UnaryExpression<br>MultiplicativeExpression </i><code><b>/</b></code> <i>UnaryExpression<br>MultiplicativeExpression </i><code><b>%</b></code> <i>UnaryExpression</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>MultiplicativeExpression </i><b>:</b><i> </i><i>MultiplicativeExpression</i><i>@ </i><i>UnaryExpression</i>, где @ означает один из операторов в приведенных выше определениях, выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>left </i>будет результатом вычисления MultiplicativeExpression <tt>Мультипликативное выражение</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>leftValue</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>left</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>right </i>будет результатом вычисления UnaryExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>rightValue</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>right</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>leftNum</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>leftValue</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rightNum</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>rightValue</i>).</p>
+		</li>
+		<li><p>
+		Вернуть результат применения заданного оператора (*, /, or %) к <i>leftNum</i> или <i>rightNum</i>. См. примечания, приведенные далее в пунктах&nbsp;<a href="#x11.5.1">11.5.1</a>, <a href="#x11.5.2">11.5.2</a>, <a href="#x11.5.3">11.5.3</a>.</p>
+	</li></ol>
+	<h4 id="x11.5.1">11.5.1 Применение оператора * <a href="#x11.5.1">#</a> <a href="#x11.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Оператор <code><b>*</b></code> выполняет умножение, результатом которого является произведение его операндов. Умножение является коммутативным. Из-за конечной точности вычислений умножение в ECMAScript не всегда ассоциативно.</p>
+	<p>Результат произведения чисел с плавающей точкой обусловлен правилами стандарта IEEE&nbsp;754 для двоичной арифметики двойной точности:</p>
+	<ul><li><p>
+			Если один из операндов &ndash; <b>NaN</b>, результат равен <b>NaN</b>.</p>
+			</li>
+			<li><p>
+			Если оба операнда имеют одинаковые знаки, произведение является положительным. Если операнды имеют разные знаки, произведение является отрицательным.</p>
+			</li>
+			<li><p>
+			При умножении бесконечности на ноль получается&nbsp;<b>NaN</b>.</p>
+			</li>
+			<li><p>
+			При умножении бесконечности на бесконечность получается&nbsp;бесконечность. Знак, получаемый при этом, обусловлен правилом, описанным выше.</p>
+			</li>
+			<li><p>
+			При умножении бесконечности на конечное ненулевое значение получается&nbsp;бесконечность со знаком. Знак, получаемый при этом, обусловлен правилом, описанным выше.</p>
+			</li>
+			<li><p>
+			В остальных случаях, когда в операции умножения не участвуют ни бесконечность, ни NaN, произведение вычисляется и округляется до ближайшего представимого значения с использованием &quot;режима округления до ближайшего значения&quot; в соответствии со стандартом IEEE&nbsp;754. Если значение слишком велико для представления, то результатом будет являться бесконечность с соответствующим знаком. Если значение слишком мало для представления, то результатом будет являться ноль с соответствующим знаком. Язык ECMAScript требует поддержки потери значимости в соответствии со стандартом IEEE&nbsp;754.</p>
+	</li></ul>
+	<h4 id="x11.5.2">11.5.2 Применение оператора / <a href="#x11.5.2">#</a> <a href="#x11.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>Оператор <code><b>/</b></code> выполняет деление, результатом которого является отношение его операндов. Левый операнд является делимым, а правый &ndash; делителем. Целочисленное деление в ECMAScript не производится. Операнды и результаты всех операций деления являются числами с плавающей точкой двойной точности. Результат деления обусловлен правилами арифметики в соответствии со стандартом IEEE&nbsp;754:</p>
+	<ul><li><p>
+			Если один из операндов &ndash; <b>NaN</b>, результат равен <b>NaN</b>.</p>
+			</li>
+			<li><p>
+			Если оба операнда имеют одинаковые знаки, результат деления является положительным. Если операнды имеют разные знаки, результат деления является отрицательным.</p>
+			</li>
+			<li><p>
+			При делении бесконечности на бесконечность результат равен <B>NaN</B>.</p>
+			</li>
+			<li><p>
+			При делении бесконечности на ноль результатом является&nbsp;бесконечность. Знак, получаемый при этом, обусловлен правилом, описанным выше.</p>
+			</li>
+			<li><p>
+			При делении бесконечности на конечное ненулевое значение получается&nbsp;бесконечность со знаком. Знак, получаемый при этом, обусловлен правилом, описанным выше.</p>
+			</li>
+			<li><p>
+			При делении конечного значения на бесконечность результат равен нулю. Знак, получаемый при этом, обусловлен правилом, описанным выше.</p>
+			</li>
+			<li><p>
+			При делении нуля на ноль получается&nbsp;<b>NaN</b>. При делении нуля на любое другое конечное значение результат равен нулю, при этом получаемый знак обусловлен правилом, описанным выше.</p>
+			</li>
+			<li><p>
+			При делении ненулевого конечного значения на ноль результат равен бесконечности со знаком. Знак, получаемый при этом, обусловлен правилом, описанным выше.</p>
+			</li>
+			<li><p>
+			В остальных случаях, когда в операции умножения не участвуют ни бесконечность, ни ноль, ни <B>NaN</B>, отношение вычисляется и округляется до ближайшего представимого значения с использованием &quot;режима округления до ближайшего значения&quot; в соответствии со стандартом IEEE&nbsp;754. Если значение слишком велико для представления, произойдёт переполнение, и результатом будет являться бесконечность с соответствующим знаком. Если значение слишком мало для представления, произойдёт потеря значимости, и результатом будет являться ноль с соответствующим знаком. Язык ECMAScript требует поддержки потери значимости в соответствии со стандартом IEEE&nbsp;754.</p>
+	</li></ul>
+	<h4 id="x11.5.3">11.5.3 Применение оператора % <a href="#x11.5.3">#</a> <a href="#x11.5.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Оператор <code><b>%</b></code> генерирует остаток от деления своих операндов. Левый операнд является делимым, а правый &ndash; делителем.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> В языках C и C++ оператор остатка принимает только целые операнды, а в языке ECMAScript он принимает и операнды с плавающей точкой.</p>
+	<p>
+	Результат операции получения остатка для чисел с плавающей точкой, полученный посредством оператора <code><b>%</b></code>, отличается от операции &quot;остатка&quot; в соответствии с IEEE&nbsp;754. В стандарте IEEE&nbsp;754 операция &quot;остатка&quot; вычисляет остаток от деления с округлением, а не от деления с усечением &ndash; таким образом, её поведение не аналогично поведению обычного  оператора получения целого остатка. В отличие от IEEE&nbsp;754, язык ECMAScript определяет поведение остатка <code><b>%</b></code> от операций с плавающей точкой аналогичным поведению оператора получения целого остатка в языке Java. Это можно сравнить с функцией fmod в библиотеке С.</p>
+	<p>Результат операции получения остатка для чисел с плавающей точкой в языке ECMAScript обусловлен правилами арифметики в соответствии со стандартом IEEE:</p>
+	<ul><li><p>
+			Если один из операндов &ndash; <b>NaN</b>, результат равен <b>NaN</b>.</p>
+				</li>
+				<li><p>
+				Знак результата равен знаку делимого.</p>
+				</li>
+				<li><p>
+				Если делимое равно бесконечности или делитель равен нулю, или если выполняются оба эти условия, то результат равен <b>NaN</b>.</p>
+				</li>
+				<li><p>
+				Если делимое является конечным числом, а делитель равен бесконечности, результат равен делимому.</p>
+				</li>
+				<li><p>
+				Если делимое равно нулю, а делитель является конечным числом, результат равен делимому.</p>
+				</li>
+				<li><p>
+				В остальных случаях, когда в операции не участвуют ни бесконечность, ни ноль, ни <B>NaN</B>, остаток r для чисел с плавающей запятой для делимого&nbsp;n и делителя&nbsp;d определяется математическим отношением r = n <span class="symbol">&#8722;</span> (d * q), где q &ndash; целое число, которое является отрицательным, только если n/d отрицательно, и положительным, только если n/d положительно, и чьё значение по модулю является наибольшим значением, не превышающим значения по модулю истинного математического отношения чисел n и d. Значение r вычисляется и округляется до ближайшего представимого значения с использованием &quot;режима округления до ближайшего значения&quot; в соответствии со стандартом IEEE&nbsp;754.
+</p>
+	</li></ul>
+	<h3 id="x11.6">11.6 Аддитивные операторы <a href="#x11.6">#</a> <a href="#x11.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>AdditiveExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>MultiplicativeExpression<br>AdditiveExpression </i><code><b>+</b></code> <i>MultiplicativeExpression<br>AdditiveExpression </i><code><b>-</b></code> <i>MultiplicativeExpression</i></p>
+	<h4 id="x11.6.1">11.6.1 Оператор сложения ( + ) <a href="#x11.6.1">#</a> <a href="#x11.6.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Оператор сложения производит либо конкатенацию строк, либо суммирование чисел.</p>
+	<p>
+	Для вычисления <i>AdditiveExpression</i> <b>:</b> <i>AdditiveExpression</i> <code><b>+</b></code> <i>MultiplicativeExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления AdditiveExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления MultiplicativeExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>lprim</i> будет <a href="x9.html#x9.1">ToPrimitive</a>(<i>lval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rprim</i> будет <a href="x9.html#x9.1">ToPrimitive</a>(<i>rval</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>lprim</i>) &ndash; String или <a href="x8.html#Type">Type</a>(<i>rprim</i>) &ndash; String, то 
+		</p>
+		<ol><li><p>
+			Вернуть строку, которая является результатом конкатенации строки <a href="x9.html#x9.8">ToString</a>(<i>lprim</i>) со следующей за ней строкой <a href="x9.html#x9.8">ToString</a>(<i>rprim</i>)</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат применения операции сложения к <a href="x9.html#x9.3">ToNumber</a>(<i>lprim</i>) и <a href="x9.html#x9.3">ToNumber</a>(<i>rprim</i>). См. примечание ниже в пункте&nbsp;<a href="#x11.6.3">11.6.3</a>.</p>
+	</li></ol><p class="sp"><b>ПРИМЕЧАНИЕ 1</b> При вызовах абстрактной операции <a href="x9.html#x9.1">ToPrimitive</a> в шаге 5 и 6 подсказка не предоставляется. Все родные объекты ECMAScript (кроме объектов Date) обрабатывают отсутствие подсказки, как если бы была передана подсказка Number, а объекты Date обрабатывают отсутствие подсказки, как если бы была дана подсказка String. Объекты среды могут обрабатывать отсутствие подсказки как-либо иначе.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Шаг 7 отличается от шага 3 сравнительного алгоритма операторов отношения (<a href="#x11.8.5">11.8.5</a>) использованием операции логического &quot;или&quot; вместо операции логического &quot;и&quot;.</p>
+	<h4 id="x11.6.2">11.6.2 Оператор вычитания ( - ) <a href="#x11.6.2">#</a> <a href="#x11.6.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>AdditiveExpression</i> <b>:</b> <i>AdditiveExpression</i> <code><b>-</b></code> <i>MultiplicativeExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления AdditiveExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления MultiplicativeExpression.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>lnum</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>lval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rnum</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>rval</i>).</p>
+		</li>
+		<li><p>
+		Вернуть результат применения операции вычитания к <i>lnum</i> и <I>r</I><i><I>num</I></i>. См. примечание ниже в пункте&nbsp;<a href="#x11.6.3">11.6.3</a>.</p>
+	</li></ol>
+	<h4 id="x11.6.3">11.6.3 Применение аддитивных операторов к объектам типа Number <a href="#x11.6.3">#</a> <a href="#x11.6.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	В применении к двум числовым операндам, оператор <code><b>+</b></code> выполняет сложение и генерирует сумму этих операндов,  а оператор <code><b>-</b></code> выполняет вычитание и генерирует разницу двух числовых операндов.</p>
+	<p>
+	Сложение &ndash; коммутативная операция, однако она не всегда является ассоциативной.</p>
+	<p>Результат сложения обусловлен правилами стандарта IEEE&nbsp;754 для двоичной арифметики двойной точности:</p>
+	<ul><li><p>
+			Если один из операндов &ndash; <b>NaN</b>, результат равен <b>NaN</b>.</p>
+			</li>
+			<li><p>
+			Сумма двух бесконечностей с противоположными знаками равна <b>NaN</b>.</p>
+			</li>
+			<li><p>
+			Сумма двух бесконечностей с одним и тем же знаком равна бесконечности с тем же знаком.</p>
+			</li>
+			<li><p>
+			Сумма бесконечности и конечного значения равна бесконечному операнду.</p>
+			</li>
+			<li><p>
+			Сумма двух отрицательных нулей равна <span class="symbol"><b>&#8722;</b></span><b>0</b>. Сумма двух положительных нулей или двух нулей с противоположными знаками равна <b>+0</b>.</p>
+			</li>
+			<li><p>
+			Сумма нуля и ненулевого конечного значения равна ненулевому операнду.</p>
+			</li>
+			<li><p>
+			Сумма двух ненулевых конечных значений одинаковой величины с противоположными знаками равна&nbsp;<b>+0</b>.</p>
+			</li>
+			<li><p>
+			В остальных случаях, когда в операции умножения не участвуют ни бесконечность, ни ноль, ни <B>NaN</B>, и при этом операнды имеют разные величины или одинаковый знак, сумма вычисляется и округляется до ближайшего представимого значения с использованием &quot;режима округления до ближайшего значения&quot; в соответствии со стандартом IEEE&nbsp;754. Если значение слишком велико для представления, произойдёт переполнение, и результатом будет являться бесконечность с соответствующим знаком. Язык ECMAScript требует поддержки потери значимости в соответствии со стандартом IEEE&nbsp;754.</p>
+	</li></ul><p>
+	В применении к двум числовым операндам, оператор <code><b>-</b></code> выполняет вычитание и генерирует разницу его операндов. Левый операнд &ndash; уменьшаемое, а правый &ndash; вычитаемое. Для числовых операндов <i>a</i> и&nbsp;<i>b</i>, результат вычитания <i>a</i><code><i>&ndash;</i></code><i>b</i> всегда равен результату сложения<i> <i>a</i> </i><code><i>+(&ndash;</i></code><i>b</i><code><i>)</i></code>.</p>
+	<h3 id="x11.7">11.7 Операторы побитового сдвига <a href="#x11.7">#</a> <a href="#x11.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ShiftExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>AdditiveExpression<br>ShiftExpression </i><code><b>&lt;&lt;</b></code> <i>AdditiveExpression<br>ShiftExpression </i><code><b>&gt;&gt;</b></code> <i>AdditiveExpression<br>ShiftExpression </i><code><b>&gt;&gt;&gt;</b></code> <i>AdditiveExpression</i></p>
+	<h4 id="x11.7.1">11.7.1 Оператор сдвига влево ( &lt;&lt; ) <a href="#x11.7.1">#</a> <a href="#x11.7.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Производит над левым операндом операцию побитового сдвига влево, сдвигая его на количество бит, указанное в правом операнде.</p>
+	<p>
+	Для вычисления <i>ShiftExpression</i> <b>:</b> <i>ShiftExpression</i> <code><b>&lt;&lt;</b></code> <i>AdditiveExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>ShiftExpression</I> <tt>Выражение сдвига</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref</i> будет результатом вычисления <i>AdditiveExpression</i> <tt>Аддитивное выражение</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>lnum</i> будет <a href="x9.html#x9.5">ToInt32</a>(<i>lval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rnum</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>rval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>shiftCount</i> будет результатом маскировки всех битов <i>rnum</i>, кроме пяти младших, то есть &ndash; вычислить <i>rnum</i> &amp; 0x1F.</p>
+		</li>
+		<li><p>
+		Вернуть результат сдвига <i>lnum</i> влево на <i>shiftCount</i> битов. Результат является знаковым 32-битовым целым.</p>
+	</li></ol>
+	<h4 id="x11.7.2">11.7.2 Оператор знакового сдвига вправо ( &gt;&gt; ) <a href="#x11.7.2">#</a> <a href="#x11.7.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Производит над левым операндом операцию побитового сдвига вправо со вставкой знака, сдвигая его на количество бит, указанное в правом операнде.</p>
+	<p>
+	Для вычисления <i>ShiftExpression</i> <b>:</b> <i>ShiftExpression</i> <code><b>&gt;&gt;</b></code> <i>AdditiveExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref</i> будет результатом вычисления <i>AdditiveExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>lnum</i> будет <a href="x9.html#x9.5">ToInt32</a>(<i>lval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rnum</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>rval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>shiftCount</i> будет результатом маскировки всех битов <i>rnum</i>, кроме пяти младших, то есть &ndash; вычислить <i>rnum</i> &amp; 0x1F.</p>
+		</li>
+		<li><p>
+		Вернуть результат сдвига вправо с добавлением знака для <i>lnum</i> на <i>shiftCount</i> битов,  при этом в освободившиеся места копируется старший бит. Результат является знаковым 32-битовым целым.</p>
+	</li></ol>
+	<h4 id="x11.7.3">11.7.3 Оператор беззнакового сдвига вправо ( &gt;&gt;&gt; ) <a href="#x11.7.3">#</a> <a href="#x11.7.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Производит над левым операндом операцию побитового сдвига вправо с нулевой вставкой, сдвигая его на количество бит, указанное в правом операнде.</p>
+	<p>
+	Для вычисления <i>ShiftExpression</i> <b>:</b> <i>ShiftExpression</i> <code><b>&gt;&gt;&gt;</b></code> <i>AdditiveExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref</i> будет результатом вычисления <i>AdditiveExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>lnum</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rnum</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>rval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>shiftCount</i> будет результатом маскировки всех битов <i>rnum</i>, кроме пяти младших, то есть &ndash; вычислить <i>rnum</i> &amp; 0x1F.</p>
+		</li>
+		<li><p>
+		Вернуть результат сдвига вправо с нулевой вставкой для <i>lnum</i> на <i>shiftCount</i> битов, при этом в освободившиеся места вставляется ноль. Результат является беззнаковым 32-битовым целым.</p>
+	</li></ol>
+	<h3 id="x11.8">11.8 Операторы отношения <a href="#x11.8">#</a> <a href="#x11.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>RelationalExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>ShiftExpression<br>RelationalExpression </i><code><b>&lt;</b></code> <i>ShiftExpression<br>RelationalExpression </i><code><b>&gt;</b></code> <i>ShiftExpression<br>RelationalExpression </i><code><b>&lt;=</b></code> <i>ShiftExpression<br>RelationalExpression </i><code><b>&gt;=</b></code> <i>ShiftExpression<br>RelationalExpression </i><code><b>instanceof</b></code> <i>ShiftExpression<br>RelationalExpression </i><code><b>in</b></code> <i>ShiftExpression</i></p>
+	<p class="keep">
+	<i>RelationalExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>ShiftExpression<br>RelationalExpressionNoIn </i><code><b>&lt;</b></code> <i>ShiftExpression<br>RelationalExpressionNoIn </i><code><b>&gt;</b></code> <i>ShiftExpression<br>RelationalExpressionNoIn </i><code><b>&lt;=</b></code> <i>ShiftExpression<br>RelationalExpressionNoIn </i><code><b>&gt;=</b></code> <i>ShiftExpression<br>RelationalExpressionNoIn </i><code><b>instanceof</b></code> <i>ShiftExpression</i></p>
+	<p><b>ПРИМЕЧАНИЕ</b> Варианты с &quot;NoIn&quot; необходимы для того, чтобы не перепутать оператор <code>in</code> в выражении отношения с оператором <code>in</code> в инструкции <code>for</code>.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Результат вычисления оператора отношения всегда имеет тип Boolean. Он показывает, находится ли отношение, описываемое этим оператором, в пределах его двоих операндов.</p>
+	<p>
+	Для вычисления <i>RelationalExpressionNoIn</i> <tt>Выражение отношения без in</tt> выполнятся точно такие же шаги, что и для вычисления <i>RelationalExpression</i> <tt>Выражение отношения</tt>, за исключением того, что вместо вложенного <I>RelationalExpression </I>вычисляется вложенное <i>RelationalExpressionNoIn</i>.</p>
+	<h4 id="x11.8.1">11.8.1 Оператор 'Меньше чем' ( &lt; ) <a href="#x11.8.1">#</a> <a href="#x11.8.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>RelationalExpression</i> <b>:</b> <i>RelationalExpression</i> <code><b>&lt;</b></code> <i>ShiftExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>r</i> будет результатом абстрактного сравнения отношения <i>lval</i> &lt; <i>rval</i> &ndash; см. <a href="#x11.8.5">пункт&nbsp;11.8.5</a>.</p>
+		</li>
+		<li><p>
+		Если <i>r</i> &ndash; <b>undefined</b>, вернуть <b>false</b>. Иначе вернуть&nbsp;<i><i>r</i></i>.</p>
+	</li></ol>
+	<h4 id="x11.8.2">11.8.2 Оператор 'Больше чем' ( &gt; ) <a href="#x11.8.2">#</a> <a href="#x11.8.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления RelationalExpression <b>:</b> <i>RelationalExpression</i> <code><b>&gt;</b></code> <i>ShiftExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>r</i> будет результатом абстрактного сравнения отношения <i>rval</i> &lt; <i>lval</i>, при этом <i>LeftFirst</i> равно <b>false</b> &ndash; см. <a href="#x11.8.5">пункт&nbsp;11.8.5</a>.</p>
+		</li>
+		<li><p>
+		Если <i>r</i> &ndash; <b>undefined</b>, вернуть <b>false</b>. Иначе вернуть&nbsp;<i><i>r</i></i>.</p>
+	</li></ol>
+	<h4 id="x11.8.3">11.8.3 Оператор 'Меньше или равно' ( &lt;= ) <a href="#x11.8.3">#</a> <a href="#x11.8.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления RelationalExpression <b>:</b> <i>RelationalExpression</i> <code><b>&lt;=</b></code> <i>ShiftExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>r</i> будет результатом абстрактного сравнения отношения <i>rval</i> &lt; <i>lval</i>, при этом <i>LeftFirst</i> равно <b>false</b> &ndash; см. <a href="#x11.8.5">пункт&nbsp;11.8.5</a>.</p>
+		</li>
+		<li><p>
+		Если <i>r</i> &ndash; <b>true </b>или <b>undefined</b>, вернуть <b>false</b>. Иначе вернуть<b><b> true</b></b>.</p>
+	</li></ol>
+	<h4 id="x11.8.4">11.8.4 Оператор 'Больше или равно' <a href="#x11.8.4">#</a> <a href="#x11.8.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления RelationalExpression <b>:</b> <i>RelationalExpression</i> <code><b>&gt;=</b></code> <i>ShiftExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>r</i> будет результатом абстрактного сравнения отношения <i>lval</i> &lt; <i>rval</i> &ndash; см. <a href="#x11.8.5">пункт&nbsp;11.8.5</a>.</p>
+		</li>
+		<li><p>
+		Если <i>r</i> &ndash; <b>true </b>или <b>undefined</b>, вернуть <b>false</b>. Иначе вернуть<b><b> true</b></b>.</p>
+	</li></ol>
+	<h4 id="x11.8.5">11.8.5 Алгоритм сравнения абстрактного отношения <a href="#x11.8.5">#</a> <a href="#x11.8.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Результатом сравнения <i>x</i> &lt; <i>y</i>, где <i>x</i> и&nbsp;<i>y</i> &ndash; значения, является <b>true</b>, <b>false</b> или <b>undefined</b> (последнее означает, что, по крайней мере, один операнд равен <b>NaN</b>). Кроме <i>x</i> и&nbsp;<i>y</i> этот алгоритм принимает в качестве параметра булев флаг <i>LeftFirst</i> <tt>Сначала левый</tt>. Этот флаг контролирует порядок, в соответствии с которым над <i>x </i>и&nbsp;<i>y</i> производятся операции с потенциально видимыми побочными эффектами. Этот флаг необходим потому, что в языке ECMAScript задан порядок вычисления выражений слева направо. Значение флага <i>LeftFirst</i> по умолчанию &ndash; <b>true</b>, которое означает, что параметр <i>x</i> соответствует выражению, которое находится слева от соответствующего выражения параметра&nbsp;<i>y</i>. Если значение флага <i>LeftFirst </i>&ndash; <b>false</b>, то параметры меняются местами, и сначала необходимо произвести операции над&nbsp;<i>y, </i>а потом &ndash; над&nbsp;<i>x</i>. Это сравнение производится следующим образом:</p>
+	<ol><li><p>
+		Если флаг <i>LeftFirst </i>&ndash; <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>px </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.1">ToPrimitive</a>(<i>x</i>, подсказка Number).</p>
+			</li>
+			<li><p>
+			Пусть <I>py </I>будет результатом вызова абстрактной операции <a href="x9.html#x9.1">ToPrimitive</a>(<i>y</i>, подсказка Number).</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, необходимо поменять местами порядок вычисления, чтобы сохранить вычисление слева направо.</p>
+		<ol><li><p>
+			Пусть <I>py </I>будет результатом вызова абстрактной операции <a href="x9.html#x9.1">ToPrimitive</a>(<i>y</i>, подсказка Number).</p>
+			</li>
+			<li><p>
+			Пусть <i>px </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.1">ToPrimitive</a>(<i>x</i>, подсказка Number).</p>
+		</li></ol></li>
+		<li><p>
+		Если неверно, что и <a href="x8.html#Type">Type</a>(<i>px</i>) &ndash; String, и <a href="x8.html#Type">Type</a>(<i>py</i>) &ndash; String, то 
+		</p>
+		<ol><li><p>
+			Пусть <i>nx </i>будет результатом вызова <a href="x9.html#x9.3">ToNumber</a>(<i>px</i>). Порядок вычисления неважен, поскольку <i>px </i>и <i>py </i>&ndash; <a href="x4.html#primitive_value" class="term-ref">примитивные значения</a>.</p>
+			</li>
+			<li><p>
+			Пусть <i>ny</i> будет результатом вызова <a href="x9.html#x9.3">ToNumber</a>(<i>py</i>).</p>
+			</li>
+			<li><p>
+			Если <i>nx </i>&ndash; <b>NaN</b>, вернуть <b>undefined</b>.</p>
+			</li>
+			<li><p>
+			Если <i>ny </i>&ndash; <b>NaN</b>, вернуть <b>undefined</b>.</p>
+			</li>
+			<li><p>
+			Если <i>nx</i> и <i>ny</i> имеют одинаковое числовое значение, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>nx</i> равно <b>+0</b> и <i>ny</i> равно <span class="symbol"><b>&#8722;</b></span><b>0</b>, вернуть&nbsp;<b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>nx</i> равно <span class="symbol"><b>&#8722;</b></span><b>0</b> и <i>ny</i> равно <b>+0</b>, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>nx</i> равно <b>+</b><span class="symbol"><b>&#8734;</b></span>, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>ny</i> равно <b>+</b><span class="symbol"><b>&#8734;</b></span>, вернуть <b>true</b>.</p>
+			</li>
+			<li><p>
+			Если <i>ny</i> равно <span class="symbol"><b>&#8722;&#8734;</b></span>, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>nx</i> равно <span class="symbol"><b>&#8722;&#8734;</b></span>, вернуть <b>true</b>.</p>
+			</li>
+			<li><p>
+			Если математическое значение <i>nx</i> меньше, чем математическое значение <i>ny</i>  (обратите внимание, что оба эти математические значения конечны и не являются оба равными нулю), вернуть <b>true</b>. В противном случае вернуть&nbsp;<b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, и <i>px </i>и <i>py </i>&ndash; строки.</p>
+		<ol><li><p>
+			Если <i>py</i> &ndash; префикс для <i>px</i>, вернуть <b>false</b>. (Строковое значение <i>p</i> является префиксом строкового значения <i>q</i>, если <i>q</i> может быть результатом конкатенации <i>p</i> и какой-либо другой строки&nbsp;<i>r</i>. Обратите внимание, что любая строка является префиксом самой себя, поскольку <i>r</i> может быть пустой строкой).</p>
+			</li>
+			<li><p>
+			Если <i>px</i> &ndash; префикс для <i>py</i>, вернуть <b>true</b>.</p>
+			</li>
+			<li><p>
+			Пусть <i>k</i> будет таким наименьшим неотрицательным целым числом, чтобы символ в позиции&nbsp;<i>k</i> в пределах&nbsp;<i>px</i> отличался от символа в позиции&nbsp;<i>k</i> в пределах&nbsp;<i>py</i>. (Такое <i>k</i> должно иметь место, поскольку ни одна строка не является префиксом другой.)</p>
+			</li>
+			<li><p>
+			Пусть <i>m</i> будет целым числом, которое имеет значение кодовой единицы для символа в позиции <i>k</i> в пределах&nbsp;<i>px</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>n</i> будет целым числом, которое имеет значение кодовой единицы для символа в позиции <i>k</i> в пределах&nbsp;<i>py</i>.</p>
+			</li>
+			<li><p>
+			Если <i>m</i> &lt; <i>n</i>, вернуть <b>true</b>. В противном случае вернуть&nbsp;<b>false</b>.</p>
+		</li></ol></li></ol><p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Шаг 3 отличается от шага&nbsp;7 в алгоритме для оператора сложения <code><b>+</b></code> (<a href="#x11.6.1">11.6.1</a>) тем, что в нем используется союз &quot;и&quot;, а не &quot;или&quot;.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Для сравнения строк используется простое лексикографическое упорядочение последовательностей значений кодовых единиц. Данный алгоритм не пытается использовать более сложные семантически ориентированные определения равенства символов или строк и порядка сортировки, определение которых содержится в спецификации Юникода. Поэтому строковые значения, которые являются канонически равными в соответствии со стандартом Юникод, могут в результате проверки оказаться неравными. В действительности, данный алгоритм предполагает, что обе строки находятся уже в нормализованном виде. Кроме того, обратите внимание, что для строк, содержащих дополнительные символы, лексикографическое упорядочение последовательностей значений кодовых единиц в кодировке UTF-16 отличается от лексикографического упорядочения последовательностей значений кодовых точек.</p>
+	<h4 id="x11.8.6">11.8.6 Оператор instanceof <a href="#x11.8.6">#</a> <a href="#x11.8.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>RelationalExpression</i><b>:</b> <i>RelationalExpression</i> <code><b>instanceof</b></code> <i>ShiftExpression</i>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>rval</i>) &ndash; не Object, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>rval</i> не имеет внутреннего метода [[HasInstance]], сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[HasInstance]] для <i>rval</i> с аргументом <I>lval</I>.</p>
+	</li></ol>
+	<h4 id="x11.8.7">11.8.7 Оператор in <a href="#x11.8.7">#</a> <a href="#x11.8.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>RelationalExpression</i> <b>:</b> <i>RelationalExpression</i> <code><b>in</b></code> <i>ShiftExpression</i>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>ShiftExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>rval</i>) &ndash; не Object, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[HasProperty]] для <i>rval</i> с аргументом <a href="x9.html#x9.8">ToString</a>(<i>lval</i>).</p>
+	</li></ol>
+	<h3 id="x11.9">11.9 Операторы равенства <a href="#x11.9">#</a> <a href="#x11.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>EqualityExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>RelationalExpression<br>EqualityExpression </i><code><b>==</b></code> <i>RelationalExpression<br>EqualityExpression </i><code><b>!=</b></code> <i>RelationalExpression<br>EqualityExpression </i><code><b>===</b></code> <i>RelationalExpression<br>EqualityExpression </i><code><b>!==</b></code> <i>RelationalExpression</i></p>
+	<p class="keep">
+	<i>EqualityExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>RelationalExpressionNoIn<br>EqualityExpressionNoIn </i><code><b>==</b></code> <i>RelationalExpressionNoIn<br>EqualityExpressionNoIn </i><code><b>!=</b></code> <i>RelationalExpressionNoIn<br>EqualityExpressionNoIn </i><code><b>===</b></code> <i>RelationalExpressionNoIn<br>EqualityExpressionNoIn </i><code><b>!==</b></code> <i>RelationalExpressionNoIn</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Результат вычисления оператора равенства всегда имеет тип Boolean. Он показывает, находится ли отношение, описываемое этим оператором, в пределах его двоих операндов.</p>
+	<p>
+	Для вычисления <i>EqualityExpressionNoIn</i> <tt>Выражение равенства без in</tt> выполняются точно такие же шаги, что и для вычисления <i>EqualityExpression</i> <tt>Выражение равенства </tt>, за исключением того, что вместо вложенных <I>EqualityExpression</I> и <I>RelationalExpression </I>вычисляются вложенные <I>EqualityExpressionNoIn </I>и <i>RelationalExpressionNoIn</i>, соответственно.</p>
+	<h4 id="x11.9.1">11.9.1 Оператор 'Равно' ( == ) <a href="#x11.9.1">#</a> <a href="#x11.9.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления EqualityExpression : <i>EqualityExpression</i> <code><b>==</b></code> <i>RelationalExpression</i>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>EqualityExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Вернуть результат сравнения абстрактного равенства <i>rval</i> == <i>lval</i> (см. <a href="#x11.9.3">пункт 11.9.3</a>).</p>
+	</li></ol>
+	<h4 id="x11.9.2">11.9.2 Оператор 'Не равно' ( != ) <a href="#x11.9.2">#</a> <a href="#x11.9.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления EqualityExpression : <i>EqualityExpression</i> <code><b>!=</b></code> <i>RelationalExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>EqualityExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>r</i> будет результатом сравнения абстрактного равенства <i>rval</i> == <i>lval</i> &ndash; см. <a href="#x11.9.3">пункт 11.9.3</a>).</p>
+		</li>
+		<li><p>
+		Если <i>r</i> &ndash; <b>true</b>, вернуть <b>false</b>. Иначе вернуть<b><b> true</b></b>.</p>
+	</li></ol>
+	<h4 id="x11.9.3">11.9.3 Алгоритм сравнения абстрактного равенства <a href="#x11.9.3">#</a> <a href="#x11.9.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Сравнение <i>x</i> == <i>y</i>, где <i>x</i> и&nbsp;<i>y</i> являются значениями, возвращает <b>true</b> или <b>false</b>. Это сравнение производится следующим образом:</p>
+	<ol><li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) такой же, что и <a href="x8.html#Type">Type</a>(<i>y</i>), то</p>
+		<ol><li><p>
+				Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Undefined, вернуть <b>true</b>.</p>
+			</li>
+			<li><p>
+			Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Null, вернуть <b>true</b>.</p>
+			</li>
+			<li><p>
+				Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Number, то</p>
+			<ol><li><p>
+				Если <i>x</i> &ndash; <b>NaN</b>, вернуть <b>false</b>.</p>
+				</li>
+				<li><p>
+				Если <i>y</i> &ndash; <b>NaN</b>, вернуть <b>false</b>.</p>
+				</li>
+				<li><p>
+				Если <i>x</i> имеет такое же числовое значение, что и&nbsp;<i>y</i>, вернуть&nbsp;<b>true</b>.</p>
+				</li>
+				<li><p>
+				Если <i>x</i> равно <b>+0</b> и <i>y </i>равно <span class="symbol"><b>&#8722;</b></span><b>0</b>, вернуть&nbsp;<b>true</b>.</p>
+				</li>
+				<li><p>
+				Если <i>x</i> равно&nbsp;<span class="symbol"><b>&#8722;</b></span><b>0</b> и <i>y </i>равно&nbsp;<b>+0</b>, вернуть&nbsp;<b>true</b>.</p>
+				</li>
+				<li><p>
+				Вернуть <b>false</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; String, то вернуть <b>true</b>, если <i>x</i> и <i>y</i> имеют абсолютно одинаковую последовательность символов (одинаковой длины и с одинаковыми символами в соответствующих позициях). В противном случае вернуть&nbsp;<b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Boolean, вернуть <b>true</b>, если <i>x</i> и <i>y</i> оба являются или <b>true</b>, или <b>false</b>. В противном случае вернуть&nbsp;<b>false</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <B>true</B>, если <i>x</i> и <i>y</i> относятся к одному и тому же объекту. В противном случае вернуть&nbsp;<b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>x</i> равно <b>null</b> и <i>y </i>&ndash; <b>undefined</b>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> &ndash; <b>undefined</b> и <i>y </i>&ndash; <b>null</b>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Number и <a href="x8.html#Type">Type</a>(<i>y</i>) &ndash; String,<br>вернуть результат сравнения <i>x</i> == <a href="x9.html#x9.3">ToNumber</a>(<i>y</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; String и <a href="x8.html#Type">Type</a>(<i>y</i>) &ndash; Number,<br>вернуть результат сравнения <a href="x9.html#x9.3">ToNumber</a>(<i>x</i>) == <i>y</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Boolean, вернуть результат сравнения <a href="x9.html#x9.3">ToNumber</a>(<i>x</i>) == <i>y</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>y</i>) &ndash; Boolean, вернуть результат сравнения <i>x</i> == <a href="x9.html#x9.3">ToNumber</a>(<i>y</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; либо String, либо Number, и <a href="x8.html#Type">Type</a>(<i>y</i>) &ndash; Object,<br>вернуть результат сравнения <i>x</i> == <a href="x9.html#x9.1">ToPrimitive</a>(<i>y</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Object и <a href="x8.html#Type">Type</a>(<i>y</i>) &ndash;либо String, либо Number,<br>вернуть результат сравнения <a href="x9.html#x9.1">ToPrimitive</a>(<i>x</i>) == <i>y</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Принимая во внимание вышеуказанное определение&nbsp;равенства:</p>
+	<ul><li><p>
+			Принудительно сделать сравнение строковым можно следующим образом: <code><b>&quot;&quot; + a == &quot;&quot; + b</b></code>.</p>
+			</li>
+			<li><p>
+			Принудительно сделать сравнение числовым можно следующим образом: <code><b>+a == +b</b></code>.</p>
+			</li>
+			<li><p>
+			Принудительно сделать сравнение булевым можно следующим образом: <code><b>!a == !b</b></code>.</p>
+	</li></ul><p><b>ПРИМЕЧАНИЕ 2</b> Операторы равенства поддерживают следующие инварианты:</p>
+	<ul><li><p>
+			<code><b>A</b></code> <code><b>!=</b></code> <code><b>B</b></code> эквивалентно <code><b>!(A</b></code> <code><b>==</b></code> <code><b>B)</b></code>.</p>
+			</li>
+			<li><p>
+			<code><b>A</b></code><code><b>==</b></code><code><b>B</b></code> эквивалентно <code><b>B</b></code><code><b>==</b></code><code><b>A</b></code>, за исключением порядка вычисления значения <code><b>A</b></code> и&nbsp;<code><b>B</b></code>.</p>
+	</li></ul><p class="sp"><b>ПРИМЕЧАНИЕ 3</b> Оператор равенства не всегда транзитивен. Например: допустим, существуют два различные объекта типа String с одинаковым строковым значением. Каждый объект типа String будет считаться равным строковому значению посредством оператора <code><b>==</b></code>, но при этом эти два объекта String не будут равны друг другу.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 4</b> Для сравнения строк используется простая проверка равенства последовательностей значений кодовых единиц. Данный алгоритм не пытается использовать более сложные семантически ориентированные определения равенства символов или строк и порядка сортировки, определение которых содержится в спецификации Юникода. Поэтому строковые значения, которые являются канонически равными в соответствии со стандартом Юникод, могут в результате проверки оказаться неравными. В действительности, данный алгоритм предполагает, что обе строки находятся уже в нормализованном виде.</p>
+	<h4 id="x11.9.4">11.9.4 Оператор строгого равенства ( === ) <a href="#x11.9.4">#</a> <a href="#x11.9.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления EqualityExpression <B>:</B> <i>EqualityExpression</i> <code><b>===</b></code> <i>RelationalExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>EqualityExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Вернуть результат ставнения строгого равенства <i>rval</i> === <i>lval</i> &ndash; см. <a href="#x11.9.6">пункт 11.9.6</a>).</p>
+	</li></ol>
+	<h4 id="x11.9.5">11.9.5 Оператор строгого неравенства ( !== ) <a href="#x11.9.5">#</a> <a href="#x11.9.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления EqualityExpression <B>:</B> <i>EqualityExpression</i> <code><b>!==</b></code> <i>RelationalExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>EqualityExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>RelationalExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>r</i> будет результатом сравнения строгого равенства <i>rval</i> == <i>lval</i> &ndash; см. <a href="#x11.9.6">пункт 11.9.6</a>).</p>
+		</li>
+		<li><p>
+		Если <i>r</i> &ndash; <b>true</b>, вернуть <b>false</b>. Иначе вернуть<b><b> true</b></b>.</p>
+	</li></ol>
+	<h4 id="x11.9.6">11.9.6 Алгоритм сравнения строгого равенства <a href="#x11.9.6">#</a> <a href="#x11.9.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Сравнение <i>x </i>===<i>y</i>, где <i>x</i> и&nbsp;<i>y</i> являются значениями, возвращает <b>true</b> или <b>false</b>. Это сравнение производится следующим образом:</p>
+	<ol><li><p>
+		Если <a href="x8.html#Type">Тип</a>(<i>x</i>) отличается от <a href="x8.html#Type">Типа</a>(<i>y</i>), вернуть&nbsp;<b>false</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Undefined, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Null, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Number, то</p>
+		<ol><li><p>
+			Если <i>x</i> &ndash; <b>NaN</b>, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>y</i> &ndash; <b>NaN</b>, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>x</i> имеет такое же числовое значение, что и&nbsp;<i>y</i>, вернуть&nbsp;<b>true</b>.</p>
+			</li>
+			<li><p>
+			Если <i>x</i> равно <b>+0</b> и <i>y </i>равно <span class="symbol"><b>&#8722;</b></span><b>0</b>, вернуть&nbsp;<b>true</b>.</p>
+			</li>
+			<li><p>
+			Если <i>x</i> равно&nbsp;<span class="symbol"><b>&#8722;</b></span><b>0</b> и <i>y </i>равно&nbsp;<b>+0</b>, вернуть&nbsp;<b>true</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <a href="x8.html#Type">Тип</a>(<i>x</i>) &ndash; String, то вернуть <b>true</b>, если <i>x</i> и <i>y</i> имеют абсолютно одинаковую последовательность символов (одинаковой длины и с одинаковыми символами в соответствующих позициях), иначе вернуть&nbsp;<b>false</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Boolean, вернуть <b>true</b>, если <i>x</i> и <i>y</i> оба являются или <b>true</b>, или <b>false</b>; иначе вернуть&nbsp;<b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <B>true</B>, если <i>x</i> и <i>y</i> относятся к одному и тому же объекту. В противном случае вернуть&nbsp;<b>false</b>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Этот алгоритм отличается от алгоритма <a href="x9.html#x9.12">SameValue</a>&nbsp;(<a href="x9.html#x9.12">9.12</a>) в вопросе обработки нулей со знаком и значений &quot;не-число&quot; (NaN).</p>
+	<h3 id="x11.10">11.10 Бинарные побитовые операторы <a href="#x11.10">#</a> <a href="#x11.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>BitwiseANDExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>EqualityExpression<br>BitwiseANDExpression </i><code><b>&amp;</b></code> <i>EqualityExpression</i></p>
+	<p class="keep">
+	<i>BitwiseANDExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>EqualityExpressionNoIn<br>BitwiseANDExpressionNoIn </i><code><b>&amp;</b></code> <i>EqualityExpressionNoIn</i></p>
+	<p class="keep">
+	<i>BitwiseXORExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>BitwiseANDExpression<br>BitwiseXORExpression </i><code><b>^</b></code> <i>BitwiseANDExpression</i></p>
+	<p class="keep">
+	<i>BitwiseXORExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>BitwiseANDExpressionNoIn<br>BitwiseXORExpressionNoIn </i><code><b>^</b></code> <i>BitwiseANDExpressionNoIn</i></p>
+	<p class="keep">
+	<i>BitwiseORExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>BitwiseXORExpression<br>BitwiseORExpression </i><code><b>|</b></code> <i>BitwiseXORExpression</i></p>
+	<p class="keep">
+	<i>BitwiseORExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>BitwiseXORExpressionNoIn<br>BitwiseORExpressionNoIn </i><code><b>|</b></code> <i>BitwiseXORExpressionNoIn</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>A </i><b>:</b> <i>A</i><i> @ </i><i>B</i>, где @ &ndash; один из побитовых операторов в перечисленных выше правилах, выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <i>A</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I><i>B</i></I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>lnum</i> будет <a href="x9.html#x9.5">ToInt32</a>(<i>lval</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rnum</i> будет <a href="x9.html#x9.5">ToInt32</a>(<i>rval</i>).</p>
+		</li>
+		<li><p>
+		Вернуть результат применения побитового оператора @ к <i>lnum</i> и <i>rnum</i>. Результат является знаковым 32-битовым целым.</p>
+	</li></ol>
+	<h3 id="x11.11">11.11 Бинарные логические операторы <a href="#x11.11">#</a> <a href="#x11.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>LogicalANDExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>BitwiseORExpression<br>LogicalANDExpression </i><code><b>&amp;&amp;</b></code> <i>BitwiseORExpression</i></p>
+	<p class="keep">
+	<i>LogicalANDExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>BitwiseORExpressionNoIn<br>LogicalANDExpressionNoIn </i><code><b>&amp;&amp;</b></code> <i>BitwiseORExpressionNoIn</i></p>
+	<p class="keep">
+	<i>LogicalORExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>LogicalANDExpression<br>LogicalORExpression </i><code><b>||</b></code> <i>LogicalANDExpression</i></p>
+	<p class="keep">
+	<i>LogicalORExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>LogicalANDExpressionNoIn<br>LogicalORExpressionNoIn </i><code><b>||</b></code> <i>LogicalANDExpressionNoIn</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>LogicalANDExpression</i> <b>:</b> <i>LogicalANDExpression</i> <code><b>&amp;&amp;</b></code> <i>BitwiseORExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>LogicalANDExpression</I> <tt>Выражение логического И</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.2">ToBoolean</a>(<i>lval</i>) равно <b>false</b>, вернуть <i>lval</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>BitwiseORExpression</I> <tt>Выражение побитового ИЛИ</tt>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+	</li></ol><p>
+	Для вычисления <i>LogicalORExpression</i> <b>:</b> <i>LogicalORExpression</i> <code><b>||</b></code> <i>LogicalANDExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>LogicalORExpression</I> <tt>Выражение логического ИЛИ</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.2">ToBoolean</a>(<i>lval</i>) равно <b>true</b>, вернуть <i>lval</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <I>LogicalANDExpression</I>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+	</li></ol><p>
+	Для вычисления <i>LogicalANDExpressionNoIn</i> <tt>Выражение логического И без&nbsp;in</tt> и <I>LogicalORExpressionNoIn </I><tt>Выражение логического ИЛИ без&nbsp;in</tt> выполняются точно такие же шаги, что и для вычисления <i>LogicalANDExpression</i> и <I>LogicalORExpression</I>, за исключением того, что вместо вложенных <i>LogicalANDExpression</i>, <i>BitwiseORExpression</i> и <i>LogicalORExpression</i> вычисляются вложенные <i>LogicalANDExpressionNoIn</i>, <i>BitwiseORExpressionNoIn</i> <tt>Выражение побитового ИЛИ без&nbsp;in</tt> и <i>LogicalORExpressionNoIn</i>, соответственно.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Значение, возвращаемое оператором <code><b>&amp;&amp;</b></code> или <code><b>||</b></code>,  не обязательно имеет тип&nbsp;Boolean,  при этом оно всегда будет являться значением одного из двух выражений-операндов.</p>
+	<h3 id="x11.12">11.12 Условный оператор ( ? : ) <a href="#x11.12">#</a> <a href="#x11.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ConditionalExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>LogicalORExpression<br>LogicalORExpression</i> <code><b>?</b></code> <i>AssignmentExpression </i><code><b>:</b></code> <i>AssignmentExpression</i></p>
+	<p class="keep">
+	<i>ConditionalExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>LogicalORExpressionNoIn<br>LogicalORExpressionNoIn</i> <code><b>?</b></code> <i>AssignmentExpression </i><code><b>:</b></code> <i>AssignmentExpressionNoIn</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b> <i>LogicalORExpression</i> <code><b>?</b></code> <i>AssignmentExpression</i> <code><b>:</b></code> <i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>LogicalORExpression</I>.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>)) равно <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <i>trueRef </i>будет результатом вычисления первого <i>AssignmentExpression</i>.</p>
+			</li>
+			<li><p>
+			Вернуть <a href="x8.html#x8.7.1">GetValue</a>(<i>trueRef</i>).</p>
+		</li></ol></li>
+	<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Пусть <i>falseRef </i>будет результатом вычисления второго <i>AssignmentExpression</i>.</p>
+	</li>
+	<li><p>
+			Вернуть <a href="x8.html#x8.7.1">GetValue</a>(<i>falseRef</i>).</p>
+		</li></ol></li></ol><p>
+	Для вычисления <i>ConditionalExpressionNoIn</i> <tt>Условное выражение без in</tt> выполняются точно такие же шаги, что и для вычисления <i>ConditionalExpression</i> <tt>Условное выражение</tt>, за исключением того, что вместо вложенных <i>LogicalORExpression</i>, первого <i>AssignmentExpression</i> и второго <i>AssignmentExpression</i> вычисляются вложенные <i>LogicalORExpressionNoIn</i>, <i>AssignmentExpression</i> и <i>AssignmentExpressionNoIn</i>, соответственно.</p>
+	<p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Грамматика условных выражений в языке ECMAScript отличается от грамматики условных выражений в языках C и Java, которые оба позволяют, чтобы второе подвыражение являлось выражением (Expression), но ограничивают третье выражение, позволяя ему быть лишь условным выражением&nbsp;(Conditional Expression). Это отличие в языке ECMAScript объясняется тем, что ECMAScript позволяет, чтобы выражение присваивания могло управляться любым ответвлением условного выражения; это также позволяет избежать использования запятой в качестве центрального выражения, которое является довольно бесполезным и может ввести в заблуждение.</p>
+	<h3 id="x11.13">11.13 Операторы присваивания <a href="#x11.13">#</a> <a href="#x11.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>AssignmentExpression </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>ConditionalExpression<br>LeftHandSideExpression AssignmentOperator AssignmentExpression</i></p>
+	<p class="keep">
+	<i>AssignmentExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>ConditionalExpressionNoIn<br>LeftHandSideExpression AssignmentOperator AssignmentExpressionNoIn</i></p>
+	<p class="keep">
+	<i>AssignmentOperator </i><b>:</b> <b>один из</b></p>
+	<dl><dd>
+		<table width="616" border="0" cellpadding="3" cellspacing="0"><colgroup><col width="56"><col width="44"><col width="44"><col width="44"><col width="44"><col width="44"><col width="44"><col width="44"><col width="44"><col width="44"><col width="44"><col width="44"></colgroup><tbody><tr valign="TOP"><td width="56" height="13">
+					<p class="sm-btm">
+					<code><b>=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>*=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>/=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>%=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>+=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>-=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>&lt;&lt;=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>&gt;&gt;=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>&gt;&gt;&gt;=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>&amp;=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>^=</b></code></p>
+				</td>
+				<td width="44">
+					<p class="sm-btm">
+					<code><b>|=</b></code></p>
+				</td>
+			</tr></tbody></table></dd></dl><p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>AssignmentExpressionNoIn</i> <tt>Выражение присваивания без in</tt> выполняются точно такие же шаги, что и для вычисления <i>AssignmentExpression </i> <tt>Выражение присваивания</tt>, за исключением того, что вместо вложенных <I>ConditionalExpression</I> и <I>AssignmentExpression </I>вычисляются вложенные <I>ConditionalExpressionNoIn </I>и <i>AssignmentExpressionNoIn</i>, соответственно.</p>
+	<h4 id="x11.13.1">11.13.1 Простое присваивание ( = ) <a href="#x11.13.1">#</a> <a href="#x11.13.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>AssignmentExpression</i> <b>:</b> <i>LeftHandSideExpression</i> <code><b>=</b></code> <i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>LeftHandSideExpression</I> <tt>Левосторонее выражение</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если все следующие условия являются истинными:</p>
+	<ul><li><p>
+		 <a href="x8.html#Type">Type</a>(<i>lref</i>) равно <a href="x8.html#x8.7">Reference</a> равно <b>true</b></p>
+		</li>
+		<li><p>
+		 <a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>lref</i>) равно <b>true</b></p>
+		</li>
+		<li><p>
+		 <a href="x8.html#Type">Type</a>(<a href="x8.html#GetBase">GetBase</a>(<i>lref</i>)) равно <a href="x10.html#x10.2.1">Environment Record</a></p>
+		</li>
+		<li><p>
+		 <a href="x8.html#GetReferencedName">GetReferencedName</a>(<i>lref</i>) равно либо <code><b>&quot;eval&quot;</b></code>, либо <code><b> &quot;arguments&quot;</b></code></p>
+	</li></ul></li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>lref</i>, <i>rval</i>).</p>
+		</li>
+		<li><p>
+		Вернуть <i>rval</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Если присваивание имеет место в рамках <a href="x10.html#x10.1.1" class="term-ref">кода в строгом режиме</a>, его <i>LeftHandSide</i> <tt>Левая сторона</tt> при вычислении не должна производить <a href="x8.html#IsUnresolvableReference">неразрешённую ссылку</a>. Если это происходит, то при таком присваивании генерируется исключение <b><a href="x15.11.html#x15.11.6.3" class="term-ref">ReferenceError</a></b>. Кроме того, <i>LeftHandSide</i> не может быть ссылкой на свойство данных со значением атрибута {[[Writable]]:<b>false</b>}, на свойство аксессоров со значением атрибута {[[Set]]:<b>undefined</b>}, а также на несуществующее свойство объекта, у которого внутреннее свойство [[Extensible]] имеет значение&nbsp;&nbsp;<b>false</b>. В этих случаях генерируется исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<h4 id="x11.13.2">11.13.2 Составное присваивание ( op= ) <a href="#x11.13.2">#</a> <a href="#x11.13.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>AssignmentExpression</i> <b>:</b> <i>LeftHandSideExpression</i><i>@ </i><code><b>=</b></code> <i>AssignmentExpression</i>, где @ означает один из перечисленных выше операторов, выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>LeftHandSideExpression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rval</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>r</i> будет результатом применения оператора&nbsp;@ к <i>lval</i> и&nbsp;<i>rval</i>.</p>
+		</li>
+		<li><p>
+		Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, если все следующие условия являются истинными:</p>
+	<ul><li><p>
+		 <a href="x8.html#Type">Type</a>(<i>lref</i>) равно <a href="x8.html#x8.7">Reference</a> равно <b>true</b></p>
+		</li>
+		<li><p>
+		 <a href="x8.html#IsStrictReference">IsStrictReference</a>(<i>lref</i>) равно <b>true</b></p>
+		</li>
+		<li><p>
+		 <a href="x8.html#Type">Type</a>(<a href="x8.html#GetBase">GetBase</a>(<i>lref</i>)) равно <a href="x10.html#x10.2.1">Environment Record</a></p>
+		</li>
+		<li><p>
+		 <a href="x8.html#GetReferencedName">GetReferencedName</a>(lref) равно либо <code><b>&quot;eval&quot;</b></code>, либо <code><b> &quot;arguments&quot;</b></code></p>
+	</li></ul></li></ol><ol start="7"><li><p>
+		Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>lref</i>, <i><i>r</i></i>).</p>
+		</li>
+		<li><p>
+		Вернуть&nbsp;<i><i>r</i></i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> См. Примечание к пункту&nbsp;<a href="#x11.13.1">11.13.1</a>.</p>
+	<h3 id="x11.14">11.14 Оператор 'Запятая' ( , ) <a href="#x11.14">#</a> <a href="#x11.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Expression</i> <b>:</b></p>
+	<p class="def1-btm">
+	<i>AssignmentExpression</i><i><br>Expression </i><code><b>,</b></code> <i>AssignmentExpression</i></p>
+	<p class="keep">
+	<i>ExpressionNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>AssignmentExpressionNoIn<br>ExpressionNoIn </i><code><b>,</b></code> <i>AssignmentExpressionNoIn</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>UnaryExpression</i> <b>:</b> <i>Expression</i> <code><b>,</b></code> <i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lref </i>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.1">GetValue</a>(<i>lref</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>rref </i>будет результатом вычисления <i>AssignmentExpression</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#x8.7.1">GetValue</a>(<i>rref</i>).</p>
+	</li></ol><p>
+	Для вычисления <i>ExpressionNoIn</i> выполняются точно такие же шаги, что и для вычисления <i>Expression</i>, за исключением того, что вместо вложенных <I>Expression</I> и <I>AssignmentExpression </I>вычисляются вложенные <I>ExpressionNoIn </I>и <i>AssignmentExpressionNoIn</i>, соответственно.</p>
+	<p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Несмотря на то, что значение абстрактной операции <a href="x8.html#x8.7.1">GetValue</a> не используется, её необходимо вызвать, поскольку она может иметь наблюдаемые побочные эффекты.</p>
+	</body><script src="anno.js"></script></html>

@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="../style.css">
+<p>Ниже содержится ссылка на сообщение от Аллена Вирфс-Брока (Allen Wirfs-Brock), посвящённое изменениям в этой главе, которые необходимо внести в проект ES 5.1.
+<p><a
+href="https://mail.mozilla.org/pipermail/es5-discuss/2011-January/003882.html">https://mail.mozilla.org/pipermail/es5-discuss/2011-January/003882.html</a></p>
+
+<p>Приводим выдержку из этого сообщения:</p>
+<pre>
+Временные решения:
+
+Объявления функций рассматривается в шаге 5 пункта&nbsp;10.5. В Спецификации ES5.1 указано следующее:
+
+5.     Для каждого FunctionDeclaration f в сode, по порядку исходного текста выполняется следующее:
+   a.      Пусть fn будет идентификатором Identifier в FunctionDeclaration f.
+   b.      Пусть fo будет результатом инстанциирования FunctionDeclaration f, 
+             как описано в Главе 13.
+   c.      Пусть funcAlreadyDeclared будет результатом вызова конкретного метода
+             HasBinding для env, с передачей в качестве аргумента fn.
+   d.      Если funcAlreadyDeclared &ndash; false, то вызвать конкретный метод CreateMutableBinding 
+             для env, с передачей в качестве аргументов fn и configurableBindings.
+   e.      Иначе, если env &ndash; компонент записи окружения глобального окружения, то
+          i.         Пусть go будет глобальным объектом. 
+         ii.         Пусть existingProp будет результатом вызова внутреннего метода [[GetProperty]] 
+             для go с аргументом&nbsp;fn.
+        iii.         Если existingProp .[[Configurable]] &ndash; true, то
+               1.     Вызвать внутренний метод  [[DefineOwnProperty]] для go,
+                        передавая в качестве аргументов fn, Property Descriptor {[[Value]]: undefined,
+                        [[Writable]]: true, [[Enumerable]]: true , [[Configurable]]:
+                        configurableBindings } и true.
+        iv.         Иначе, если IsAccessorDescriptor(existingProp) или 
+                      existingProp не имеет значений атрибута {[[Writable]]: true,
+                      [[Enumerable]]: true}, то
+                1.     Сгенерировать исключение TypeError.
+   f.        Вызвать конкретный метод SetMutableBinding для env, передавая в качестве 
+              аргументов fn, fo<I> </I>и strict.
+
+Исправления для Спецификации ES5.1:
+
+5.     Для каждого FunctionDeclaration f в сode, по порядку исходного текста выполняется следующее:
+   a.      Пусть fn будет идентификатором Identifier в FunctionDeclaration f.
+   b.      Пусть fo будет результатом инстанциирования FunctionDeclaration f, как 
+             описано в Главе 13.
+   c.      Пусть funcAlreadyDeclared будет результатом вызова конкретного метода HasBinding для env, с передачей в качестве аргумента fn.
+   d.      Если funcAlreadyDeclared &ndash; false, то вызвать конкретный метод CreateMutableBinding для env, с передачей в качестве аргументов fn и configurableBindings.
+   e.      Иначе, если env &ndash; компонент записи окружения глобального окружения, то
+          i.         Пусть go будет глобальным объектом.
+         ii.         Пусть existingProp будет результатом вызова
+                      внутреннего метода [[GetOwnProperty]] для go с аргументом&nbsp;fn.
+        iii.         Если existingProp равно undefined или existingProp .[[Configurable]] равно true, то
+               1.     Вызвать внутренний метод  [[DefineOwnProperty]] для go,
+                        передавая в качестве аргументов fn, Property Descriptor {[[Value]]: undefined,
+                        [[Writable]]: true, [[Enumerable]]: true , [[Configurable]]:
+                 configurableBindings } и true.
+        iv.         Иначе, если IsAccessorDescriptor(existingProp) или 
+                      existingProp не имеет значений атрибута {[[Writable]]: true,
+                      [[Enumerable]]: true}, то
+                1.     Сгенерировать исключение TypeError.
+   Вызвать конкретный метод SetMutableBinding для env, передавая в качестве аргументов fn, fo<I> </I>и strict.
+
+Изменения внесены в строки e.ii и e.iii
+
+Более обширные изменения следует добавить для работы с объявлением var в шаге&nbsp;8,  
+поскольку необходимо добавить обработку особого случая для глобального объявления, 
+аналогичную добавляемой в шаг 5.  
+В исправленной версии Спецификации ES5.1 добавляется шаг 8.d его подшаги:
+
+8.     Для каждого VariableDeclaration и VariableDeclarationNoIn d в code, по порядку исходного текста выполняется следующее:
+   a.     Пусть dn будет идентификатором Identifier в d.
+   b.     Пусть varAlreadyDeclared будет результатом вызова конкретного метода HasBinding для env, с передачей dn в качестве аргумента.
+   c.      Если varAlreadyDeclared &ndash; false, то
+          i.         вызвать конкретный метод CreateMutableBinding для env, с передачей  dn и configurableBindings в качестве аргументов.
+         ii.         Вызвать конкретный метод SetMutableBinding для env, передавая в качестве аргументов dn, undefined и strict.
+    d.    Иначе, если env &ndash; компонент записи окружения глобального окружения, то
+          i.         Пусть go будет глобальным объектом.
+         ii.         Пусть existingProp будет результатом вызова
+                      внутреннего метода [[GetOwnProperty]] для go с аргументом&nbsp;fn.
+        iii.         Если existingProp равно undefined, то
+               1.     Вызвать внутренний метод  [[DefineOwnProperty]] для go,
+                        передавая в качестве аргументов dn, Property Descriptor {[[Value]]: undefined,
+                        [[Writable]]: true, [[Enumerable]]: true , [[Configurable]]:
+                        configurableBindings } и true.
+
+</pre>

@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="../style.css">
+<p class="ed">(Исправлен шаг 3 Алгоритма 1 и шаг 2.a  Алгоритма 3 таким образом, чтобы в качестве параметра передавалось поле value для <i>B</i>, а не само <i>B</i>.)</p>
+
+	<p>
+	Для вычисления <i>TryStatement</i> <b>:</b> <code><b>try</b></code> <i>Block</i> <i>Catch</i> выполняются следующие шаги:</p>
+	<ol>
+		<li><p>
+		Пусть <i><i>B</i> </i>будет результатом вычисления <I>Block</I>.</p>
+		</li>
+		<li><p>
+		Если <i>B</i>.type не равно throw, вернуть <i>B</i>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вычисления <i>Catch</i> с параметром&nbsp;<i>B</i><ins>.value</ins>.</p>
+	</li></ol>
+
+
+	<p>
+	Для вычисления <i>TryStatement</i> <b>:</b> <code><b>try</b></code> <i>Block</i> <i>Catch</i> <i>Finally</i> выполняются следующие шаги:</p>
+	<ol>
+		<li><p>
+		Пусть <i><i>B</i> </i>будет результатом вычисления <I>Block</I>.</p>
+		</li>
+		<li><p>
+		Если <i>B</i>.type равно throw, то</p>
+		<ol>
+			<li><p>
+			Пусть <i>C</i> будет результатом вычисления <i>Catch</i> с параметром&nbsp;<i>B</i><ins>.value</ins>.</p>
+		</li></ol>
+		</li>
+		<li><p>
+		Иначе, <i>B</i>.type не равно throw<b>,</b></p>
+		<ol>
+			<li><p>
+			Пусть <i>C</i> будет <i>B</i>.</p>
+		</li></ol>
+		</li>
+		<li><p>
+		Пусть <i><i>F</i> </i>будет результатом вычисления <I>Finally</I>.</p>
+		</li>
+		<li><p>
+		Если <i>F</i>.type равно normal, вернуть <i>C</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>F</i>.</p>
+	</li></ol>

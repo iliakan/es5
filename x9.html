@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>9 Преобразование и проверка типов # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x8.html" title="8 Типы " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x10.html" title="10 Исполняемый код и контексты исполнения " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x8.html">&#8592; 8 Типы </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x10.html">10 Исполняемый код и контексты исполнения &#8594;</a>
+
+  <ol class="toc"><li><a href="x9.html#x9" id="x9-toc">9 Преобразование и проверка типов</a>
+    <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x9.html#x9.1" id="x9.1-toc">9.1 ToPrimitive</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.2" id="x9.2-toc">9.2 ToBoolean</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.3" id="x9.3-toc">9.3 ToNumber</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x9.html#x9.3.1" id="x9.3.1-toc">9.3.1 ToNumber применительно к типу String</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x9.html#x9.4" id="x9.4-toc">9.4 ToInteger</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.5" id="x9.5-toc">9.5 ToInt32: (Знаковое 32-битовое целое)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.6" id="x9.6-toc">9.6 ToUint32: (Беззнаковое 32-битовое целое)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.7" id="x9.7-toc">9.7 ToUint16: (Беззнаковое 16-битовое целое)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.8" id="x9.8-toc">9.8 ToString</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x9.html#x9.8.1" id="x9.8.1-toc">9.8.1 ToString применительно к типу Number</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x9.html#x9.9" id="x9.9-toc">9.9 ToObject</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.10" id="x9.10-toc">9.10 CheckObjectCoercible</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.11" id="x9.11-toc">9.11 IsCallable</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x9.html#x9.12" id="x9.12-toc">9.12 Алгоритм SameValue</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></nav>
+
+  <h2 id="x9">9 Преобразование и проверка типов <a href="#x9">#</a> <a href="#x9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+	<p>
+	Исполняющая система ECMAScript производит автоматическое преобразование типов по мере необходимости. Чтобы разъяснить семантику определенных конструкций, полезно определить набор абстрактных операций преобразования. Эти абстрактные операции не являются частью языка. Они определяются в данной спецификации только как вспомогательные средства для определения семантики языка. Абстрактные операции преобразования полиморфны, то есть, они могут принимать значение любого <a href="x8.html#language-type">языкового типа</a>, но не <a href="x8.html#specification-type">типа спецификации</a>.</p>
+	<h3 id="x9.1">9.1 ToPrimitive <a href="#x9.1">#</a> <a href="#x9.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция ToPrimitive <tt>К&nbsp;примитиву</tt> принимает аргумент <I>input</I> <tt>входной</tt> и необязательный аргумент <I>PreferredType</I> <tt>Предпочтительный тип</tt>. Абстрактная операция ToPrimitive преобразует свой аргумент <I>input </I>в тип, не являющийся объектным. Если объект может быть преобразован более чем к одному примитивному типу, то для выбора может быть использована необязательная подсказка <I>PreferredType.</I> Преобразование производится в соответствии с Таблицей&nbsp;10:</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 10. Преобразования ToPrimitive</caption>
+			<colgroup><col width="138"><col width="518"></colgroup><tbody><tr valign="TOP"><td width="138" height="9" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Входной тип</span></b></i></p>
+				</td>
+				<td width="518" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен аргументу <I>input </I>(без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Null</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен аргументу <I>input </I>(без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен аргументу <I>input </I>(без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Number</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен аргументу <I>input </I>(без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					String</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен аргументу <I>input </I>(без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Object</p>
+				</td>
+				<td width="518">
+					<p>
+					Возвращает значение по умолчанию для Object. Значение по умолчанию какого-либо объекта получается путем вызова внутреннего метода [[DefaultValue]] этого объекта, с передачей необязательной подсказки <i>PreferredType</i>. Описание поведения внутреннего метода [[DefaultValue]] для всех родных объектов ECMAScript приводится в данной спецификации в пункте&nbsp;<a href="x8.html#x8.12.8">8.12.8</a>.</p>
+				</td>
+			</tr></tbody></table></center>
+	<h3 id="x9.2">9.2 ToBoolean <a href="#x9.2">#</a> <a href="#x9.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция ToBoolean <tt>К&nbsp;булевому</tt> преобразует свой аргумент к значению типа Boolean в соответствии с Таблицей&nbsp;11:</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 11. Преобразования ToBoolean.</caption>
+			<colgroup><col width="138"><col width="518"></colgroup><tbody><tr valign="TOP"><td width="138" height="11" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Тип аргумента</span></b></i></p>
+				</td>
+				<td width="518" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="518">
+					<p>
+					<b>false</b></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Null</p>
+				</td>
+				<td width="518">
+					<p>
+					<b>false</b></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен входному аргументу (без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Number</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат <b>false</b>, если аргумент равен <b>+0</b>, <span class="symbol"><b>&#8722;</b></span><b>0</b> или <b>NaN</b>; в противном случае результат &ndash; <b>true</b>.
+					</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					String</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат <b>false</b>, если аргумент &ndash; пустая строка (длина строки равна нулю); в противном случае результат &ndash; <B>true</B>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>Object</p>
+				</td>
+				<td width="518">
+					<p><b>true</b></p>
+				</td>
+			</tr></tbody></table></center>
+	<h3 id="x9.3">9.3 ToNumber <a href="#x9.3">#</a> <a href="#x9.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция ToNumber <tt>К&nbsp;числу</tt> преобразует свой аргумент к значению типа Number в соответствии с Таблицей&nbsp;12:</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 12. Преобразования ToNumber</caption>
+			<colgroup><col width="138"><col width="518"></colgroup><tbody><tr valign="TOP"><td width="138" height="9" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Тип аргумента</span></b></i></p>
+				</td>
+				<td width="518" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="518">
+					<p>
+					<b>NaN</b></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Null</p>
+				</td>
+				<td width="518">
+					<p>
+					<b>+0</b></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен <b>1</b>, если аргумент &ndash; <b>true</b>. Результат равен <b>+0</b>, если аргумент &ndash; <b>false</b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Number</p>
+				</td>
+				<td width="518">
+					<p>
+					Результат равен входному аргументу (без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					String</p>
+				</td>
+				<td width="518">
+					<p>
+					См. грамматику и примечание ниже.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Object</p>
+				</td>
+				<td width="518">
+					<p>
+					Выполняются следующие шаги:</p>
+					<ol><li><p class="keep">
+						Пусть <i>primValue</i> <tt>Примитивное значение</tt> будет равно <a href="#x9.1">ToPrimitive</a>(<i>входной аргумент, </i>подсказка Number).</p>
+						</li>
+						<li><p class="keep">
+						Вернуть ToNumber(<i>primValue</i>).</p>
+					</li></ol></td>
+			</tr></tbody></table></center>
+	<h4 id="x9.3.1">9.3.1 ToNumber применительно к типу String <a href="#x9.3.1">#</a> <a href="#x9.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Когда ToNumber применяется к строке, эта  абстрактная операция применяет к входной строке грамматику, описанную ниже. Если эта грамматика не может интерпретировать строку как развертывание <I>StringNumericLiteral </I> <tt>Строковый числовой литерал</tt>, то результатом ToNumber будет <b>NaN</b>.</p>
+	<p class="keep">
+	<i>StringNumericLiteral </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>StrWhiteSpace</i><sub>opt</sub><i><br>StrWhiteSpace</i><sub>opt</sub><i>StrNumericLiteral StrWhiteSpace</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>StrWhiteSpace </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>StrWhiteSpaceChar StrWhiteSpace</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>StrWhiteSpaceChar </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>WhiteSpace<br>LineTerminator</i></p>
+	<p class="keep">
+	<i>StrNumericLiteral </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>StrDecimalLiteral<br>HexIntegerLiteral</i></p>
+	<p class="keep">
+	<i>StrDecimalLiteral </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>StrUnsignedDecimalLiteral<br></i><code><b>+</b></code> <i>StrUnsignedDecimalLiteral<br></i><code><b>-</b></code> <i>StrUnsignedDecimalLiteral</i></p>
+	<p class="keep">
+	<i>StrUnsignedDecimalLiteral </i><b>:::</b></p>
+	<p class="def1-btm">
+	<code><b>Infinity</b></code> <i><br> DecimalDigits </i><code><b>.</b></code> <i>DecimalDigits</i><sub>opt</sub><i>ExponentPart</i><sub>opt</sub><i><br></i><code><b>.</b></code> <i>DecimalDigits ExponentPart</i><sub>opt</sub><i><br>DecimalDigits ExponentPart</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>DecimalDigits </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>DecimalDigit<br>DecimalDigits DecimalDigit</i></p>
+	<p class="keep">
+	<i>DecimalDigit </i><b>:::</b> <b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>0 1  2  3  4  5  6  7  8  9</b></code></p>
+	<p class="keep">
+	<i>ExponentPart </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>ExponentIndicator SignedInteger</i></p>
+	<p class="keep">
+	<i>ExponentIndicator </i><b>:::</b><b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>e E</b></code></p>
+	<p class="keep">
+	<i>SignedInteger </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>DecimalDigits<br></i><code><b>+</b></code> <i>DecimalDigits<br></i><code><b>-</b></code> <i>DecimalDigits</i></p>
+	<p class="keep">
+	<i>HexIntegerLiteral </i><b>:::</b></p>
+	<p class="def1-btm">
+	<code><b>0x</b></code> <i>HexDigit<br></i><code><b>0X</b></code> <i>HexDigit<br>HexIntegerLiteral HexDigit</i></p>
+	<p class="keep">
+	<i>HexDigit </i>::: <b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>0 1  2  3  4  5  6  7  8  9  a  b  c  d  e  f  A  B  C  D  E  F</b></code></p>
+	<p>
+	Следует обратить внимание на некоторые различия между синтаксисом для <I>StringNumericLiteral </I> и синтаксисом для <i>NumericLiteral</i> (см.&nbsp;<a href="x7.html#x7.8.3">7.8.3</a>):</p>
+	<ul><li><p>
+		Перед <i>StringNumericLiteral</i> и/или после него может находиться пробел и/или символы окончания строки.</p>
+		</li>
+		<li><p>
+		У десятичного <I>StringNumericLiteral</I> может быть любое количество цифр <code><b>0</b></code> в качестве первой цифры.</p>
+		</li>
+		<li><p>
+		Перед десятичным <i>StringNumericLiteral </i> для обозначения его знака может находиться знак <code><b>+</b></code> или <code><b>-</b></code>.</p>
+		</li>
+		<li><p>
+		Пустой или содержащий только пробельные символы <i>StringNumericLiteral</i> преобразуется к <b>+0</b>.</p>
+	</li></ul><p>
+	В целом, преобразование строки в числовое значение аналогично чтению значения типа Number из числового литерала (см.&nbsp;<a href="x7.html#x7.8.3">7.8.3</a>). Однако некоторые моменты отличаются, поэтому здесь мы полностью приводим процесс преобразования строкового числового литерала в значение типа&nbsp;Number.
+	Это значение определяется в два этапа: сначала из строкового числового литерала выводится его математическое значение MV (сокращение от "mathematical value" – прим. перев.), а затем это MV округляется, как описано ниже:</p>
+	<ul><li><p>
+		MV <i>StringNumericLiteral</i> <b>:::</b> [empty] равно 0.</p>
+		</li>
+		<li><p>
+		MV <i>StringNumericLiteral</i> <b>:::</b> <i>StrWhiteSpace</i> равно 0.</p>
+		</li>
+		<li><p>
+		MV <i>StringNumericLiteral</i> <b>:::</b> <i>StrWhiteSpace</i><sub>opt</sub><i>StrNumericLiteral</i> <i>StrWhiteSpace</i><sub>opt</sub> равно MV <i>StrNumericLiteral</i>, независимо от наличия или отсутствия пробелов.</p>
+		</li>
+		<li><p>
+		MV <i>StrNumericLiteral</i> <b>:::</b> <i>StrDecimalLiteral</i> равно MV <i>StrDecimalLiteral</i>.</p>
+		</li>
+		<li><p>
+		MV <i>StrNumericLiteral</i> <b>:::</b> <i>HexIntegerLiteral</i> равно MV <i>HexIntegerLiteral</i>.</p>
+		</li>
+		<li><p>
+		MV <i>StrDecimalLiteral</i> <b>:::</b> <i>StrUnsignedDecimalLiteral</i> равно MV<i> StrUnsignedDecimalLiteral</i>.</p>
+		</li>
+		<li><p>
+		MV <i>StrDecimalLiteral</i> <b>:::</b> <code><b>+</b></code> <i>StrUnsignedDecimalLiteral</i> равно MV <i>StrUnsignedDecimalLiteral</i>.</p>
+		</li>
+		<li><p>
+		MV <i>StrDecimalLiteral</i> <b>:::</b> <code><b>-</b></code> <i>StrUnsignedDecimalLiteral</i> равно отрицательному MV <i>StrUnsignedDecimalLiteral</i>. (Обратите внимание, что если MV <i>StrUnsignedDecimalLiteral</i> <tt>Строковый беззнаковый десятичный литерал</tt> равно&nbsp;0, то отрицательное значение этого MV тоже равно&nbsp;0. Приведенное ниже правило округления производит преобразование этого беззнакового математического нуля к <b>+0</b> или <span class="symbol"><b>&#8722;</b></span><b>0</b> (в зависимости от необходимости) с плавающей запятой).</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral </i><b>::: </b><code><b>Infinity</b></code> равно 10<sup>10000</sup> (значению, настолько большому, что оно округляется до <b>+</b><span class="symbol"><b>&#8734;</b></span>).</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral</i> <b>:::</b><i>DecimalDigits</i><code><b>.</b></code> равно MV <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral</i> <b>:::</b><i>DecimalDigits </i><code><b>.</b></code> <i>DecimalDigits </i>равно MV первых <i>DecimalDigits </i>плюс (MV вторых <i>DecimalDigits</i>, умноженное на 10<sup><span class="symbol">&#8722;</span></sup><sup><i>n</i></sup>), где <i>n</i> &ndash; количество символов во вторых <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral</i> <b>::: </b><i>DecimalDigits</i><code><b>.</b></code> <I>ExponentPart</I> равно MV <I>DecimalDigits</I>, умноженному на 10<sup><i>e</i></sup>, где <I>e</I> &ndash; MV <I><I>ExponentPart</I></I>.</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral</i> <b>::: </b><i>DecimalDigits</i><code><b>.</b></code> <I>DecimalDigits ExponentPart </I>равно (MV первых <I><I>DecimalDigits </I></I>плюс (MV вторых<I> DecimalDigits</I>, умноженному на 10<sup><span class="symbol">&#8722;</span></sup><sup><i>n</i></sup>)) , умноженному на 10<sup><i>e</i></sup>, где <I>n </I>&ndash; количество символов во вторых <I>DecimalDigits</I>, а <I>e</I>  &ndash; MV <I>ExponentPart</I>.</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral </i> <b>:::</b><code><b>.</b></code></b> <i>DecimalDigits </i>равно MV <I>DecimalDigits</I>, умноженному на 10<span class="symbol">&ndash;</span><sup><sup>n</sup></sup>, где <i>n</i> &ndash; количество символов в <I>DecimalDigits</I>.</p>
+		</li>
+		<li><p>
+		MV <I>StrUnsignedDecimalLiteral </I> <b>:::</b><code><b>.</b></code> <i>DecimalDigits </i><I>ExponentPart </I>равно MV <I>DecimalDigits</I>, умноженному на 10<sup><i>e</i></sup><span class="symbol">&ndash;</span><sup><sup><I>n</I></sup></sup>, где <i>n</i> &ndash; количество символов в <I>DecimalDigits</I>, а <I>e </I>&ndash; MV <I>ExponentPart</I>.</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral</i> <b>::: </b><i>DecimalDigits</i> равно MV <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		MV <i>StrUnsignedDecimalLiteral </i> <b>::: </b><I>DecimalDigits ExponentPart</I> равно MV <I>DecimalDigits</I>, умноженному на 10<sup><i>e</i></sup>, где <I>e</I> &ndash; MV <I><I>ExponentPart</I></I>.</p>
+		</li>
+		<li><p>
+		MV <i>DecimalDigits</i> <b>:::</b> <i>DecimalDigit</i> равно MV <i>DecimalDigit</i>.</p>
+		</li>
+		<li><p>
+		MV <i>DecimalDigits</i> <b>:::</b> <i>DecimalDigits</i> <i>DecimalDigit</i> равно (MV <I>DecimalDigits</I>, умноженному на 10) плюс MV <I>DecimalDigit</I>.</p>
+		</li>
+		<li><p>
+		MV <i>ExponentPart </i><b>::: </b><i>ExponentIndicator SignedInteger</i><i> </i>равно MV <i>SignedInteger</i>.</p>
+		</li>
+		<li><p>
+		MV<i>SignedInteger </i><b>::: </b><i>DecimalDigits</i>is равно MV <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		MV <i>SignedInteger </i><b>::: </b><code><b>+</b></code> <i>DecimalDigits</i><i> </i>равно MV <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		MV <i>SignedInteger </i><b>::: </b><code><b>-</b></code> <i>DecimalDigits</i><i> </i>равно отрицательному MV <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>0</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>0</b></code> равно 0.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>1</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>1</b></code> равно 1.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>2</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>2</b></code> равно 2.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>3</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>3</b></code> равно 3.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>4</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>4</b></code> равно 4.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>5</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>5</b></code> равно 5.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>6</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>6</b></code> равно 6.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>7</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>7</b></code> равно 7.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>8</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>8</b></code> равно 8.</p>
+		</li>
+		<li><p>
+		MV для <i>DecimalDigit</i> <b>:::</b> <code><b>9</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>9</b></code> равно 9.</p>
+		</li>
+		<li><p>
+		MV <i>HexDigit</i> <b>:::</b> <code><b>a</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>A</b></code> равно 10.</p>
+		</li>
+		<li><p>
+		MV для <i>HexDigit</i> <b>:::</b> <code><b>b</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>B</b></code> является 11.</p>
+		</li>
+		<li><p>
+		MV для <i>HexDigit</i> <b>:::</b> <code><b>c</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>C</b></code> является 12.</p>
+		</li>
+		<li><p>
+		MV для <i>HexDigit</i> <b>:::</b> <code><b>d</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>D</b></code> является 13.</p>
+		</li>
+		<li><p>
+		MV для <i>HexDigit</i> <b>:::</b> <code><b>e</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>E</b></code> является 14.</p>
+		</li>
+		<li><p>
+		MV для <i>HexDigit</i> <b>:::</b> <code><b>f</b></code> или для <i>HexDigit</i> <b>:::</b> <code><b>F</b></code> является 15.</p>
+		</li>
+		<li><p>
+		MV для <i>HexIntegerLiteral </i><b>:::</b> <code><b>0x</b></code> <i>HexDigit</i> равно MV <i>HexDigit</i>.</p>
+		</li>
+		<li><p>
+		MV <i>HexIntegerLiteral </i><b>:::</b> <code><b>0X</b></code> <i>HexDigit</i> равно MV <i>HexDigit</i>.</p>
+		</li>
+		<li><p>
+		MV <i>HexIntegerLiteral </i><b>:::</b> <i>HexIntegerLiteral</i> <i>HexDigit</i> равно (MV <i>HexIntegerLiteral</i>, умноженному на 16) плюс MV <i>HexDigit</i>.</p>
+	</li></ul><p>
+	После того, как точное MV строкового числового литерала определено, оно затем округляется до значения типа Number. Если MV равно 0, тогда округленное значение будет +0, за исключением случаев, когда первым непробельным символом в этом строковом числовом литерале является &lsquo;<code><b>-</b></code>&rsquo;, и тогда округленное значение будет&nbsp;<span class="symbol">&#8722;</span>0. В противном случае округленное значение должно представлять собой это числовое значение MV (в соответствии с определением в <a href="x8.html#x8.5">пункте&nbsp;8.5</a>), за исключением случаев, когда литерал включает <i>StrUnsignedDecimalLiteral</i> и имеет более 20&nbsp;значимых чисел &ndash; в этом случае числовое значение может быть либо числовым значением MV литерала, полученного при замене на число 0 каждой значащей цифры после 20-й, либо числовым значением MV литерала, полученного в результате замены на число 0 каждой значащей цифры после 20-й, с последующим приращением литерала в позиции 20-й цифры. Цифра является <i>значащей</i>, если она не является частью <i>ExponentPart</i> <tt>Экспоненциальная часть</tt>, и</p>
+	<ul><li><p>
+		она не является <b>0</b>; или</p>
+		</li>
+		<li><p>
+		слева от нее находится ненулевая цифра, и справа от нее, не в <i>ExponentPart</i>, тоже находится ненулевая цифра.</p>
+	</li></ul>
+	<h3 id="x9.4">9.4 ToInteger <a href="#x9.4">#</a> <a href="#x9.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция ToInteger <tt>К&nbsp;целому</tt> преобразует свой аргумент к целочисленному значению. Она действует следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>number</i> будет результатом вызова операции <a href="#x9.3">ToNumber</a> для входного аргумента.</p>
+		</li>
+		<li><p>
+		Если <i>number</i> &ndash; <b>NaN</b>, вернуть <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>number</i> равно <b>+0</b>, <span class="symbol"><b>&#8722;</b></span><b>0</b>, <b>+</b><span class="symbol"><b>&#8734;</b></span> или <span class="symbol"><b>&#8722;&#8734;</b></span>, вернуть <i>number</i>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вычисления <a href="x5.html#sign">знак</a>(<i>number</i>) * <a href="x5.html#floor">floor</a>(<a href="x5.html#abs">abs</a>(<i>number</i>)).</p>
+	</li></ol>
+	<h3 id="x9.5">9.5 ToInt32: (Знаковое 32-битовое целое) <a href="#x9.5">#</a> <a href="#x9.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция ToInt32 преобразует свой аргумент к одному из 2<sup>32</sup> целочисленных значений от <span class="symbol">&#8722;</span>2<sup>31</sup> до 2<sup>31</sup><span class="symbol">&#8722;</span>1 включительно. Она действует следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>number</i> будет результатом вызова операции <a href="#x9.3">ToNumber</a> для входного аргумента.</p>
+		</li>
+		<li><p>
+		Если <i>number</i> равно <b>NaN</b>, <b>+0</b>, <span class="symbol"><b>&#8722;</b></span><b>0</b>, <b>+</b><span class="symbol"><b>&#8734;</b></span> или <span class="symbol"><b>&#8722;&#8734;</b></span>, вернуть <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Пусть <I>posInt</I> <tt>Положительное целое число</tt>  будет <a href="x5.html#sign">sign</a>(<i>number</i>) * <a href="x5.html#floor">floor</a>(<a href="x5.html#abs">abs</a>(<i>number</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>int32bit</i> будет <i>posInt</i> <a href="x5.html#modulo">modulo</a> 2<sup>32</sup>; то есть &ndash; конечным целочисленным значением k типа Number с положительным знаком и меньше 2<sup>32</sup> по модулю, таким образом, чтобы математическая разность между <i>posInt</i> и k была кратна&nbsp;2<sup>32</sup>.</p>
+		</li>
+		<li><p>
+		Если <i>int32bit</i> больше или равно 2<sup>31</sup>, вернуть <i>int32bit</i> <span class="symbol">&#8722;</span> 2<sup>32</sup>, в противном случае &ndash; вернуть <i>int32bit</i>.</p>
+	</li></ol><p>
+	</p><p><b>ПРИМЕЧАНИЕ</b> Принимая во внимание вышеуказанное определение&nbsp;ToInt32:</p>
+	<ul><li><p>
+		Абстрактная операция ToInt32 является идемпотентной: если она применяется к произведенному ею результату, это повторное применение не меняет полученного значения.</p>
+		</li>
+		<li><p>
+		ToInt32(<a href="#x9.6">ToUint32</a>(<i>x</i>)) равно ToInt32(<i>x</i>) для всех значений <i>x</i>. (Именно для сохранения этого последнего свойства +<span class="symbol"><b>&#8734;</b></span> и <span class="symbol">&#8722;</span><span class="symbol"><b>&#8734;</b></span> преобразуются к&nbsp;<b>+0</b>.)</p>
+		</li>
+		<li><p>
+		ToInt32 преобразует <span class="symbol"><b>&#8722;</b></span><b>0</b> к&nbsp;<b>+0</b>.</p>
+	</li></ul>
+	<h3 id="x9.6">9.6 ToUint32: (Беззнаковое 32-битовое целое) <a href="#x9.6">#</a> <a href="#x9.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция ToUint32 преобразует свой аргумент к одному из 2<sup>32</sup> целочисленных значений от 0 до 2<sup>32</sup><span class="symbol">&#8722;</span>1 включительно. Она действует следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>number</i> будет результатом вызова операции <a href="#x9.3">ToNumber</a> для входного аргумента.</p>
+		</li>
+		<li><p>
+		Если <i>number</i> равно <b>NaN</b>, +0, <span class="symbol">&#8722;</span>0, +<span class="symbol"><b>&#8734;</b></span> или <span class="symbol"><b>&#8722;&#8734;</b></span>, вернуть <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>posInt</i> будет <a href="x5.html#sign">sign</a>(<i>number</i>) * <a href="x5.html#floor">floor</a>(<a href="x5.html#abs">abs</a>(<i>number</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>int32bit</i> будет <i>posInt</i> <a href="x5.html#modulo">modulo</a> 2<sup>32</sup>; то есть &ndash; конечным целочисленным значением k типа Number с положительным знаком и меньше 2<sup>32</sup> по модулю, таким образом, чтобы математическая разность между <i>posInt</i> и k была математически кратна&nbsp;2<sup>32</sup>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>int32bit</i>.</p>
+	</li></ol><p>
+	</p><p><b>ПРИМЕЧАНИЕ</b> Принимая во внимание вышеуказанное определение&nbsp;ToUInt32:</p>
+	<ul><li><p>
+		Операция ToUint32 отличается от <a href="#x9.5">ToInt32</a> только шагом&nbsp;5.</p>
+		</li>
+		<li><p>
+		Абстрактная операция ToUint32 является идемпотентной: если она применяется к произведенному ею результату, это повторное применение не меняет полученного значения.</p>
+		</li>
+		<li><p>
+		ToUint32(<a href="#x9.5">ToInt32</a>(<i>x</i>)) равен ToUint32(<i>x</i>) для всех значений <i>x</i>. (Именно для сохранения этого последнего свойства <B>+</B><span class="symbol"><b>&#8734;</b></span> и <span class="symbol"><b>&#8722;&#8734;</b></span> преобразуются к&nbsp;<b>+0</b>.)</p>
+		</li>
+		<li><p>
+		ToUint32 преобразует <span class="symbol"><b>&#8722;</b></span><b>0</b> к&nbsp;<b>+0</b>.</p>
+	</li></ul>
+	<h3 id="x9.7">9.7 ToUint16: (Беззнаковое 16-битовое целое) <a href="#x9.7">#</a> <a href="#x9.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция ToUint16 преобразует свой аргумент к одному из 2<sup>16</sup> целочисленных значений от 0 до 2<sup>16</sup><span class="symbol">&#8722;</span>1 включительно. Она действует следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>number</i> будет результатом вызова <a href="#x9.3">ToNumber</a> для входного аргумента.</p>
+		</li>
+		<li><p>
+		Если <i>number</i> равно <b>NaN</b>, +0, <span class="symbol">&#8722;</span>0, +<span class="symbol"><b>&#8734;</b></span> или <span class="symbol">&#8722;</span><span class="symbol"><b>&#8734;</b></span>, то вернуть <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>posInt</i> будет <a href="x5.html#sign">sign</a>(<i>number</i>) * <a href="x5.html#floor">floor</a>(<a href="x5.html#abs">abs</a>(<i>number</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>int16bit</i> будет <i>posInt</i> <a href="x5.html#modulo">modulo</a> 2<sup>16</sup>; то есть &ndash; конечным целочисленным значением k типа Number с положительным знаком и меньше 2<sup>16</sup> по модулю, таким образом, чтобы математическая разность между <i>posInt</i> и k была математически кратна&nbsp;2<sup>16</sup>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>intint16bit</i>.</p>
+	</li></ol><p>
+	</p><p><b>ПРИМЕЧАНИЕ</b> Принимая во внимание вышеуказанное определение&nbsp;ToUint16:</p>
+	<ul><li><p>
+		Единственная разница между операциями <a href="#x9.6">ToUint32</a> и ToUint16 заключается в замене 2<sup>32</sup> на 2<sup>16</sup> в шаге&nbsp;4.</p>
+		</li>
+		<li><p>
+		ToUint16 преобразует <span class="symbol"><b>&#8722;</b></span><b>0</b> к&nbsp;<b>+0</b>.</p>
+	</li></ul>
+	<h3 id="x9.8">9.8 ToString <a href="#x9.8">#</a> <a href="#x9.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="sm-btm">
+	Абстрактная операция ToString <tt>К&nbsp;строке</tt> преобразует свой аргумент к значению типа String в соответствии с Таблицей&nbsp;13:</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 13. Преобразования ToString </caption>
+			<colgroup><col width="138"><col width="518"></colgroup><tbody><tr valign="TOP"><td width="138" height="9" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Тип аргумента</span></b></i></p>
+				</td>
+				<td width="518" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="518">
+					<p><code><b>&quot;undefined&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Null</p>
+				</td>
+				<td width="518">
+					<p><code><b>&quot;null&quot;</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="518">
+					<p>Если аргумент <b>true</b>, то результат &ndash; <code><b>&quot;true&quot;</b></code>.</p>
+					<p>Если аргумент <b>false</b>, то результат &ndash; <code><b>&quot;false&quot;</b></code>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Number</p>
+				</td>
+				<td width="518">
+					<p>См. пункт&nbsp;<a href="#x9.8.1">9.8.1</a>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					String</p>
+				</td>
+				<td width="518">
+					<p>Вернуть входной аргумент (без преобразования).</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Object</p>
+				</td>
+				<td width="518">
+					<p>Выполняются следующие шаги:</p>
+					<p>
+					1. Пусть <i>primValue</i> будет <a href="#x9.1">ToPrimitive</a>(входной аргумент, подсказка String).</p>
+					<p>
+					2. Вернуть ToString(<i>primValue</i>).</p>
+				</td>
+			</tr></tbody></table></center>
+	<h4 id="x9.8.1">9.8.1 ToString применительно к типу Number <a href="#x9.8.1">#</a> <a href="#x9.8.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Абстрактная операция ToString преобразует число к строковому формату следующим образом:</p>
+	<ol><li><p>
+		Если <i>m</i> равно <b>NaN</b>, вернуть строку <code><b>&quot;NaN&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <i>m</i> равно <b>+0</b> или <span class="symbol"><b>&#8722;</b></span><b>0</b>, вернуть строку <code><b>&quot;0&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <i>m</i> меньше нуля, вернуть строковую конкатенацию строки <code><b>&quot;-&quot;</b></code> и ToString(<span class="symbol">&#8722;</span><i>m</i>).</p>
+		</li>
+		<li><p>
+		Если <i>m</i> &ndash; бесконечность, вернуть строку <code><b>&quot;Infinity&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		В противном случае, пусть <i>n</i>, <i>k</i> и <i>s</i> будут такими целыми числами, чтобы: <i>k</i> <span class="symbol">&#8805;</span> 1, 10<sup><i>k</i></sup><sup><span class="symbol">&#8722;</span></sup><sup>1</sup><span class="symbol">&#8804;</span> <i>s</i> &lt; 10<sup><i>k</i></sup>, значение Number для <i>s</i> <span class="symbol">&#215;</span> 10<sup><i>n</i></sup><sup><span class="symbol"><i>&#8722;</i></span></sup><sup><i>k</i></sup> равно <i>m</i>, а <i>k</i> являлось наименьшим возможным числом. Обратите внимание, что <i>k</i> &ndash; количество цифр в десятичном представлении <i>s</i>, что <i>s</i> не кратно 10, и что цифра самого младшего разряда в <i>s</i> не обязательно однозначно определяется этими критериями.</p>
+		</li>
+		<li><p>
+		Если <i>k</i> <span class="symbol">&#8804;</span> <i>n</i> <span class="symbol">&#8804;</span> 21, вернуть строку, состоящую из <i>k</i> цифр десятичного представления s (по порядку, без начальных нулей), после которых следуют <i>n</i><span class="symbol"><i>&#8722;</i></span><i>k</i> экземпляров символа&nbsp;&lsquo;<code><b>0</b></code>&rsquo;.</p>
+		</li>
+		<li><p>
+		Если 0 &lt; n <span class="symbol">&#8804;</span> 21, вернуть строку, состоящую из наиболее значимых <i>n</i> цифр десятичного представления <i>s</i>, после которых следует десятичная точка &lsquo;<code><b>.</b></code>&rsquo;, после которой следуют оставшиеся <i>k</i><span class="symbol"><i>&#8722;</i></span><i>n</i> цифр десятичного представления&nbsp;<i>s</i>.</p>
+		</li>
+		<li><p>
+		Если <span class="symbol">&#8722;</span>6 &lt; n <span class="symbol">&#8804;</span> 0, вернуть строку, состоящую из символа &lsquo;<code><b>0</b></code>&rsquo;, после которого следует десятичная точка &lsquo;<code><b>.</b></code>&rsquo;, после которой следуют <span class="symbol">&#8722;</span><i>n</i> экземпляров символа&nbsp;&lsquo;<code><b>0</b></code>&rsquo;, после которых следует <i>k</i> цифр десятичного представления&nbsp;<i>s</i>.</p>
+		</li>
+		<li><p>
+		В противном случае, если <i>k</i> = 1, вернуть строку, состоящую из одной цифры из <i>s</i>, после которой следует символ &lsquo;<code><b>e</b></code>&rsquo; в нижнем регистре, после которого следует знак плюс &lsquo;<code><b>+</b></code>&rsquo; или знак минус &lsquo;<span class="symbol"><b>&#8722;</b></span>&rsquo; (в зависимости от того, является ли <i>n</i><span class="symbol">&#8722;</span>1 положительной или отрицательной величиной), за которой следует десятичное представление целого числа <a href="x5.html#abs">abs</a>(<i>n</i><span class="symbol">&#8722;</span>1) (без начальных нулей).</p>
+		</li>
+		<li><p>
+		Вернуть строку, состоящую из старшей цифры десятичного представления&nbsp;s, после которой следует десятичная точка &lsquo;.&rsquo;, за которой следуют остальные k<span class="symbol">&#8722;</span>1 цифр десятичного представления&nbsp;s, после которых следует символ &lsquo;e&rsquo; в нижнем регистре, после которого следует знак плюс &lsquo;+&rsquo; или знак минус &lsquo;<span class="symbol">&#8722;</span>&rsquo; (в зависимости от того, является ли n<span class="symbol">&#8722;</span>1 положительной или отрицательной величиной), после которого следует десятичное представление целого числа <a href="x5.html#abs">abs</a>(n<span class="symbol">&#8722;</span>1) (без начальных нулей).</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ 1</b> Следующие наблюдения не являются нормативными требованиями настоящего Стандарта, но могут быть полезны в качестве руководящих принципов для реализаций:</p>
+	<ul><li><p>
+		Если x &ndash; любое числовое значение, кроме <span class="symbol"><b>&#8722;</b></span><b>0</b>, то <a href="#x9.3">ToNumber</a>(<a href="#x9.8">ToString</a>(x)) имеет точно такое же числовое значение, что&nbsp;и&nbsp;x.</p>
+		</li>
+		<li><p>
+		Младшая цифра&nbsp;s не всегда однозначно определена требованиями, указанными в шаге&nbsp;5.</p>
+	</li></ul><p><b>ПРИМЕЧАНИЕ 2</b> Для реализаций, обеспечивающих более точные преобразования, чем требуют вышеперечисленные правила, рекомендуется в качестве руководящего принципа использовать измененный вариант шага 5:</p>
+	<p class="indent-1">
+	В противном случае, пусть <i>n</i>, <i>k</i> и <i>s</i> будут такими целыми числами, чтобы: <i>k</i> <span class="symbol">&#8805;</span> 1, 10<sup><i>k</i></sup><sup><span class="symbol">&#8722;</span></sup><sup>1</sup><span class="symbol">&#8804;</span> <i>s</i> &lt; 10<sup><i>k</i></sup>, значение Number для <i>s</i> <span class="symbol">&#215;</span> 10<sup><i>n</i></sup><sup><span class="symbol">&#8722;</span></sup><sup><i>k</i></sup> равно <i>m</i>, а <i>k</i> являлось наименьшим возможным числом. Если для&nbsp;<i>s</i> есть несколько вариантов, выбрать значение <i>s</i>, для которого <i>s</i> <span class="symbol">&#215;</span> 10<sup><i>n</i></sup><sup><span class="symbol">&#8722;</span></sup><sup><i>k</i></sup> является наиболее близким к значению&nbsp;<i>m</i>. Если таких возможных значений&nbsp;<i>s</i> два, выбрать то из них, которое является четным. Обратите внимание, что <i>k</i> &ndash; количество цифр в десятичном представлении <i>s</i>, и что <i>s</i> не кратно 10.</p>
+	<p><b>ПРИМЕЧАНИЕ 3</b> Создателям реализаций на ECMAScript советуем ознакомиться с работой и кодом по преобразованию чисел с плавающей точкой из двоичного формата в десятичный, написанными автором David&nbsp;M.&nbsp;Gay:</p>
+	<p class="indent-1">
+	Gay, David M. Correctly Rounded Binary-Decimal and Decimal-Binary Conversions. Numerical Analysis, Manuscript 90-10. AT&amp;T Bell Laboratories (Murray Hill, New Jersey). November 30, 1990. Эту работу можно найти по адресу <br><a href="http://cm.bell-labs.com/cm/cs/doc/90/4-10.ps.gz">http://cm.bell-labs.com/cm/cs/doc/90/4-10.ps.gz</a>. Используемые коды можно найти по адресу <br><a href="http://cm.bell-labs.com/netlib/fp/dtoa.c.gz">http://cm.bell-labs.com/netlib/fp/dtoa.c.gz</a>, или по адресу <br><a href="http://cm.bell-labs.com/netlib/fp/g_fmt.c.gz">http://cm.bell-labs.com/netlib/fp/g_fmt.c.gz</a>, а также на различных зеркальных сайтах <code><b>netlib</b></code>.</p>
+	<h3 id="x9.9">9.9 ToObject <a href="#x9.9">#</a> <a href="#x9.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="sm-btm">
+	Абстрактная операция ToObject <tt>К&nbsp;объекту</tt> преобразует свой аргумент к значению типа Object в соответствии с Таблицей&nbsp;14:</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 14. ToObject</caption>
+			<colgroup><col width="138"><col width="518"></colgroup><tbody><tr valign="TOP"><td width="138" height="10" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Тип аргумента</span></b></i></p>
+				</td>
+				<td width="518" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="518">
+					<p>
+					Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Null</p>
+				</td>
+				<td width="518">
+					<p>
+					Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="518">
+					<p>
+					Создать новый объект Boolean, у которого внутреннему свойству [[PrimitiveValue]] присвоено значение аргумента. Описание объектов Boolean содержится в пункте&nbsp;<a href="x15.6.html#x15.6">15.6</a>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Number</p>
+				</td>
+				<td width="518">
+					<p>
+					Создать новый объект Number, у которого внутреннему свойству [[PrimitiveValue]] присвоено значение аргумента. Описание объектов Number содержится в пункте&nbsp;<a href="x15.7.html#x15.7">15.7</a>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					String</p>
+				</td>
+				<td width="518">
+					<p>
+					Создать новый объект String, у которого внутреннему свойству [[PrimitiveValue]] присвоено значение аргумента. Описание объектов String содержится в пункте&nbsp;<a href="x15.5.html#x15.5">15.5</a>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>Object</p>
+				</td>
+				<td width="518">
+					<p>Результат равен входному аргументу (без преобразования).</p>
+				</td>
+			</tr></tbody></table></center>
+	<h3 id="x9.10">9.10 CheckObjectCoercible <a href="#x9.10">#</a> <a href="#x9.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="sm-btm">
+	Абстрактная операция CheckObjectCoercible <tt>Проверить приводимость к Object</tt> генерирует ошибку, если его аргумент имеет значение, которое невозможно привести к Object посредством операции <a href="#x9.9">ToObject</a>. Определение этой операции приводится в Таблице&nbsp;15.</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 15. Результаты&nbsp;CheckObjectCoercible</caption>
+			<colgroup><col width="138"><col width="518"></colgroup><tbody><tr valign="TOP"><td width="138" height="8" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Тип аргумента</span></b></i></p>
+				</td>
+				<td width="518" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="518">
+					<p>
+					Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Null</p>
+				</td>
+				<td width="518">
+					<p>
+					Сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть результат</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Number</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть результат</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					String</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть результат</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>Object</p>
+				</td>
+				<td width="518">
+					<p>Вернуть результат</p>
+				</td>
+			</tr></tbody></table></center>
+	<h3 id="x9.11">9.11 IsCallable <a href="#x9.11">#</a> <a href="#x9.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция IsCallable <tt>Является вызываемым</tt> определяет, является ли аргумент, который должен иметь значение в языке ECMAScript, объектом функции в соответствии с Таблицей&nbsp;16:</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 16. Результаты&nbsp;IsCallable</caption>
+			<colgroup><col width="138"><col width="518"></colgroup><tbody><tr valign="TOP"><td width="138" height="6" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Тип аргумента</span></b></i></p>
+				</td>
+				<td width="518" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Результат</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Undefined</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть <b>false</b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Null</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть <b>false</b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Boolean</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть <b>false</b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					Number</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть <b>false</b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>
+					String</p>
+				</td>
+				<td width="518">
+					<p>
+					Вернуть <b>false</b>.</p>
+				</td>
+			</tr><tr valign="TOP"><td width="138">
+					<p>Object</p>
+				</td>
+				<td width="518">
+					<p>Если у объекта аргумента есть внутренний метод&nbsp;[[Call]], вернуть <b>true</b>, в противном случае вернуть <b>false</b>.</p>
+				</td>
+			</tr></tbody></table></center>
+	<h3 id="x9.12">9.12 Алгоритм SameValue <a href="#x9.12">#</a> <a href="#x9.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Абстрактная операция внутреннего сравнения SameValue(<i>x</i>, <i>y</i>) <tt>ОдинаковоеЗначение(<i>x</i>, <i>y</i>)</tt>, где <i>x</i> и <i>y</i> являются значениями ECMAScript, возвращает <b>true</b> или <b>false</b>. Это сравнение производится следующим образом:</p>
+	<ol><li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) отличается от <a href="x8.html#Type">Type</a>(<i>y</i>), вернуть&nbsp;<b>false</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Undefined, вернуть&nbsp;<b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Null, вернуть&nbsp;<b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Number, то</p>
+		<ol><li><p>
+			Если <i>x</i> &ndash; NaN и <i>y</i> &ndash; NaN, вернуть&nbsp;<b>true</b>.</p>
+			</li>
+			<li><p>
+			Если <i>x</i> равно +0 и <i>y</i> равно -0, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>x</i> равно -0 и <i>y</i> равно +0, вернуть&nbsp;<b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>x</i> имеет такое же числовое значение, что и&nbsp;<i>y</i>, вернуть&nbsp;<b>true</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; String, то вернуть <b>true</b>, если <i>x</i> и <i>y</i> имеют абсолютно одинаковую последовательность символов (одинаковой длины и с одинаковыми символами в соответствующих позициях), иначе вернуть&nbsp;<b>false</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) &ndash; Boolean, вернуть <b>true</b>, одновременно если <i>x</i> и <i>y</i> являются или <b>true</b>, или <b>false</b>; иначе вернуть&nbsp;<b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <B>true</B>, если <i>x</i> и <i>y</i> относятся к одному и тому же объекту. Иначе вернуть&nbsp;<b>false</b>.</p>
+	</li></ol></body><script src="anno.js"></script></html>

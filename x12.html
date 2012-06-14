@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>12 Инструкции # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x11.html" title="11 Выражения " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x13.html" title="13 Определение функции " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x11.html">&#8592; 11 Выражения </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x13.html">13 Определение функции  &#8594;</a>
+
+  <ol class="toc"><li><a href="x12.html#x12" id="x12-toc">12 Инструкции</a>
+    <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x12.html#x12.1" id="x12.1-toc">12.1 Блок</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.2" id="x12.2-toc">12.2 Инструкция переменной</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x12.html#x12.2.1" id="x12.2.1-toc">12.2.1 Ограничения строгого режима</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x12.html#x12.3" id="x12.3-toc">12.3 Пустая инструкция</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.4" id="x12.4-toc">12.4 Инструкция-выражение</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.5" id="x12.5-toc">12.5 Инструкция if</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.6" id="x12.6-toc">12.6 Инструкции итерации</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x12.html#x12.6.1" id="x12.6.1-toc">12.6.1 Инструкция do-while</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.6.2" id="x12.6.2-toc">12.6.2 Инструкция while</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.6.3" id="x12.6.3-toc">12.6.3 Инструкция for</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.6.4" id="x12.6.4-toc">12.6.4 Инструкция for-in</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x12.html#x12.7" id="x12.7-toc">12.7 Инструкция continue</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.8" id="x12.8-toc">12.8 Инструкция break</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.9" id="x12.9-toc">12.9 Инструкция return</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.10" id="x12.10-toc">12.10 Инструкция with</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x12.html#x12.10.1" id="x12.10.1-toc">12.10.1 Ограничения строгого режима</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x12.html#x12.11" id="x12.11-toc">12.11 Инструкция switch</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.12" id="x12.12-toc">12.12 Инструкции с метками</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.13" id="x12.13-toc">12.13 Инструкция throw</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x12.html#x12.14" id="x12.14-toc">12.14 Инструкция try</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x12.html#x12.14.1" id="x12.14.1-toc">12.14.1 Ограничения строгого режима</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x12.html#x12.15" id="x12.15-toc">12.15 Инструкция debugger</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></nav>
+
+  <h2 id="x12">12 Инструкции <a href="#x12">#</a> <a href="#x12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Statement </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Block<br>VariableStatement<br>EmptyStatement<br>ExpressionStatement<br>IfStatement<br>IterationStatement<br>ContinueStatement<br>BreakStatement<br>ReturnStatement<br>WithStatement<br>LabelledStatement<br>SwitchStatement<br>ThrowStatement<br>TryStatement<br>DebuggerStatement</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	<i>Statement</i> <tt>Инструкция</tt> может являться частью <i>LabelledStatement</i> <tt>Инструкция с меткой</tt>, которая, в свою очередь, может быть частью другой <i>LabelledStatement</i>, и так далее. При описании семантики отдельных инструкций подобные метки собирательно называются &quot;текущим набором меток&quot;. <i>LabelledStatement</i> не имеет иного семантического значения, кроме внесения метки в <i>набор меток</i>. Набор меток для <i>IterationStatement</i> <tt>Инструкция итерации</tt> или<i> SwitchStatement</i> <tt>Инструкция switch</tt> изначально содержит единственный элемент <b>empty</b> <tt>пусто</tt>. Набор меток для любой другой инструкции изначально пуст.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Известно, что несколько широко распространённых реализаций языка ECMAScript поддерживают использование FunctionDeclaration <tt>Объявление функции</tt> в качестве инструкции. Однако в семантике, применимой к таким объявлениям функций, имеются существенные  противоречивые вариации реализаций. Из-за этих противоречий код, написанный с использованием <i>FunctionDeclaration</i> в качестве <i>Statement</i>, не является надёжным при переносе из одной реализации в другую. Поэтому для реализаций ECMAScript рекомендуется либо отключать использование <i>FunctionDeclaration</i>, либо генерировать предупреждение в случае такого использования. Возможно, в последующих версиях языка ECMAScript появятся альтернативные средства для переноса кода, позволяющие объявлять функции в контексте <i>Statement</i>.</p>
+	<h3 id="x12.1">12.1 Блок <a href="#x12.1">#</a> <a href="#x12.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Block </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>{</b></code> <i>StatementList</i><sub>opt</sub><code><b>}</b></code></p>
+	<p class="keep">
+	<i>StatementList </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Statement<br>StatementList Statement</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>Block </i><b>:</b> <code><b>{</b></code> <code><b>}</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть (<b>normal</b>, <b>empty</b>, <b>empty</b>).</p>
+	</li></ol><p>
+	Для вычисления <i>Block </i><b>:</b> <code><b>{</b></code> <i>StatementList</i> <code><b>}</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>StatementList</i> <tt>Список инструкций</tt>.</p>
+	</li></ol><p>
+	Для вычисления <i>StatementList </i><b>:</b> <i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i><i>s</i> </i>будет результатом вычисления <I>Statement</I>.</p>
+		</li>
+		<li><p>
+		Если было сгенерировано исключение, вернуть (throw, <i>V</i>, empty), где <i>V</i> &ndash; исключение. (После этого продолжается выполнение кода, как если бы исключение не было сгенерировано).</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>s</i></i>.</p>
+	</li></ol><p>
+	Для вычисления <i>StatementList </i><b>:</b> <I>StatementList </I><i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>sl </i>будет результатом вычисления <I>StatementList</I>.</p>
+		</li>
+		<li><p>
+		Если <i>sl</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>sl</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i><i>s</i> </i>будет результатом вычисления <I>Statement</I>.</p>
+		</li>
+		<li><p>
+		Если было сгенерировано исключение, вернуть (throw, <i>V</i>, empty), где <i>V</i> &ndash; исключение. (После этого продолжается выполнение кода, как если бы исключение не было сгенерировано).</p>
+		</li>
+		<li><p>
+		Если <i>s</i>.value &ndash; пусто, пусть <i>V</i> = <i>sl</i>.value, в противном случае пусть <i>V</i> = <i>s</i>.value.</p>
+		</li>
+		<li><p>
+		Вернуть (<i>s</i>.type, <i>V</i>, <i>s</i>.target).</p>
+	</li></ol>
+	<h3 id="x12.2">12.2 Инструкция переменной <a href="#x12.2">#</a> <a href="#x12.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>VariableStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>var</b></code> <i>VariableDeclarationList </i><code><b>;</b></code></p>
+	<p class="keep">
+	<i>VariableDeclarationList </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>VariableDeclaration<br>VariableDeclarationList </i><code><b>,</b></code> <i>VariableDeclaration</i></p>
+	<p class="keep">
+	<i>VariableDeclarationListNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>VariableDeclarationNoIn<br>VariableDeclarationListNoIn </i><code><b>,</b></code> <i>VariableDeclarationNoIn</i></p>
+	<p class="keep">
+	<i>VariableDeclaration </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Identifier Initialiser</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>VariableDeclarationNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Identifier InitialiserNoIn</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>Initialiser </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>=</b></code> <i>AssignmentExpression</i></p>
+	<p class="keep">
+	<i>InitialiserNoIn </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>=</b></code> <i>AssignmentExpressionNoIn</i></p>
+	<p>
+	Инструкция переменной объявляет переменные, создаваемые в соответствии с определением в пункте&nbsp;<a href="x10.html#x10.5">10.5</a>. При создании переменные инициализируются со значением&nbsp;<b>undefined</b>. Переменной с инициализатором <i>Initialiser</i> присваивается значение его выражения присваивания <i>AssignmentExpression</i> не в момент создания переменной, а в момент исполнения инструкции переменой <i>VariableStatement</i>.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>VariableStatement </i><b>:</b><i> </i><code><b>var</b></code> <i>VariableDeclarationList </i><code><b>;</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>VariableDeclarationList</i> <tt>Список объявления переменных</tt>.</p>
+		</li>
+		<li><p>
+		Вернуть (normal, empty, empty).</p>
+	</li></ol><p>
+	Для вычисления <i>VariableDeclarationList</i> <b>:</b> <i>VariableDeclaration</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>VariableDeclaration</i> <tt>Объявление переменной</tt>.</p>
+	</li></ol><p>
+	Для вычисления <i>VariableDeclarationList</i> <b>:</b> <i>VariableDeclarationList</i> <code><b>,</b></code> <i>VariableDeclaration</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>VariableDeclarationList</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>VariableDeclaration</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>VariableDeclaration </i><b>:</b> <i>Identifier</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть строковое значение, содержащее такую же последовательность символов, что и в <i>Identifier</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>VariableDeclaration</i> <b>:</b> <i>Identifier</i> <I>Initialiser </I>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>lhs</i> будет результатом вычисления <i>Identifier</i> в соответствии с описанием в пункте&nbsp;<a href="x11.html#x11.1.2">11.1.2</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>rhs </i>будет результатом вычисления <i>Initialiser</i> <tt>Инициализатор</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>value </i>будет <a href="x8.html#x8.7.1">GetValue</a>(<i>rhs</i>).</p>
+		</li>
+		<li><p>
+		Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>lhs</i>, <i>value</i>).</p>
+		</li>
+		<li><p>
+		Вернуть строковое значение, содержащее такую же последовательность символов, что и в <i>Identifier</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Строковое значение <i>VariableDeclaration</i> используется при вычислении инструкций for-in&nbsp;(<a href="#x12.6.4">12.6.4</a>).</p>
+	<p>
+	Если <i>VariableDeclaration</i> вложено в инструкцию with, а идентификатор в <i>VariableDeclaration</i> такой же, что и имя свойства <a href="x10.html#x10.2.1.2">объекта привязки</a> для <a href="x10.html#x10.2">записи окружения</a> объекта инструкции with, то в шаге&nbsp;4 будет присваиваться значение свойству, а не привязке VariableEnvironment для <i>Identifier</i>.</p>
+	<p>
+	Для вычисления <i>Initialiser </i><b>:</b> <code><b>=</b></code> <i>AssignmentExpression</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>AssignmentExpression</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>VariableDeclarationListNoIn</i> <tt>Список объявления переменных без in</tt>, <i>VariableDeclarationNoIn</i> <tt>Объявление переменной без in</tt> и <i>InitialiserNoIn </i><tt>Инициализатор без in</tt> выполняются точно такие же шаги, что и для вычисления <i>VariableDeclarationList</i>, <i>VariableDeclaration</i> и <i>Initialiser</i>, за исключением того, что вместо вложенных <i>VariableDeclarationList</i>, <i>VariableDeclaration</i>, <i>Initialiser</i> и <i>AssignmentExpression</i> вычисляются вложенные <i>VariableDeclarationListNoIn</i>, <i>VariableDeclarationNoIn</i>, <i>InitialiserNoIn</i> и <i>AssignmentExpressionNoIn</i> соответственно.</p>
+	<h4 id="x12.2.1">12.2.1 Ограничения строгого режима <a href="#x12.2.1">#</a> <a href="#x12.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <i>VariableDeclaration</i> или <i>VariableDeclarationNoIn</i> встречается в <a href="x10.html#x10.1.1">строгом коде</a>, и при этом его идентификатор <i>Identifier</i> представляет собой либо <code><b>&quot;eval&quot;</b></code>, <b>либо</b> <code><b>&quot;arguments&quot;</b></code>, генерируется <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+	<h3 id="x12.3">12.3 Пустая инструкция <a href="#x12.3">#</a> <a href="#x12.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>EmptyStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>;</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>EmptyStatement </i><b>:</b> <code><b>;</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть (normal, empty, empty).</p>
+	</li></ol>
+	<h3 id="x12.4">12.4 Инструкция-выражение <a href="#x12.4">#</a> <a href="#x12.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ExpressionStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	[<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> {<code><b>{</b></code>,<code><b>function</b></code>}] <i>Expression </i><code><b>;</b></code></p>
+	<p><b>ПРИМЕЧАНИЕ</b> <i>ExpressionStatement</i> <tt>Инструкция-выражение</tt> не может начинаться с открывающей фигурной скобки, поскольку из-за этого её можно перепутать с блоком <i>Block</i>. Кроме того, она не может начинаться с ключевого слова <code><b>function</b></code>, так как из-за этого её можно перепутать с объявлением функции&nbsp;<i>FunctionDeclaration</i>.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>ExpressionStatement </i><b>:</b> [<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> {<code><b>{</b></code><b>,</b><code><b>function</b></code>}]<i>Expression</i><code><b>;</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i><i>exprRef</i> </i> будет результатом вычисления <i>Expression</i>.</p>
+		</li>
+		<li><p>
+		Вернуть (normal, <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>), empty).</p>
+	</li></ol>
+	<h3 id="x12.5">12.5 Инструкция if <a href="#x12.5">#</a> <a href="#x12.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>IfStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>if</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement  </i><code><b>else</b></code> <i>Statement<br></i><code><b>if</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement</i></p>
+	<p>
+	Каждое <code><b>else</b></code>, для которого выбор соответствующего ему&nbsp;<code><b>if</b></code> является неоднозначным, будет ассоциироваться с ближайшим к нему <b>if</b>, у которого в противном случае нет соответствующего ему&nbsp;<code><b>else</b></code>.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>IfStatement </i><b>:</b> <code><b>if</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement </i><code><b>else</b></code> <i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>)) равно <b>true</b>, то</p>
+		<ol><li><p>
+			Вернуть результат вычисления первого <i>Statement</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Вернуть результат вычисления второго <i>Statement</i>.</p>
+		</li></ol></li></ol><p>
+	Для вычисления <i>IfStatement </i><b>:</b> <code><b>if</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>)) равно <b>false</b>, вернуть (normal, empty, empty).</p>
+		</li>
+		<li><p>
+		Вернуть результат вычисления <i>Statement</i>.</p>
+	</li></ol>
+	<h3 id="x12.6">12.6 Инструкции итерации <a href="#x12.6">#</a> <a href="#x12.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>IterationStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>do</b></code> <i>Statement</i> <code><b>while</b></code> <i> </i><code><b>(</b></code> <i>Expression </i><code><b>);</b></code> <i><br></i><code><b>while</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement<br></i><code><b>for</b></code> <code><b>(</b></code> <i>ExpressionNoIn</i><sub>opt</sub><code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>)</b></code> <i>Statement<br></i><code><b>for</b></code> <code><b>(</b></code> <code><b>var</b></code> <i>VariableDeclarationListNoIn</i><code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>)</b></code> <i>Statement<br></i><code><b>for</b></code> <code><b>(</b></code> <i>LeftHandSideExpression </i><code><b>in</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement<br></i><code><b>for</b></code> <code><b>(</b></code> <code><b>var</b></code> <i>VariableDeclarationNoIn </i><code><b>in</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement</i></p>
+	<h4 id="x12.6.1">12.6.1 Инструкция do-while <a href="#x12.6.1">#</a> <a href="#x12.6.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <code><b>do</b></code> <i>Statement </i><code><b>while</b></code> <code><b>(</b></code> <i>Expression </i><code><b>);</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>V</i> = empty <tt>пусто</tt>.</p>
+		</li>
+		<li><p>
+		Пусть <i>iterating</i> <tt>итерация</tt> будет <b>true</b>.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>iterating</i> равно <b>true</b>.</p>
+		<ol><li><p>
+			Пусть <i>stmt </i>будет результатом вычисления <I>Statement</I>.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.value не равно empty, пусть <i>V</i> = <i>stmt</i>.value<i>.</i></p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно continue || <i>stmt</i>.target не принадлежит к текущему набору меток, то </p>
+			<ol><li><p>
+				Если <i>stmt</i>.type не равно break, и <i>stmt</i>.target принадлежит к текущему набору меток, вернуть (normal, <i>V</i>, empty).</p>
+				</li>
+				<li><p>
+				Если <i>stmt</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>stmt</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+			</li>
+			<li><p>
+			Если <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>)) равно <b>false</b>, присвоить <i>iterating</i> значение&nbsp;<b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть (normal, <i>V</i>, empty);</p>
+	</li></ol>
+	<h4 id="x12.6.2">12.6.2 Инструкция while <a href="#x12.6.2">#</a> <a href="#x12.6.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления <i>IterationStatement </i><b>:</b><i> </i><code><b>while</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>V</i> = empty.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+			</li>
+			<li><p>
+			Если <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>)) равно <b>false</b>, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p>
+			Пусть <i>stmt </i>будет результатом вычисления <I>Statement</I>.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.value не равно empty, пусть <i>V</i> = <i>stmt</i>.value.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно continue || <i>stmt</i>.target не принадлежит к текущему набору меток, то</p>
+			<ol><li><p>
+				Если <i>stmt</i>.type равно break, и <i>stmt</i>.target принадлежит к текущему набору меток, то</p>
+				<ol><li><p>
+					Вернуть (normal, <i>V</i>, empty).</p>
+				</li></ol></li>
+				<li><p>
+				Если <i>stmt</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>stmt</i>.</p>
+			</li></ol></li></ol></li></ol>
+	<h4 id="x12.6.3">12.6.3 Инструкция for <a href="#x12.6.3">#</a> <a href="#x12.6.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления<br><i>IterationStatement</i> <b>:</b> <code><b>for</b></code> <code><b>(</b></code> <i>ExpressionNoIn</i><sub>opt</sub><code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>)</b></code> <i>Statement</i><br>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если присутствует <i>ExpressionNoIn</i>, то</p>
+		<ol><li><p>
+			Пусть <I>exprRef </I>будет результатом вычисления <I>ExpressionNoIn</I>.</p>
+			</li>
+			<li><p>
+			Вызвать <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>). (Это значение не используется).</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>V</i> = empty.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Если присутствует первое <i>Expression</i>, то</p>
+			<ol><li><p>
+				Пусть <i>testExprRef </i>будет результатом вычисления первого <i>Expression</i>.</p>
+				</li>
+				<li><p>
+				Если <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>testExprRef</i>)) равно <b>false</b>, вернуть (normal, <i>V</i>, empty).</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>stmt </i>будет результатом вычисления <I>Statement</I>.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.value не равно empty, пусть <i>V</i> = <i>stmt</i>.value.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно break, и <i>stmt</i>.target принадлежит к текущему набору меток, вернуть (<B>normal</B>, <i>V</i>, <B>empty</B>).</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно continue || <i>stmt</i>.target не принадлежит к текущему набору меток, то</p>
+			<ol><li><p>
+				Если <i>stmt</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>stmt</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Если присутствует второе <i>Expression</i>, то</p>
+			<ol><li><p>
+				Пусть <i>incExprRef </i>будет результатом вычисления второго <i>Expression</i>.</p>
+				</li>
+				<li><p>
+				Вызвать <a href="x8.html#x8.7.1">GetValue</a>(<i>incExprRef</i>). (Это значение не используется.)</p>
+			</li></ol></li></ol></li></ol><p>
+	Для вычисления<br><i>IterationStatement</i> <b>:</b>  <code><b>for</b></code> <code><b>(</b></code> <code><b>var</b></code> <i>VariableDeclarationListNoIn</i> <code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>;</b></code> <i>Expression</i><sub>opt</sub><code><b>)</b></code> <i>Statement</i><br>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>VariableDeclarationListNoIn</i>.</p>
+		</li>
+		<li><p>
+		Пусть V = empty.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Если присутствует первое <i>Expression</i>, то</p>
+			<ol><li><p>
+				Пусть <i>testExprRef </i>будет результатом вычисления первого <i>Expression</i>.</p>
+				</li>
+				<li><p>
+				Если <a href="x9.html#x9.2">ToBoolean</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>testExprRef</i>)) равно <b>false</b>, вернуть (normal, V, empty).</p>
+			</li>
+</ol></li>
+			<li><p>
+			Пусть <i>stmt </i>будет результатом вычисления <I>Statement</I>.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.value не равно empty, пусть V = <i>stmt</i>.value.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно break, и <i>stmt</i>.target принадлежит к текущему набору меток, вернуть (<B>normal</B>, V, <B>empty</B>).</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно continue || <i>stmt</i>.target не принадлежит к текущему набору меток, то</p>
+			<ol><li><p>
+				Если <i>stmt</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>stmt</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Если присутствует второе <i>Expression</i>, то</p>
+			<ol><li><p>
+				Пусть <i>incExprRef </i>будет результатом вычисления второго <i>Expression</i>.</p>
+				</li>
+				<li><p>
+				Вызвать <a href="x8.html#x8.7.1">GetValue</a>(<i>incExprRef</i>). (Это значение не используется.)</p>
+			</li></ol></li></ol></li></ol>
+	<h4 id="x12.6.4">12.6.4 Инструкция for-in <a href="#x12.6.4">#</a> <a href="#x12.6.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Для вычисления<i> IterationStatement</i> <b>:</b> <code><b>for</b></code> <code><b>(</b></code><i>LeftHandSideExpression</i> <code><b>in</b></code> <i>Expression</i> <code><b>)</b></code> <i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>experValue</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>).</p>
+		</li>
+		<li><p>
+		Если <i>experValue</i> равно <b>null</b> или <b>undefined</b>, вернуть (normal, empty, empty).</p>
+		</li>
+		<li><p>
+		Пусть <i>obj</i> будет <a href="x9.html#x9.9">ToObject</a>(<i>experValue</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>V</i> = empty.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Пусть <i>P</i> будет именем следующего свойства для <i>obj</i>, у которого атрибут [[Enumerable]] равен&nbsp;<b>true</b>. Если такого свойства нет, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p>
+			Пусть <i>lhsRef</i> будет результатом вычисления <i>LeftHandSideExpression</i> (это значение можно вычислять неоднократно).</p>
+			</li>
+			<li><p>
+			Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>lhsRef</i>, <i>P</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>stmt </i>будет результатом вычисления <I>Statement</I>.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.value не равно empty, пусть V = <i>stmt</i>.value.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно break, и <i>stmt</i>.target принадлежит к текущему набору меток, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно <B>continue </B>|| <i>stmt</i>.target не принадлежит к текущему набору меток, то</p>
+			<ol><li><p>
+				Если <i>stmt</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>stmt</i>.</p>
+			</li></ol></li></ol></li></ol><p>
+	Для вычисления<br><i>IterationStatement</i> <b>:</b> <code><b>for</b></code> <code><b>(</b></code> <code><b>var</b></code> <i>VariableDeclarationNoIn</i> <code><b>in</b></code> <i>Expression</i> <code><b>)</b></code> <i>Statement</i><br>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>varName </i>будет результатом вычисления <I>VariableDeclarationNoIn</I>.</p>
+		</li>
+		<li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>experValue</i> будет <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>).</p>
+		</li>
+		<li><p>
+		Если <i>experValue</i> равно <b>null</b> или <b>undefined</b>, вернуть (normal, empty, empty).</p>
+		</li>
+		<li><p>
+		Пусть <i>obj</i> будет <a href="x9.html#x9.9">ToObject</a>(<i>experValue</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>V</i> = empty.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Пусть <i>P</i> будет именем следующего свойства для <i>obj</i>, у которого атрибут [[Enumerable]] равен&nbsp;<b>true</b>. Если такого свойства нет, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p>
+			Пусть значение <i>varRef</i> будет результатом вычисления <i>varName</i>, как если бы имела место ссылка на идентификатор&nbsp;(<a href="x11.html#x11.1.2">11.1.2</a>). Это значение можно вычислять неоднократно.</p>
+			</li>
+			<li><p>
+			Вызвать <a href="x8.html#x8.7.2">PutValue</a>(<i>varRef</i>, <i>P</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>stmt </i>будет результатом вычисления <I>Statement</I>.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.value не равно empty, пусть V = <i>stmt</i>.value.</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно break, и <i>stmt</i>.target принадлежит к текущему набору меток, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p>
+			Если <i>stmt</i>.type не равно <B>continue </B>|| <i>stmt</i>.target не принадлежит к текущему набору меток, то</p>
+			<ol><li><p>
+				Если <i>stmt</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i>stmt</i>.</p>
+			</li></ol></li></ol></li></ol><p>
+	Механизм и порядок перечисления свойств (шаг&nbsp;6.a в первом алгоритме и шаг 7.a во втором алгоритме) не указан. Свойства перечисляемого объекта могут быть удалены во время перечисления. Если свойство, ещё не посещённое при перечислении, удаляется, то оно не будет посещено. Если во время перечисления к объекту добавляются новые свойства, их посещение в процессе текущего перечисления не гарантируется. Одно имя свойства нельзя посетить более одного раза во время перечисления.
+	</p>
+
+	<p>
+	Перечисление свойств объекта включает в себя перечисление свойств его прототипа, а также прототипа этого прототипа, и так далее рекурсивно. Однако свойство прототипа не будет перечисляться, если оно &quot;находится в тени&quot; какого-либо предыдущего объекта в цепочке прототипов, который имеет свойство с таким же именем. Чтобы определить, находится ли свойство объекта-прототипа в тени предыдущего объекта в цепочке прототипов, значения атрибутов [[Enumerable]] не учитываются.</p>
+
+	<p><b>ПРИМЕЧАНИЕ</b> См. Примечание к пункту&nbsp;<a href="x11.html#x11.13.1">11.13.1</a>.</p>
+	<h3 id="x12.7">12.7 Инструкция continue <a href="#x12.7">#</a> <a href="#x12.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+
+	<p class="keep">
+	<i>ContinueStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>continue</b></code> <code><b>;</b></code></p>
+	<p class="def1-btm">
+	<code><b>continue</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a><i> Identifier</i><code><b>;</b></code></p>
+
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Программа будет считаться синтаксически некорректной, если выполняется одно из следующих условий:</p>
+	<ul><li><p>
+		Программа содержит инструкцию <code><b>continue</b></code> без необязательного <i>Identifier</i>, не вложенную прямо или косвенно (но без пересечения границ функции) в инструкцию итерации <i>IterationStatement</i>.</p>
+		</li>
+		<li><p>
+		Программа содержит инструкцию <code><b>continue</b></code> с необязательным <i>Identifier</i>, но при этом в наборе меток инструкции итерации <I>IterationStatement</I>, в которую вложена упомянутая инструкция <code><b>continue</b></code> (без пересечения границ функции), нет идентификатора <i>Identifier</i>.</p>
+	</li></ul><p>
+	Для вычисления <i>ContinueStatement</i> <tt>Инструкция continue</tt> без идентификатора <i>Identifier</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть (continue, empty, empty).</p>
+	</li></ol><p>
+	Для вычисления <i>ContinueStatement</i> с необязательным <i>Identifier</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть (continue, empty, <i>Identifier</i>).</p>
+	</li></ol>
+	<h3 id="x12.8">12.8 Инструкция break <a href="#x12.8">#</a> <a href="#x12.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>BreakStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>break</b></code> <code><b>;</b></code></p>
+	<p class="def1-btm">
+	<code><b>break</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Identifier</i> <code><b>;</b></code></p>
+
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Программа будет считаться синтаксически некорректной, если выполняется одно из следующих условий:</p>
+	<ul><li><p>
+		Программа содержит инструкцию <code><b>break</b></code> без необязательного <i>Identifier</i>, не вложенную прямо или косвенно (но без пересечения границ функции) в <i>IterationStatement</i> или в <I>SwitchStatement</I> <tt>Инструкция switch</tt>.</p>
+		</li>
+		<li><p>
+		Программа содержит инструкцию <code><b>break</b></code> с необязательным <i>Identifier</i>, но при этом в наборе меток инструкции <I>Statement</I>, в которую вложена упомянутая инструкция <code><b>break</b></code> (без пересечения границ функции), нет идентификатора <i>Identifier</i>.</p>
+	</li></ul><p>
+	Для вычисления <i>BreakStatement</i> <tt>Инструкция break</tt> без идентификатора <i>Identifier</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть (break, empty, empty).</p>
+	</li></ol><p>
+	Для вычисления <i>BreakStatement</i> <tt>Инструкция break</tt> с идентификатором <i>Identifier</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть (break, empty, <i>Identifier</i>).</p>
+	</li></ol>
+	<h3 id="x12.9">12.9 Инструкция return <a href="#x12.9">#</a> <a href="#x12.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ReturnStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>return</b></code> <code><b>;</b></code></p>
+	<p class="def1-btm">
+	<code><b>return</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a><i> Expression</i> <code><b>;</b></code></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Программа на ECMAScript считается синтаксически некорректной, если она содержит инструкцию <code><b>return</b></code>, которая не является частью тела функции <i><a href="x13.html#x13">FunctionBody</a></i>. Инструкция <code><b>return</b></code> заставляет функцию прекратить выполнение и вернуть в вызывающую программу значение. Если выражение <i>Expression</i> пропущено, возвращается значение&nbsp;<b>undefined</b>. В противном случае возвращается значение выражения&nbsp;<i>Expression</i>.</p>
+	<p>
+	Для вычисления <i>ReturnStatement</i> <b>:</b> <code><b>return</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Expression</i><sub>opt</sub><code><b>;</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если <i>Expression</i> отсутствует, вернуть (return, undefined, empty).</p>
+		</li>
+		<li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Вернуть (return, <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>), empty).</p>
+	</li></ol>
+	<h3 id="x12.10">12.10 Инструкция with <a href="#x12.10">#</a> <a href="#x12.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>WithStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>with</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement</i></p>
+	<p>
+	Инструкция <code><b>with </b></code> добавляет <a href="x10.html#x10.2">запись окружения</a> вычисляемого объекта к <a href="x10.html#x10.2">Лексическому Окружению</a> текущего контекста исполнения. Затем инструкция исполняется с использованием этого приращённого <a href="x10.html#x10.2">Лексического Окружения</a>. И, наконец, восстанавливается оригинальное <a href="x10.html#x10.2">Лексическое Окружение</a>.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>WithStatement </i><b>:</b> <code><b>with</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>Statement</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>val </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>obj</i> будет <a href="x9.html#x9.9">ToObject</a>(<a href="x8.html#x8.7.1">GetValue</a>(<i>val</i>)).</p>
+		</li>
+		<li><p>
+		Пусть <i>oldEnv</i> будет <a href="x10.html#x10.2">Лексическим Окружением</a> активного контекста исполнения.</p>
+		</li>
+		<li><p>
+		Пусть <i>newEnv</i> будует результатом вызова <a href="x10.html#x10.2.2.3">NewObjectEnvironment</a> с передачей в качестве аргументов <i>obj</i> и&nbsp;<i>oldEnv</i>.</p>
+		</li>
+		<li><p>
+		Присвоить флагу <i>provideThis</i> для <i>newEnv</i> значение&nbsp;<b>true</b>.</p>
+		</li>
+		<li><p>
+		Присвоить <a href="x10.html#x10.2">LexicalEnvironment</a> текущего контекста исполнения значение&nbsp;<i>newEnv</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>C </i>будет результатом вычисления инструкции <i>Statement</i>, но если при вычислении генерируется исключение, то пусть <i>C</i> будет (throw, <i>V</i>, empty), где <i>V</i> &ndash; исключение. (После этого продолжается выполнение кода, как если бы исключение не было сгенерировано).</p>
+		</li>
+		<li><p>
+		Присвоить <a href="x10.html#x10.2">LexicalEnvironment</a> текущего контекста исполнения значение&nbsp;<i>oldEnv</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>C</i></i>.</p>
+	</li></ol><p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Независимо от того, каким образом управление выходит из вложенной инструкции <i>Statement</i> (то ли обычным способом, то ли в результате <a href="x8.html#x8.9">непредвиденного завершения</a> или исключения), лексическое окружение <a href="x10.html#x10.2">LexicalEnvironment</a> всегда восстанавливается до своего начального состояния.</p>
+	<h4 id="x12.10.1">12.10.1 Ограничения строгого режима <a href="#x12.10.1">#</a> <a href="#x12.10.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Код в строгом режиме не может содержать инструкцию with. Наличие <i>WithStatement</i> в контексте строгого режима интерпретируется как <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+	<h3 id="x12.11">12.11 Инструкция switch <a href="#x12.11">#</a> <a href="#x12.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>SwitchStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>switch</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>CaseBlock</i></p>
+	<p class="keep">
+	<i>CaseBlock </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>{</b></code> <i>CaseClauses</i><sub>opt</sub><code><b>}</b></code> <i><br></i><code><b>{</b></code> <i>CaseClauses</i><sub>opt</sub><i>DefaultClause CaseClauses</i><sub>opt</sub><code><b>}</b></code></p>
+	<p class="keep">
+	<i>CaseClauses </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>CaseClause<br>CaseClauses CaseClause</i></p>
+	<p class="keep">
+	<i>CaseClause </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>case</b></code> <i>Expression </i><code><b>:</b></code> <i>StatementList</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>DefaultClause </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>default</b></code> <code><b>:</b></code> <i>StatementList</i><sub>opt</sub></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>SwitchStatement </i><b>:</b> <code><b>switch</b></code> <code><b>(</b></code> <i>Expression </i><code><b>)</b></code> <i>CaseBlock</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>R</i> будет результатом вычисления <i>CaseBlock</i> <tt>Блок выбора</tt> с передачей ему в качестве параметра <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>).</p>
+		</li>
+		<li><p>
+		Если <i>R</i>.type равно break, и <i>R</i>.target принадлежит к текущему набору меток, вернуть (normal, <i>R</i>.value, empty).</p>
+		</li>
+		<li><p>
+		Вернуть&nbsp;<i><i>R</i></i>.</p>
+	</li></ol><p>
+	Для вычисления <i>CaseBlock</i> <b>:</b> <code>{</code> <i>CaseClauses</i><sub>opt</sub><code>}</code>, которому передаётся входной параметр <i>input</i>, выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>V</i> = empty.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет списком элементов для <i>CaseClause</i> <tt>Выражение выбора</tt> по порядку исходного текста.</p>
+		</li>
+		<li><p>
+		Пусть <i>searching</i> <tt>поиск</tt> будет <b>true</b>.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>searching</i> равно <b>true</b>.</p>
+		<ol><li><p>
+			Пусть <i>C</i> будет следующим <i>CaseClause</i> в&nbsp;<i>A</i>. Если такого <I>CaseClause </I>нет, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p>
+			Пусть <i>clauseSelector</i> <tt>Селектор выражения</tt> будет результатом вычисления&nbsp;<i>C</i>.</p>
+			</li>
+			<li><p>
+			Если <i>input</i> равно <i>clauseSelector</i> согласно определению оператора <code>===</code>, то</p>
+			<ol><li><p>
+				Присвоить <i>searching</i> значение <b>false</b>.</p>
+				</li>
+				<li><p>
+				Если <i>C</i> имеет <i>StatementList</i>, то 
+				</p>
+				<ol><li><p>
+					Произвести вычисление <I>StatementList </I>для <i>C</i>, и пусть <i>R</i> будет результатом.</p>
+					</li>
+					<li><p>
+					Если <i><i>R</i></i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, вернуть <i><i>R</i></i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>V</i> =<i>R</i>.value.</p>
+				</li></ol></li></ol></li></ol></li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Пусть <i>C</i> будет следующим <i>CaseClause</i> в <i>A</i>. Если такого <I>CaseClause </I>нет, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p>
+			Если <i>C</i> имеет <i>StatementList</i>, то 
+			</p>
+			<ol><li><p>
+				Произвести вычисление <I>StatementList </I>для <i>C</i>, и пусть <i>R</i> будет результатом.</p>
+				</li>
+				<li><p>
+				Если <i>R</i>.value не равно empty, то пусть <i>V</i> =<i>R</i>.value.</p>
+				</li>
+				<li><p>
+				Если <i>R</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, то вернуть <i>(R</i>.type,<i>V</i>,<i>R</i>.target).</p>
+			</li></ol></li></ol></li></ol><p>
+	Для вычисления <i>CaseBlock</i> <b>:</b> <code>{</code> <i>CaseClauses</i><sub>opt</sub><i>DefaultClause CaseClauses</i><sub>opt</sub><code>}</code> которому передаётся входной параметр <i>input</i>, выполняются следующие шаги:</p>
+	<ol><li><p class="sm-btm">
+		Пусть <i>V</i> = empty.</p>
+		</li>
+		<li><p class="sm-btm">
+		Пусть <i>A</i> будет списком элементов для <i>CaseClause</i> в первом <i>CaseClauses</i> <tt>Выражения выбора</tt> по порядку исходного текста.</p>
+		</li>
+		<li><p class="sm-btm">
+		Пусть <i>B</i> будет списком элементов для <I>CaseClause </I>во втором <I>CaseClauses </I>по порядку исходного текста.</p>
+		</li>
+		<li><p class="sm-btm">
+		Пусть <i>found</i> <tt>найдено</tt> будет <b>false</b>.</p>
+		</li>
+		<li><p class="sm-btm">
+		Повторить, при этом пусть <i>C</i> будет по порядку каждым <i>CaseClause</i> в <i>A</i></p>
+		<ol><li><p class="sm-btm">
+			Если <i>found </i>равно <b>false</b>, то</p>
+			<ol><li><p class="sm-btm">
+				Пусть <i>clauseSelector</i> будет результатом вычисления&nbsp;<i>C</i>.</p>
+				</li>
+				<li><p class="sm-btm">
+				Если <i>input</i> равно <i>clauseSelector</i> согласно определению оператора <code>===</code>, то присвоить <i>found</i> значение&nbsp;<b>true</b>.</p>
+			</li></ol></li>
+			<li><p class="sm-btm">
+			Если <i>found </i>равно <b>true</b>, то</p>
+			<ol><li><p class="sm-btm">
+				Если <i>C</i> имеет <I>StatementList</I>, то</p>
+				<ol><li><p class="sm-btm">
+					Произвести вычисление <I>StatementList </I>для <i>C</i>, и пусть <i>R</i> будет результатом.</p>
+					</li>
+					<li><p class="sm-btm">
+					Если <i>R</i>.value не равно empty, то пусть <i>V</i> =<i>R</i>.value.</p>
+					</li>
+					<li><p class="sm-btm">
+					Если <i>R</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, то вернуть <i>(R</i>.type,<i>V</i>, <i>R</i>.target).</p>
+				</li></ol></li></ol></li></ol></li>
+		<li><p class="sm-btm">
+		Пусть <i>foundInB</i> <tt>найдено в B</tt> будет <b>false</b>.</p>
+		</li>
+		<li><p class="sm-btm">
+		Если <i>found </i>равно <b>false</b>, то 
+		</p>
+		<ol><li><p class="sm-btm">
+			Повторять, пока <i>foundInB</i> равно <b>false</b> и пока не были обработаны все элементы в&nbsp;<i>B</i>.</p>
+			<ol><li><p class="sm-btm">
+				Пусть <i>C</i> будет следующим <i>CaseClause</i> в&nbsp;<i>B</i>.
+				
+				</p>
+				</li>
+				<li><p class="sm-btm">
+				Пусть <i>clauseSelector</i> будет результатом вычисления&nbsp;<i>C</i>.</p>
+				</li>
+				<li><p class="sm-btm">
+				Если <i>input</i> равно <i>clauseSelector</i> согласно определению оператора <code>===</code>, то</p>
+				<ol><li><p class="sm-btm">
+					Присвоить <i>foundInB</i> значение <b>true</b>.</p>
+					</li>
+					<li><p class="sm-btm">
+					Если <i>C</i> имеет <i>StatementList</i>, то</p>
+				</li></ol></li></ol></li></ol></li></ol><ol><ol><ol><ol><ol><li><p class="sm-btm">
+						Произвести вычисление <I>StatementList </I>для <i>C</i>, и пусть <i>R</i> будет результатом.</p>
+						</li>
+						<li><p class="sm-btm">
+						Если <i>R</i>.value не равно empty, то пусть <i>V</i> =<i>R</i>.value.</p>
+						</li>
+						<li><p class="sm-btm">
+						Если <i>R</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, то вернуть <i>(R</i>.type,<i>V</i>, <i>R</i>.target).</p>
+					</li></ol></ol></ol></ol></ol><ol start="8"><li><p class="sm-btm">
+		Если <i>foundInB</i> равно <b>false</b>, и the <i>DefaultClause</i> <tt>Выражение по умолчанию</tt> имеет <i>StatementList</i>, то</p>
+		<ol><li><p class="sm-btm">
+			Произвести вычисление <I>StatementList </I>для <I>DefaultClause</I>, и пусть <i>R</i> будет результатом.</p>
+			</li>
+			<li><p class="sm-btm">
+			Если <i>R</i>.value не равно empty, то пусть <i>V</i> =<i>R</i>.value.</p>
+			</li>
+			<li><p class="sm-btm">
+			Если <i>R</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, то вернуть <i>(R</i>.type,<i>V</i>,<i>R</i>.target).</p>
+		</li></ol></li>
+		<li><p class="sm-btm">
+		Повторить (Обратите внимание, что если был выполнен шаг 7.a.i, то этот цикл не запустится в начале&nbsp;<i>B</i>).</p>
+		<ol><li><p class="sm-btm">
+			Пусть <i>C</i> будет следующим <i>CaseClause</i> в&nbsp;<i>B</i>. Если такого <I>CaseClause </I>нет, вернуть (normal, <i>V</i>, empty).</p>
+			</li>
+			<li><p class="sm-btm">
+			Если <i>C</i> имеет <I>StatementList</I>, то 
+			</p>
+			<ol><li><p class="sm-btm">
+				Произвести вычисление <I>StatementList </I>для <i>C</i>, и пусть <i>R</i> будет результатом.</p>
+				</li>
+				<li><p class="sm-btm">
+				Если <i>R</i>.value не равно empty, то пусть <i>V</i> =<i>R</i>.value.</p>
+				</li>
+				<li><p class="sm-btm">
+				Если <i>R</i> &ndash; <a href="x8.html#x8.9">непредвиденное завершение</a>, то вернуть <i>(R</i>.type,<i>V</i>,<i>R</i>.target).</p>
+			</li></ol></li></ol></li></ol><p>
+	Для вычисления <i>CaseClause</i> <b>:</b> <code><b>case</b></code> <i>Expression </i><code><b>:</b></code> <i>StatementList</i><sub>opt</sub> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Вернуть <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>).</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> При вычислении <i>CaseClause</i> не выполняется ассоциированный <i>StatementList</i>, а просто вычисляется <i>Expression</i> и возвращается значение, с помощью которого алгоритм <i>CaseBlock</i> определяет, какой <i>StatementList</i> нужно начать выполнять.</p>
+	<h3 id="x12.12">12.12 Инструкции с метками <a href="#x12.12">#</a> <a href="#x12.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>LabelledStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<i>Identifier </i><code><b>:</b></code> <i>Statement</i></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Перед инструкцией <i>Statement</i> может находиться метка. Инструкции с метками используются только совместно с инструкциями <code><b>break</b></code> и <code><b>continue</b></code> с метками. Инструкции <code><b>goto</b></code> в языке ECMAScript нет.</p>
+	<p>
+	Программа на ECMAScript считается синтаксически некорректной, если она содержит <i>LabelledStatement</i> <tt>Инструкция с меткой</tt>, вложенную в инструкцию <i>LabelledStatement</i>, у которой <i>Identifier</i> аналогичен метке. Это не относится к меткам перед телом объявления функции <i>FunctionDeclaration</i>, которое прямо или косвенно вложено в инструкцию с меткой.</p>
+	<p>
+	Для вычисления <i>Identifier </i><code><b>:</b></code> <i>Statement </i>необходимо добавить <i>Identifier</i> к набору меток для <i>Statement</i>, и затем вычислить&nbsp;<i>Statement</i>. Если у <i>LabelledStatement</i> набор меток не пуст, эти метки также добавляются к набору меток для <i>Statement</i> перед его вычислением. Если при вычислении <i>Statement</i> получено (<b>break</b>, <i>V</i>, <i>L</i>), где <i>L</i> равно <i>Identifier</i>, то результат равен (<b>normal</b>, <i>V</i>, <b>empty</b>).</p>
+	<p>
+	Перед вычислением значения <i>LabelledStatement</i> вложенная инструкция <i>Statement</i> считается имеющей пустой набор меток, если только она не представляет собой <i>IterationStatement</i> или <i>SwitchStatement</i>, и в этом случае она считается имеющей набор меток из одного элемента &ndash; <b>empty</b>.</p>
+	<h3 id="x12.13">12.13 Инструкция throw <a href="#x12.13">#</a> <a href="#x12.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ThrowStatement</i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>throw</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Expression </i><code><b>;</b></code></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления значения <i>ThrowStatement</i> <b>:</b> <code><b>throw</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Expression</i> <code><b>;</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <I>exprRef </I>будет результатом вычисления <I>Expression</I>.</p>
+		</li>
+		<li><p>
+		Вернуть (throw, <a href="x8.html#x8.7.1">GetValue</a>(<i>exprRef</i>), empty).</p>
+	</li></ol>
+	<h3 id="x12.14">12.14 Инструкция try <a href="#x12.14">#</a> <a href="#x12.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>TryStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>try</b></code> <i>Block Catch<sub><br></sub></i><code><b>try</b></code> <i>Block Finally<sub><br></sub></i><code><b>try</b></code> <i>Block Catch Finally</i></p>
+	<p class="keep">
+	<i>Catch </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>catch</b></code> <code><b>(</b></code> <i>Identifier</i><code></code><code><b>)</b></code> <i>Block</i></p>
+	<p class="keep">
+	<i>Finally </i><b>:</b></p>
+	<p class="def1-btm">
+	<code><b>finally</b></code> <i>Block</i></p>
+	<p>
+	Инструкция <code><b>try </b></code> содержит блок кода, в котором может произойти исключительное состояние, например, ошибка времени исполнения или инструкция <code><b>throw</b></code>. Выражение <code><b>catch</b></code> содержит код для обработки исключительных ситуаций. При захвате исключения выражением catch его идентификатор <i>Identifier</i> привязан к этому исключению.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Для вычисления <i>TryStatement</i> <b>:</b> <code><b>try</b></code> <i>Block</i> <i>Catch</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i><i>B</i> </i>будет результатом вычисления <I>Block</I>.</p>
+		</li>
+		<li><p>
+		Если <i>B</i>.type не равно throw, вернуть <i>B</i>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вычисления <i>Catch</i> с параметром&nbsp;<i>B</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>TryStatement</i> <b>:</b> <code><b>try</b></code> <i>Block</i> <i>Finally</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i><i>B</i> </i>будет результатом вычисления <I>Block</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i><i>F</i> </i>будет результатом вычисления <I>Finally</I>.</p>
+		</li>
+		<li><p>
+		Если <i>F</i>.type равно normal, вернуть <i>B</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>F</i></i>.</p>
+	</li></ol><p>
+	Для вычисления <i>TryStatement</i> <b>:</b> <code><b>try</b></code> <i>Block</i> <i>Catch</i> <i>Finally</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i><i>B</i> </i>будет результатом вычисления <I>Block</I>.</p>
+		</li>
+		<li><p>
+		Если <i>B</i>.type равно throw, то</p>
+		<ol><li><p>
+			Пусть <i>C</i> будет результатом вычисления <i>Catch</i> с параметром&nbsp;<i>B</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>B</i>.type не равно throw<b>,</b></p>
+		<ol><li><p>
+			Пусть <i>C</i> будет <i>B</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i><i>F</i> </i>будет результатом вычисления <I>Finally</I>.</p>
+		</li>
+		<li><p>
+		Если <i>F</i>.type равно normal, вернуть <i>C</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>F</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>Catch</i> <b>:</b> <code><b>catch</b></code> <code><b>(</b></code> <i>Identifier</i><code></code><code><b>)</b></code> <i>Block</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>C</i> будет параметром, который был передан в это порождающее правило.</p>
+		</li>
+		<li><p>
+		Пусть <i>oldEnv</i> будет <a href="x10.html#x10.2">Лексическим Окружением</a> активного контекста исполнения.</p>
+		</li>
+		<li><p>
+		Путь <i>catchEnv</i> будет результатом вызова абстрактной операции <a href="x10.html#x10.2.2.2">NewDeclarativeEnvironment</a> с передачей <I>oldEnv </I>в качестве аргумента. 
+		</p>
+		</li>
+		<li><p>
+		Вызвать конкретный метод CreateMutableBinding для <i>catchEnv</i>, передавая в качестве аргумента строковое значение <i>Identifier</i>.</p>
+		</li>
+		<li><p>
+		Вызвать конкретный метод SetMutableBinding для <i>catchEnv</i>, передавая в качестве аргументов <i>Identifier</i>, <i>C</i> и <b>false</b>. Обратите внимание, что последний аргумент в данной ситуации является несущественным.</p>
+		</li>
+		<li><p>
+		Присвоить <a href="x10.html#x10.2">LexicalEnvironment</a> текущего контекста исполнения значение&nbsp;<i>catchEnv</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i><i>B</i> </i>будет результатом вычисления <I>Block</I>.</p>
+		</li>
+		<li><p>
+		Присвоить <a href="x10.html#x10.2">LexicalEnvironment</a> текущего контекста исполнения значение&nbsp;<i>oldEnv</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>B</i></i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Независимо о того, каким образом управление выходит из блока <i>Block</i>, лексическое окружение <a href="x10.html#x10.2">LexicalEnvironment</a> всегда восстанавливается до своего начального состояния.</p>
+	<p>
+	Для вычисления <i>Finally</i> <code><b>: finally</b></code> <i>Block</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вернуть результат вычисления <i>Block</i>.</p>
+	</li></ol>
+	<h4 id="x12.14.1">12.14.1 Ограничения строгого режима <a href="#x12.14.1">#</a> <a href="#x12.14.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <i>TryStatement</i> вместе с <i>Catch</i> встречается в <a href="x10.html#x10.1.1">строгом коде</a>, и при этом <i>Identifier</i> для <I>Catch </I>представляет собой либо <b><code><b>&quot;eval&quot;</b></code>, либо <code><b>&quot;arguments&quot;</b></code></b>, генерируется <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+	<h3 id="x12.15">12.15 Инструкция debugger <a href="#x12.15">#</a> <a href="#x12.15-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>DebuggerStatement </i><b>:</b></p>
+	<p class="def1-btm">
+	<b>debugger </b><code><b>;</b></code></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	При исполнении программы с отладчиком реализация может вызвать точку прерывания при вычислении <i>DebuggerStatement </i><tt>Инструкция отладчика</tt>. Если отладчик отсутствует или отключён, эта инструкция не производит наблюдаемого эффекта.</p>
+	<p>
+	Для вычисления <i>DebuggerStatement </i><b>:</b><i> </i><code><b>debugger ;</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если присутствует и включен отладчик, заданный реализацией, то</p>
+		<ol><li><p>
+			Выполнить действие по отладке, заданное реализацией.</p>
+			</li>
+			<li><p>
+			Пусть <i>result</i> будет значением <a href="x8.html#x8.9">Completion</a>, заданным реализацией. 
+			</p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Пусть <i>result</i> будет (normal, empty, empty).</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>result</i>.</p>
+	</li></ol></body><script src="anno.js"></script></html>

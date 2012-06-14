@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.7 Объекты Number # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.6.html" title="15.6 Объекты Boolean " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.8.html" title="15.8 Объект Math " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>   <a href="x15.6.html">&#8592; 15.6 Объекты Boolean </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.8.html">15.8 Объекты Math &#8594;</a>
+  <ol class="toc"><li><ol><li><a href="x15.7.html#x15.7" id="x15.7-toc">15.7 Number Objects</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.7.html#x15.7.1" id="x15.7.1-toc">15.7.1 Вызов конструктора Number как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.7.html#x15.7.1.1" id="x15.7.1.1-toc">15.7.1.1 Number ( [ value ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.7.html#x15.7.2" id="x15.7.2-toc">15.7.2 Конструктор Number</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.7.html#x15.7.2.1" id="x15.7.2.1-toc">15.7.2.1 new Number ( [ value ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.7.html#x15.7.3" id="x15.7.3-toc">15.7.3 Свойства конструктора Number</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.7.html#x15.7.3.1" id="x15.7.3.1-toc">15.7.3.1 Number.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.3.2" id="x15.7.3.2-toc">15.7.3.2 Number.MAX_VALUE</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.3.3" id="x15.7.3.3-toc">15.7.3.3 Number.MIN_VALUE</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.3.4" id="x15.7.3.4-toc">15.7.3.4 Number.NaN</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.3.5" id="x15.7.3.5-toc">15.7.3.5 Number.NEGATIVE_INFINITY</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.3.6" id="x15.7.3.6-toc">15.7.3.6 Number.POSITIVE_INFINITY</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.7.html#x15.7.4" id="x15.7.4-toc">15.7.4 Свойства объекта-прототипа Number</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.7.html#x15.7.4.1" id="x15.7.4.1-toc">15.7.4.1 Number.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.4.2" id="x15.7.4.2-toc">15.7.4.2 Number.prototype.toString ( [ radix ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.4.3" id="x15.7.4.3-toc">15.7.4.3 Number.prototype.toLocaleString()</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.4.4" id="x15.7.4.4-toc">15.7.4.4 Number.prototype.valueOf ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.4.5" id="x15.7.4.5-toc">15.7.4.5 Number.prototype.toFixed (fractionDigits)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.4.6" id="x15.7.4.6-toc">15.7.4.6 Number.prototype.toExponential (fractionDigits)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.7.html#x15.7.4.7" id="x15.7.4.7-toc">15.7.4.7 Number.prototype.toPrecision (precision)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.7.html#x15.7.5" id="x15.7.5-toc">15.7.5 Свойства экземпляров Number</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.7" class="splitme">15.7 Объекты Number <a href="#x15.7">#</a> <a href="#x15.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<h4 id="x15.7.1">15.7.1 Вызов конструктора Number как функции <a href="#x15.7.1">#</a> <a href="#x15.7.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+
+	<p>
+	При вызове <code><b>Number</b></code> не в качестве конструктора, а в качестве функции производится преобразование типов.</p>
+	<h5 id="x15.7.1.1">15.7.1.1 Number ( [ value ] ) <a href="#x15.7.1.1">#</a> <a href="#x15.7.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает значение типа Number (а не объект Number), вычисляемое абстрактной операцией <a href="x9.html#x9.3">ToNumber</a>(<i>value</i>), если <i>value</i> передавалось; в противном случае возвращает <b>+0</b>.</p>
+	<h4 id="x15.7.2">15.7.2 Конструктор Number <a href="#x15.7.2">#</a> <a href="#x15.7.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><B>Number</B></code> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует создаваемый объект.</p>
+	<h5 id="x15.7.2.1">15.7.2.1 new Number ( [ value ] ) <a href="#x15.7.2.1">#</a> <a href="#x15.7.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Number, который представляет собой начальное значение свойства <code><b>Number.prototype</b></code> (<a href="#x15.7.3.1">15.7.3.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;Number&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] создаваемого объекта устанавливается равным <a href="x9.html#x9.3">ToNumber</a>(<i>value</i>), если аргумент <i>value</i> передавался; в противном случае оно устанавливается равным +0.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<h4 id="x15.7.3">15.7.3 Свойства конструктора Number <a href="#x15.7.3">#</a> <a href="#x15.7.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора Number является объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Кроме внутренних свойств и свойства <code><b>length</b></code> со значением <b>1</b>, конструктор Number имеет следующее свойство:</p>
+	<h5 id="x15.7.3.1">15.7.3.1 Number.prototype <a href="#x15.7.3.1">#</a> <a href="#x15.7.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Number.prototype</b></code> является объект-прототип Number (<a href="#x15.7.4">15.7.4</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.7.3.2">15.7.3.2 Number.MAX_VALUE <a href="#x15.7.3.2">#</a> <a href="#x15.7.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значением <code><b>Number.MAX_VALUE</b></code> является наибольшее положительное конечное значение типа Number, равное приблизительно 1.7976931348623157&#160;<span class="symbol">&#215;</span>&nbsp;10<sup>308</sup>.</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.7.3.3">15.7.3.3 Number.MIN_VALUE <a href="#x15.7.3.3">#</a> <a href="#x15.7.3.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значением <code><b>Number.MIN_VALUE</b></code> является наименьшее положительное значение типа Number, равное приблизительно 5&nbsp;<span class="symbol">&#215;</span>&nbsp;10<sup>324</sup>.</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.7.3.4">15.7.3.4 Number.NaN <a href="#x15.7.3.4">#</a> <a href="#x15.7.3.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значением <code><b>Number.NaN</b></code> является <b>NaN</b>.</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.7.3.5">15.7.3.5 Number.NEGATIVE_INFINITY <a href="#x15.7.3.5">#</a> <a href="#x15.7.3.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значением Number.NEGATIVE_INFINITY является <span class="symbol">&#8722;&#8734;</span>.</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.7.3.6">15.7.3.6 Number.POSITIVE_INFINITY <a href="#x15.7.3.6">#</a> <a href="#x15.7.3.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значением Number.POSITIVE_INFINITY является +<span class="symbol">&#8734;</span>.</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h4 id="x15.7.4">15.7.4 Свойства объекта-прототипа Number <a href="#x15.7.4">#</a> <a href="#x15.7.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Объект-прототип Number сам по себе является объектом типа Number (его [[Class]] равен <code><b>&quot;Number&quot;</b></code>), значение которого равно +0.</p>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа Number является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>).</p>
+	<p>
+	Если только явно не указано иначе, описанные ниже методы объекта-прототипа Number не являются родовыми методами. Передаваемое им значение this либо должно быть значением типа Number, либо должно быть объектом Object, внутреннее свойство [[Class]] которого равно <code><b>&quot;Number&quot;</b></code>.</p>
+	<p>
+	В приведённых ниже описаниях функций, представляющих собой свойства объекта-прототипа Number, фраза &quot;текущий объект Number&quot; означает либо объект, который представляет собой значение <b>this</b> для данного вызова функции, либо, если тип <a href="x8.html#Type">Type</a>(значение <b>this</b>) равен Number &ndash; объект, как если бы он был создан выражением <code><b>new Number(</b></code>значение <b>this</b> <code><b>)</b></code>, где <code><b>Number</b></code> является стандартным встроенным конструктором с этим именем.  Кроме того, фраза <dfn id="this-Number-value">&ldquo;текущее числовое значение&rdquo;</dfn> означает либо числовое значение, представленное текущим объектом типа Number (то есть, значение внутреннего свойства [[PrimitiveValue]] для объекта this типа Number), либо значение <b>this</b>, если его тип равен Number.  Если значение <b>this</b> не является ни объектом, у которого внутреннее свойство [[Class]] равно <code><b>&quot;Number&quot;</b></code>, ни значением, тип которого равен Number, генерируется исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<h5 id="x15.7.4.1">15.7.4.1 Number.prototype.constructor <a href="#x15.7.4.1">#</a> <a href="#x15.7.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Number.prototype.constructor</b></code> является встроенный конструктор <code><b>Number</b></code>.</p>
+	<h5 id="x15.7.4.2">15.7.4.2 Number.prototype.toString ( [ radix ] ) <a href="#x15.7.4.2">#</a> <a href="#x15.7.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Необязательный аргумент <i>radix</i> должен быть целочисленным значением в пределах от 2 до&nbsp;36 включительно. Если <i>radix</i> отсутствует или равен <b>undefined</b>, в качестве значения <i>radix</i> принимается 10. Если <a href="x9.html#x9.4">ToInteger</a>(<i>radix</i>) равно числу&nbsp;10, то <a href="#this-Number-value">текущее числовое значение</a> передаётся в абстрактную операцию <a href="x9.html#x9.8">ToString</a> качестве аргумента, и возвращается полученная строка.</p>
+	<p>
+	Если <a href="x9.html#x9.4">ToInteger</a>(<i>radix</i>) не равен целому числу от 2 до 36 включительно, генерируется исключение RangeError. Если <a href="x9.html#x9.4">ToInteger</a>(<i>radix</i>) равен целому числу от 2 до 36, но не&nbsp;10, результатом является строковое представление <a href="#this-Number-value">текущего числового значения</a> с использованием указанного основания системы счисления. Для обозначения чисел, имеющих значение от 10 до 35, используются буквы от <code><b>a</b></code> до <code><b>z</b></code>. Если основание системы счисления не равно 10, точный алгоритм представления чисел зависит от реализации, однако в целом он должен основываться на алгоритме, указанном в пункте&nbsp;<a href="x9.html#x9.8.1">9.8.1</a>.</p>
+	<p>
+	Функция <code><b>toString</b></code> не является родовой функцией. Если её значение <b>this</b>  не является Number или объектом Number, она генерирует исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Поэтому она не может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.7.4.3">15.7.4.3 Number.prototype.toLocaleString() <a href="#x15.7.4.3">#</a> <a href="#x15.7.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Результатом является строковое значение, представляющее собой <a href="#this-Number-value">текущее числовое значение</a> в формате, соответствующем требованиям текущей языковой настройки внешней среды. Данная функция зависит от реализации; разрешается (хотя и не поощряется), чтобы она возвращала такой же результат, что и <code><b>toString</b></code>.</p>
+	<p><b>ПРИМЕЧАНИЕ </b>Первый параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<h5 id="x15.7.4.4">15.7.4.4 Number.prototype.valueOf ( ) <a href="#x15.7.4.4">#</a> <a href="#x15.7.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает <a href="#this-Number-value">текущее числовое значение</a>.</p>
+	<p>
+	Функция <code><b>valueOf</b></code> не является родовой функцией. Если её значение <b>this</b>  не является числовым значением или объектом Number, она генерирует исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Поэтому она не может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.7.4.5">15.7.4.5 Number.prototype.toFixed (fractionDigits) <a href="#x15.7.4.5">#</a> <a href="#x15.7.4.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строку, содержащую <a href="#this-Number-value">текущее числовое значение</a> в десятичном представлении с фиксированной запятой, с цифрами после десятичной запятой в количество <i>fractionDigits</i>. Если <i>fractionDigits</i> равно <b>undefined</b>, принимаем значение&nbsp;0. А именно, выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>f</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>fractionDigits</i>). (Если <i>fractionDigits</i> равно <b>undefined</b>, то значение, полученное на этом шаге, равно <code><b>0</b></code>).</p>
+		</li>
+		<li><p>
+		Если <i>f</i> &lt; 0 или <i>f</i> &gt; 20, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>x</i> будет равно <a href="#this-Number-value">числовому значению this</a>.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> равно <b>NaN</b>, вернуть строку <code><b>&quot;NaN&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>s</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> &lt; 0, то</p>
+		<ol><li><p>
+			Пусть s будет &quot;<code><b>-</b></code>&quot;.</p>
+			</li>
+			<li><p>
+			Пусть x = &ndash;x.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>x</i> <span class="symbol">&#8805;</span> 10<sup>21</sup>, то</p>
+		<ol><li><p>
+			Пусть <i>m</i> = <a href="x9.html#x9.8">ToString</a>(<i>x</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>x</i> &lt; 10<sup>21</sup></p>
+		<ol><li><p>
+			Пусть <i>n</i> будет целым числом, для которого точное математическое значение <i>n</i> <span class="symbol">&#247;</span> 10<sup>f</sup> &#8211; <i>x</i> будет как можно ближе к нулю. Если таких <i>n</i> два, выбрать большее из них.</p>
+			</li>
+			<li><p>
+			Если <i>n</i> = 0, пусть <i>m</i> будет строкой <code><b>&quot;0&quot;</b></code>. В противном случае, пусть <i>m</i> будет строкой, состоящей из цифр десятичного представления <i>n</i> (по порядку, без начальных нулей).</p>
+			</li>
+			<li><p>
+			Если <i>f</i> <span class="symbol">&#8800;</span> 0, то</p>
+			<ol><li><p>
+				Пусть <i>k</i> будет количеством символов в&nbsp;<i>m</i>.</p>
+				</li>
+				<li><p>
+				Если <i>k</i> &#8804; <i>f</i>, то </p>
+				<ol><li><p>
+					Пусть <i>z</i> будет строкой, состоящей из <i>f</i>+1&ndash;<i>k</i> экземпляров символа &lsquo;<code>0</code>&rsquo;.</p>
+					</li>
+					<li><p>
+					Пусть <i>m</i> будет результатом конкатенации строк&nbsp;<i>z</i> и&nbsp;<i>m</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>k</i> = <i>f </i>+ 1.</p>
+				</li></ol></li>
+				<li><p>
+				Пусть <I>a</I> будет первыми символами строки <i>m</i> в количестве <i>k</i>&ndash;<i>f</i> , а <i>b</i> &ndash; оставшимися символами строки <i>m</i> в количестве&nbsp;<i>f</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>m</i> будет результатом конкатенации трёх строк: <i>a</i>, <code><b>&quot;.&quot;</b></code> и <i>b</i>.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Вернуть результат конкатенации строк&nbsp;<i>s</i> и&nbsp;<i>m</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>toFixed</B></code> равно <b>1</b>.</p>
+	<p>
+	Если метод <code><b>toFixed</b></code> вызывается не с одним, а с несколькими аргументами, то его поведение равно undefined (см. пункт&nbsp;15).</p>
+	<p>
+	Реализации разрешается распространять поведение метода <code><b>toFixed</b></code> на значения <i>fractionDigits</i>, меньших 0 или больших&nbsp;20. В этом случае метод <code><b>toFixed</b></code> не обязательно будет генерировать для таких значений исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Результат вычисления метода <code><b>toFixed</b></code> может быть на несколько цифр точнее, чем результат вычисления метода <code><b>toString</b></code>, поскольку toString выводит только то количество значащих цифр, которое достаточно для того, чтобы отличить это число от соседних. Например,
+	</p>
+	<p class="sp">(<code><b>1000000000000000128).toString()</b></code> возвращает <code><b>&quot;1000000000000000100&quot;</b></code>,<br>а (<code><b>1000000000000000128).toFixed(0)</b></code> возвращает <code><b>&quot;</b></code><code><b>1000000000000000128&quot;</b></code>.</p>
+	<h5 id="x15.7.4.6">15.7.4.6 Number.prototype.toExponential (fractionDigits) <a href="#x15.7.4.6">#</a> <a href="#x15.7.4.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строку, содержащую <a href="#this-Number-value">текущее числовое значение</a> в экспоненциальном представлении, с одной цифрой перед десятичной запятой значащей части, и с цифрами в количестве <i>fractionDigits</i> после десятичной запятой значащей части. Если <i>fractionDigits</i> равно <b>undefined</b>, то включают столько значащих цифр, сколько необходимо для уникального описания числа (как в <a href="x9.html#x9.8">ToString</a>, с той лишь разницей, что в этом случае это число всегда выводится в экспоненциальной записи). А именно, выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>x</i> будет равно <a href="#this-Number-value">текущему числовому значению</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>f</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>fractionDigits</i>).</p>
+		</li>
+		<li><p>
+		Если <i>x</i> равно <b>NaN</b>, вернуть строку <code><b>&quot;NaN&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>s</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> <i>&lt;</i> 0, то</p>
+		<ol><li><p>
+			Пусть <i>s</i> будет <code><b>&quot;-&quot;</b></code>.</p>
+			</li>
+			<li><p>
+			Пусть <i>x</i> = &ndash;<i>x</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>x</i> = +<span class="symbol">&#8734;</span>, то</p>
+		<ol><li><p>
+			Вернуть результат конкатенации строк&nbsp;<i>s</i> и <code><b>&quot;Infinity&quot;</b></code>.
+
+			</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>fractionDigits</i> не равно <b>undefined</b>, и (<i>f</i> &lt; 0 or <i>f</i> &gt; 20), сгенерировать исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> = 0, то</p>
+		<ol><li><p>
+			Пусть <i>f</i> = 0.</p>
+			</li>
+			<li><p>
+			Пусть <i>m</i> будет строкой, состоящей из включений символа &lsquo;<code>0</code>&rsquo; в количестве <i>f</i>+1.</p>
+			</li>
+			<li><p>
+			Пусть <i>e</i> = 0.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>x</i> <span class="symbol">&#8800;</span> 0</p>
+		<ol><li><p>
+			Если <I>fractionDigits </I>не равно <b>undefined</b>, то</p>
+			<ol><li><p>
+				Пусть <i>e</i> и <i>n</i> будут такими целыми числами, чтобы 10<sup><i>f</i></sup><span class="symbol">&#8804;</span> <i>n</i> &lt; 10<sup><i>f</i></sup><sup>+1</sup>, и для которых точное математическое значение&nbsp;<i>n</i> <span class="symbol">&#215;</span> 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>f</i></sup> &ndash; <i>x</i> будет как можно ближе к нулю. Если существует два таких набора целых чисел <i>e</i> и&nbsp;<i>n</i>, то выбрать те <i>e</i> и&nbsp;<i>n</i>, у которых <i>n</i> <span class="symbol">&#215;</span> 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>f</i></sup> больше.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, <i>fractionDigits</i> равно <b>undefined</b>
+			</p>
+			<ol><li><p>
+				Пусть <i>e</i>, <i>n</i> и <i>f</i> будут такими целыми числами, чтобы <i>f</i> <span class="symbol">&#8805;</span> 0, 10<sup><i>f</i></sup><span class="symbol">&#8804;</span> <i>n</i> &lt; 10<sup><i>f</i></sup><sup>+1</sup>, числовое значение n <span class="symbol">&#215;</span> 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>f</i></sup> было равно <i>x</i>, а <i>f</i> было как можно меньше. Обратите внимание, что десятичное представление <i>n</i> состоит их <i>f</i>+1 цифр, <i>n</i> не кратно 10, а младшая цифра из&nbsp;<i>n</i> не обязательно является уникально определяемой этими критериями.</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>m</i> будет строкой, состоящей из цифр десятичного представления <i>n</i> (по порядку, без начальных нулей).</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>f</i> <span class="symbol">&#8800;</span> 0, то</p>
+		<ol><li><p>
+			Пусть <i>a</i> будет первым символом строки&nbsp;<i>m</i>, а <i>b</i> &ndash; оставшимися символами строки <i>m</i> в количестве <i>f</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>m</i> будет результатом конкатенации трёх строк: <i>a</i>, <code><b>&quot;.&quot;</b></code> и <i>b</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>e</i> = 0, то
+		</p>
+		<ol><li><p>
+			Пусть <i>c</i> = <code><b>&quot;+&quot;.</b></code></p>
+			</li>
+			<li><p>
+			Пусть <i>d</i> = <code><b>&quot;0&quot;.</b></code></p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Если <i>e</i> &gt; 0, то пусть <i>c</i> = <code><b>&quot;+&quot;.</b></code></p>
+			</li>
+			<li><p>
+			Иначе, <i>e</i> &#8804; 0</p>
+			<ol><li><p>
+				Пусть <i>c</i> = <code><b>&quot;-&quot;</b></code>.</p>
+				</li>
+				<li><p>
+				Пусть <i>e</i> = &ndash;<i>e</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>d</i> будет строкой, состоящей из цифр  десятичного представления <i>e</i> (по порядку, без начальных нулей).</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>m</i> будет результатом конкатенации четырёх строк: <i>m</i>, <code><b>&quot;e&quot;</b></code>, <i>c</i> и <i>d</i>.</p>
+		</li>
+		<li><p>
+		Вернуть результат конкатенации строк&nbsp;<i>s</i> и&nbsp;<i>m</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code>toExponential</code> равно <b>1</b>.</p>
+	<p>
+	Если метод <code><b>toExponential</b></code> вызывается не с одним, а с несколькими аргументами, то его поведение равно undefined (см. пункт&nbsp;15).</p>
+	<p>
+	Реализации разрешается распространять поведение метода <code><b>toExponential</b></code> на значения <i>fractionDigits</i>, меньших 0 или больших&nbsp;20. В этом случае метод <code><b>toExponential</b></code> не обязательно будет генерировать для таких значений исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+	<p></p><p><b>ПРИМЕЧАНИЕ</b> Для реализаций, обеспечивающих более точные преобразования, чем требуют вышеперечисленные правила, рекомендуется в качестве руководящего принципа использовать измененный вариант шага 9.b.i:</p>
+			<ol class="lower-roman"><li><p>
+				Пусть <i>e</i>, <i>n</i> и <i>f</i> будут такими целыми числами, чтобы <i>f</i> <span class="symbol">&#8805;</span> 0, 10<sup><i>f</i></sup><span class="symbol">&#8804;</span> n &lt; 10<sup><i>f</i></sup><sup>+1</sup>, числовое значение n <span class="symbol">&#215;</span> 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>f</i></sup> было равно x, а <i>f</i> было как можно меньше. Если существует несколько вариантов&nbsp;<i>n</i>, выбрать то значение&nbsp;<i>n</i>, для которого значение <i>n</i> <span class="symbol">&#215;</span> 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>f</i></sup> будет ближе всего к&nbsp;<i>x</i>. Если таких возможных значений&nbsp;<i>n</i> два, выбрать то из них, которое является четным.</p>
+			</li></ol>
+			<h5 id="x15.7.4.7">15.7.4.7 Number.prototype.toPrecision (precision) <a href="#x15.7.4.7">#</a> <a href="#x15.7.4.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строку, содержащую <a href="#this-Number-value">текущее числовое значение</a> либо в экспоненциальном десятичном представлении, с одной цифрой перед десятичной запятой значащей части, и с цифрами в количестве  <i>precision</i>&ndash;1 после десятичной запятой значащей части, либо в фиксированном десятичном представлении со значащими цифрами в количестве <I>precision</I>. Если <i>precision</i> равно <b>undefined</b>, то вместо этого вызвать <a href="x9.html#x9.8">ToString</a> (<a href="x9.html#x9.8.1">9.8.1</a>). А именно, выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>x</i> будет равно <a href="#this-Number-value">текущему числовому значению</a>.</p>
+		</li>
+		<li><p>
+		Если <i>precision</i> равно <b>undefined</b>, вернуть&nbsp;<a href="x9.html#x9.8">ToString</a>(<i>x</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>p</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>precision</i>).</p>
+		</li>
+		<li><p>
+		Если <i>x</i> равно <b>NaN</b>, вернуть строку <code><b>&quot;NaN&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>s</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> &lt; 0, то</p>
+		<ol><li><p>
+			Пусть <i>s</i> будет <code><b>&quot;-&quot;</b></code>.</p>
+			</li>
+			<li><p>
+			Пусть <i>x</i> = &ndash;<i>x</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>x</i> = +<span class="symbol">&#8734;</span>, то</p>
+		<ol><li><p>
+			Вернуть результат конкатенации строк&nbsp;<i>s</i> и <code><b>&quot;Infinity&quot;</b></code>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>p</i> &lt; 1 или <i>p</i> &gt; 21, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> = 0, то</p>
+		<ol><li><p>
+			Пусть <i>m</i> будет строкой, состоящей из включений символа &lsquo;<code>0</code>&rsquo; в количестве <i>p</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>e</i> = 0.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе <i>x</i> <span class="symbol">&#8800;</span> 0,</p>
+		<ol><li><p>
+			Пусть <i>e</i> и <i>n</i> будут такими целыми числами, чтобы 10<sup><i>p</i></sup><sup>&ndash;1</sup><span class="symbol">&#8804;</span> <i>n</i> &lt; 10<sup><i>p</i></sup>, для которых точное математическое значение&nbsp;<i>n</i> <span class="symbol">&#215;</span> 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>p</i></sup><sup>+1</sup> &ndash; <i>x</i> будет как можно ближе к нулю. Если существует два таких набора целых чисел <i>e</i> и&nbsp;<i>n</i>, то выбрать те <i>e</i> и&nbsp;<i>n</i>, у которых <i>n</i> <span class="symbol">&#215;</span> 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>p</i></sup><sup>+1</sup> больше.</p>
+			</li>
+			<li><p>
+			Пусть <i>m</i> будет строкой, состоящей из цифр десятичного представления <i>n</i> (по порядку, без начальных нулей).</p>
+			</li>
+			<li><p>
+			Если <i>e</i> &lt; &ndash;6 или <i>e</i> <span class="symbol">&#8805;</span> <i>p</i>, то</p>
+			<ol><li><p>
+				Пусть <i>a</i> будет первым символом строки&nbsp;<i>m</i>, а <i>b</i> &ndash; оставшимися символами строки <i>m</i> в количестве <i>p</i>&ndash;1.</p>
+				</li>
+				<li><p>
+				Пусть <i>m</i> будет результатом конкатенации трёх строк: <i>a</i>, <code><b>&quot;.&quot;</b></code> и <i>b</i>.</p>
+				</li>
+				<li><p>
+				Если <i>e</i> = 0, то</p>
+				<ol><li><p>
+					Пусть <i>c</i> = <code><b>&quot;+&quot;</b></code> и <i>d</i> = <code><b>&quot;0&quot;</b></code>.</p>
+				</li></ol></li>
+				<li><p>
+				Иначе, <i>e</i> <span class="symbol">&#8800;</span> 0,</p>
+				<ol><li><p>
+					Если <i>e</i> &gt; 0, то
+					</p>
+					<ol><li><p>
+						Пусть <i>c</i> = <code><b>&quot;+&quot;</b></code>.</p>
+					</li></ol></li>
+					<li><p>
+					Иначе, <i>e</i> &lt; 0,</p>
+					<ol><li><p>
+						Пусть <i>c</i> = <code><b>&quot;-&quot;</b></code>.</p>
+						</li>
+						<li><p>
+						Пусть <i>e</i> = &ndash;<i>e</i>.</p>
+					</li></ol></li>
+					<li><p>
+					Пусть <i>d</i> будет строкой, состоящей из цифр десятичного представления <i>e</i> (по порядку, без начальных нулей).</p>
+				</li></ol></li>
+				<li><p>
+				Пусть <i>m</i> будет результатом конкатенации пяти строк: <i>s</i>, <i>m</i>, <code><b>&quot;e&quot;</b></code>, <i>c</i> и&nbsp;<i>d</i>.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Если <i>e</i> = <i>p</i>&ndash;1, вернуть результат конкатенации строк <i>s</i> и&nbsp;<i>m</i>.</p>
+		</li>
+		<li><p>
+		Если <i>e</i> <span class="symbol">&#8805;</span> 0, то</p>
+		<ol><li><p>
+			Пусть <i>m</i> будет результатом конкатенации первых символов <i>m</i> в количестве <i>e</i>+1, символа &lsquo;<code>.</code>&rsquo;, и оставшихся символов <i>m</i> в количестве <i>p</i>&ndash; (<i>e</i>+1).</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>e</i> &lt; 0,</p>
+		<ol><li><p>
+			Пусть <i>m</i> будет результатом конкатенации строки <code><b>&quot;0.&quot;</b></code>, экземпляров символа &lsquo;<code><b>0</b></code>&rsquo; в количестве &ndash;(<i>e</i>+1) и строки <i>m</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат конкатенации строк&nbsp;<i>s</i> и&nbsp;<i>m</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>toPrecision</B></code> равно <b>1</b>.</p>
+	<p>
+	Если метод <code><b>toPrecision</b></code> вызывается не с одним, а с несколькими аргументами, то его поведение равно undefined (см. пункт&nbsp;15).</p>
+	<p>
+	Реализации разрешается распространять поведение метода <code><b>toPrecision</b></code> на значения <i>precision</i>, меньших 1 или больших&nbsp;21. В этом случае метод <code><b>toPrecision</b></code> не обязательно будет генерировать для таких значений исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+	<h4 id="x15.7.5">15.7.5 Свойства экземпляров Number <a href="#x15.7.5">#</a> <a href="#x15.7.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Экземпляры Number наследуют свойства объекта-прототипа Number. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;Number&quot;</b></code>. Кроме того, экземпляры Number имеют внутреннее свойство [[PrimitiveValue]].</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] представляет собой значение Number, представленное текущим объектом Number).</p>
+	</body><script src="anno.js"></script></html>

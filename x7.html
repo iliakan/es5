@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>7 Лексические соглашения # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x6.html" title="6 Исходный текст " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x8.html" title="8 Типы  " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x6.html">&#8592; 6 Исходный текст  </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x8.html">8 Типы  &#8594;</a>
+  <ol class="toc"><li><a href="x7.html#x7" id="x7-toc">7 Лексические соглашения</a>
+    <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x7.html#x7.1" id="x7.1-toc">7.1 Юникодные символы управления форматом</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.2" id="x7.2-toc">7.2 Пробельные символы</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.3" id="x7.3-toc">7.3 Символы окончания строки</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.4" id="x7.4-toc">7.4 Комментарии</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.5" id="x7.5-toc">7.5 Токены</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.6" id="x7.6-toc">7.6 Имена идентификаторов и идентификаторы</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x7.html#x7.6.1" id="x7.6.1-toc">7.6.1 Зарезервированные слова</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x7.html#x7.6.1.1" id="x7.6.1.1-toc">7.6.1.1 Ключевые слова</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.6.1.2" id="x7.6.1.2-toc">7.6.1.2 Слова, зарезервированные для использования в будущем</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li><li><a href="x7.html#x7.7" id="x7.7-toc">7.7 Знаки пунктуации</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.8" id="x7.8-toc">7.8 Литералы</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x7.html#x7.8.1" id="x7.8.1-toc">7.8.1 Литералы Null</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.8.2" id="x7.8.2-toc">7.8.2 Литералы Boolean</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.8.3" id="x7.8.3-toc">7.8.3 Числовые литералы</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.8.4" id="x7.8.4-toc">7.8.4 Строковые литералы</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.8.5" id="x7.8.5-toc">7.8.5 Литералы регулярного выражения</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x7.html#x7.9" id="x7.9-toc">7.9 Автоматическая подстановка точки с запятой</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x7.html#x7.9.1" id="x7.9.1-toc">7.9.1 Правила автоматической подстановки точки с запятой</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x7.html#x7.9.2" id="x7.9.2-toc">7.9.2 Примеры автоматической подстановки точки с запятой</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></nav>
+
+  <h2 id="x7">7 Лексические соглашения <a href="#x7">#</a> <a href="#x7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+	<p>
+	Исходный текст программы на ECMAScript предварительно преобразуется в последовательность входных элементов, которые представляют собой токены, символы окончания строки, комментарии или пробельные символы. Исходный текст анализируется слева направо, каждый раз принимая максимально возможную последовательность символов за следующий входной элемент.</p>
+	<p>
+	В этой лексической грамматике существует два начальных символа. Символ <I>InputElementDiv </I><tt>Входной элемент деления</tt> используется в контекстах синтаксической грамматики, в которых допускается использование оператора деления (<code><b>/</b></code>) или деления-с-присвоением (<code><b>/=</b></code>). В других контекстах синтаксической грамматики используется символ <I>InputElementRegExp</I> <tt>Входной элемент регулярного выражения</tt>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Нет таких контекстов синтаксической грамматики, где были бы допустимы одновременно и деление либо деление-с-присвоением, и ведущий <i><a href="#x7.8.5">RegularExpressionLiteral</a></i> <tt>Литерал регулярного выражения</tt>. Подстановка точки с запятой (см. <a href="#x7.9">7.9</a>) на это не влияет. В таких примерах, как:</p>
+	<p class="code-example">
+	<code><b>a = b<br>/hi/g.exec(c).map(d);</b></code></p>
+	<p class="sm-btm">
+	(где после <i>LineTerminator </i> первым символом, отличным от пробельного и не относящимся к комментарию, является символ &quot;косая черта&quot; (<code><b>/</b></code>), и где в соответствии с синтаксическим контекстом допускается деление или деление-с-присвоением), возле символа <i>LineTerminator</i> нет точки с запятой. То есть, толкование вышеприведенного примера должно быть следующим:</p>
+	<p class="code-example">
+	<code><b>a = b / hi / g.</b></code><code><b>exec</b></code><code><b>(c).map(d);</b></code></p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>InputElementDiv </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>WhiteSpace<br>LineTerminator<br>Comment<br>Token<br>DivPunctuator<br></i>
+	</p>
+	<p class="keep">
+	<i>InputElementRegExp </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>WhiteSpace<br>LineTerminator<br>Comment<br>Token<br>RegularExpressionLiteral</i></p>
+	<h3 id="x7.1">7.1 Юникодные символы управления форматом <a href="#x7.1">#</a> <a href="#x7.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Символы управления форматом в стандарте Юникод &ndash; то есть, символы в категории &quot;Cf&quot; в базе данных символов Юникода, такие как <span class="small-caps">left-to-right mark</span> <tt>метка слева направо</tt> или <span class="small-caps">right-to-left mark</span> <tt>метка справа налево</tt> &ndash; являются управляющими кодами для управления форматированием определенного фрагмента текста при отсутствии используемых для этой цели протоколов более высокого уровня (таких как языки разметки).</p>
+	<p>
+	Для облегчения редактирования и вывода на экран полезно разрешить включение в исходный текст символов управления форматом. Все эти символы могут использоваться как часть комментариев, а также как часть  строковых литералов и литералов регулярных выражений.</p>
+	<p>
+	Символы управления форматом &lt;ZWNJ&gt; и &lt;ZWJ&gt; используются для того, чтобы обеспечить необходимые различия при образовании слов или фраз в определенных языках. В исходном тексте на ECMAScript эти символы &lt;ZWNJ&gt; и &lt;ZWJ&gt; также могут применяться как идентификатор после первого символа.
+	</p>
+	<p>
+	Символ форматирования &lt;BOM&gt; используется преимущественно в начале текста. Он помечает его как текст в Юникоде и позволяет определить кодировку текста и порядок байтов. Символы &lt;BOM&gt;, предназначенные для этой цели, также могут иногда появляться не в начале текста, а далее &ndash; это может быть, например, результатом объединения нескольких файлов в один. Символы &lt;BOM&gt; интерпретируются как пробельные символы (см. <a href="#x7.2">7.2</a>).
+	</p>
+	<p class="sm-btm">
+	В Таблице&nbsp;1 приводится трактовка определенных символов форматирования, которые не являются частью комментариев, строковых литералов и регулярных выражений.</p>
+	<center>
+		<table width="690" border="1" bordercolor="#000000" cellpadding="22" cellspacing="0" rules="GROUPS"><caption>Таблица 1. Использование символов управления форматом</caption>
+			<colgroup><col width="130"><col width="159"><col width="120"><col width="103"></colgroup><tbody><tr valign="TOP"><td width="130" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Значение кодовой единицы</span></b></i></p>
+					</td>
+					<td width="159" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Наименование</span></b></i></p>
+					</td>
+					<td width="120" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Официальное название</span></b></i></p>
+					</td>
+					<td width="103" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Употребление</span></b></i></p>
+					</td>
+				</tr></tbody><tbody><tr valign="TOP"><td width="130">
+						<p>
+						<code><b>\u200C</b></code></p>
+					</td>
+					<td width="159">
+						<p>
+						Нулевая ширина без объединения</p>
+					</td>
+					<td width="120">
+						<p>
+						&lt;ZWNJ&gt;</p>
+					</td>
+					<td width="103">
+						<p>
+						<i>IdentifierPart</i></p>
+					</td>
+				</tr><tr valign="TOP"><td width="130">
+						<p>
+						<code><b>\u200D</b></code></p>
+					</td>
+					<td width="159">
+						<p>
+						Объединитель нулевой ширины</p>
+					</td>
+					<td width="120">
+						<p>
+						&lt;ZWJ&gt;</p>
+					</td>
+					<td width="103">
+						<p>
+						<i>IdentifierPart</i></p>
+					</td>
+				</tr><tr valign="TOP"><td width="130">
+						<p>
+						<code><b>\uFEFF</b></code></p>
+					</td>
+					<td width="159">
+						<p>
+						Метка порядка байтов</p>
+					</td>
+					<td width="120">
+						<p>
+						&lt;BOM&gt;</p>
+					</td>
+					<td width="103">
+						<p>
+						<i>Whitespace</i></p>
+					</td>
+				</tr></tbody></table></center>
+	<h3 id="x7.2">7.2 Пробельные символы <a href="#x7.2">#</a> <a href="#x7.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Пробельные символы применяются в целях удобочитаемости исходного текста и для разделения токенов (неделимых лексических единиц). Никакого другого значения они не имеют.  Встретиться они могут между двумя токенами, а также в начале или в конце ввода. Кроме того, пробельные символы могут встретиться внутри <i><a href="#x7.8.4">StringLiteral</a></i> <tt>Строковый литерал</tt> или <i><a href="#x7.8.5">RegularExpressionLiteral</a></i> <tt>Литерал регулярного выражения</tt>, где они считаются значимыми символами, образующими часть значения этого литерала, или в рамках <I>Comment</I> <tt>Комментарий</tt>. Больше ни в каком другом токене они не могут встретиться.</p>
+	<p class="sm-btm">
+	В Таблице 2 перечислены пробельные символы ECMAScript.</p>
+	<center>
+		<table id="WhiteSpace" width="528" border="1" bordercolor="#000000" cellpadding="22" cellspacing="0" rules="GROUPS"><caption>Таблица 2. Пробельные символы</caption>
+			<colgroup><col width="141"><col width="143"><col width="110"></colgroup><tbody><tr valign="TOP"><td width="141" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Значение кодовой единицы</span></b></i></p>
+					</td>
+					<td width="143" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Наименование</span></b></i></p>
+					</td>
+					<td width="110" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Официальное название</span></b></i></p>
+					</td>
+				</tr></tbody><tbody><tr valign="TOP"><td width="141">
+						<p>
+						<code><b>\u0009</b></code></p>
+					</td>
+					<td width="143">
+						<p>
+						Табуляция</p>
+					</td>
+					<td width="110">
+						<p>
+						&lt;TAB&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="141">
+						<p>
+						<code><b>\u000B</b></code></p>
+					</td>
+					<td width="143">
+						<p>
+						Вертикальная табуляция</p>
+					</td>
+					<td width="110">
+						<p>
+						&lt;VT&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="141">
+						<p>
+						<code><b>\u000C</b></code></p>
+					</td>
+					<td width="143">
+						<p>
+						Перевод страницы</p>
+					</td>
+					<td width="110">
+						<p>
+						&lt;FF&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="141">
+						<p>
+						<code><b>\u0020</b></code></p>
+					</td>
+					<td width="143">
+						<p>
+						Пробел</p>
+					</td>
+					<td width="110">
+						<p>
+						&lt;SP&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="141">
+						<p>
+						<code><b>\u00A0</b></code></p>
+					</td>
+					<td width="143">
+						<p>
+						Неразрывный пробел</p>
+					</td>
+					<td width="110">
+						<p>
+						&lt;#x0a&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="141">
+						<p>
+						<code><b>\uFEFF</b></code></p>
+						<p>
+						Другая категория &ldquo;Zs&rdquo;</p>
+					</td>
+					<td width="143">
+						<p>
+						Метка порядка байтов</p>
+						<p>
+						Любой другой &quot;пробельный разделитель&quot; Юникода</p>
+					</td>
+					<td width="110">
+						<p>
+						&lt;BOM&gt;</p>
+						<p>
+						&lt;USP&gt;</p>
+					</td>
+				</tr></tbody></table></center>
+	<p>
+	Реализации ECMAScript должны распознавать все пробельные символы, определенные в формате Юникод версии 3.0. Более поздние версии стандарта Юникод могут определять другие пробельные символы. Реализации ECMAScript могут распознавать пробельные символы из более поздних версий Юникода.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>WhiteSpace</i> <b>::</b></p>
+	<p class="def1-btm">
+	&lt;TAB&gt;<br>&lt;VT&gt;<br>&lt;FF&gt;<br>&lt;SP&gt;<br>&lt;#x0a&gt;<br>&lt;BOM&gt;<br>&lt;USP&gt;</p>
+	<h3 id="x7.3">7.3 Символы окончания строки <a href="#x7.3">#</a> <a href="#x7.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Как и пробельные символы, символы окончания строки применяются в целях удобочитаемости исходного текста и для разделения токенов (неделимых лексических единиц). Однако, в отличие от пробельных символов, символы окончания строки некоторым образом влияют на поведение синтаксической грамматики.</p>
+	<p>Символы окончания строки могут встретиться между любыми двумя токенами, однако в некоторых местах синтаксическая грамматика запрещает их применение. Кроме того, эти символы затрагивают процесс автоматической подстановки точки с запятой&nbsp;(<a href="#x7.9">7.9</a>). Символ окончания строки не может использоваться внутри какого-либо токена, кроме <i><a href="#x7.8.4">StringLiteral</a></i>, причем в этом случае он может использоваться в <i><a href="#x7.8.4">StringLiteral</a></i> как часть <I>LineContinuation</I> <tt>Продолжение строки</tt>.
+
+	</p>
+	<p>
+	Символ окончания строки может встретиться внутри <I>MultiLineComment</I> <tt>Многострочный комментарий</tt> &ndash; см. <a href="#x7.4">7.4</a>, но не может встретиться в <I>SingleLineComment </I><tt>Однострочный комментарий</tt>.
+
+	</p>
+	<p>
+	Символы окончания строки включены в набор пробельных символов, которым соответствует класс <code><b>\s</b></code> в регулярных выражениях.</p>
+	<p class="sm-btm">
+	В Таблице 3 перечислены символы окончания строки ECMAScript.</p>
+	<center>
+		<table id="LineTerminator" width="566" border="1" bordercolor="#000000" cellpadding="22" cellspacing="0" rules="NONE"><caption>Таблица 3. Символы окончания строки</caption>
+			<colgroup><col width="133"><col width="152"><col width="147"></colgroup><tbody><tr valign="TOP"><td width="133" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Значение кодовой единицы</span></b></i></p>
+				</td>
+				<td width="152" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Наименование</span></b></i></p>
+				</td>
+				<td width="147" bgcolor="#c0c0c0">
+					<p>
+					<i><b><span class="table-header">Официальное название</span></b></i></p>
+				</td>
+			</tr><tr valign="TOP"><td width="133">
+					<p>
+					<code><b>\u000A</b></code></p>
+				</td>
+				<td width="152">
+					<p>
+					Перевод строки</p>
+				</td>
+				<td width="147">
+					<p>
+					&lt;LF&gt;</p>
+				</td>
+			</tr><tr valign="TOP"><td width="133">
+					<p>
+					<code><b>\u000D</b></code></p>
+				</td>
+				<td width="152">
+					<p>
+					Возврат каретки
+					</p>
+				</td>
+				<td width="147">
+					<p>
+					&lt;CR&gt;</p>
+				</td>
+			</tr><tr valign="TOP"><td width="133">
+					<p>
+					<code><b>\u2028</b></code></p>
+				</td>
+				<td width="152">
+					<p>
+					Разделитель строки</p>
+				</td>
+				<td width="147">
+					<p>
+					&lt;LS&gt;</p>
+				</td>
+			</tr><tr valign="TOP"><td width="133">
+					<p>
+					<code><b>\u2029</b></code></p>
+				</td>
+				<td width="152">
+					<p>
+					Разделитель параграфа</p>
+				</td>
+				<td width="147">
+					<p>
+					&lt;PS&gt;</p>
+				</td>
+			</tr></tbody></table></center>
+	<p>
+	Символами окончания строки являются только те символы, которые приведены в Таблице&nbsp;3. Все другие символы новой строки или переноса строки интерпретируются не как символы окончания строки, а как пробельные символы. В качестве окончания строки часто используется последовательность символов &lt;CR&gt;&lt;LF&gt;. При нумерации строк ее следует рассматривать как один символ.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>LineTerminator </i><b>::</b></p>
+	<p class="def1-btm">
+	&lt;LF&gt;<br>&lt;CR&gt;<br>&lt;LS&gt;<br>&lt;PS&gt;</p>
+	<p class="keep">
+	<i>LineTerminatorSequence </i><b>::</b></p>
+	<p class="def1-btm">
+	&lt;LF&gt;<br>&lt;CR&gt; [<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713</span></a> &lt;LF&gt; ]<br>&lt;LS&gt;<br>&lt;PS&gt;<br>&lt;CR&gt; &lt;LF&gt;</p>
+	<h3 id="x7.4">7.4 Комментарии <a href="#x7.4">#</a> <a href="#x7.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Комментарии могут быть однострочными или многострочными, причем последние не могут образовывать вложений.</p>
+	<p>
+	Поскольку однострочный комментарий может содержать любой символ, кроме символа <i>LineTerminator</i>, а также в соответствии с общим правилом о том, что токен должен быть как можно длиннее, однострочный комментарий всегда включает в себя все символы между маркером&nbsp;<code><b>//</b></code> и концом строки. Однако стоящий в конце строки символ <I>LineTerminator</I> не считается частью однострочного комментария. Он распознается лексической грамматикой отдельно и становится частью потока входных элементов для синтаксической грамматики. Этот момент очень важен, поскольку он свидетельствует о том, что наличие или отсутствие однострочных комментариев не влияет на процесс автоматической подстановки точки с запятой&nbsp;(см. <a href="#x7.9">7.9</a>).</p>
+	<p>
+	Поведение комментариев аналогично поведению пробельных символов. Как правило, комментарии игнорируются, за исключением того, что если <I>MultiLineComment </I>содержит символ окончания строки, в этом случае весь комментарий, в целях его анализа синтаксической грамматикой, принимается за <I>LineTerminator</I>.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Comment </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>MultiLineComment<br>SingleLineComment</i></p>
+	<p class="keep">
+	<i>MultiLineComment </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>/*</b></code> <i>MultiLineCommentChars</i><sub>opt</sub><code><b>*/</b></code></p>
+	<p class="keep">
+	<i>MultiLineCommentChars </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>MultiLineNotAsteriskChar MultiLineCommentChars</i><sub>opt</sub><i><br></i><code><b>*</b></code> <i>PostAsteriskCommentChars</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>PostAsteriskCommentChars </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>MultiLineNotForwardSlashOrAsteriskChar MultiLineCommentChars</i><sub>opt</sub><i><br></i><code><b>*</b></code> <i>PostAsteriskCommentChars</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>MultiLineNotAsteriskChar</i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter </i><b>но не</b><i> asterisk </i><code><b>*</b></code></p>
+	<p class="keep">
+	<i>MultiLineNotForwardSlashOrAsteriskChar </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter</i> <b>но не</b><i> forward-slash </i><code><b>/</b></code> <b>или</b> <i>asterisk </i><code><b>*</b></code></p>
+	<p class="keep">
+	<i>SingleLineComment </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>//</b></code> <i>SingleLineCommentChars</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>SingleLineCommentChars </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SingleLineCommentChar SingleLineCommentChars</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>SingleLineCommentChar </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter</i> <b>но не</b> <i>LineTerminator</i></p>
+	<h3 id="x7.5">7.5 Токены <a href="#x7.5">#</a> <a href="#x7.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Token </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>IdentifierName<br>Punctuator<br>NumericLiteral<br>StringLiteral</i></p>
+	<p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Правила для <i>DivPunctuator</i> и <i><a href="#x7.8.5">RegularExpressionLiteral</a></i> определяют токены, но не включены в правило для <i>Token</i>.</p>
+	<h3 id="x7.6">7.6 Имена идентификаторов и идентификаторы <a href="#x7.6">#</a> <a href="#x7.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Имена идентификаторов представляют собой токены, толкование которых производится в соответствии с грамматикой, описанной в разделе &quot;Идентификаторы&quot; Главы&nbsp;5 стандарта Юникод (с небольшими изменениями). <i>Identifier</i> <tt>Идентификатор</tt> представляет собой <i>IdentifierName</i> <tt>Имя идентификатора</tt>, которое не является <i>ReservedWord</i> <tt>Зарезервированное слово</tt> &ndash; см.&nbsp;<a href="#x7.6.1">7.6.1</a>. В основе грамматики идентификаторов Юникода лежат нормативные и информативные категории символов, описываемые стандартом Юникод. Все реализации ECMAScript, соответствующие требованиям данного Стандарта, должны обрабатывать символы в упомянутых категориях стандарта Юникод версии&nbsp;3.0 как принадлежащие к этим категориям.</p>
+	<p>
+	Этот стандарт добавляет еще два специфических символа: Знак доллара (<code><b>$</b></code>) и символ подчёркивания (<code><b>_</b></code>) &mdash; они допускаются в любом месте <i>IdentifierName</i>.</p>
+	<p>
+	Кроме того, в <I>IdentifierName</I> допускаются и управляющие последовательности Юникода <em>Unicode escape sequences</em>: они трактуются как один символ <I>IdentifierName</I>, вычисленный символьным значением <i>UnicodeEscapeSequence </i><tt>Юникодная управляющая последовательность</tt> &ndash; см.&nbsp;<a href="#x7.8.4">7.8.4</a>). Обратная косая черта <code><b>\</b></code>, стоящая перед <I>UnicodeEscapeSequence</I>, не трактуется как символ <I>IdentifierName</I>. <i><I>UnicodeEscapeSequence</I></i> не может использоваться для того, чтобы вставить в <I>IdentifierName</I> символ, который в противном случае был бы некорректным. Иными словами, если последовательность <code><b>\</b></code>&nbsp;<i><I>UnicodeEscapeSequence</I></i> заменить на символьное значение для <i><I>UnicodeEscapeSequence</I></i>, результатом все равно должен являться корректный <i>IdentifierName </i>с точно такой же последовательностью символов, что и в оригинальном <I>IdentifierName</I>. В основе интерпретации всех идентификаторов в данной спецификации лежат их фактические символы, независимо от того, использовалась ли управляющая последовательность для передачи каких-либо конкретных символов.</p>
+	<p>
+	Два символа <i>IdentifierName</i>, канонически эквивалентные в соответствии со стандартом Юникода, <I>не </I>являются одинаковыми, если они не представлены совершенно одинаковыми последовательностями кодовых единиц  (иными словами, корректные реализации ECMAScript должны производить только побитовое сравнение значений <I>IdentifierName</I>). Смысл в том, чтобы прежде чем достичь компилятора, входящий исходный текст преобразовывался бы в соответствии с формой нормализации &quot;С&quot;.</p>
+	<p>
+	Реализации ECMAScript могут распознавать символы идентификатора из более поздних версий Юникода. В случае возможных проблем с межплатформенной переносимостью программы, при написании кода следует использовать только символы, описанные в стандарте Юникод версии&nbsp;3.0. </p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Identifier </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>IdentifierName </i><b>но не</b> <i>ReservedWord</i></p>
+	<p class="keep">
+	<i>IdentifierName</i><b> ::</b></p>
+	<p class="def1-btm">
+	<i>IdentifierStart<br>IdentifierName IdentifierPart</i></p>
+	<p class="keep">
+	<i>IdentifierStart </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>UnicodeLetter<br></i><code><b>$<br>_</b></code> <i><br></i><code><b>\</b></code> <i>UnicodeEscapeSequence</i></p>
+	<p class="keep">
+	<i>IdentifierPart </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>IdentifierStart<br>UnicodeCombiningMark<br>UnicodeDigit<br>UnicodeConnectorPunctuation<br></i>&lt;ZWNJ&gt;<br>&lt;ZWJ&gt;</p>
+	<p class="keep">
+	<i>UnicodeLetter</i></p>
+	<p class="def1-btm">
+	&ndash; любой символ в категориях Юникода  &ldquo;Прописная буква (Lu)&rdquo;, &ldquo;Строчная буква (Ll)&rdquo;, &ldquo;Заглавная буква (Lt)&rdquo;, &ldquo;Буква-модификатор (Lm)&rdquo;, &ldquo;Другая буква (Lo)&rdquo; или &ldquo;Буква-число (Nl)&rdquo;.</p>
+	<p class="keep">
+	<i>UnicodeCombiningMark</i></p>
+	<p class="def1-btm">
+	&ndash; любой символ в категориях Юникода &ldquo;Не-пробельный знак (Mn)&rdquo; или &ldquo;Комбинирующий пробельный знак (Mc)&rdquo;</p>
+	<p class="keep">
+	<i>UnicodeDigit</i></p>
+	<p class="def1-btm">
+	&ndash; любой символ в категории Юникода &ldquo;Десятичное число (Nd)&rdquo;</p>
+	<p class="keep">
+	<i>UnicodeConnectorPunctuation</i></p>
+	<p class="def1-btm">
+	&ndash; любой символ в категории Юникода &ldquo;Соединяющая пунктуация (Pc)&rdquo;</p>
+	<p class="keep">
+	<i>UnicodeEscapeSequence</i></p>
+	<p class="def1-btm">
+	&ndash; см. <a href="#x7.8.4">пункт&nbsp;7.8.4</a>.</p>
+	<h4 id="x7.6.1">7.6.1 Зарезервированные слова <a href="#x7.6.1">#</a> <a href="#x7.6.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	<i>IdentifierName</i>, которое не может быть использовано как <i>Identifier</i>, является зарезервированным словом.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>ReservedWord</i><b> ::</b></p>
+	<p class="def1-btm">
+	<i>Keyword<br>FutureReservedWord<br>NullLiteral<br>BooleanLiteral</i></p>
+	<h5 id="x7.6.1.1">7.6.1.1 Ключевые слова <a href="#x7.6.1.1">#</a> <a href="#x7.6.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Перечисленные ниже токены являются ключевыми словами ECMAScript. В программах на ECMAScript они не могут быть использованы как <I>Identifiers</I> <tt>Идентификаторы</tt>.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Keyword </i>:: <b>одно из</b></p>
+	<dl><dl><dd>
+			<table width="590" border="0" cellpadding="8" cellspacing="0"><colgroup><col width="131"><col width="131"><col width="131"><col width="131"></colgroup><tbody><tr valign="TOP"><td width="131" height="3">
+						<p>
+						<code><b>break</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>do</b></code>
+						</p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>instanceof</b></code>
+						</p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>typeof</b></code>
+						</p>
+					</td>
+				</tr><tr valign="TOP"><td width="131" height="3">
+						<p>
+						<code><b>case</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>else</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>new</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>var</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="131" height="3">
+						<p>
+						<code><b>catch</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>finally</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>return</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>void</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="131" height="3">
+						<p>
+						<code><b>continue</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>for</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>switch</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						<code><b>while</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="131" height="3">
+						<p class="sm-btm">
+						<code><b>debugger</b></code>
+						</p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>function</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>this</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>with</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="131" height="3">
+						<p class="sm-btm">
+						<code><b>default</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>if</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>throw</b></code></p>
+					</td>
+					<td width="131">
+					</td>
+				</tr><tr valign="TOP"><td width="131" height="3">
+						<p class="sm-btm">
+						<code><b>delete</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>in</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>try</b></code></p>
+					</td>
+					<td width="131">
+					</td>
+				</tr></tbody></table></dd></dl></dl>
+	<h5 id="x7.6.1.2">7.6.1.2 Слова, зарезервированные для использования в будущем <a href="#x7.6.1.2">#</a> <a href="#x7.6.1.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Перечисленные ниже слова используются как ключевые слова в предполагаемых расширениях языка. Они зарезервированы, чтобы предусмотреть возможность применения этих расширений в  будущем.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>FutureReservedWord</i> <b>::</b> <b>одно из</b></p>
+	<dl><dl><dd>
+			<table width="590" border="0" cellpadding="8" cellspacing="0"><colgroup><col width="131"><col width="131"><col width="131"><col width="131"></colgroup><tbody><tr valign="TOP"><td width="131" height="3">
+						<p class="sm-btm">
+						<code><b>class</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>enum</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>extends</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>super</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="131" height="3">
+						<p class="sm-btm">
+						<code><b>const</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>export</b></code></p>
+					</td>
+					<td width="131">
+						<p class="sm-btm">
+						<code><b>import</b></code></p>
+					</td>
+					<td width="131">
+					</td>
+				</tr></tbody></table></dd></dl></dl><p>
+	Перечисленные ниже токены также рассматриваются как <i>FutureReservedWords</i> <tt>Зарезервированные на будущее слова</tt> если они  встречаются в программе, написанной в <a href="x10.html#x10.1.1" class="term-ref">строгом режиме</a> языка (см.&nbsp;<a href="x10.html#x10.1.1">10.1.1</a>). Если в каком-либо контексте, в котором использование <I>FutureReservedWord </I><tt>Зарезервированное на будущее слово</tt> вызвало бы ошибку, появится какой-либо из перечисленных ниже токенов в <a href="x10.html#x10.1.1" class="term-ref">строгом режиме</a>, это также должно вызвать  аналогичную ошибку.</p>
+	<table width="737" border="0" cellpadding="8" cellspacing="0"><colgroup><col width="131"><col width="131"><col width="131"><col width="131"><col width="131"></colgroup><tbody><tr valign="TOP"><td width="131" height="3">
+				<p class="sm-btm">
+				<code><b>implements</b></code></p>
+			</td>
+			<td width="131">
+				<p class="sm-btm">
+				<code><b>let</b></code></p>
+			</td>
+			<td width="131">
+				<p class="sm-btm">
+				<code><b>private</b></code></p>
+			</td>
+			<td width="131">
+				<p class="sm-btm">
+				<code><b>public</b></code></p>
+			</td>
+			<td width="131">
+				<p class="sm-btm">
+				<code><b>yield</b></code></p>
+			</td>
+		</tr><tr valign="TOP"><td width="131" height="3">
+				<p class="sm-btm">
+				<code><b>interface</b></code></p>
+			</td>
+			<td width="131">
+				<p class="sm-btm">
+				<code><b>package</b></code></p>
+			</td>
+			<td width="131">
+				<p class="sm-btm">
+				<code><b>protected</b></code></p>
+			</td>
+			<td width="131">
+				<p class="sm-btm">
+				<code><b>static</b></code></p>
+			</td>
+			<td width="131">
+			</td>
+		</tr></tbody></table>
+	<h3 id="x7.7">7.7 Знаки пунктуации <a href="#x7.7">#</a> <a href="#x7.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Punctuator </i><b>::</b> <b>одно из</b></p>
+	<dl><dd>
+		<table width="589" border="0" cellpadding="8" cellspacing="0"><colgroup><col width="82"><col width="82"><col width="82"><col width="82"><col width="82"><col width="82"></colgroup><tbody><tr valign="TOP"><td width="82">
+					<p>
+					<code><b>{</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>}</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>(</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>)</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>[</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>]</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="82">
+					<p>
+					<code><b>.</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>,</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&lt;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&gt;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&lt;=</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="82">
+					<p>
+					<code><b>&gt;=</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>==</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>!=</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>===</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>!==</b></code></p>
+				</td>
+				<td width="82">
+				</td>
+			</tr><tr valign="TOP"><td width="82">
+					<p>
+					<code><b>+</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>-</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>*</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>%</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>++</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>--</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="82">
+					<p>
+					<code><b>&lt;&lt;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&gt;&gt;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&gt;&gt;&gt;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&amp;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>|</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>^</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="82">
+					<p>
+					<code><b>!</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>~</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&amp;&amp;</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>||</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>?</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>:</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="82">
+					<p>
+					<code><b>=</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>+=</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>-=</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>*=</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>%=</b></code></p>
+				</td>
+				<td width="82">
+					<p>
+					<code><b>&lt;&lt;=</b></code></p>
+				</td>
+			</tr><tr valign="TOP"><td width="82">
+					<p class="sm-btm">
+					<code><b>&gt;&gt;=</b></code></p>
+				</td>
+				<td width="82">
+					<p class="sm-btm">
+					<code><b>&gt;&gt;&gt;=</b></code></p>
+				</td>
+				<td width="82">
+					<p class="sm-btm">
+					<code><b>&amp;=</b></code></p>
+				</td>
+				<td width="82">
+					<p class="sm-btm">
+					<code><b>|=</b></code></p>
+				</td>
+				<td width="82">
+					<p class="sm-btm">
+					<code><b>^=</b></code></p>
+				</td>
+				<td width="82">
+				</td>
+			</tr></tbody></table></dd></dl><p class="keep">
+	<i>DivPunctuator </i><b>::</b> <b>одно из</b></p>
+	<dl><dd>
+		<table width="589" border="0" cellpadding="8" cellspacing="0"><colgroup><col width="82"><col width="82"><col width="82"><col width="82"><col width="82"><col width="82"></colgroup><tbody><tr valign="TOP"><td width="82">
+					<p class="sm-btm">
+					<code><b>/</b></code></p>
+				</td>
+				<td width="82">
+					<p class="sm-btm">
+					<code><b>/=</b></code></p>
+				</td>
+				<td width="82">
+				</td>
+				<td width="82">
+				</td>
+				<td width="82">
+				</td>
+				<td width="82">
+				</td>
+			</tr></tbody></table></dd></dl>
+	<h3 id="x7.8">7.8 Литералы <a href="#x7.8">#</a> <a href="#x7.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Literal </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>NullLiteral<br>BooleanLiteral<br>NumericLiteral<br>StringLiteral <br>RegularExpressionLiteral</i></p>
+	<h4 id="x7.8.1">7.8.1 Литералы Null <a href="#x7.8.1">#</a> <a href="#x7.8.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>NullLiteral </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>null</b></code></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Значением литерала null <code><b>null</b></code> является единственное значение типа Null, а именно &ndash; <b>null</b>.</p>
+	<h4 id="x7.8.2">7.8.2 Литералы Boolean <a href="#x7.8.2">#</a> <a href="#x7.8.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>BooleanLiteral </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>true<br>false</b></code></p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Значением литерала Boolean <code><b><b>true</b></b></code> является значение типа Boolean, а именно &ndash; <b>true</b>.</p>
+	<p>
+	Значением литерала Boolean <code><b>false</b></code> является значение типа Boolean, а именно &ndash; <B>false</B>.</p>
+	<h4 id="x7.8.3">7.8.3 Числовые литералы <a href="#x7.8.3">#</a> <a href="#x7.8.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>NumericLiteral</i> <b>::</b></p>
+	<p class="def1-btm">
+	<i>DecimalLiteral<br>HexIntegerLiteral</i></p>
+	<p class="keep">
+	<i>DecimalLiteral </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>DecimalIntegerLiteral </i><code><b>.</b></code> <i>DecimalDigits</i><sub>opt</sub><i>  ExponentPart</i><sub>opt</sub><i><br></i><code><b>.</b></code> <i>DecimalDigits ExponentPart</i><sub>opt</sub><i><br>DecimalIntegerLiteral ExponentPart</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>DecimalIntegerLiteral</i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>0</b></code> <i><br>NonZeroDigit DecimalDigits</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>DecimalDigits </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>DecimalDigit<br>DecimalDigits DecimalDigit</i></p>
+	<p class="keep">
+	<i>DecimalDigit </i><b>:: </b><b>одно из</b></p>
+	<p class="def1-btm">
+	<code><b>0 1  2  3  4  5  6  7  8  9</b></code></p>
+	<p class="keep">
+	<i>НенулеваяЦифра </i><b>:: </b><b>одно из</b></p>
+	<p class="def1-btm">
+	<code><b>1 2  3  4  5  6  7  8  9</b></code></p>
+	<p class="keep">
+	<i>ExponentPart </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>ExponentIndicator SignedInteger</i></p>
+	<p class="keep">
+	<i>ExponentIndicator </i><b>::</b> <b>одно из</b></p>
+	<p class="def1-btm">
+	<code><b>e E</b></code></p>
+	<p class="keep">
+	<i>SignedInteger</i> <b>::</b></p>
+	<p class="def1-btm">
+	<i>DecimalDigits<br></i><code><b>+</b></code> <i>DecimalDigits<br></i><code><b>-</b></code> <i>DecimalDigits</i></p>
+	<p class="keep">
+	<i>HexIntegerLiteral </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>0x</b></code> <i>HexDigit<br></i><code><b>0X</b></code> <i>HexDigit<br>HexIntegerLiteral HexDigit</i></p>
+	<p class="keep">
+	<i>HexDigit </i>:: <B>одно из</B></p>
+	<p class="def1-btm">
+	<code><b>0 1  2  3  4  5  6  7  8  9  a  b  c  d  e  f  A  B  C  D  E  F</b></code></p>
+	<p>
+	Исходный символ, следующий сразу же за <I>NumericLiteral</I> <tt>Числовой литерал</tt>, не должен быть <i>IdentifierStart</i> <tt>Начало идентификатора</tt> или <i>DecimalDigit</i> <tt>Десятичная цифра</tt>.</p>
+	<p>
+	</p><p><b>ПРИМЕЧАНИЕ</b> Например, запись:</p>
+	<p class="code-example"><code><b>3in</b></code></p>
+	<p class="sp">не представляет собой два входные элемента <code><b>3</b></code> и <code><b>in</b></code>, а является ошибкой.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Числовой литерал имеет значение типа Number. Это значение определяется в два этапа: сначала из литерала выводится его <dfn id="mv">математическое значение</dfn> MV (сокращение от "mathematical value" – прим. перев.), а затем это MV округляется в соответствии с приведенными ниже описаниями:</p>
+	<ul><li><p>
+				MV <i>NumericLiteral</i> <b>::</b> <i>DecimalLiteral</i> равно MV <i>DecimalLiteral</i>.</p>
+				</li>
+				<li><p>
+				MV <i>NumericLiteral</i> <b>::</b> <i>HexIntegerLiteral</i> равно MV <i>HexIntegerLiteral</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><i>DecimalIntegerLiteral </i><code><b>.</b></code> <i><b></b></i>равно MV <i>DecimalIntegerLiteral</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><i>DecimalIntegerLiteral </i><code><b>.</b></code> <i>DecimalDigits</i><i> </i>равно MV <i>DecimalIntegerLiteral</i> плюс (MV <i>DecimalDigits</i>, умноженное на 10<sup>&ndash;</sup><sup><i>n</i></sup>), гдн <i>n</i> &ndash; количество символов в <i>DecimalDigit</i>s.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><i>DecimalIntegerLiteral </i><code><b>.</b></code> <i>ExponentPart </i>равно MV <i>DecimalIntegerLiteral</i>, умноженного на 10<sup><i>e</i></sup>, где <i>e</i> &ndash; MV <i>ExponentPart</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><i>DecimalIntegerLiteral </i><code><b>.</b></code> <i>DecimalDigits ExponentPart </i>равно (MV <i>DecimalIntegerLiteral</i> плюс (MV <i>DecimalDigits</i><i> </i>, умноженное на 10<sup>&ndash;</sup><sup><i>n</i></sup>)) умноженное на 10<sup><i>e</i></sup>, где <i>n</i> &ndash; количество символов в <i>DecimalDigit</i>s, а <code>e</code>&ndash; умноженное <i>ExponentPart</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><code><b>.</b></code> <i>DecimalDigits</i> равно MV <i>DecimalDigits</i>, умноженное на 10<sup>&ndash;</sup><sup><i>n</i></sup>, где <i>n</i> &ndash; кодичество символов в <i>DecimalDigit</i>s.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><code><b>.</b></code> <i>DecimalDigits ExponentPart </i>равно MV <i>DecimalDigits</i>, умноженного на 10<sup><i>e</i></sup><sup>&ndash;</sup><sup><i>n</i></sup>, где <i>n</i> &ndash; количество символов в <i>DecimalDigit</i>s, а <i>e</i> &ndash; MV <i>ExponentPart</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><i>DecimalIntegerLiteral</i><i> </i>равно MV <i>DecimalIntegerLiteral</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalLiteral </i><b>::</b><i>DecimalIntegerLiteral ExponentPart </i>равно MV <i>DecimalIntegerLiteral</i>, умноженому на 10<sup><i>e</i></sup>, где <i>e</i> &ndash; MV <i>ExponentPart</i>.</p>
+				</li>
+				<li><p>
+				MV <i>ДесятичногоЦелогоЛитерала</i> <b>::</b> <code><b>0</b></code> является 0.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalIntegerLiteral</i> <b>::</b> <i>NonZeroDigit</i> <i>DecimalDigits</i> равно (MV <i>NonZeroDigit</i> , умноженное на 10<sup><i>n</i></sup>) плюс MV <i>DecimalDigits</i>, где <i>n</i> &ndash; количество символов в <i>DecimalDigits</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalDigits</i> <b>::</b> <i>DecimalDigit</i> равно MV <i>DecimalDigit</i>.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalDigits</i> <b>::</b> <i>DecimalDigits</i> <i>DecimalDigit</i> равно (MV <i>DecimalDigits</i>, умноженное на 10) плюс MV <i>DecimalDigit</i>.</p>
+				</li>
+				<li><p>
+				MV <i>ExponentPart </i><b>::</b><i>ExponentIndicator SignedInteger</i><i> </i>равно MV <i>SignedInteger</i>.</p>
+				</li>
+				<li><p>
+				MV <i>SignedInteger </i><b>::</b><i>DecimalDigits</i><i> </i>равно <i>DecimalDigits</i>.</p>
+				</li>
+				<li><p>
+				MV <i>SignedInteger </i><b>::</b><code><b>+</b></code> <i>DecimalDigits</i><i> </i>равно <i>DecimalDigits</i>.</p>
+				</li>
+				<li><p>
+				MV <i>SignedInteger </i><b>::</b><code><b>-</b></code> <i>DecimalDigits</i><i> </i>равно отрицательному MV <i>DecimalDigits</i>.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>0</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>0</b></code> равно 0.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>1</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>1</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>1</b></code> равно 1.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>2</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>2</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>2</b></code> равно 2.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>3</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>3</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>3</b></code> равно 3.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>4</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>4</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>4</b></code> является 4.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>5</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>5</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>5</b></code> равно 5.</p>
+				</li>
+				<li><p>
+				MV <i>ДесятичнойЦифры</i> <b>::</b> <code><b>6</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>6</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>6</b></code> равно 6.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>7</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>7</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>7</b></code> равно 7.</p>
+				</li>
+				<li><p>
+				MV для <i>DecimalDigit</i> <b>::</b> <code><b>8</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>8</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>8</b></code> равно 8.</p>
+				</li>
+				<li><p>
+				MV <i>DecimalDigit</i> <b>::</b> <code><b>9</b></code> или для <i>NonZeroDigit</i> <b>::</b> <code><b>9</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>9</b></code> равно 9.</p>
+				</li>
+				<li><p>
+				MV  для <i>HexDigit</i> <b>::</b> <code><b>a</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>A</b></code> равно 10.</p>
+				</li>
+				<li><p>
+				MV для <i>HexDigit</i> <b>::</b> <code><b>b</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>B</b></code> равно 11.</p>
+				</li>
+				<li><p>
+				MV для <i>HexDigit</i> <b>::</b> <code><b>c</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>C</b></code> равно 12.</p>
+				</li>
+				<li><p>
+				MV для <i>HexDigit</i> <b>::</b> <code><b>d</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>D</b></code> равно 13.</p>
+				</li>
+				<li><p>
+				MV для <i>HexDigit</i> <b>::</b> <code><b>e</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>E</b></code> равно 14.</p>
+				</li>
+				<li><p>
+				MV для <i>HexDigit</i> <b>::</b> <code><b>f</b></code> или для <i>HexDigit</i> <b>::</b> <code><b>F</b></code> равно 15.</p>
+				</li>
+				<li><p>
+				MV <i>HexIntegerLiteral </i><b>::</b> <code><b>0x</b></code> <i>HexDigit</i> равно MV <i>HexDigit</i>.</p>
+				</li>
+				<li><p>
+				MV <i>HexIntegerLiteral </i><b>::</b> <code><b>0X</b></code> <i>HexDigit</i> равно MV <i>HexDigit</i>.</p>
+				</li>
+				<li><p>
+				MV <i>HexIntegerLiteral </i><b>::</b> <i>HexIntegerLiteral</i> <i>HexDigit</i> равно (MV <i>HexIntegerLiteral</i>, умноженое на 16) плюс MV <i>HexDigit</i>.</p>
+	</li></ul><p class="sm-btm">
+	После определения точного MV числового литерала оно затем округляется до значения типа Number. Если MV равно 0, тогда округленное значение равно <b>+0</b>; в противном случае округленное значение должно представлять собой <I>именно это </I>числовое значение MV (в соответствии с определением в <a href="x8.html#x8.5">пункте&nbsp;8.5</a>), за исключением случаев, когда литерал является <i>DecimalLiteral</i> и имеет более 20&nbsp;значимых чисел &ndash; в этом случае числовое значение может быть либо числовым значением MV литерала, полученного при замене на число <code><b>0</b></code> каждой значащей цифры после 20-й, либо числовым значением MV литерала, полученного в результате замены на число <code><b>0</b></code> каждой значащей цифры после 20-й, с последующим приращением литерала в позиции 20-й значащей цифры. Цифра является <i>значащей</i>, если она не является частью <i>ExponentPart,</i> и</p>
+	<ul><li><p>
+				она не является <code><b>0</b></code>; или</p>
+				</li>
+				<li><p>
+				слева от нее находится ненулевая цифра, и справа от нее, не в <i>ExponentPart</i>, тоже находится ненулевая цифра.</p>
+	</li></ul><p>
+	В корректной реализации при обработки программы в <a href="x10.html#x10.1.1" class="term-ref">строгом режиме</a> (см. <a href="x10.html#x10.1.1">пункт&nbsp;10.1.1</a>) синтаксис для <i>NumericLiteral</i> не должен распространяться на <i>OctalIntegerLiteral</i> <tt>Восьмеричный целый литерал</tt>, определение которого содержится в <a href="B.html#B.1.1">B.1.1</a>.</p>
+	<h4 id="x7.8.4">7.8.4 Строковые литералы <a href="#x7.8.4">#</a> <a href="#x7.8.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Строковый литерал представляет собой символы в количестве ноль или более, заключённые в одиночные или двойные кавычки. Каждый символ может быть представлен управляющей последовательностью. В строковом литерале могут появляться буквально все символы, кроме символа закрывающей кавычки, обратной косой черты, возврата каретки, разделителя строки, разделителя параграфа и перевода строки. Каждый символ может быть представлен в виде управляющей последовательности.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>StringLiteral </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>&quot;</b></code> <i>DoubleStringCharacters</i><sub>opt</sub><code><b>&quot;<br>'</b></code> <i>SingleStringCharacters</i><sub>opt</sub><code><b>'</b></code></p>
+	<p class="keep">
+	<i>DoubleStringCharacters </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>DoubleStringCharacter DoubleStringCharacters</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>SingleStringCharacters </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SingleStringCharacter SingleStringCharacters</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>DoubleStringCharacter </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter </i><b>но не</b> <i>double-quote </i><code><b>&quot;</b></code> <b>или</b> <i>backslash </i><code><b>\</b></code> <b>или</b> <i>LineTerminator<br></i><code><b>\</b></code> <i>EscapeSequence<br>LineContinuation</i></p>
+	<p class="keep">
+	<i>SingleStringCharacter </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter</i> <b>но не</b> <i>single-quote </i><code><b>'</b></code> <b>или</b> <i>backslash </i><code><b>\</b></code> <b>или</b> <i>LineTerminator<br></i><code><b>\</b></code> <i>EscapeSequence<br>LineContinuation</i></p>
+	<p class="keep">
+	<i>LineContinuation </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>\</b></code> <i>LineTerminatorSequence</i></p>
+	<p class="keep">
+	<i>EscapeSequence </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>CharacterEscapeSequence<br></i><code><b>0</b></code> [<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> <i>DecimalDigit</i>]<i><br>HexEscapeSequence<br>UnicodeEscapeSequence</i></p>
+	<p class="keep">
+	<i>CharacterEscapeSequence </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SingleEscapeCharacter<br>NonEscapeCharacter</i></p>
+	<p class="keep">
+	<i>SingleEscapeCharacter </i><b>::</b><b>одно из</b></p>
+	<p class="def1-btm">
+	<code><b>' &quot;  \  b  f  n  r  t  v</b></code></p>
+	<p class="keep">
+	<i>NonEscapeCharacter</i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter</i> <b>но не</b> <i>EscapeCharacter </i><b>или</b> <i>LineTerminator</i></p>
+	<p class="keep">
+	<i>EscapeCharacter </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SingleEscapeCharacter<br>DecimalDigit<br></i><code><b>x</b></code> <i><b><br></b></i><code><b>u</b></code></p>
+	<p class="keep">
+	<i>HexEscapeSequence </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>x</b></code> <i>HexDigit HexDigit</i></p>
+	<p class="keep">
+	<i>UnicodeEscapeSequence </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>u</b></code> <i>HexDigit HexDigit HexDigit HexDigit</i></p>
+	<p>
+	Определения нетерминального <I>HexDigit</I> <tt>Шестнадцатеричная цифра</tt> содержится в <a href="#x7.6">пункте&nbsp;7.6</a>. Определение <i>SourceCharacter</i> <tt>Исходный символ</tt> содержится в <a href="x6.html#x6">пункте&nbsp;6</a>.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Строковый литерал представляет собой значение типа String. Строковое значение SV (сокращение от "string value" – прим. перев.)  литерала описывается на основе символьных значений CV (сокращение от "character value" – прим. перев.)  различных частей строкового литерала.
+	В рамках этого процесса некоторые символы строкового литерала трактуются как имеющие математическое значение MV в соответствии с описанием, приведенным ниже или в&nbsp;<a href="#x7.8.3">пункте&nbsp;7.8.3</a>.</p>
+	<ul><li><p>
+				SV <i>StringLiteral</i> <b>::</b> <code><b>&quot;&quot;</b></code> представляет собой пустую последовательность символов.</p>
+				</li>
+				<li><p>
+				SV <i>StringLiteral</i> <b>::</b> <code><b>''</b></code> представляет собой пустую последовательность символов.</p>
+				</li>
+				<li><p>
+				SV <i>StringLiteral</i> <b>::</b> <code><b>&quot;</b></code> <i>DoubleStringCharacters</i> <code><b>&quot;</b></code> равно SV <i>DoubleStringCharacters</i>.</p>
+				</li>
+				<li><p>
+				SV <i>StringLiteral</i> <b>::</b> <code><b>'</b></code> <i>SingleStringCharacters</i> <code><b>'</b></code> равно SV <i>SingleStringCharacters</i>.</p>
+				</li>
+				<li><p>
+				SV <i>DoubleStringCharacters </i><b>::</b> <i>DoubleStringCharacter</i> представляет собой последовательность из одного символа &ndash; CV <i>DoubleStringCharacter</i>.</p>
+				</li>
+				<li><p>
+				SV <i>DoubleStringCharacters </i><b>::</b> <i>DoubleStringCharacter</i> <i>DoubleStringCharacters </i>представляет собой последовательность из CV <i>DoubleStringCharacter</i>, за которым следуют все символы SV <i>DoubleStringCharacters</i> по порядку.</p>
+				</li>
+				<li><p>
+				SV <i>SingleStringCharacters </i><b>::</b> <i>SingleStringCharacter</i> представляет собой последовательность из одного символа &ndash; CV <i>SingleStringCharacter</i>.</p>
+				</li>
+				<li><p>
+				SV <i>SingleStringCharacters </i><b>::</b> <i>SingleStringCharacter</i> SingleStringCharacters представляет собой последовательность из CV <i>SingleStringCharacter</i>, за которым следуют все символы SV <i>SingleStringCharacters</i> по порядку.</p>
+				</li>
+				<li><p>
+				SV <i>LineContinuation</i> <b>::</b> <code><b>\</b></code> <i>LineTerminatorSequence</i> равно пустой последовательности символов.</p>
+				</li>
+				<li><p>
+				CV <i>DoubleStringCharacter</i> <b>::</b> <i>SourceCharacter</i> <b>но не</b> <i>double-quote</i> <code><b>&quot;</b></code> <b>или</b> <i>backslash</i> <code><b>\</b></code> <b>или</b> <i>LineTerminator</i> равно самому <i>SourceCharacter</i>.</p>
+				</li>
+				<li><p>
+				CV <i>DoubleStringCharacter</i> <b>::</b> <code><b>\</b></code><code></code><i>EscapeSequence</i> равно CV<i> EscapeSequence</i>.</p>
+				</li>
+<li><p>CV <i>DoubleStringCharacter</i> <b>::</b> <i>LineContinuation</i> равно пустой последовательности символов.</p></li>
+				<li><p>
+				CV <i>SingleStringCharacter</i> <b>::</b> <i>SourceCharacter</i> <b>но не</b> <i>single-quote</i> <code><b>'</b></code> <b>или</b> <i>backslash</i> <code><b>\</b></code> <b>или</b> <i>LineTerminator</i> равно самому <i>SourceCharacter</i>.</p>
+				</li>
+				<li><p>
+				CV <i>SingleStringCharacter</i> <b>::</b><code><b>\</b></code><code></code><i>EscapeSequence</i> равно CV <i> EscapeSequence</i>.</p>
+				</li>
+<li><p>CV <i>SingleStringCharacter</i> <b>::</b> <i>LineContinuation</i> равно пустой последовательности символов.</p></li>
+				<li><p>
+				CV <i>EscapeSequence </i><b>::</b> <i>CharacterEscapeSequence</i> равно CV <i> CharacterEscapeSequence</i>.</p>
+				</li>
+				<li><p>
+				CV <i>EscapeSequence </i><b>::</b> <code><b>0</b></code>  [<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> <i>DecimalDigit</i>] равно символу &lt;NUL&gt; (код Юникода&nbsp;0000).</p>
+				</li>
+				<li><p>
+				CV <i>EscapeSequence </i><b>::</b> <i>HexEscapeSequence</i> равно CV <i> HexEscapeSequence</i>.</p>
+				</li>
+				<li><p>
+				CV <i>EscapeSequence </i><b>::</b> <i>UnicodeEscapeSequence</i> равно CV <i> UnicodeEscapeSequence</i>.</p>
+				</li>
+				<li><p>
+				CV <i>CharacterEscapeSequence </i> <b>::</b> <i>SingleEscapeCharacter </i> представляет собой символ, чьё значение кодовой единицы определяется <i>the<i>SingleEscapeCharacter </i></i> в соответствии с Таблицей&nbsp;4:</p>
+	<br><center>
+		<table width="606" border="1" bordercolor="#000000" cellpadding="17" cellspacing="0" rules="GROUPS"><caption>Таблица 4. Управляющие последовательности одиночных строковых символов</caption>
+			<colgroup><col width="136"><col width="134"><col width="133"><col width="64"></colgroup><tbody><tr valign="TOP"><td width="136" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Управляющая последовательность</span></b></i></p>
+					</td>
+					<td width="134" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Значение кодовой единицы</span></b></i></p>
+					</td>
+					<td width="133" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Наименование</span></b></i></p>
+					</td>
+					<td width="64" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Символ</span></b></i></p>
+					</td>
+				</tr></tbody><tbody><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\b</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u0008</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						возврат</p>
+					</td>
+					<td width="64">
+						<p>
+						&lt;BS&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\t</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u0009</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						горизонтальная табуляция</p>
+					</td>
+					<td width="64">
+						<p>
+						&lt;HT&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\n</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u000A</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						перевод строки (новая строка)</p>
+					</td>
+					<td width="64">
+						<p>
+						&lt;LF&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\v</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u000B</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						вертикальная табуляция</p>
+					</td>
+					<td width="64">
+						<p>
+						&lt;VT&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\f</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u000C</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						перевод страницы</p>
+					</td>
+					<td width="64">
+						<p>
+						&lt;FF&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\r</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u000D</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						возврат каретки</p>
+					</td>
+					<td width="64">
+						<p>
+						&lt;CR&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\&quot;</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u0022</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						двойная кавычка</p>
+					</td>
+					<td width="64">
+						<p>
+						<code><b>&quot;</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\'</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u0027</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						одинарная кавычка</p>
+					</td>
+					<td width="64">
+						<p>
+						<code><b>'</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="136">
+						<p align="CENTER">
+						<code><b>\\</b></code></p>
+					</td>
+					<td width="134">
+						<p>
+						<code><b>\u005C</b></code></p>
+					</td>
+					<td width="133">
+						<p>
+						обратная косая</p>
+					</td>
+					<td width="64">
+						<p>
+						<code><b>\</b></code></p>
+					</td>
+				</tr></tbody></table></center>
+	<br></li>
+				<li><p>
+				CV <i>CharacterEscapeSequence</i> <b>::</b> <i>NonEscapeCharacter</i> равно CV <i>NonEscapeCharacter</i>.</p>
+				</li>
+				<li><p>
+				CV <i>NonEscapeCharacter</i> <b>::</b> <i>SourceCharacter</i> <b>но не</b> <i>EscapeCharacter</i> <b>или</b> <i>LineTerminator</i> равно самому <i>SourceCharacter</i>.</p>
+				</li>
+				<li><p>
+				CV <i>HexEscapeSequence</i> <b>::</b> <code><b>x</b></code> <i>HexDigit</i> <i>HexDigit</i> представляет собой символ, чьё значение кодовой единицы равно (16&nbsp;умноженное на MV первого <i>HexDigit</i>) плюс МЗ второго <i>HexDigit</i>.</p>
+				</li>
+				<li><p>
+				CV <i>UnicodeEscapeSequence</i> <b>::</b> <code><b>u</b></code> <i> </i><i>HexDigit</i> <i>HexDigit</i> <i>HexDigit</i> <i>HexDigit</i>  представляет собой символ, чьё значение кодовой единицы равно (4096 умноженное на MV первого <i>HexDigit</i>) плюс (256 умноженное на MV второго <i>HexDigit</i>) плюс (16 умноженное на MV третьего <i>HexDigit</i>) плюс MV четвертого <i>HexDigit.</i></p>
+			</li></ul><p>
+	В корректной реализации при обработке программы в <a href="x10.html#x10.1.1" class="term-ref">строгом режиме</a> (см. <a href="x10.html#x10.1.1">пункт&nbsp;10.1.1</a>) синтаксис для <i>EscapeSequence</i> не может распространяться на <i>OctalEscapeSequence</i>, определение которой содержится в <a href="B.html#B.1.2">B.1.2</a>.</p>
+	<p class="sp">
+	</p><p><B>ПРИМЕЧАНИЕ </B>Символ окончания строки не может встретиться в строковом литерале, за исключением случая, когда он как часть <i>LineContinuation</i> используется для создания пустой последовательности символов. Чтобы появление символа окончания строки в строковом значении строкового литерала было корректным, необходимо использовать управляющую последовательность <code><b>\n</b></code> или <code><b>\u000A</b></code>.</p>
+	<h4 id="x7.8.5">7.8.5 Литералы регулярного выражения <a href="#x7.8.5">#</a> <a href="#x7.8.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Литерал регулярного выражения представляет собой входной элемент, который каждый раз при обработке литерала преобразовывается к объекту RegExp (см.&nbsp;<a href="x15.10.html#x15.10">15.10</a>). Два литерала регулярного выражения в программе преобразовываются к объектам регулярного выражения, которые никогда не сравниваются друг с другом в виде <code><b>===</b></code>, даже если содержание этих двух литералов идентично. Объект RegExp также может быть создан во время выполнения программы &ndash; либо посредством команды <code><b>new RegExp</b></code> (см.&nbsp;<a href="x15.10.html#x15.10.4">15.10.4</a>), либо с помощью вызова конструктора <code><b>RegExp</b></code> в качестве функции&nbsp;(<a href="x15.10.html#x15.10.3">15.10.3</a>).</p>
+	<p>
+	Приведённые ниже правила описывают синтаксис литералов регулярного выражения. Эти правила используются предварительным лексическим анализатором (сканером) входного элемента, чтобы найти конец литерала регулярного выражения. Строки символов, составляющих <i>RegularExpressionBody</i> <tt>Тело регулярного выражения</tt> и <i>RegularExpressionFlags</i> <tt>Флаги регулярного выражения</tt>, передаются в необработанном виде конструктору регулярных выражений, который затем обрабатывает их в соответствии со своей более строгой грамматикой. Реализация может расширить грамматику конструктора регулярных выражений, однако она не должна расширять правила <i>RegularExpressionBody</i> и <i>RegularExpressionFlags,</i> или правила, используемые этими правилами.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>RegularExpressionLiteral </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>/</b></code> <i>RegularExpressionBody </i><code><b>/</b></code> <i>RegularExpressionFlags</i></p>
+	<p class="keep">
+	<i>RegularExpressionBody</i><b>::</b></p>
+	<p class="def1-btm">
+	<i>RegularExpressionFirstChar RegularExpressionChars</i></p>
+	<p class="keep">
+	<i>RegularExpressionChars </i><b>::</b></p>
+	<p class="def1-btm">
+	[<b>пусто</b>]<i><br>RegularExpressionChars RegularExpressionChar</i></p>
+	<p class="keep">
+	<i>RegularExpressionFirstChar </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>RegularExpressionNonTerminator </i><b>но не</b><i> </i><code><b>*</b></code> <b>или</b> <code><b>\</b></code> <b>или</b> <code><b>/</b></code> <b>или</b> <code><b>[</b></code> <i><br>RegularExpressionBackslashSequence<br>RegularExpressionClass</i></p>
+	<p class="keep">
+	<i>RegularExpressionChar </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>RegularExpressionNonTerminator</i> <b>но не</b><i> </i><code><b>\</b></code> <b>или</b> <code><b>/</b> </code><b>или</b> <code><b>[</b></code> <i><br>RegularExpressionBackslashSequence<br>RegularExpressionClass</i></p>
+	<p class="keep">
+	<i>RegularExpressionBackslashSequence </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>\</b></code> <i>RegularExpressionNonTerminator</i></p>
+	<p class="keep">
+	<i>RegularExpressionNonTerminator </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter</i> <b>но не</b><i> LineTerminator</i></p>
+	<p class="keep">
+	<i>RegularExpressionClass </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>[</b></code> <i>RegularExpressionClassChars</i><code><b>]</b></code></p>
+	<p class="keep">
+	<i>RegularExpressionClassChars</i><code></code><b>::</b></p>
+	<p class="def1-btm">
+	[<B>пусто</B>]<i><br>RegularExpressionClassChars</i><code></code> <i>RegularExpressionClassChar</i></p>
+	<p class="keep">
+	<i>RegularExpressionClassChar</i><code></code><b>::</b></p>
+	<p class="def1-btm">
+	<i>RegularExpressionNonTerminator</i> <b>но не</b><i> </i><code><b>]</b></code> <b>или</b> <code><b>\</b></code> <i><b><br></b>RegularExpressionBackslashSequence</i></p>
+	<p class="keep">
+	<i>RegularExpressionFlags</i><b>::</b></p>
+	<p class="def1-btm">
+	[<B>пусто</B>]<i><br>RegularExpressionFlags IdentifierPart</i></p>
+	<p><b>ПРИМЕЧАНИЕ</b> Литералы регулярного выражения не могут быть пустыми. Символы <code><b>//</b></code> не представляют пустой литерал регулярного выражения &ndash; они начинают однострочный комментарий. Чтобы задать пустое регулярное выражение, необходимо использовать  <code><b>/(?:)/</b></code>.</p>
+	<p class="tiny-btm">
+	<b>Семантика</b></p>
+	<p>
+	Литерал регулярного выражения преобразовыается к значению типа Object, который является экземпляром стандартного встроенного конструктора RegExp. Это значение определяется в два этапа: сначала символы, составляющие развёртывания правил <i>RegularExpressionBody</i> и <i>RegularExpressionFlags</i> для регулярных выражений, собираются в необработанном виде в две строки &ndash; Pattern <tt>Шаблон</tt> и Flags <tt>Флаги</tt> соответственно. Затем каждый раз при оценке литерала создается новый объект посредством выражения <code><b>new RegExp(</b></code><code>Pattern, Flags</code><code><b>)</b></code>, где RegExp является стандартным встроенным конструктором с этим именем. Этот созданный объект становится значением для <I>RegularExpressionLiteral</I>. Если при вызове конструктора <code><b>new RegExp</b></code> получена ошибка, описанная в <a href="x15.10.html#x15.10.4.1">пункте&nbsp;15.10.4.1</a>, ее следует обрабатывать как &quot;раннюю ошибку&quot; <em>early error</em>, см. <a href="x16.html#x16">Статью&nbsp;16</a>.</p>
+	<h3 id="x7.9">7.9 Автоматическая подстановка точки с запятой <a href="#x7.9">#</a> <a href="#x7.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Некоторые инструкции ECMAScript (пустая инструкция, инструкция переменной, инструкция-выражение, инструкции <code><b>do</b></code>-<code><b>while</b></code>, <code><b>continue</b></code>, <code><b>break</b></code>, <code><b>return</b></code> и <code><b>throw</b></code>) должна завершать точка с запятой. Она всегда может быть указана в исходном тексте явным образом, но иногда её можно опустить, чтобы облегчить чтение кода. В этих случаях говорят, что символы точки с запятой подставляются в поток токенов исходного кода автоматически.</p>
+	<h4 id="x7.9.1">7.9.1 Правила автоматической подстановки точки с запятой <a href="#x7.9.1">#</a> <a href="#x7.9.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Существует 3&nbsp;основных правила подстановки точки с запятой:</p>
+			<ol><li><p>
+				Если при распознавании программы слева направо встречается <i>&quot;токен-нарушитель&quot; </i> <em>offending token</em>, который ни одно из правил грамматики не разрешает, перед ним происходит автоматическая подстановка точки с запятой, если выполняется одно или оба условия:</p>
+	<ul><li><p>
+		Токен-нарушитель отделен от предыдущего токена хотя бы одним <i>LineTerminator</i>.</p>
+		</li>
+		<li><p>
+		Токен-нарушитель представляет собой символ&nbsp;<code><b>}</b></code>.</p>
+	</li></ul></li>
+			</ol><ol start="2"><li><p>
+				Если при распознавании программы слева направо встречается конец входного потока токенов, и анализатор не может распознать поток входных токенов как единую готовую программу <i><a href="x14.html#x14">Program</a></i> на ECMAScript, происходит автоматическая подстановка точки с запятой в конце входного потока.</p>
+				</li>
+				<li><p>
+				Если при распознавании программы слева направо встречается токен, разрешенный правилом этой грамматики, однако это правило является <i>ограниченным правилом</i>, и в результате применения этого токен станет первым токеном для терминала или нетерминала, следующего сразу же за комментарием &ldquo;<a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a>&rdquo;, содержащимся в ограниченном правиле (именно поэтому он и называется &quot;ограниченным токеном&quot;), и ограниченный токен отделен от предыдущего токена хотя бы одним <i>LineTerminator</i>, то перед ограниченным токеном происходит автоматическая подстановка точки с запятой.</p>
+			</li></ol><p>
+  Есть еще одно, дополнительное условие, которое перекрывает предыдущие правила. Автоматическая подстановка точки с запятой не производится, если затем эта точка с запятой даст пустую инструкцию, или если она станет одной из двух точек с запятой в заголовке инструкции <code><b>for</b></code> (см. <a href="x12.html#x12.6.3">пункт&nbsp;12.6.3</a>).</p>
+	<p>
+
+	</p><p><b>ПРИМЕЧАНИЕ</b> Ниже перечислены все ограниченные правила грамматики:</p>
+	<p class="def1">
+	<i>PostfixExpression </i><b>:</b></p>
+	<p class="def2">
+	<i>LeftHandSideExpression</i><code></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a><code><b>++</b></code> <i><br>LeftHandSideExpression</i><code></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a><code><b>--</b></code></p>
+	<p class="def1">
+	<i>ContinueStatement </i><b>:</b></p>
+	<p class="def2">
+	<code><b>continue</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Identifier</i><code><b>;</b></code></p>
+	<p class="def1">
+	<i>BreakStatement </i><b>:</b></p>
+	<p class="def2">
+	<code><b>break</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Identifier</i><code><b>;</b></code></p>
+	<p class="def1">
+	<i>ReturnStatement </i><b>:</b></p>
+	<p class="def2">
+	<code><b>return</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Expression</i><code><b>;</b></code></p>
+	<p class="def1">
+	<i>ThrowStatement</i><b>:</b></p>
+	<p class="def2">
+	<code><b>throw</b></code> <a href="x5.html#restricted-production">[no <i>LineTerminator</i> here]</a> <i>Expression<b>;</b></i></p>
+	<p>
+	На практике эти ограниченные правила действуют следующим образом:</p>
+	<p>
+	Если встречается токен <code><b>++</b></code> или  <code><b>--</b></code> там, где анализатор трактует его как постфиксный оператор, и при этом между предыдущим токеном и токеном <code><b>++</b></code> или <code><b>--</b></code> встречается хотя бы один <I>LineTerminator</I>, тогда перед токеном <code><b>++</b></code> или <code><b>--</b></code> происходит автоматическая подстановка точки с запятой.</p>
+	<p>
+	Если встречается токен <code><b>continue</b></code>, <code><b>break</b></code>, <code><b>return</b></code> или <code><b>throw</b></code>, при этом перед следующим токеном встречается <i>LineTerminator</i>, тогда перед токеном <code><b>continue</b></code>, <code><b>break</b></code>, <code><b>return</b></code> или <code><b>throw</b></code> происходит автоматическая подстановка точки с запятой.</p>
+	<p>
+	Отсюда можно вывести практические советы для программистов, пишущих на ECMAScript:</p>
+	<p>
+	Постфиксный оператор <code><b>++</b></code> или <code><b>--</b></code> должен находиться на той же строке, что и его операнд.</p>
+	<p>
+	<i>Expression</i> <tt>Выражение</tt> в инструкции <code><b>return</b></code> или <code><b>throw</b></code> должно начинаться на той же строке, что и токен <code><b>return</b></code> или <code><b>throw</b></code>.</p>
+	<p>
+	<i>Identifier</i> <tt>Идентификатор</tt> в инструкции <code><b>break</b></code> или <code><b>continue</b></code> должен быть на той же строке, что и токен <code><b>break</b></code> или<code><b>continue</b></code>.</p>
+	<h4 id="x7.9.2">7.9.2 Примеры автоматической подстановки точки с запятой <a href="#x7.9.2">#</a> <a href="#x7.9.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Исходный текст</p>
+	<p class="code-example">
+	<code><b>{ 1 2 } 3</b></code></p>
+	<p>не является корректным предложением в соответствии с правилами грамматики ECMAScript &ndash; даже если применить правила автоматической подстановки точки с запятой. В отличие от него, исходный текст</p>
+	<p class="code-example">
+	<code><b>{ 1<br>2 } 3</b></code></p>
+	<p>также не является корректным предложением ECMAScript, однако посредством автоматической подстановки точки с запятой он преобразовывается в следующее предложение:</p>
+	<p class="code-example">
+	<code><b>{ 1<br>;2 ;} 3;</b></code></p>
+	<p>
+	которое является корректным предложением ECMAScript.</p>
+	<p>Исходный текст</p>
+	<p class="code-example">
+	<code><b>for (a; b<br>)</b></code></p>
+	<p>
+	не является корректным предложением ECMAScript, при этом автоматическая подстановка точки с запятой не изменяет его, так как точка с запятой требуется для заголовка инструкции <code><b>for</b></code>, а, в соответствии с правилами, одна из этих двух точек с запятой не вставляется в заголовок инструкции <code><b>for</b></code>.</p>
+	<p>Исходный текст</p>
+	<p class="code-example"><code><b>return<br>a + b</b></code></p>
+	<p>посредством автоматической подстановки точки с запятой преобразовывается в следующее предложение:</p>
+	<p class="code-example">
+	<code><b>return;<br>a + b;</b></code></p>
+	<p><b>ПРИМЕЧАНИЕ</b> Выражение <code><b>a + b</b></code> не считается значением, возвращаемым инструкцией <code><b>return</b></code>, так как оно отделено от токена  <code><b>return</b></code> <I>LineTerminator</I>.</p>
+	<p>Исходный текст</p>
+	<p class="code-example">
+	<code><b>a = b<br>++c</b></code></p>
+	<p>посредством автоматической подстановки точки с запятой преобразовывается в следующее предложение:</p>
+	<p class="code-example">
+	<code><b>a = b;<br>++c;</b></code></p>
+	<p><b>ПРИМЕЧАНИЕ</b> Токен <code><b>++</b></code> не считается постфиксным оператором, применённым к переменной <code><b>b</b></code>, поскольку между <code><b>b</b></code> и <code><b>++</b></code> находится <I>LineTerminator</I>.</p>
+	<p>Исходный текст</p>
+	<p class="code-example">
+	<code><b>if (a &gt; b)<br>else c = d</b></code></p>
+	<p>
+	не является корректным предложением ECMAScript, при этом автоматическая подстановка точки с запятой перед токеном  <code><b>else</b></code> не изменяет его, несмотря на то, что в этом месте не применяется никакое правило грамматики, поскольку в этом случае автоматически вставленная точка с запятой была бы воспринята как пустая инструкция.</p>
+	<p>Исходный текст</p>
+	<p class="code-example">
+	<code><b>a = b + c<br>(d + e).print()</b></code></p>
+	<p><i>не</i> преобразовывается в результате автоматической подстановки точки с запятой, поскольку выражение в круглых скобках в начале второй строки может трактоваться как список аргументов для вызова функции:</p>
+	<p class="code-example">
+	<code><b>a = b + c(d + e).print()</b></code></p>
+	<p>
+	Если инструкция присваивания начинается с открывающей скобки, то отличная идея &ndash; поставить точку с запятой в конце предыдущей инструкции, а не полагаться на её автоматическую&nbsp;подстановку.</p>
+	</body><script src="anno.js"></script></html>

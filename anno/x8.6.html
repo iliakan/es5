@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="../style.css">
+<h5>Различия в web-платформах</h5>
+
+<p>Все объекты имеют изменяемое свойство <code>__proto__</code>, которое является ссылкой на прототип объекта. Обратите внимание, что данная спецификация требует, чтобы у объектов со свойством extensible:false прототип не был изменяемым. Если в результате присваивания объекту свойства <code>__proto__</code> цепь прототипа станет циклической, то setter должен завершиться неудачно и сгенерировать <code>Error()</code>.
+
+<p>Также см. <a
+href="http://wiki.whatwg.org/wiki/Web_ECMAScript#Object_Properties">http://wiki.whatwg.org/wiki/Web_ECMAScript#Object_Properties</a></p>

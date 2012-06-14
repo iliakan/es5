@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.1 The Global Object # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.html" title="15 Стандартные встроенные объекты ECMAScript " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.2.html" title="15.2 Объекты Object " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x15.html">&#8592; 15 Стандартные встроенные объекты ECMAScript </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.2.html">15.2 Объекты Object  &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.1.html#x15.1" id="x15.1-toc">15.1 Глобальный объект</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.1.html#x15.1.1" id="x15.1.1-toc">15.1.1 Свойства-значения Глобального объекта</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.1.html#x15.1.1.1" id="x15.1.1.1-toc">15.1.1.1 NaN</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.1.2" id="x15.1.1.2-toc">15.1.1.2 Infinity</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.1.3" id="x15.1.1.3-toc">15.1.1.3 undefined</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.1.html#x15.1.2" id="x15.1.2-toc">15.1.2 Свойства-функции Глобального объекта</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.1.html#x15.1.2.1" id="x15.1.2.1-toc">15.1.2.1 eval (x)</a>
+                <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.1.html#x15.1.2.1.1" id="x15.1.2.1.1-toc">15.1.2.1.1 Прямой вызов функции Eval</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.1.html#x15.1.2.2" id="x15.1.2.2-toc">15.1.2.2 parseInt (string , radix)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.2.3" id="x15.1.2.3-toc">15.1.2.3 parseFloat (string)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.2.4" id="x15.1.2.4-toc">15.1.2.4 isNaN (number)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.2.5" id="x15.1.2.5-toc">15.1.2.5 isFinite (number)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.1.html#x15.1.3" id="x15.1.3-toc">15.1.3 Свойства-функции для обработки URI</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.1.html#x15.1.3.1" id="x15.1.3.1-toc">15.1.3.1 decodeURI (encodedURI)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.3.2" id="x15.1.3.2-toc">15.1.3.2 decodeURIComponent (encodedURIComponent)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.3.3" id="x15.1.3.3-toc">15.1.3.3 encodeURI (uri)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.3.4" id="x15.1.3.4-toc">15.1.3.4 encodeURIComponent (uriComponent)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.1.html#x15.1.4" id="x15.1.4-toc">15.1.4 Свойства-конструкторы Глобального объекта</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.1.html#x15.1.4.1" id="x15.1.4.1-toc">15.1.4.1 Object ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.2" id="x15.1.4.2-toc">15.1.4.2 Function ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.3" id="x15.1.4.3-toc">15.1.4.3 Array ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.4" id="x15.1.4.4-toc">15.1.4.4 String ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.5" id="x15.1.4.5-toc">15.1.4.5 Boolean ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.6" id="x15.1.4.6-toc">15.1.4.6 Number ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.7" id="x15.1.4.7-toc">15.1.4.7 Date ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.8" id="x15.1.4.8-toc">15.1.4.8 RegExp ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.9" id="x15.1.4.9-toc">15.1.4.9 Error ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.10" id="x15.1.4.10-toc">15.1.4.10 EvalError ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.11" id="x15.1.4.11-toc">15.1.4.11 RangeError ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.12" id="x15.1.4.12-toc">15.1.4.12 ReferenceError ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.13" id="x15.1.4.13-toc">15.1.4.13 SyntaxError ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.14" id="x15.1.4.14-toc">15.1.4.14 TypeError ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.4.15" id="x15.1.4.15-toc">15.1.4.15 URIError ( . . . )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.1.html#x15.1.5" id="x15.1.5-toc">15.1.5 Другие свойства Глобального объекта</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.1.html#x15.1.5.1" id="x15.1.5.1-toc">15.1.5.1 Math</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.1.html#x15.1.5.2" id="x15.1.5.2-toc">15.1.5.2 JSON</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></li></ol></nav>
+
+
+    <h3 id="x15.1" class="splitme">15.1 Глобальный объект <a href="#x15.1">#</a> <a href="#x15.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Перед тем, как управление входит в контекст исполнения, создаётся <i><a href="#x15.1" class="term-ref">глобальный объект</a></i>. 
+	</p>
+	<p>
+	Если не указано иначе, стандартные встроенные свойства глобального объекта имеют атрибуты {[[Writable]]: <b>true</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>true</b>}.</p>
+	<p>
+	<a href="#x15.1" class="term-ref">Глобальный объект</a> не имеет встроенного свойства [[Construct]]. Использование <a href="#x15.1" class="term-ref">глобального объекта</a> в качества конструктора с оператором <code><b>new</b></code> невозможно.</p>
+	<p>
+	<a href="#x15.1" class="term-ref">Глобальный объект</a> не имеет внутреннего свойства [[Call]]. Вызов <a href="#x15.1" class="term-ref">глобального объекта</a> в качестве функции невозможен.</p>
+	<p>
+	Значения внутренних свойств [[Prototype]] и [[Class]] <a href="#x15.1" class="term-ref">глобального объекта</a> зависят от реализации.</p>
+	<p>
+	Кроме свойств, определяемых в данной спецификации, глобальный объект может иметь дополнительные свойства, заданные средой исполнения. Среди них может быть свойство, значение которого является самим <a href="#x15.1" class="term-ref">глобальным объектом</a>. Например, в объектной модели HTML-документа свойство <code><b>window</b></code> <a href="#x15.1" class="term-ref">глобального объекта</a> является самим <a href="#x15.1" class="term-ref">глобальным объектом</a>.</p>
+	<h4 id="x15.1.1">15.1.1 Свойства-значения Глобального объекта <a href="#x15.1.1">#</a> <a href="#x15.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<h5 id="x15.1.1.1">15.1.1.1 NaN (не-число) <a href="#x15.1.1.1">#</a> <a href="#x15.1.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>NaN</b></code> равно <b>NaN</b> (см. пункт&nbsp;<a href="x8.html#x8.5">8.5</a>). Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.1.1.2">15.1.1.2 Infinity (бесконечность) <a href="#x15.1.1.2">#</a> <a href="#x15.1.1.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>Infinity</b></code> равно <b>+</b><span class="symbol"><b>&#8734;</b></span> (см. пункт&nbsp;<a href="x8.html#x8.5">8.5</a>). Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.1.1.3">15.1.1.3 undefined (неопределено) <a href="#x15.1.1.3">#</a> <a href="#x15.1.1.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>undefined</b></code> равно <b>undefined</b> (см. пункт&nbsp;<a href="x8.html#x8.1">8.1</a>). Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h4 id="x15.1.2">15.1.2 Свойства-функции Глобального объекта <a href="#x15.1.2">#</a> <a href="#x15.1.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<h5 id="x15.1.2.1">15.1.2.1 eval (x) <a href="#x15.1.2.1">#</a> <a href="#x15.1.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове функции <code><b><a href="#x15.1.2.1">eval</a></b></code> с одним аргументом&nbsp;<i>x</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>x</i>) не равно String, вернуть <i>x</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>prog </i>будет кодом на ECMAScript, который является результатом синтаксического разбора <i>x </i> как&nbsp;<i><a href="x14.html#x14">Программы</a></i>. Если выполнение этого разбора не удалось, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b> (при этом см. <a href="x16.html#x16">Главу&nbsp;16</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>evalCtx </i>будет результатом установления нового контекста исполнения (<a href="x10.html#x10.4.2">10.4.2</a>) для <i>prog</i> с <a href="x10.html#eval-code">eval-кодом</a>. </p>
+		</li>
+		<li><p>
+		Пусть <i>result </i>будет результатом вычисления программы&nbsp;<i>prog</i>.</p>
+		</li>
+		<li><p>
+		Выйти из текущего контекста исполнения evalCtx, восстановив предыдущий контекст исполнения.</p>
+		</li>
+		<li><p>
+		Если <i>result</i>.type равен normal и его значение completion равно значению&nbsp;<i>V</i>, вернуть значение&nbsp;<i>V</i>.</p>
+		</li>
+		<li><p>
+		Если <i>result</i>.type равен normal и его значение completion равно empty, вернуть значение <B>undefined</B>.</p>
+		</li>
+		<li><p>
+		Иначе, <i>result</i>.type должен быть throw. Сгенерировать <i>result</i>.value в качестве исключения.</p>
+	</li></ol>
+	<h6 id="x15.1.2.1.1">15.1.2.1.1 Прямой вызов функции Eval <a href="#x15.1.2.1.1">#</a> <a href="#x15.1.2.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h6>
+	<p>
+	Прямой вызов функции eval &ndash; вызов, который выражен как <i>CallExpression</i> <tt>Выражение call</tt> и выполняет два условия:</p>
+	<p>
+	У <a href="x8.html#x8.7">Reference</a>, который является результатом выполнения <i>MemberExpression</i> <tt>Выражение элемента</tt> в <i>CallExpression</i>, <a href="x10.html#x10.2">запись окружения</a> используется в качестве значения базы, а имя по ссылке &ndash; <code>&quot;</code><code><b>eval</b></code><code>&quot;</code>.</p>
+	<p>
+	Результат вызова абстрактной операции <a href="x8.html#x8.7.1">GetValue</a> с этим <a href="x8.html#x8.7">Reference</a> в качестве аргумента является стандартной встроенной функцией, определение которой приводится в пункте&nbsp;<a href="#x15.1.2.1">15.1.2.1</a>.</p>
+	<h5 id="x15.1.2.2">15.1.2.2 parseInt (string , radix) <a href="#x15.1.2.2">#</a> <a href="#x15.1.2.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>parseInt</b></code> возвращает целочисленное значение, обусловленное интерпретацией содержимого аргумента <i>string</i> в соответствии с заданным&nbsp;<i>radix</i> <tt>основание системы счисления</tt>. Начальные пробелы в строке <i>string</i> игнорируются. Если <i>radix</i> равно <b>undefined</b> или 0, предполагается, что основание системы счисления &ndash; 10, кроме случаев, когда число начинается с пары символов <code><b>0x</b></code> или <code><b>0X</b></code> &ndash; в этом случае предполагается, что основание системы счисления равно 16. Если <i>radix</i> равно&nbsp;16, число также может начинаться с пары символов <code><b>0x</b></code> или <code><b>0X</b></code> (не обязательно).</p>
+	<p>
+	При вызове функции <code><b>parseInt</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>inputString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>string</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет новой подстрокой от <i>inputString</i>, состоящей из первого символа, не являющегося <i>StrWhiteSpaceChar</i>, и всех символов, следующих за ним. (Иными словами &ndash; удалить начальный пробел). Если <i>inputString</i> не содержит таких символов, пусть <i>S</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Пусть <i>sign</i> будет 1.</p>
+		</li>
+		<li><p>
+		Если <i>S</i> не пустая строка, и первый символ&nbsp;<i>S</i> &ndash; знак минус <code><b>-</b></code>, пусть <i>sign</i> будет <span class="symbol">&#8722;</span>1.</p>
+		</li>
+		<li><p>
+		Если <i>S</i> не пустая строка, и первый символ&nbsp;<i>S</i> &ndash; знак плюс <code><b>+</b></code> или знак минус&nbsp;<code><b>-</b></code>, то удалить из <i>S</i> этот первый символ.</p>
+		</li>
+		<li><p>
+		Пусть <i>R</i> = <a href="x9.html#x9.5">ToInt32</a>(<i>radix</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>stripPrefix</i> будет <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <i>R</i> <span class="symbol">&#8800;</span> 0, то</p>
+		<ol><li><p>
+			Если <i>R</i> &lt; 2 or <i>R</i> &gt; 36, то вернуть <b>NaN</b>.</p>
+			</li>
+			<li><p>
+			если <i>R</i> <span class="symbol">&#8800;</span> 16, пусть <i>stripPrefix</i> будет <b>false</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе <i>R</i> = 0</p>
+		<ol><li><p>
+			Пусть <i>R</i> = 10.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>stripPrefix</i> равно <b>true</b>, то</p>
+		<ol><li><p>
+			Если длина <i>S</i> равна не менее&nbsp;2, и первые два символа&nbsp;<i>S</i> &ndash; либо &ldquo;<code><b>0x</b></code>&rdquo;, либо &ldquo;<code><b>0X</b></code>&rdquo;, то удалить из&nbsp;<i>S</i> первые два символа, и пусть <i>R</i> = 16.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>S</i> содержит символ, не являющийся числом в системе счисления с основанием <i>R</i>, то пусть <i>Z</i> будет подстрокой от <i>S</i>, состоящей из всех символов до первого такого символа; иначе пусть <i>Z</i> будет&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Если <i>Z</i> равно empty, вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>mathInt</i> будет целочисленным математическим значением, представленным подстрокой <i>Z</i>, записанной в системе счисления с основанием <i>R</i>, с использованием букв от <code><b>A</b></code> до <code><b>Z</b></code> и от <code><b>a</b></code> до <code><b>z</b></code> для чисел со значениями от 10 до 35. (Однако, если <i>R</i> равно 10, и <i>Z</i> содержит более 20 значащих цифр, то каждая значащая цифра после 20-й может быть заменена цифрой&nbsp;<code><b>0</b></code> &ndash; по выбору реализации; и если <i>R</i> не равно 2, 4, 8, 10, 16 или 32, то <i>mathInt</i> может быть зависящим от реализации приближением к математическому целочисленному значению, представленному&nbsp;посредством <i>Z</i> в radix-<i>R</i> notation.)</p>
+		</li>
+		<li><p>
+		Пусть <i>number</i> будет числовым значением для&nbsp;<i>mathInt</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>sign</i> <span class="symbol">&#215;</span> <i>number</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><b>parseInt</b></code> может интерпретировать только начальную часть строки <i>string</i> как целочисленное значение. Она игнорирует все символы, которые не могут быть интерпретированы как часть записи целого числа, при этом уведомление об игнорировании этих символов отсутствует.</p>
+	<h5 id="x15.1.2.3">15.1.2.3 parseFloat (string) <a href="#x15.1.2.3">#</a> <a href="#x15.1.2.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>parseFloat</b></code> возвращает числовое значение, обусловленное интерпретацией содержимого аргумента <i>string</i> как десятичного литерала.</p>
+	<p>
+	При вызове функции <code><b>parseFloat</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>inputString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>string</i>).</p>
+		</li>
+		<li><p>
+		Пусть <I>trimmedString</I> будет подстрокой от <i>inputString</i>, состоящей из крайнего левого символа, не являющегося <i>StrWhiteSpaceChar</i>, и всех символов справа от него. (Иными словами &ndash; удалить начальный пробел). Если <i>inputString</i> не содержит таких символов, пусть <I>trimmedString</I> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Если ни <i>trimmedString</i>, ни какой-либо из его префиксов не удовлетворяет синтаксису строкового числового литерала <i>StrDecimalLiteral</i> (см. пункт&nbsp;<a href="x9.html#x9.3.1">9.3.1</a>), вернуть <b>NaN</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>numberString</i> будет самым длинным префиксом <i>trimmedString</i> (которым может быть сама подстрока <i>trimmedString</i>), удовлетворяющим синтаксису для <i>StrDecimalLiteral</i>.</p>
+		</li>
+		<li><p>
+		Вернуть числовой значение для <a href="x7.html#mv">MV для</a> <i>numberString</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><b>parseFloat</b></code> может интерпретировать только начальную часть строки <i>string</i> как числовое значение. Она игнорирует все символы, которые не могут быть интерпретированы как часть записи десятичного литерала, при этом уведомление об игнорировании этих символов отсутствует.</p>
+	<h5 id="x15.1.2.4">15.1.2.4 isNaN (number) <a href="#x15.1.2.4">#</a> <a href="#x15.1.2.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает <b>true</b>, если аргумент может быть приведён к&nbsp;<b>NaN</b>, в противном случае возвращает&nbsp;<b>false</b>.</p>
+	<ol><li><p>
+		Если <a href="x9.html#x9.3">ToNumber</a>(<i>number</i>) равно <b>NaN</b>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		В противном случае вернуть&nbsp;<b>false</b>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Надёжный способ для кода на&nbsp;ECMAScript проверить, является ли <code>X</code> равным <b>NaN</b> &ndash; выражение в виде <code>X !== X</code>. Результат будет равен <b>true</b> только в том случае, если <code>X</code> равно <b>NaN</b>.</p>
+	<h5 id="x15.1.2.5">15.1.2.5 isFinite (number) <a href="#x15.1.2.5">#</a> <a href="#x15.1.2.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает <b>false</b>, если аргумент может быть приведён к <b>NaN</b>, <b>+</b><span class="symbol"><b>&#8734;</b></span> или <span class="symbol"><b>&#8722;&#8734;</b></span>, в противном случае возвращает <b>true</b>.</p>
+	<ol><li><p>
+		Если <a href="x9.html#x9.3">ToNumber</a>(<i>number</i>) равно <b>NaN</b>, <b>+</b><span class="symbol"><b>&#8734;</b></span> или <span class="symbol"><b>&#8722;&#8734;</b></span>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Иначе вернуть<b><b> true</b></b>.</p>
+	</li></ol>
+	<h4 id="x15.1.3">15.1.3 Свойства-функции для обработки URI <a href="#x15.1.3">#</a> <a href="#x15.1.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Унифицированный идентификатор ресурса (URI) &ndash; строка, идентифицирующая ресурс (например, веб-страницу или файл), и передающая протоколы для доступа к ним (например, HTTP или FTP) по Интернет. Сам по себе язык ECMAScript не предоставляет поддержки для использования URI, кроме функций для кодирования и декодирования URI, как описано в пунктах&nbsp;<a href="#x15.1.3.1">15.1.3.1</a>, <a href="#x15.1.3.2">15.1.3.2</a>, <a href="#x15.1.3.3">15.1.3.3</a> и <a href="#x15.1.3.4">15.1.3.4</a>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Многие реализации ECMAScript предоставляют дополнительные функции и методы для обработки веб-страниц, однако эти функции и методы выходят за рамки данного стандарта.</p>
+	<p>
+	URI состоит из последовательности компонентов и разделителей между ними. Общий формат представления следующий:</p>
+	<p>
+	     <i>Scheme</i><code></code> <code><b>:</b></code> <code></code><i>First</i><code></code> <code><b>/</b></code> <code></code><i>Second</i><code></code> <code><b>;</b></code> <code></code><i>Third</i><code></code> <code><b>?</b></code> <code></code><i>Fourth</i></p>
+	<p>
+	где названия, написанные курсивом, обозначают компоненты, а знаки &ldquo;<code><b>:</b></code>&rdquo;, &ldquo;<code><b>/</b></code>&rdquo;, &ldquo;<code><b>;</b></code>&rdquo; и &ldquo;<code><b>?</b></code>&rdquo; являются зарезервированными символами, используемыми в качестве разделителей. Функции <code><b><a href="#x15.1.3.3">encodeURI</a></b></code> и <code><b><a href="#x15.1.3.1">decodeURI</a></b></code> предназначены для работы с целыми URI.  Они допускают, что все зарезервированные символы в URI должны иметь специальное значение и поэтому не кодируются. Функции <code><b><a href="#x15.1.3.4">encodeURIComponent</a></b></code> и <code><b><a href="#x15.1.3.2">decodeURIComponent</a></b></code> предназначены для работы с отдельными компонентами URI. Они допускают, что все зарезервированные символы представляют собой текст и поэтому должны быть закодированы, чтобы в том случае, если этот компонент является частью полного URI, они не трактовались бы как зарезервированные символы.</p>
+	<p>
+	Формат закодированных URI определяется следующей лексической грамматикой:</p>
+	<p class="keep">
+	<i>uri </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>uriCharacters</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>uriCharacters </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>uriCharacter uriCharacters</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>uriCharacter </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>uriReserved<br>uriUnescaped<br>uriEscaped</i></p>
+	<p class="keep">
+	<i>uriReserved </i><b>:::</b> <b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>; /  ?  :  @  &amp;  =  +  $  ,</b></code></p>
+	<p class="keep">
+	<i>uriUnescaped </i><b>:::</b></p>
+	<p class="def1-btm">
+	<i>uriAlpha<br>DecimalDigit<br>uriMark</i></p>
+	<p class="keep">
+	<i>uriEscaped </i><b>:::</b></p>
+	<p class="def1-btm">
+	<code><b>%</b></code> <i>HexDigit HexDigit</i></p>
+	<p class="keep">
+	<i>uriAlpha </i><b>:::</b> <b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>a b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x y  z<br>A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T U  V  W  X  Y  Z</b></code></p>
+	<p class="keep">
+	<i>uriMark </i><b>:::</b> <b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>- _  .  !  ~  *  '  (  )</b></code></p>
+
+	<p><b>ПРИМЕЧАНИЕ</b> Вышеприведённый синтаксис указан в соответствии с документом RFC&nbsp;2396 и не отражает изменений, появившихся в более позднем документе RFC&nbsp;3986.</p>
+
+	<p>
+	Если в вышеуказанном списке нет символа, который нужно написать в URI, или если этот символ не имеет специального значения, иногда приписываемого зарезервированным символам, необходимо закодировать этот символ. Этот символ преобразуется в соответствии с кодировкой UTF-8, при этом сначала суррогатные пары преобразуются из формата UTF-16 в соответствующее значение кодовой точки. (Обратите внимание, что для кодовых единиц в диапазоне [0,127] результатом будет являться единичный октет с тем же значением.) Затем полученная в результате последовательность октетов преобразуется в строку, где каждый октет представлен управляющей последовательностью в виде &quot;<code><b>%</b></code><code>xx</code>&quot;.</p>
+	<p>
+	Процесс кодирования и выхода описан абстрактной операцией <dfn id="Encode">Encode</dfn>, которая принимает два строковых аргумента <i>string</i> и <i>unescapedSet</i>.</p>
+	<ol><li><p>
+		Пусть <i>strLen</i> будет количеством символов в <i>string</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>R</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Если <i>k</i> равно <i>strLen</i>, вернуть <i>R</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>C</i> будет символом в позиции <i>k</i> в пределах <i>string</i>.</p>
+			</li>
+			<li><p>
+			Если <i>C</i> находится в <i>unescapedSet</i>, то</p>
+			<ol><li><p>
+				Пусть <i>S</i> будет строкой, содержащей только символ <i>C</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>R</i> будет новым строковым значением, полученным в результате конкатенации <i>S</i> с предыдущим значением <i>R</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе <i>C</i> не является <i>unescapedSet</i></p>
+			<ol><li><p>
+				Если кодовое значение <i>C</i> не меньше 0xDC00 и не больше 0xDFFF, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+				</li>
+				<li><p>
+				Если кодовое значение <i>C</i> меньше 0xD800 или больше 0xDBFF, то</p>
+				<ol><li><p>
+					Пусть <i>V</i> будет кодовым значением <i>C</i>.</p>
+				</li></ol></li>
+				<li><p>
+				Иначе
+				
+				</p>
+				<ol><li><p>
+					Увеличить <i>k</i> на 1.</p>
+					</li>
+					<li><p>
+					Если <i>k</i> равно <i>strLen</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+					</li>
+					<li><p>
+					Пусть <i>kChar</i> будет кодовым значением символа в позиции <i>k</i> в пределах <i>string</i>.</p>
+					</li>
+					<li><p>
+					Если <I>kChar</I> меньше 0xDC00 или больше 0xDFFF, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+					</li>
+					<li><p>
+					Пусть <i>V</i> будет (((кодовое значение <i>C</i>) &ndash; 0xD800) * 0x400 + (<i>kChar</i> &ndash; 0xDC00) + 0x10000).</p>
+				</li></ol></li>
+				<li><p>
+				Пусть <i>Octets</i> будет массивом октетов, полученным в результате применения к <i>V</i> преобразования в кодировке UTF-8, и пусть <i>L</i> будет размером массива.</p>
+				</li>
+				<li><p>
+				Пусть <i>j</i> будет 0.</p>
+				</li>
+				<li><p>
+				Повторить, пока <i>j</i> &lt; <i>L</i></p>
+				<ol><li><p>
+					Пусть <i>jOctet</i> будет значением в позиции <i>j</i> в пределах <i>Octets</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>S</i> будет строкой, содержащей три символа &ldquo;<code><b>%</b></code><code><i>XY</i></code>&rdquo;, где <i>XY</i> &ndash; две шестнадцатеричные цифры в верхнем регистре, которые кодируют значение <i>jOctet</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>R</i> будет новым строковым значением, полученным в результате конкатенации <i>S</i> с предыдущим значением <i>R</i>.</p>
+					</li>
+					<li><p>
+					Увеличить <i>j</i>  на 1.</p>
+				</li></ol></li></ol></li>
+			<li><p>
+			Увеличить <i>k</i> на 1.</p>
+		</li></ol></li></ol><p>
+	Процесс возврата и декодирования описан абстрактной операцией <dfn id="Decode">Decode</dfn>, принимающей два строковых аргумента <i>string</i> и <i>reservedSet</i>.</p>
+	<ol><li><p>
+		Пусть <i>strLen</i> будет количеством символов в <i>string</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>R</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Если <i>k</i> равно <i>strLen</i>, вернуть <i>R</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>C</i> будет символом в позиции <i>k</i> в пределах <i>string</i>.</p>
+			</li>
+			<li><p>
+			Если <i>C</i> не равно &lsquo;<code><b>%</b></code>&rsquo;, то</p>
+			<ol><li><p>
+				Пусть <i>S</i> будет строкой, содержащей только символ <i>C</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, пусть <i>C</i> будет &lsquo;<code><b>%</b></code>&rsquo;</p>
+			<ol><li><p>
+				Пусть <i>start</i> будет <i>k</i>.</p>
+				</li>
+				<li><p>
+				Если <i>k</i> + 2 больше или равно <i>strLen</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+				</li>
+				<li><p>
+				Если символы (<i>k</i>+1) и (<i>k</i> + 2) в пределах <i>string </i>не являются шестнадцатеричными цифрами, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+				</li>
+				<li><p>
+				Пусть <i>B</i> будет 8-битовым значением, представленным двумя шестнадцатеричными цифрами в позиции (<i>k</i> + 1) и (<i>k</i> + 2).</p>
+				</li>
+				<li><p>
+				Увеличить <i>k</i> на 2.</p>
+				</li>
+				<li><p>
+				Если старший бит в <i>B</i> равен 0, то</p>
+				<ol><li><p>
+					Пусть <i>C</i> будет символом с кодовым значением <i>B</i>.</p>
+					</li>
+					<li><p>
+					Если <i>C</i> не находится в <i>reservedSet</i>, то</p>
+					<ol><li><p>
+						Пусть <i>S</i> будет строкой, содержащей только символ <i>C</i>.</p>
+					</li></ol></li>
+					<li><p>
+					Иначе, <i>C</i> находится в <i>reservedSet</i></p>
+					<ol><li><p>
+						Пусть <i>S</i> будет подстрокой строки <i>string</i> с позиции <i>start</i> до позиции <i>k</i> включительно.</p>
+					</li></ol></li></ol></li>
+				<li><p>
+				Иначе, старший бит в <i>B</i> равен 1</p>
+				<ol><li><p>
+					Пусть<i> n</i> будет таким наименьшим неотрицательным числом, чтобы (<i>B</i> &lt;&lt; <i>n</i>) &amp; 0x80 было равно 0.</p>
+					</li>
+					<li><p>
+					Если <i>n</i> равно 1, или <i>n</i> больше чем 4, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+					</li>
+					<li><p>
+					Пусть <i>Octets</i> будет массивом 8-битовых целых чисел, размер которого составляет <i>n</i>.</p>
+					</li>
+					<li><p>
+					Поместить <i>B</i> в <i>Octets</i> в позицию 0.</p>
+					</li>
+					<li><p>
+					Если <i>k</i> + (3 * (<i>n</i> &ndash; 1)) больше или равно <i>strLen</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+					</li>
+					<li><p>
+					Пусть <i>j</i> будет 1.</p>
+					</li>
+					<li><p>
+					Повторить, пока <i>j</i> &lt; <i>n</i></p>
+					<ol><li><p>
+						Увеличить <i>k</i> на 1.</p>
+						</li>
+						<li><p>
+						Если символ в позиции <i>k</i> не является &lsquo;%&rsquo;, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+						</li>
+						<li><p>
+						Если символы (<i>k</i>+1) и (<i>k</i> + 2) в пределах <i>string </i>не являются шестнадцатеричными цифрами, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+						</li>
+						<li><p>
+						Пусть <i>B</i> будет 8-битовым значением, представленным двумя шестнадцатеричными цифрами в позиции (<i>k</i> + 1) и (<i>k</i> + 2).</p>
+						</li>
+						<li><p>
+						Если два старших бита в <i>B</i> не равны 10, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+						</li>
+						<li><p>
+						Увеличить <i>k</i> на 2.</p>
+						</li>
+						<li><p>
+						Поместить <i>B</i> в <i>Octets</i> в позицию <i>j</i>.</p>
+						</li>
+						<li><p>
+						Увеличить <i>j</i> на 1.</p>
+					</li></ol></li>
+					<li><p>
+					Пусть <i>V</i> будет значением, полученным в результате применения к <i>Octets</i> преобразования в кодировке UTF-8, то есть, из массива октетов в 32-битовое значение. Если <i>Octets</i> не содержит действующей кодировки UTF-8 юникодной кодовой точки, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b> .</p>
+					</li>
+					<li><p>
+					Если <i>V</i> меньше 0x10000, то</p>
+					<ol><li><p>
+						Пусть <i>C</i> будет символом с кодовым значением <i>V</i>.</p>
+						</li>
+						<li><p>
+						Если <i>C</i> не находится в <i>reservedSet</i>, то</p>
+						<ol><li><p>
+							Пусть <i>S</i> будет строкой, содержащей только символ <i>C</i>.</p>
+						</li></ol></li>
+						<li><p>
+						Иначе, <i>C</i> находится в <i>reservedSet</i></p>
+						<ol><li><p>
+							Пусть <i>S</i> будет подстрокой строки <i>string</i> с позиции <i>start</i> до позиции <i>k</i> включительно.</p>
+						</li></ol></li></ol></li>
+					<li><p>
+					Иначе, <i>V</i> равно &#8805; 0x10000</p>
+					<ol><li><p>
+						Пусть <i>L</i> будет (((<i>V</i> &ndash; 0x10000) &amp; 0x3FF) + 0xDC00).</p>
+						</li>
+						<li><p>
+						Пусть <i>H</i> будет ((((<i>V</i> &ndash; 0x10000) &gt;&gt; 10) &amp; 0x3FF) + 0xD800).</p>
+						</li>
+						<li><p>
+						Пусть <i>S</i> будет строкой, содержащей два символа с кодовыми значениями <i>H</i> и <i>L</i>.</p>
+					</li></ol></li></ol></li></ol></li>
+			<li><p>
+			Пусть <i>R</i> будет новым строковым значением, полученным в результате конкатенации <i>S</i> с предыдущим значением <i>R</i>.</p>
+			</li>
+			<li><p>
+			Увеличить <i>k</i> на 1.</p>
+		</li></ol></li></ol><p><b>ПРИМЕЧАНИЕ</b> Синтаксис Унифицированных идентификаторов ресурса указан в соответствии с документом RFC&nbsp;2396 и не отражает изменений, появившихся в более позднем документе RFC&nbsp;3986, заменившем RFC&nbsp;2396. Формальное описание и реализация UTF-8 указаны в RFC 3629.</p>
+
+	<p>
+	В формате UTF-8 символы кодируются последовательностями от 1 до 6 октетов. Если последовательность состоит из одного октета, то в ней старший бит установлен в 0, а оставшиеся 7 битов используются для кодирования значения символа. Если последовательность состоит из n октетов, где n&gt;1, то у первого октета n старших битов установлены в 1, после которых следует бит, установленный в&nbsp;0. Остальные биты этого октета содержат биты значения кодируемого символа. У всех следующих октетов старший бит установлен в 1, следующий за ним бит установлен в 0, а остальные 6 битов содержат биты кодируемого символа. Возможные варианты кодировки UTF-8 символов ECMAScript указаны в Таблице&nbsp;21.</p>
+<center>
+	<table width="730" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="ROWS"><caption>Таблица 21. Кодировки UTF-8 <p>
+		</p></caption><colgroup><col width="152"><col width="166"><col width="82"><col width="82"><col width="75"><col width="75"></colgroup><tbody><tr valign="TOP"><td width="152" height="14" bgcolor="#c0c0c0">
+				<p class="keep">
+				<i><b>Значение кодовой единицы</b></i></p>
+			</td>
+			<td width="166" bgcolor="#c0c0c0">
+				<p class="keep">
+				<i><b>Представление</b></i></p>
+			</td>
+			<td width="82" bgcolor="#c0c0c0">
+				<p class="keep">
+				<i><b>1-й октет</b></i></p>
+			</td>
+			<td width="82" bgcolor="#c0c0c0">
+				<p class="keep">
+				<i><b>2-й октет</b></i></p>
+			</td>
+			<td width="75" bgcolor="#c0c0c0">
+				<p class="keep">
+				<i><b>3-й октет</b></i></p>
+			</td>
+			<td width="75" bgcolor="#c0c0c0">
+				<p class="keep">
+				<i><b>4-й октет</b></i></p>
+			</td>
+		</tr><tr valign="TOP"><td width="152">
+				<p align="CENTER" class="keep">
+				<code><b>0x0000 - 0x007F</b></code></p>
+			</td>
+			<td width="166">
+				<p align="CENTER" class="keep">
+				<code><b>00000000</b></code><code></code> <code><b>0</b></code><code><i>zzzzzzz</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER" class="keep">
+				<code><b>0</b><i>zzzzzzz</i></code></p>
+			</td>
+			<td width="82">
+			</td>
+			<td width="75">
+			</td>
+			<td width="75">
+			</td>
+		</tr><tr valign="TOP"><td width="152">
+				<p align="CENTER" class="keep">
+				<code><b>0x0080 - 0x07FF</b></code></p>
+			</td>
+			<td width="166">
+				<p align="CENTER" class="keep">
+				<code><b>00000</b></code><code><i>yyy yyzzzzzz</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER" class="keep">
+				<code><b>110</b><i>yyyyy</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER" class="keep">
+				<code><b>10</b><i>zzzzzz</i></code></p>
+			</td>
+			<td width="75">
+			</td>
+			<td width="75">
+			</td>
+		</tr><tr valign="TOP"><td width="152">
+				<p align="CENTER" class="keep">
+				<code><b>0x0800 - 0xD7FF</b></code></p>
+			</td>
+			<td width="166">
+				<p align="CENTER" class="keep">
+				<code><i>xxxxyyyy yyzzzzzz</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER" class="keep">
+				<code><b>1110</b><i>xxxx</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER" class="keep">
+				<code><b>10</b><i>yyyyyy</i></code></p>
+			</td>
+			<td width="75">
+				<p align="CENTER" class="keep">
+				<code><b>10</b><i>zzzzzz</i></code></p>
+			</td>
+			<td width="75">
+			</td>
+		</tr><tr valign="TOP"><td width="152">
+				<p align="CENTER" class="keep">
+				<code><b>0xD800 - 0xDBFF</b></code></p>
+				<p align="CENTER" class="keep">
+				<i>за которым следует</i></p>
+				<p align="CENTER" class="keep">
+				<code><b>0xDC00 &ndash; 0xDFFF</b></code></p>
+			</td>
+			<td width="166">
+				<p align="CENTER" class="keep">
+				<code><b>110110</b><i>vv vvwwwwxx</i></code></p>
+				<p align="CENTER" class="keep">
+				<i>за которым следует</i></p>
+				<p align="CENTER" class="keep">
+				<code><b>110111</b><i>yy yyzzzzzz</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER" class="keep">
+				<code><b>11110</b><i>uuu</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER" class="keep">
+				<code><b>10</b><i>uuwwww</i></code></p>
+			</td>
+			<td width="75">
+				<p align="CENTER" class="keep">
+				<code><b>10</b><i>xxyyyy</i></code></p>
+			</td>
+			<td width="75">
+				<p align="CENTER" class="keep">
+				<code><b>10</b><i>zzzzzz</i></code></p>
+			</td>
+		</tr><tr valign="TOP"><td width="152">
+				<p align="CENTER" class="keep">
+				<code><b>0xD800 - 0xDBFF</b></code></p>
+				<p align="CENTER" class="keep">
+				<i>за которым не следует</i></p>
+				<p align="CENTER" class="keep">
+				<code><b>0xDC00 &ndash; 0xDFFF</b></code></p>
+			</td>
+			<td width="166">
+				<p align="CENTER" class="keep">
+				<code><i>вызывает</i> URIError</code></p>
+			</td>
+			<td width="82">
+			</td>
+			<td width="82">
+			</td>
+			<td width="75">
+			</td>
+			<td width="75">
+			</td>
+		</tr><tr valign="TOP"><td width="152">
+				<p align="CENTER" class="keep">
+				<code><b>0xDC00 &ndash; 0xDFFF</b></code></p>
+			</td>
+			<td width="166">
+				<p align="CENTER" class="keep">
+				<code><i>вызывает</i> URIError</code></p>
+			</td>
+			<td width="82">
+			</td>
+			<td width="82">
+			</td>
+			<td width="75">
+			</td>
+			<td width="75">
+			</td>
+		</tr><tr valign="TOP"><td width="152">
+				<p align="CENTER">
+				<code><b>0xE000 - 0xFFFF</b></code></p>
+			</td>
+			<td width="166">
+				<p align="CENTER">
+				<code><i>xxxxyyyy yyzzzzzz</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER">
+				<code><b>1110</b><i>xxxx</i></code></p>
+			</td>
+			<td width="82">
+				<p align="CENTER">
+				<code><b>10</b><i>yyyyyy</i></code></p>
+			</td>
+			<td width="75">
+				<p align="CENTER">
+				<code><b>10</b><i>zzzzzz</i></code></p>
+			</td>
+			<td width="75">
+			</td>
+		</tr></tbody></table></center>
+	<br><p class="sm-btm">
+	Где</p>
+	<p class="code-example">
+	<i><code>uuuuu</code></i> = <code><i>vvvv </i></code> + 1</p>
+	<p>
+	что является причиной добавления 0x10000, в соответствии с разделом 3.7 &quot;Суррогаты&quot; Стандарта Юникода.</p>
+	<p>
+	Для кодирования суррогатных пар используется диапазон кодовых значений 0xD800-0xDFFF. Упомянутое преобразование комбинирует  суррогатную пару в кодировке UTF-16 в представление в кодировке UTF-32, и затем кодируют полученное 21-битовое значение в UTF-8. При декодировании суррогатная пара восстанавливается.</p>
+	<p>
+	Документ RFC 3629 запрещает декодирование некорректных последовательностей октета в кодировке UTF-8. Например, некорректная последовательность C0&nbsp;80 не должна декодироваться в символ U+0000. При обнаружении таких некорректных последовательностей  алгоритм декодирования должен генерировать <b><a href="x15.11.html#x15.11.6.6" class="term-ref">URIError</a></b>.</p>
+	<h5 id="x15.1.3.1">15.1.3.1 decodeURI (encodedURI) <a href="#x15.1.3.1">#</a> <a href="#x15.1.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>decodeURI</b></code> вычисляет новую версию URI, в которой каждая управляющая последовательность и кодировка UTF-8, которые могут быть введены посредством функции <code><b><a href="#x15.1.3.1">encodeURI</a></b></code>, заменяются символом, который они представляют. Управляющие последовательности, которые не могут быть введены посредством функици <code><b><a href="#x15.1.3.1">encodeURI</a></b></code>, не подвергаются замене.</p>
+	<p>
+	При вызове функции <code><b>decodeURI</b></code> с одним аргументом&nbsp;<I>encodedURI</I> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>uriString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>encodedURI</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>reservedURISet</i> будет строкой, содержащей по одному экземпляру каждого символа, корректного в <i>uriReserved</i>, плюс &ldquo;<code><b>#</b></code>&rdquo;.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова <a href="#Decode">Decode</a>(<i>uriString</i>, <i>reservedURISet</i>)</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Символ &ldquo;<code><b>#</b></code>&rdquo; не декодируется из управляющей последовательности, хотя он не является зарезервированным символом URI.</p>
+	<h5 id="x15.1.3.2">15.1.3.2 decodeURIComponent (encodedURIComponent) <a href="#x15.1.3.2">#</a> <a href="#x15.1.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>decodeURIComponent</b></code> вычисляет новую версию URI, в которой каждая управляющая последовательность и кодировка UTF-8, которые могут быть введены посредством функции <code><b><a href="#x15.1.3.4">encodeURIComponent</a></b></code>, заменяются символом, который они представляют.</p>
+	<p>
+	При вызове функции <code><b>decodeURIComponent</b></code> с одним аргументом&nbsp;<I>encodedURIComponent</I> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>componentString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>encodedURIComponent</i>).</p>
+		</li>
+		<li><p>
+		Пусть <I>reservedURIComponentSet</I> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова <a href="#Decode">Decode</a>(<i>componentString</i>, <i>reservedURIComponentSet</i>)</p>
+	</li></ol>
+	<h5 id="x15.1.3.3">15.1.3.3 encodeURI (uri) <a href="#x15.1.3.3">#</a> <a href="#x15.1.3.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>encodeURI</b></code> вычисляет новую версию URI, в которой все экземпляры определённых символов заменяются одной, двумя или тремя управляющими последовательностями, представляющими собой UTF-8 кодировку этого символа.</p>
+	<p>
+	При вызове функции <code><b>encodeURI</b></code> с одним аргументом&nbsp;<I>uri</I> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>uriString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>uri</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>unescapedURISet</i> будет строкой, содержащей по одному экземпляру каждого символа, корректного в <i>uriReserved</i> и <I>uriUnescaped</I>, плюс &ldquo;<code><b>#</b></code>&rdquo;.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова <a href="#Encode">Encode</a>(<i>uriString</i>, <i>unescapedURISet</i>)</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Символ &ldquo;<code><b>#</b></code>&rdquo; не кодируется в управляющую последовательность, хотя он не является зарезервированным или unescaped символом URI.</p>
+	<h5 id="x15.1.3.4">15.1.3.4 encodeURIComponent (uriComponent) <a href="#x15.1.3.4">#</a> <a href="#x15.1.3.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <code><b>encodeURIComponent</b></code> вычисляет новую версию URI, в которой все экземпляры определённых символов заменяются одной, двумя или тремя управляющими последовательностями, представляющими собой UTF-8 кодировку этого символа.</p>
+	<p>
+	При вызове функции <code>encodeURIComponent</code> с одним аргументом&nbsp;<I>uriComponent</I> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>componentString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>uriComponent</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>unescapedURIComponentSet</i> будет строкой, содержащей по одному экземпляру каждого символа, корректного в <i>uriUnescaped</i>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова <a href="#Encode">Encode</a>(<i>componentString</i>, <i>unescapedURIComponentSet</i>)</p>
+	</li></ol>
+	<h4 id="x15.1.4">15.1.4 Свойства-конструкторы Глобального объекта <a href="#x15.1.4">#</a> <a href="#x15.1.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<h5 id="x15.1.4.1">15.1.4.1 Object ( . . . ) <a href="#x15.1.4.1">#</a> <a href="#x15.1.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.2.html#x15.2.1">15.2.1</a> и <a href="x15.2.html#x15.2.2">15.2.2</a>.</p>
+	<h5 id="x15.1.4.2">15.1.4.2 Function ( . . . ) <a href="#x15.1.4.2">#</a> <a href="#x15.1.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.3.html#x15.3.1">15.3.1</a> и <a href="x15.3.html#x15.3.2">15.3.2</a>.</p>
+	<h5 id="x15.1.4.3">15.1.4.3 Array ( . . . ) <a href="#x15.1.4.3">#</a> <a href="#x15.1.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.4.html#x15.4.1">15.4.1</a> и <a href="x15.4.html#x15.4.2">15.4.2</a>.</p>
+	<h5 id="x15.1.4.4">15.1.4.4 String ( . . . ) <a href="#x15.1.4.4">#</a> <a href="#x15.1.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.5.html#x15.5.1">15.5.1</a> и <a href="x15.5.html#x15.5.2">15.5.2</a>.</p>
+	<h5 id="x15.1.4.5">15.1.4.5 Boolean ( . . . ) <a href="#x15.1.4.5">#</a> <a href="#x15.1.4.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.6.html#x15.6.1">15.6.1</a> и <a href="x15.6.html#x15.6.2">15.6.2</a>.</p>
+	<h5 id="x15.1.4.6">15.1.4.6 Number ( . . . ) <a href="#x15.1.4.6">#</a> <a href="#x15.1.4.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.7.html#x15.7.1">15.7.1</a> и <a href="x15.7.html#x15.7.2">15.7.2</a>.</p>
+	<h5 id="x15.1.4.7">15.1.4.7 Date ( . . . ) <a href="#x15.1.4.7">#</a> <a href="#x15.1.4.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.9.html#x15.9.2">15.9.2</a>.</p>
+	<h5 id="x15.1.4.8">15.1.4.8 RegExp ( . . . ) <a href="#x15.1.4.8">#</a> <a href="#x15.1.4.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.10.html#x15.10.3">15.10.3</a> и <a href="x15.10.html#x15.10.4">15.10.4</a>.</p>
+	<h5 id="x15.1.4.9">15.1.4.9 Error ( . . . ) <a href="#x15.1.4.9">#</a> <a href="#x15.1.4.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.11.html#x15.11.1">15.11.1</a> и <a href="x15.11.html#x15.11.2">15.11.2</a>.</p>
+	<h5 id="x15.1.4.10">15.1.4.10 EvalError ( . . . ) <a href="#x15.1.4.10">#</a> <a href="#x15.1.4.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.11.html#x15.11.6.1">15.11.6.1</a>.</p>
+	<h5 id="x15.1.4.11">15.1.4.11 RangeError ( . . . ) <a href="#x15.1.4.11">#</a> <a href="#x15.1.4.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.11.html#x15.11.6.2">15.11.6.2</a>.</p>
+	<h5 id="x15.1.4.12">15.1.4.12 ReferenceError ( . . . ) <a href="#x15.1.4.12">#</a> <a href="#x15.1.4.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.11.html#x15.11.6.3">15.11.6.3</a>.</p>
+	<h5 id="x15.1.4.13">15.1.4.13 SyntaxError ( . . . ) <a href="#x15.1.4.13">#</a> <a href="#x15.1.4.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.11.html#x15.11.6.4">15.11.6.4</a>.</p>
+	<h5 id="x15.1.4.14">15.1.4.14 TypeError ( . . . ) <a href="#x15.1.4.14">#</a> <a href="#x15.1.4.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.11.html#x15.11.6.5">15.11.6.5</a>.</p>
+	<h5 id="x15.1.4.15">15.1.4.15 URIError ( . . . ) <a href="#x15.1.4.15">#</a> <a href="#x15.1.4.15-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.11.html#x15.11.6.6">15.11.6.6</a>.</p>
+	<h4 id="x15.1.5">15.1.5 Другие свойства Глобального объекта <a href="#x15.1.5">#</a> <a href="#x15.1.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<h5 id="x15.1.5.1">15.1.5.1 Math <a href="#x15.1.5.1">#</a> <a href="#x15.1.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.8.html#x15.8">15.8</a>.</p>
+	<h5 id="x15.1.5.2">15.1.5.2 JSON <a href="#x15.1.5.2">#</a> <a href="#x15.1.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	См. <a href="x15.12.html#x15.12">15.12</a>.</p>
+	</body><script src="anno.js"></script></html>

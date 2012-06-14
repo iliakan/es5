@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.12 Объект JSON # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.11.html" title="15.11 Объекты Error " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x16.html" title="16 Ошибки " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>   <a href="x15.11.html">&#8592; 15.11 Объекты Error </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x16.html">16 Ошибки  &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.12.html#x15.12" id="x15.12-toc">15.12 Объект JSON</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.12.html#x15.12.1" id="x15.12.1-toc">15.12.1 Грамматика JSON  </a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.12.html#x15.12.1.1" id="x15.12.1.1-toc">15.12.1.1 Лексическая грамматика JSON</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.12.html#x15.12.1.2" id="x15.12.1.2-toc">15.12.1.2 Синтаксическая грамматика JSON</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.12.html#x15.12.2" id="x15.12.2-toc">15.12.2 parse ( text [ , reviver ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.12.html#x15.12.3" id="x15.12.3-toc">15.12.3 stringify ( value [ , replacer [ , space ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.12" class="splitme">15.12 Объект JSON <a href="#x15.12">#</a> <a href="#x15.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Объект <b>JSON</b> является единственным объектом, содержащим две функции &ndash; <b>parse </b>и <b>stringify</b>, использующиеся для синтаксического разбора и конструкции текстов JSON. Формат обмена данными JSON описан в документе RFC 4627 &lt;<a href="http://www.ietf.org/rfc/rfc4627.txt">http://www.ietf.org/rfc/rfc4627.txt</a>&gt;. Формат обмена данными JSON, используемый в настоящей спецификации, представляет собой тот же формат, который представлен в RFC 4627, с двумя исключениями:</p>
+	<ul><li><p>
+		Порождающее правило верхнего уровня <i>JSONText</i> в JSON-грамматике языка ECMAScript может состоять из любого значения <i>JSONValue</i>, а не ограничиваться только объектом <i>JSONObject</i> или массивом <i>JSONArray</i>, как указано в документе RFC&nbsp;4627. 
+		</p>
+		</li>
+		<li><p>
+		Корректная реализация <b>JSON.parse</b> и <b>JSON.stringify</b> должна поддерживать в точности тот же формат обмена данными, который описан в настоящей спецификации, без добавлений или удалений. Этот момент отличается от указанного в RFC&nbsp;4627, где анализатору&nbsp;JSON разрешается принимать добавления и формы, не относящиеся к объекту типа&nbsp;JSON.</p>
+	</li></ul><p>
+	Значением внутреннего свойства [[Prototype]] объекта JSON является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>). Значение внутреннего свойства [[Class]] объекта JSON равно <code><b>&quot;JSON&quot;</b></code>. Значение внутреннего свойства [[Extensible]] объекта JSON устанавливается равным&nbsp;<b>true</b>.</p>
+	<p>
+	Объект JSON не имеет встроенного свойства [[Construct]]. Использование объекта JSON в качестве конструктора с оператором <code><b>new</b></code> невозможно.</p>
+	<p>
+	Объект JSON не имеет внутреннего свойства [[Call]]. Вызов объекта JSON в качестве функции невозможен.</p>
+	<h4 id="x15.12.1">15.12.1 Грамматика JSON <a href="#x15.12.1">#</a> <a href="#x15.12.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Результатом функции JSON.stringify является строка, подчиняющаяся описанной ниже грамматике&nbsp;JSON. Функция JSON.parse принимает строку, подчиняющуюся описанной ниже грамматике&nbsp;JSON.</p>
+	<h5 id="x15.12.1.1">15.12.1.1 Лексическая грамматика JSON <a href="#x15.12.1.1">#</a> <a href="#x15.12.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Исходный текст в формате JSON похож на исходный текст ECMAScript тем, что он состоит из последовательности символов, подчиняющейся правилам для&nbsp;<i>SourceCharacter</i>. Лексическая грамматика JSON определяет токены, из которых состоит текст в формате JSON, аналогично тому, как лексическая грамматика ECMAScript определяет токены исходного текста на ECMAScript.  Лексическая грамматика JSON распознаёт только пробельный символ, заданный правилом&nbsp;<i>JSONWhiteSpace</i>. Некоторые правила лексическая грамматика JSON разделяет с лексической грамматикой ECMAScript.  Все нетерминальные символы, которые не начинаются с символов &ldquo;JSON&rdquo;, определяются правилами лексической грамматики ECMAScript.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>JSONWhiteSpace </i><b>::</b></p>
+	<p class="def1">
+	&lt;TAB&gt;<br>&lt;CR&gt;<br>&lt;LF&gt;<br>&lt;SP&gt;</p>
+	<p class="keep">
+	<i>JSONString </i><b>::</b></p>
+	<p class="def1">
+	<code><b>&quot;</b></code> <i>JSONStringCharacters</i><sub>opt</sub><code><b>&quot;</b></code></p>
+	<p class="keep">
+	<i>JSONStringCharacters </i><b>::</b></p>
+	<p class="def1">
+	<i>JSONStringCharacter JSONStringCharacters</i><sub>opt</sub></p>
+	<p>
+	<i>JSONStringCharacter </i><b>::</b></p>
+	<p class="def1">
+	<i>SourceCharacter </i><b>но не</b><i> double-quote </i><code><b>&quot;</b></code> <b>или</b><i> backslash </i><code><b>\</b></code><b>или </b><i>U+0000 thru U+001F</i></p>
+	<p class="def1">
+	<code><b>\</b></code> <i>JSONEscapeSequence</i></p>
+	<p class="keep">
+	<i>JSONEscapeSequence </i><b>::</b></p>
+	<p class="def1">
+	<i>JSONEscapeCharacter</i></p>
+	<p class="def1">
+	<i>UnicodeEscapeSequence </i>
+	</p>
+	<p class="keep">
+	<i>JSONEscapeCharacter </i><b>::</b> <b>один из</b></p>
+	<p class="def1">
+	<code><b>&quot; / \ b f n r t</b></code></p>
+	<p class="keep">
+	<i>JSONNumber </i><b>::</b></p>
+	<p class="def1">
+	<code><b>-</b></code><sub>opt</sub><i>DecimalIntegerLiteral JSONFraction</i><sub>opt</sub><i>ExponentPart</i><sub>opt</sub></p>
+	<p class="keep">
+	<i>JSONFraction </i><b>::</b></p>
+	<p class="def1">
+	<code><b>.</b></code> <i>DecimalDigits</i></p>
+	<p class="keep">
+	<i>JSONNullLiteral </i><b>::</b></p>
+	<p class="def1">
+	<i>NullLiteral</i></p>
+	<p class="keep">
+	<i>JSONBooleanLiteral </i><b>::</b></p>
+	<p class="def1">
+	<i>BooleanLiteral</i></p>
+	<h5 id="x15.12.1.2">15.12.1.2 Синтаксическая грамматика JSON <a href="#x15.12.1.2">#</a> <a href="#x15.12.1.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Синтаксическая грамматика JSON определяет действительный текст в формате JSON в виде токенов, определённых лексической грамматикой&nbsp;JSON.  Начальным символом этой грамматики является <i>JSONText</i>. 
+	</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>JSONText </i><b>:</b><i>	 </i>
+	</p>
+	<p class="def1">
+	<i>JSONValue</i></p>
+	<p class="keep">
+	<i>JSONValue </i><b>:</b><i>	 </i>
+	</p>
+	<p class="def1">
+	<i>JSONNullLiteral<br>JSONBooleanLiteral<br>JSONObject<br>JSONArray<br>JSONString<br>JSONNumber</i></p>
+	<p class="keep">
+	<i>JSONObject </i><b>:</b></p>
+	<p class="def1">
+	<code><b>{ }</b></code> <i><br></i><code><b>{</b></code> <i>JSONMemberList </i><code><b>}</b></code></p>
+	<p class="keep">
+	<i>JSONMember </i><b>:</b></p>
+	<p class="def1">
+	<i>JSONString </i><code><b>:</b></code> <i>JSONValue</i></p>
+	<p class="keep">
+	<i>JSONMemberList </i><b>:</b></p>
+	<p class="def1">
+	<i>JSONMember <br>JSONMemberList </i><code><b>,</b></code> <i>JSONMember </i>
+	</p>
+	<p class="keep">
+	<i>JSONArray </i><b>:</b></p>
+	<p class="def1">
+	<code><b>[ ]</b></code> <i><br></i><code><b>[</b></code> <i>JSONElementList</i><code><b>]</b></code></p>
+	<p class="keep">
+	<i>JSONElementList </i><b>:</b></p>
+	<p class="def1">
+	<i>JSONValue<br>JSONElementList</i><code><b>,</b></code> <i> JSONValue</i></p>
+	<h4 id="x15.12.2">15.12.2 parse ( text [ , reviver ] ) <a href="#x15.12.2">#</a> <a href="#x15.12.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Функция <code><b>parse</b></code> производит разбор текста JSON (строки в формате JSON) и возвращает значение ECMAScript. Формат JSON представляет собой ограниченную форму литерала&nbsp;ECMAScript. Объекты JSON реализуются как объекты ECMAScript. Массивы JSON реализуются как массивы ECMAScript. Строки, числовые и булевые значения и null в JSON реализуются как строки, числовые и булевые значения и <B>null </B>в ECMAScript. В JSON используется более ограниченный набор пробельных символов, чем <i><a href="x7.html#WhiteSpace">WhiteSpace</a></i>, и допускается, чтобы юникодные кодовые точки U+2028 и U+2029 непосредственно появлялись в литералах <i>JSONString</i> без использования управляющей последовательности. Процесс разбора аналогичен описанному в пунктах&nbsp;<a href="x11.html#x11.1.4">11.1.4</a> и&nbsp;<a href="x11.html#x11.1.5">11.1.5</a> с ограничениями, присущими грамматике&nbsp;JSON.</p>
+	<p>
+	Необязательный параметр <i>reviver</i> представляет собой функцию, принимающую два параметра &ndash; <i>key</i> и <i>value</i>. Она может производить фильтрацию и преобразование результатов. Эта функция вызывается с каждой парой <i>key</i>&ndash;<i>value</i>, полученной в результате разбора, и возвращаемое ею значение используется вместо исходного значения. Если функция возвращает то же значение, что и приняла, то структура не изменяется. Если функция возвращает <b>undefined</b>, то это свойство удаляется из результата.</p>
+	<ol><li><p>
+		Пусть <i>JText</i> будет <a href="x9.html#x9.8">ToString</a>(<i>text</i>).</p>
+		</li>
+		<li><p>
+		Разобрать <i>JText</i>, используя грамматику, изложенную в <a href="#x15.12.1">15.12.1</a>. Если <i>JText</i> не подчиняется грамматике JSON для начального символа&nbsp;<i>JSONText</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>. 
+		</p>
+		</li>
+		<li><p>
+		Пусть <i>unfiltered</i> будет результатом разбора и вычисления <i>JText</i>, как если бы он был исходным текстом <i><a href="x14.html#x14">Программы</a></i> на ECMAScript, но с использованием <i>JSONString </i>вместо <i><a href="x7.html#x7.8.4">StringLiteral</a></i>. Обратите внимание, что, поскольку <i>JText</i> подчиняется грамматике JSON, то этот результат будет представлять собой или <a href="x4.html#primitive_value" class="term-ref">примитивное значение</a>, или объект, определённый либо посредством <i>ArrayLiteral</i>, либо посредством <i>ObjectLiteral</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>reviver</i>) равно <b>true</b>, то</p>
+		<ol><li><p>
+			Пусть <I>root</I> будет новым объектом, как если бы он был создан выражением <code><b>new Object()</b></code>, где <code><b>Object</b></code> является стандартным встроенным конструктором с этим именем.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] для <i>root</i> с передачей в качестве аргументов пустой строки, PropertyDescriptor {[[Value]]: <i>unfiltered</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+			</li>
+			<li><p>
+			Вернуть результат вызова абстрактной операции <a href="#Walk">Walk</a>, передавая <i>root</i> и пустую строку. Абстрактная операция <a href="#Walk">Walk</a> описана ниже.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Вернуть <i>unfiltered</i>.</p>
+		</li></ol></li></ol><p>
+	Абстрактная операция <dfn id="Walk">Walk</dfn> представляет собой рекурсивную абстрактную операцию, принимающую два параметра: объект <i>holder</i> и строковое имя<i>name</i> для свойства в этом объекте. Абстрактная операция Walk использует значение <i>reviver</i>, которое было изначально передано в вышеуказанную функцию parse.</p>
+	<ol><li><p>
+		Пусть <i>val</i> будет результатом вызова внутреннего метода [[Get]] для <i>holder</i> с аргументом&nbsp;<i>name</i>.</p>
+		</li>
+		<li><p>
+		Если <i>val</i> &ndash; объект, то </p>
+		<ol><li><p>
+			Если внутреннее свойство [[Class]] для <i>val</i> равно <code><b>&quot;Array&quot;</b></code></p>
+			<ol><li><p>
+				Присвоить <i>I</i> значение 0.</p>
+				</li>
+				<li><p>
+				Пусть <i>len </i>будет результатом вызова внутреннего метода [[Get]] для <I>val </I>с аргументом <b>&quot;</b><code><B>length</B></code>&quot;.</p>
+				</li>
+				<li><p>
+				Повторить, пока <i>I</i> &lt; <i>len,</i> 
+				</p>
+				<ol><li><p>
+					Пусть <i>newElement</i> будет результатом вызова абстрактной операции <a href="#Walk">Walk</a>, с передачей <i>val</i> и <a href="x9.html#x9.8">ToString</a>(<i>I</i>).</p>
+					</li>
+					<li><p>
+					Если <i>newElement</i> &ndash; <b>undefined</b>, то</p>
+					<ol><li><p>
+						Вызвать внутренний метод [[Delete]] для <i>val</i> с передачей <a href="x9.html#x9.8">ToString</a>(<i>I</i>) и <b>false</b> в качестве аргументов. 
+						</p>
+					</li></ol></li>
+					<li><p>
+					Иначе</p>
+					<ol><li><p>
+						Вызвать внутренний метод [[DefineOwnProperty]] для <I>val</I> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>I</i>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>newElement</i>, [[Writable]]: true, [[Enumerable]]: true, [[Configurable]]: true} и <b>false</b>.</p>
+					</li></ol></li>
+					<li><p>
+					Прибавить 1 к <i>I</i>.</p>
+				</li></ol></li></ol></li>
+			<li><p>
+			Иначе</p>
+			<ol><li><p>
+				Пусть <i>keys</i> будет внутренним списком <a href="x8.html#x8.8">List</a> строковых значений, состоящим из имён всех собственных свойств для <i>val</i>, у которых атрибут [[Enumerable]] равен&nbsp;<b>true</b>. Порядок строк должен быть таким же, что и порядок, используемый стандартной встроенной функцией&nbsp;<b><a href="x15.2.html#x15.2.3.14">Object.keys</a></b>.</p>
+				</li>
+				<li><p>
+				Для каждой строки <i>P</i> в <i>keys</i> выполнить: 
+				</p>
+				<ol><li><p>
+					Пусть <i>newElement</i> будет результатом вызова абстрактной операции <a href="#Walk">Walk</a> с передачей <i>val</i> и <i><i>P</i></i>. 
+					</p>
+					</li>
+					<li><p>
+					Если <i>newElement</i> &ndash; <b>undefined</b>, то</p>
+					<ol><li><p>
+						Вызвать внутренний метод [[Delete]] для <i>val</i> с передачей <i><i>P</i></i> и <B>false </B>в качестве аргументов. 
+						</p>
+					</li></ol></li>
+					<li><p>
+					Иначе</p>
+					<ol><li><p>
+						Вызвать внутренний метод [[DefineOwnProperty]] для <I>val</I> с аргументами <i><i>P</i></i>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>newElement</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+					</li></ol></li></ol></li></ol></li></ol></li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Call]] для <i>reviver</i>, с передачей <i>holder</i> в качестве значения&nbsp;<b>this</b> и со списком аргументов, состоящим из <i>name и </i><i>val</i>.</p>
+	</li></ol><p>
+	Корректной реализации <code><b>JSON.parse</b></code> не разрешается расширять грамматики JSON. Если реализация желает поддерживать измененный или расширенный формат обмена JSON, для этого она должна определить ещё одну функцию&nbsp;parse. 
+	</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Если объект содержит строки с дублирующими именами, то лексически предшествующие значения для одного и того же key будут перезаписаны.</p>
+	<h4 id="x15.12.3">15.12.3 stringify ( value [ , replacer [ , space ] ] ) <a href="#x15.12.3">#</a> <a href="#x15.12.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Функция <code><b>stringify</b></code> возвращает строку в формате JSON, представляющую значение&nbsp;ECMAScript. Эта функция может принимать три параметра,  первый из которых является обязательным. Параметр <i>value</i> представляет собой значение ECMAScript, которое, как правило, является объектом или массивом, хотя оно также может быть строкой, булевым, числовым значением, или <b>null</b>. Необязательный параметр <i>replacer</i> представляет собой либо функцию, изменяющую способ преобразования объектов и массивов в строковую форму, либо массив строк и числовых значений, выступающих в качестве рекомендательного списка для выбора свойств объекта, которые будут преобразовываться в строковую форму. Необязательный параметр <i>space</i> представляет собой строку или числовое значение, позволяющее вставить в результат пробельный символ в целях удобочитаемости.</p>
+	<p>
+	Ниже приводятся шаги по преобразованию объекта в строковую форму:</p>
+	<ol><li><p>
+		Пусть <i>stack</i>  будет пустым списком <a href="x8.html#x8.8">List</a>.</p>
+		</li>
+		<li><p>
+		Пусть <I>indent</I> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Пусть <i>PropertyList</i> и <i>ReplacerFunction</i> будут <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>replacer</i>) &ndash; Object, то</p>
+		<ol><li><p>
+			Если <a href="x9.html#x9.11">IsCallable</a>(<i>replacer</i>) равно <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>ReplacerFunction </i>будет <i>replacer</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, если внутреннее свойство [[Class]] для replacer равно <code><b>&quot;Array&quot;</b></code>, то </p>
+			<ol><li><p>
+				Пусть <i>PropertyList</i> будет пустым внутренним списком <a href="x8.html#x8.8">List</a>.</p>
+				</li>
+				<li><p>
+				Для каждого значения <i>v</i> свойства для <i>replacer</i>, имеющего имя свойства индекса массива. Свойства перечисляются по индексам массива их имён по возрастанию.</p>
+				<ol><li><p>
+					Пусть <i>item</i> будет <b>undefined</b>.</p>
+					</li>
+					<li><p>
+					Если <a href="x8.html#Type">Type</a>(<i>v</i>) равно String, то пусть <i>item</i> будет <i>v.</i></p>
+					</li>
+					<li><p>
+					Иначе, если <a href="x8.html#Type">Type</a>(<i>v</i>) равно Number, то пусть <i>item</i> будет <a href="x9.html#x9.8">ToString</a>(<i>v</i>).</p>
+					</li>
+					<li><p>
+					Иначе, если <a href="x8.html#Type">Type</a>(<i>v</i>) равно Object, то</p>
+					<ol><li><p>
+						Если внутреннее свойство [[Class]] для <i>v</i> равно <code><b>&quot;String&quot;</b></code> или <code><b>&quot;Number&quot;</b></code>, то пусть <i>item</i> будет <a href="x9.html#x9.8">ToString</a>(<i>v</i>).</p>
+					</li></ol></li>
+					<li><p>
+					Если <i>item</i> не равно <B>undefined </B>и <i>item</i> в настоящее время не является элементом из <i>PropertyList</i>, то</p>
+					<ol><li><p>
+						В конце <I>PropertyList</I> присоединить <i>item</i>.</p>
+					</li></ol></li></ol></li></ol></li></ol></li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>space</i>) &ndash; Object, то</p>
+		<ol><li><p>
+			Если внутреннее свойство [[Class]] для <i>space</i> равно <code><b>&quot;Number&quot;</b></code>, то</p>
+			<ol><li><p>
+				Пусть <i>space</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>space</i>).</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, если внутреннее свойство [[Class]] для <i>space</i> равно <code><b>&quot;String&quot;</b></code>, то</p>
+			<ol><li><p>
+				Пусть <i>space</i> будет <a href="x9.html#x9.8">ToString</a>(<i>space</i>).</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>space</i>) &ndash; Number,</p>
+		<ol><li><p>
+			Пусть <i>space</i> будет min(10, <a href="x9.html#x9.4">ToInteger</a>(<i>space</i>)).</p>
+			</li>
+			<li><p>
+			Установить <i>gap</i> в строку, содержащую символы пробела <i>space</i>. Если <i>space</i> меньше 1, то это будет пустая строка.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, если <a href="x8.html#Type">Type</a>(<i>space)</i> равно String</p>
+		<ol><li><p>
+			Если количество символов в <i>space</i> равно 10 или менее, установить <i>gap</i> в <i>space</i>, в противном случае установить <i>gap</i> в строку, состоящую из десяти первых символов из <i>space</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Установить <i>gap</i> в пустую строку.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <I>wrapper</I> будет новым объектом, как если бы он был создан выражением <code><b>new Object()</b></code>, где <code><b>Object</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>wrapper</i> с аргументами: пустая строка, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>value</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть резальтат вызова абстрактной операции <a href="#Str"><i>Str</i></a> с пустой строкой и&nbsp;<i>wrapper</i>.</p>
+	</li></ol><p>
+	Абстрактная операция <dfn id="Str"><i>Str</i>(<i>key</i>, <i>holder</i>)</dfn> получает доступ к <i>ReplacerFunction </i>из вызова метода <code><b>stringify</b></code>. Ниже представлен её алгоритм:</p>
+	<ol><li><p>
+		Пусть <i>value</i> будет результатом вызова внутреннего метода [[Get]] для <i>holder</i> с аргументом&nbsp;<i>key</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>value</i>) равно Object, то</p>
+		<ol><li><p>
+			Пусть <i>toJSON</i> будет результатом вызова внутреннего метода [[Get]] для <i>value</i> с аргументом <code><b>&quot;toJSON&quot;</b></code>.</p>
+			</li>
+			<li><p>
+			Если <a href="x9.html#x9.11">IsCallable</a>(<i>toJSON</i>) равно <b>true</b></p>
+			<ol><li><p>
+				Пусть <i>value</i> будет результатом вызова внутреннего метода [[Call]] для <i>toJSON </i>с передачей <i>value</i> в качестве значения <b>this</b> и со списком аргументов, состоящим из&nbsp;<i>key</i>.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Если <i>ReplacerFunction</i> &ndash; не <b>undefined</b>, то</p>
+		<ol><li><p>
+			Пусть <i>value</i> будет результатом вызова внутреннего метода [[Call]] для <i>ReplacerFunction </i>с передачей <i>holder</i> в качестве значения <b>this</b> и со списком аргументов, состоящим из&nbsp;<i>key</i> и <i>value</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>value</i>) равно Object, то</p>
+		<ol><li><p>
+			Если внутреннее свойство [[Class]] для <i>value</i> равно <code><b>&quot;Number&quot;</b></code>, то</p>
+			<ol><li><p>
+				Пусть <i>value</i> будет <a href="x9.html#x9.3">ToNumber</a>(<i>value</i>).</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, если внутреннее свойство [[Class]] для <i>value</i> равно <code><b>&quot;String&quot;</b></code>, то</p>
+			<ol><li><p>
+				Пусть <i>value</i> будет <a href="x9.html#x9.8">ToString</a>(<i>value</i>).</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, если внутреннее свойство [[Class]] для <i>value</i> равно <code><b>&quot;Boolean&quot;</b></code>, то</p>
+			<ol><li><p>
+				Пусть <i>value</i> будет значением внутреннего свойства [[PrimitiveValue]] для <i>value</i>.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Если <i>value</i> равно <b>null</b>, то вернуть <code><b>&quot;null&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <i>value</i> равно <B>true</B>, то вернуть <code><b>&quot;true&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <i>value</i> равно <B><b>false</b></B>, то вернуть <code><b>&quot;<b>false</b>&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>value</i>) равно String, то вернуть результат вызова абстрактной операции <i><a href="#Quote">Quote</a></i> с аргументом <i>value</i>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>value</i>) &ndash; Number,</p>
+		<ol><li><p>
+			Если <i>value </i>является конечным числом, вернуть <a href="x9.html#x9.8">ToString</a>(<i>value</i>).</p>
+			</li>
+			<li><p>
+			Иначе, вернуть <code><b>&quot;null&quot;</b></code>.</p>
+		</li></ol></li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>value</i>) равно Object, и <a href="x9.html#x9.11">IsCallable</a>(<i>value</i>) равно <b>false</b></p>
+		<ol><li><p>
+			Если внутреннее свойство [[Class]] для <i>value</i> равно <code><b>&quot;Array&quot;</b></code>, то</p>
+			<ol><li><p>
+				Вернуть результат вызова абстрактной операции <i><a href="#JA">JA</a></i> с аргументом <i>value</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, вернуть результат вызова абстрактной операции <i><a href="#JO">JO</a></i> с аргументом&nbsp;<i>value</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <b>undefined</b>.</p>
+	</li></ol><p>
+	Абстрактная операция <dfn id="Quote"><i>Quote</i>(<i>value</i>)</dfn> заключает строковое значение в двойные кавычки и отключает символы внутри него. 
+	</p>
+	<ol><li><p>
+		Пусть <i>product</i> будет символом двойной кавычки.</p>
+		</li>
+		<li><p>
+		Для каждого символа <i>C</i> в <i>value</i></p>
+		<ol><li><p>
+			Если <i>C</i> является символом двойной кавычки или символом обратной косой черты</p>
+			<ol><li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и символа обратной косой черты.</p>
+				</li>
+				<li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и <i>C</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, если <i>C</i> является символом обратной косой черты, символом перевода страницы, символом перевода строки, символом возврата каретки, или символом табуляции, </p>
+			<ol><li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и символа обратной косой черты.</p>
+				</li>
+				<li><p>
+				Пусть <i>abbrev</i> будет символом, соответствующим значению <i>C</i>, как представлено ниже:</p>
+	<p class="pre">обратная косая черта		<code><b>&quot;b&quot;</b></code></p>
+	<p class="pre">перевод страницы			<code><b>&quot;f&quot;</b></code></p>
+	<p class="pre">перевод строки			<code><b>&quot;n&quot;</b></code></p>
+	<p class="pre">возврат каретки	<code><b>&quot;r&quot;</b></code></p>
+	<p class="pre">табуляция				<code><b>&quot;t&quot;</b></code></p>
+				</li>
+				<li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и <I>abbrev</I>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, если <i>C</i> является управляющим символом с кодовым значением меньше чем символ пробела</p>
+			<ol><li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и символа обратной косой черты.</p>
+				</li>
+				<li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и <code><b>&quot;u&quot;</b></code>.</p>
+				</li>
+				<li><p>
+				Пусть <i>hex</i> будет результатом преобразования числового кодового значения&nbsp;<i>C</i> в строку из четырёх шестнадцатеричных чисел.</p>
+				</li>
+				<li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и <I>hex</I>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе</p>
+			<ol><li><p>
+				Пусть <i>product</i> будет результатом конкатенации <i>product</i> и <i>C</i>.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Пусть <i>product</i> будет результатом конкатенации <i>product</i> и символа двойной кавычки.</p>
+		</li>
+		<li><p>
+		Вернуть <i>product</i>.</p>
+	</li></ol><p>
+	Абстрактная операция <dfn id="JO"><i>JO</i>(<i>value</i>)</dfn> преобразовывает в последовательную форму объект. Она имеет доступ к <i>stack</i>, <i>indent</i>, <i>gap</i>, <i>PropertyList</i>, <i>ReplacerFunction</i> и <i>space</i> из вызова метода stringify.</p>
+	<ol><li><p>
+		Если <i>stack</i> содержит <i>value</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>, поскольку это циклическая структура.</p>
+		</li>
+		<li><p>
+		В конце <i>stack</i> присоединить <i>value</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>stepback</i> будет <i>indent</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>indent</i> будет результатом конкатенации <i>indent</i> и <I>gap</I>.</p>
+		</li>
+		<li><p>
+		Если <I>PropertyList </I>не равно <b>undefined</b>, то</p>
+		<ol><li><p>
+			Пусть <i>K</i> будет <i>PropertyList</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Пусть <i><i>K</i></i> будет внутренним списком <a href="x8.html#x8.8">List</a> строк, состоящим из имён всех собственных свойств для <i>value</i>, у которых атрибут [[Enumerable]] равен&nbsp;<b>true</b>. Порядок строк должен быть таким же, что и порядок, используемый стандартной встроенной функцией&nbsp;<b><a href="x15.2.html#x15.2.3.14">Object.keys</a></b>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>partial</i>  будет пустым списком <a href="x8.html#x8.8">List</a>.</p>
+		</li>
+		<li><p>
+		Для каждого элемента <i>P</i> из <i>K</i>:</p>
+		<ol><li><p>
+			Пусть <i>strP</i> будет результатом вызова абстрактной операции <i>Str</i> с аргументами <i>P</i> и&nbsp;<i>value</i>.</p>
+			</li>
+			<li><p>
+			Если <i>strP</i> &ndash; не <b>undefined</b>, то</p>
+			<ol><li><p>
+				Пусть <i>member</i> будет результатом вызова абстрактной операции <i><a href="#Quote">Quote</a></i> с аргументом&nbsp;<i>P</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>member</i> будет результатом конкатенации <i>member</i> и символа двоеточия.</p>
+				</li>
+				<li><p>
+				Если <i>gap</i> не равно пустой строке</p>
+				<ol><li><p>
+					Пусть <i>member</i> будет результатом конкатенации <i>member</i> и символа <I>space</I>.</p>
+				</li></ol></li>
+				<li><p>
+				Пусть <i>member</i> будет результатом конкатенации <i>member</i> и <I>strP</I>.</p>
+				</li>
+				<li><p>
+				В конце <i>partial</i> присоединить <i>member</i>.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Если <i>partial</i> пуст, то </p>
+		<ol><li><p>
+			Пусть <i>final</i> будет <code><b>&quot;{}&quot;</b></code>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Если <i>gap</i> равно пустой строке</p>
+			<ol><li><p>
+				Пусть <i>properties</i> будет строкой, полученной в результате конкатенации всех строковых элементов из <i>partial</i> с каждой соседней парой строк, разделённых символом запятой. Перед первой строкой и после последней строки запятая не вставляется.
+				
+				</p>
+				</li>
+				<li><p>
+				Пусть <i>final</i> будет результатом конкатенации <code><b>&quot;{&quot;</b></code><b>,</b> <i>properties</i> и <code><b>&quot;}&quot;</b></code>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, <i>gap</i> не равно пустой строке</p>
+			<ol><li><p>
+				Пусть <i>separator</i> будет результатом конкатенации символа запятой, символа перевода строки и <i>indent</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>properties</i> будет строкой, полученной в результате конкатенации всех строковых элементов из <i>partial</i> с каждой соседней парой строк, разделённых с помощью <I>separator</I>. Перед первой строкой и после последней строки строка <I>separator </I>не вставляется.</p>
+				</li>
+				<li><p>
+				Пусть <i>final</i> будет результатом конкатенации <code><b>&quot;{&quot;</b></code>, символа перевода строки, <i>indent</i>, <i>properties</i>, символа перевода строки, <i>stepback</i> и <code><b>&quot;}</b></code>&quot;.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Удалите последний элемент из <i>stack</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>indent</i> будет <i>stepback</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>final</i>.</p>
+	</li></ol><p>
+	Абстрактная операция <dfn id="JA"><i>JA</i>(<i>value</i>)</dfn> преобразовывает в последовательную форму массив. Она имеет доступ к <i>stack</i>, <i>indent</i>, <i>gap</i> и <i>space</i> из вызова метода stringify. Представление массивов включает только элементы между нулём и <code><b>array.length</b></code> &ndash; 1 включительно. Именные свойства исключаются из преобразования в строковую форму. При преобразовании массива в строковую форму он представляется следующим образом: открывающая квадратная скобка, элементы, разделённые запятой, закрывающая квадратная скобка.</p>
+	<ol><li><p>
+		Если <i>stack</i> содержит <i>value</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>, поскольку это циклическая структура.</p>
+		</li>
+		<li><p>
+		В конце <i>stack</i> присоединить <i>value</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>stepback</i> будет <i>indent</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>indent</i> будет результатом конкатенации <i>indent</i> и <I>gap</I>.</p>
+		</li>
+		<li><p>
+		Пусть <i>partial</i>  будет пустым списком <a href="x8.html#x8.8">List</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len </i>будет результатом вызова внутреннего метода [[Get]] для <I>value </I>с аргументом <b>&quot;</b><code><B>length</B></code>&quot;.</p>
+		</li>
+		<li><p>
+		Пусть <I>index</I> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <I>index</I> &lt; <I>len</I></p>
+		<ol><li><p>
+			Пусть <i>strP</i> будет результатом вызова абстрактной операции <i>Str</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>index</i>) и <i>value</i>. 
+			</p>
+			</li>
+			<li><p>
+			Если <i>strP</i> равно <b>undefined</b>, то</p>
+			<ol><li><p>
+				В конце <I>partial </I>присоединить <code><b>&quot;null&quot;</b></code>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе</p>
+			<ol><li><p>
+				В конце <i>partial</i> присоединить <I>strP</I>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>index</I> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Если <i>partial</i> пуст, то</p>
+		<ol><li><p>
+			Пусть <i>final</i> будет <code><b>&quot;[]&quot;</b></code>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе</p>
+		<ol><li><p>
+			Если <i>gap</i> равно пустой строке</p>
+			<ol><li><p>
+				Пусть <i>properties</i> будет строкой, полученной в результате конкатенации всех строковых элементов из <i>partial</i> с каждой соседней парой строк, разделённых символом запятой. Перед первой строкой и после последней строки запятая не вставляется.
+				
+				</p>
+				</li>
+				<li><p>
+				Пусть <i>final</i> будет результатом конкатенации <code><b>&quot;[&quot;</b></code><b>,</b> <i>properties</i> и <code><b>&quot;]&quot;</b></code>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе</p>
+			<ol><li><p>
+				Пусть <i>separator</i> будет результатом конкатенации символа запятой, символа перевода строки и <i>indent</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>properties</i> будет строкой, полученной в результате конкатенации всех строковых элементов из <i>partial</i> с каждой соседней парой строк, разделённых с помощью <I>separator</I>. Перед первой строкой и после последней строки строка <I>separator </I>не вставляется.</p>
+				</li>
+				<li><p>
+				Пусть <i>final</i> будет результатом конкатенации <code><b>&quot;<b>[</b>&quot;</b></code>, символа перевода строки, <i>indent</i>, <i>properties</i>, символа перевода строки, <i>stepback</i> и <code><b>&quot;]</b></code>&quot;.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Удалите последний элемент из <i>stack</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>indent</i> будет <i>stepback</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>final</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ1</b> Структуры JSON могут быть вложенными на любую глубину, но они должны быть нециклическими. Если <i>value</i> является циклической структурой или содержит циклическую структуру, то функция stringify должна сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Вот пример значения, которое не может быть преобразовано в строковую форму:</p>
+	<p class="code-example"><code><b>a = [];</b></code></p>
+	<p class="code-example"><code><b>a[0] = a;</b></code></p>
+	<p class="code-example"><code><b>my_text = JSON.stringify(a); // This must throw an TypeError. (&quot;Это должно сгенерировать TypeError.&quot;)</b></code></p>
+	<br><p><b>ПРИМЕЧАНИЕ 2</b> Символические <a href="x4.html#primitive_value" class="term-ref">примитивные значения</a> представляются следующим образом:</p>
+	<ul><li><p>Значение <b>null</b> в тексте формата JSON представляется как строка <code>null</code>.</p>
+		</li>
+		<li><p>Значение <b>undefined</b> не представляется.</p>
+		</li>
+		<li><p>Значение <b>true</b> в тексте формата JSON представляется как строка <code>true</code>.</p>
+		</li>
+		<li><p class="sp">Значение <b>false</b> в тексте формата JSON представляется как строка <code>false</code>.</p>
+	</li></ul><p class="sp"><b>ПРИМЕЧАНИЕ 3</b> Строковые значения заключаются в двойные кавычки. Символы <code><b>&quot;</b></code> и <code><b>\</b></code> отключаются префиксами <code><b>\</b></code>. Управляющие символы заменяются управляющими последовательностями <code><b>\u</b></code>HHHH, или более краткими формами &ndash; <code><b>\b</b></code> (возврат), <code><b>\f</b></code> (перевод страницы), <code><b>\n</b></code> (перевод строки), <code><b>\r</b></code> (возврат каретки), <code><b>\t</b></code> (табуляция).</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 4</b> Конечные числа преобразуются в строковую форму как если бы при вызове <a href="x9.html#x9.8">ToString</a><b>(</b><i>number</i><b>)</b>. <b>NaN</b> и бесконечность Infinity, независимо от знака, представляются в виде строки <code><b>null</b></code>.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 5</b> Значения, не имеющие представления в формате JSON (<b>undefined</b> и функции) строки не образуют,  а образуют значение undefined. В массивах эти значения представлены строкой <code><b>null</b></code>. В объектах непредставимые значения приводят к тому, что свойство исключается из преобразования в строковую форму.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 6</b> Объект представляется следующим образом: открывающая фигурная скобка, затем свойства в количестве ноль или более, разделённые запятыми, затем закрывающая фигурная скобка. Свойство отображается в виде заключённой в кавычки строки, представляющей собой key или имя свойства, затем двоеточие, а затем значение свойства, преобразованное в строковую форму. Массив представляется следующим образом: открывающая квадратная скобка, затем свойства в количестве ноль или более, разделённые запятыми, затем закрывающая квадратная скобка.</p>
+	</body><script src="anno.js"></script></html>

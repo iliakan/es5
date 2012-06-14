@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="../style.css">
+	<P CLASS="cjk" STYLE="margin-bottom: 0.42cm"><FONT FACE="Arial, sans-serif"><SPAN LANG="en-GB">(Оригинальный алгоритм производит в шагах 5 и 7 проверку пригодности, несовместимую с другими случаями использования родового массива в данной спецификации.)</SPAN></FONT></P>
+	<OL START=4>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>len</I> будет результатом вызова внутреннего метода [[Get]] для <I>argArray</I> с аргументом <FONT FACE="Courier New, monospace"><B>&quot;length&quot;</B></FONT>.</SPAN></FONT></P>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000"><STRIKE>Если </STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE><I>len</I></STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE> равно </STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE><B>null</B></STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE> или </STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE><B>undefined</B></STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE>, сгенерировать исключение </STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE><B>TypeError</B></STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE>.</STRIKE></FONT></SPAN></FONT></P>
+	</OL>
+	<OL START=5>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>n</I> будет ToUint32(<I>len</I>).</SPAN></FONT></P>
+	</OL>
+	<OL START=7>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB"><FONT COLOR="#ff0000"><STRIKE>Если </STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE><I>n</I></STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE> не равно ToNumber(</STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE><I>len</I></STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE>), сгенерировать исключение </STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE><B>TypeError</B></STRIKE></FONT><FONT COLOR="#ff0000"><STRIKE>.</STRIKE></FONT></SPAN></FONT></P>
+	</OL>
+	<OL START=6>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>argList</I>  будет пустым списком List.</SPAN></FONT></P>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>index</I> будет 0.</SPAN></FONT></P>
+		<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Повторить, пока <I>index</I> &lt; <I>n</I></SPAN></FONT></P>
+		<OL>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>indexName</I> будет ToString(<I>index</I>).</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Пусть <I>nextArg</I> будет результатом вызова внутреннего метода [[Get]] для <I>argArray</I> с передачей <I>indexName</I> в качестве аргумента.</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Присоедините <I>nextArg</I> в качестве последнего элемента <I>argList</I>.</SPAN></FONT></P>
+			<LI><P ALIGN=LEFT STYLE="margin-bottom: 0cm; line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Присвойте <I>index</I> значение <I>index</I> + 1.</SPAN></FONT></P>
+		</OL>
+		<LI><P ALIGN=LEFT STYLE="line-height: 100%"><FONT FACE="Times New Roman, serif"><SPAN LANG="en-GB">Вернуть результат вызова внутреннего метода [[Call]] для <I>func</I>, передавая <I>thisArg</I> в качестве значения <B>this</B> и <I>argList </I>в качестве списка аргументов.</SPAN></FONT></P>
+	</OL>

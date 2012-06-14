@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.6 Объекты Boolean # &#9417; &#9402; &#9312; &#9398; &#8212; Annotated ES5</title><link rel="stylesheet" href="style.css"><link href="x15.5.html" title="15.5 Объекты String " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.7.html" title="15.7 Объекты Number  " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x15.5.html">&#8592; 15.5 Объекты String </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.7.html">15.7 Объекты Number &#8594;</a>
+
+   <ol class="toc"><li><ol><li><a href="x15.6.html#x15.6" id="x15.6-toc">15.6 Boolean Objects</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.6.html#x15.6.1" id="x15.6.1-toc">15.6.1 Вызов конструктора Boolean как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.6.html#x15.6.1.1" id="x15.6.1.1-toc">15.6.1.1 Boolean (value)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.6.html#x15.6.2" id="x15.6.2-toc">15.6.2 Конструктор Boolean</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.6.html#x15.6.2.1" id="x15.6.2.1-toc">15.6.2.1 new Boolean (value)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.6.html#x15.6.3" id="x15.6.3-toc">15.6.3 Свойства конструктора Boolean</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.6.html#x15.6.3.1" id="x15.6.3.1-toc">15.6.3.1 Boolean.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.6.html#x15.6.4" id="x15.6.4-toc">15.6.4 Свойства объекта-прототипа Boolean</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.6.html#x15.6.4.1" id="x15.6.4.1-toc">15.6.4.1 Boolean.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.6.html#x15.6.4.2" id="x15.6.4.2-toc">15.6.4.2 Boolean.prototype.toString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.6.html#x15.6.4.3" id="x15.6.4.3-toc">15.6.4.3 Boolean.prototype.valueOf ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.6.html#x15.6.5" id="x15.6.5-toc">15.6.5 Свойства экземпляров Boolean</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.6" class="splitme">15.6 Объекты Boolean <a href="#x15.6">#</a> <a href="#x15.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<h4 id="x15.6.1">15.6.1 Вызов конструктора Boolean как функции <a href="#x15.6.1">#</a> <a href="#x15.6.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове <code><b>Boolean</b></code> не в качестве конструктора, а в качестве функции, производится преобразование типов.</p>
+	<h5 id="x15.6.1.1">15.6.1.1 Boolean (value) <a href="#x15.6.1.1">#</a> <a href="#x15.6.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает значение типа Boolean (а не объект Boolean), вычисляемое абстрактной операцией <a href="x9.html#x9.2">ToBoolean</a>(<i>value</i>).</p>
+	<h4 id="x15.6.2">15.6.2 Конструктор Boolean <a href="#x15.6.2">#</a> <a href="#x15.6.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><b>Boolean</b></code> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует создаваемый объект.</p>
+	<h5 id="x15.6.2.1">15.6.2.1 new Boolean (value) <a href="#x15.6.2.1">#</a> <a href="#x15.6.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Boolean, который представляет собой начальное значение свойства <code><b>Boolean.prototype</b></code> (<a href="#x15.6.3.1">15.6.3.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта Boolean устанавливается равным <code><b>&quot;Boolean&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] создаваемого объекта Boolean устанавливается равным <a href="x9.html#x9.2">ToBoolean</a>(<i>value</i>).</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<h4 id="x15.6.3">15.6.3 Свойства конструктора Boolean <a href="#x15.6.3">#</a> <a href="#x15.6.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора Boolean является объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Кроме внутренних свойств и свойства <code><b>length</b></code> со значением <b>1</b>, конструктор Boolean имеет следующее свойство:</p>
+	<h5 id="x15.6.3.1">15.6.3.1 Boolean.prototype <a href="#x15.6.3.1">#</a> <a href="#x15.6.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Boolean.prototype</b></code> является объект-прототип Boolean (<a href="#x15.6.4">15.6.4</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h4 id="x15.6.4">15.6.4 Свойства объекта-прототипа Boolean <a href="#x15.6.4">#</a> <a href="#x15.6.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Объект-прототип Boolean представляет собой объект типа Boolean (его [[Class]] равен <code><b>&quot;Boolean&quot;</b></code>), значение которого равно <b>false</b>.</p>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа Boolean является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>).</p>
+	<h5 id="x15.6.4.1">15.6.4.1 Boolean.prototype.constructor <a href="#x15.6.4.1">#</a> <a href="#x15.6.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Boolean.prototype.constructor</b></code> является встроенный конструктор <code><b>Boolean</b></code>.</p>
+	<h5 id="x15.6.4.2">15.6.4.2 Boolean.prototype.toString ( ) <a href="#x15.6.4.2">#</a> <a href="#x15.6.4.2-toc" class="bak">?</a> <b class="erra">?</b> <b class="rev1">?</b> <b class="anno">?</b></h5>
+	<p>
+	Выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>B</i> будет значением <b>this</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>B</i>) равно Boolean, то пусть <i>b</i> будет <i>B</i>.</p>
+		</li>
+		<li><p>
+		Иначе, если <a href="x8.html#Type">Type</a>(<i>B</i>) равен Object, и значение внутреннего свойства [[Class]] для <i>B</i> равно <code><b>&quot;Boolean&quot;</b></code>, то пусть <i>b</i> будет значением внутреннего свойства [[PrimitiveValue]] для&nbsp;<i>B</i>.</p>
+		</li>
+		<li><p>
+		Иначе сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>b</i> равно <b>true</b>, то вернуть <code><b>&quot;true&quot;</b></code>; иначе вернуть <code><b>&quot;false&quot;</b></code>.</p>
+	</li></ol>
+	<h5 id="x15.6.4.3">15.6.4.3 Boolean.prototype.valueOf ( ) <a href="#x15.6.4.3">#</a> <a href="#x15.6.4.3-toc" class="bak">?</a> <b class="erra">?</b> <b class="rev1">?</b> <b class="anno">?</b></h5>
+	<p>
+	Выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>B</i> будет значением <b>this</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>B</i>) равно Boolean, то пусть <i>b</i> будет <i>B</i>.</p>
+		</li>
+		<li><p>
+		Иначе, если <a href="x8.html#Type">Type</a>(<i>B</i>) равен Object, и значение внутреннего свойства [[Class]] для <i>B</i> равно <code><b>&quot;Boolean&quot;</b></code>, то пусть <i>b</i> будет значением внутреннего свойства [[PrimitiveValue]] для&nbsp;<i>B</i>.</p>
+		</li>
+		<li><p>
+		Иначе сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>b</i>.</p>
+	</li></ol>
+	<h4 id="x15.6.5">15.6.5 Свойства экземпляров Boolean <a href="#x15.6.5">#</a> <a href="#x15.6.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Экземпляры Boolean наследуют свойства объекта-прототипа Boolean. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;Boolean&quot;</b></code>. Кроме того, экземпляры Boolean имеют внутреннее свойство [[PrimitiveValue]].</p>
+	<p>
+	Внутреннее свойство [[PrimitiveValue]] представляет собой значение Boolean, представленное этим объектом Boolean.</p>
+	</body><script src="anno.js"></script></html>

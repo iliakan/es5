@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.10 Объекты RegExp (регулярные выражения) # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.9.html" title="15.9 Объекты Date " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.11.html" title="15.11 Объекты Error " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x15.9.html">&#8592; 15.9 Объекты Date </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.11.html">15.11 Объекты Error  &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.10.html#x15.10" id="x15.10-toc">15.10 Объекты RegExp (регулярное выражение)</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.10.html#x15.10.1" id="x15.10.1-toc">15.10.1 Шаблоны</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2" id="x15.10.2-toc">15.10.2 Семантика шаблонов</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.10.html#x15.10.2.1" id="x15.10.2.1-toc">15.10.2.1 Обозначения</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.2" id="x15.10.2.2-toc">15.10.2.2 Шаблон (Pattern)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.3" id="x15.10.2.3-toc">15.10.2.3 Дизъюнкция (Disjunction)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.4" id="x15.10.2.4-toc">15.10.2.4 Альтернатива (Alternative)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.5" id="x15.10.2.5-toc">15.10.2.5 Элемент (Term)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.6" id="x15.10.2.6-toc">15.10.2.6 Утверждение (Assertion)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.7" id="x15.10.2.7-toc">15.10.2.7 Квантификатор (Quantifier)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.8" id="x15.10.2.8-toc">15.10.2.8 Атом (Atom)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.9" id="x15.10.2.9-toc">15.10.2.9 AtomEscape</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.10" id="x15.10.2.10-toc">15.10.2.10 CharacterEscape</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.11" id="x15.10.2.11-toc">15.10.2.11 DecimalEscape</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.12" id="x15.10.2.12-toc">15.10.2.12 CharacterClassEscape</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.13" id="x15.10.2.13-toc">15.10.2.13 CharacterClass</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.14" id="x15.10.2.14-toc">15.10.2.14 ClassRanges</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.15" id="x15.10.2.15-toc">15.10.2.15 NonemptyClassRanges</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.16" id="x15.10.2.16-toc">15.10.2.16 NonemptyClassRangesNoDash</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.17" id="x15.10.2.17-toc">15.10.2.17 ClassAtom</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.18" id="x15.10.2.18-toc">15.10.2.18 ClassAtomNoDash</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.2.19" id="x15.10.2.19-toc">15.10.2.19 ClassEscape</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.10.html#x15.10.3" id="x15.10.3-toc">15.10.3 Вызов конструктора RegExp как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.10.html#x15.10.3.1" id="x15.10.3.1-toc">15.10.3.1 RegExp(pattern, flags)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.10.html#x15.10.4" id="x15.10.4-toc">15.10.4 Конструктор RegExp</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.10.html#x15.10.4.1" id="x15.10.4.1-toc">15.10.4.1 new RegExp(pattern, flags)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.10.html#x15.10.5" id="x15.10.5-toc">15.10.5 Свойства конструктора RegExp</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.10.html#x15.10.5.1" id="x15.10.5.1-toc">15.10.5.1 RegExp.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.10.html#x15.10.6" id="x15.10.6-toc">15.10.6 Свойства объекта-прототипа RegExp</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.10.html#x15.10.6.1" id="x15.10.6.1-toc">15.10.6.1 RegExp.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.6.2" id="x15.10.6.2-toc">15.10.6.2 RegExp.prototype.exec(string)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.6.3" id="x15.10.6.3-toc">15.10.6.3 RegExp.prototype.test(string)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.6.4" id="x15.10.6.4-toc">15.10.6.4 RegExp.prototype.toString()</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.10.html#x15.10.7" id="x15.10.7-toc">15.10.7 Свойства экземпляров RegExp</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.10.html#x15.10.7.1" id="x15.10.7.1-toc">15.10.7.1 source</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.7.2" id="x15.10.7.2-toc">15.10.7.2 global</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.7.3" id="x15.10.7.3-toc">15.10.7.3 ignoreCase</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.7.4" id="x15.10.7.4-toc">15.10.7.4 multiline</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.10.html#x15.10.7.5" id="x15.10.7.5-toc">15.10.7.5 lastIndex</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.10" class="splitme">15.10 Объекты RegExp (регулярное выражение) <a href="#x15.10">#</a> <a href="#x15.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Объект RegExp содержит регулярное выражение и связанные с ним флаги.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Вид и функциональные возможности регулярных выражений созданы по образцу средств регулярных выражений в языке программирования Perl&nbsp;5.</p>
+	<h4 id="x15.10.1">15.10.1 Шаблоны <a href="#x15.10.1">#</a> <a href="#x15.10.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Конструктор <code><b>RegExp</b></code> применяет к входной строке-шаблону следующую грамматику. Если грамматика не может интерпретировать строку как развёртывание шаблона <i>Pattern</i>, происходит ошибка.</p>
+	<p class="tiny-btm">
+	<b>Синтаксис</b></p>
+	<p class="keep">
+	<i>Pattern </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>Disjunction</i></p>
+	<p class="keep">
+	<i>Disjunction </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>Alternative<br> Alternative </i><code><b>|</b></code> <i>Disjunction</i></p>
+	<p class="keep">
+	<i>Alternative </i><b>::</b></p>
+	<p class="def1-btm">
+	[пусто]<i><br>Alternative Term</i></p>
+	<p class="keep">
+	<i>Term </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>Assertion<br>Atom<br>Atom Quantifier</i></p>
+	<p class="keep">
+	<i>Assertion </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>^</b></code> <i><br></i><code><b>$</b></code> <i><br></i><code><b>\ b</b></code> <i><br></i><code><b>\ B<br>(</b></code> <code><b>?</b></code> <i><b></b></i><code><b>=</b></code> <i>Disjunction </i><code><b>)</b></code> <i><br></i><code><b>(</b></code> <code><b>?</b></code> <i><b></b></i><code><b>!</b></code> <i><b></b>Disjunction </i><code><b>)</b></code></p>
+	<p class="keep">
+	<i>Quantifier </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>QuantifierPrefix<br>QuantifierPrefix</i><code><b>?</b></code></p>
+	<p class="keep">
+	<i>QuantifierPrefix </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>*<br>+</b></code> <i><br></i><code><b>?</b></code> <i><br></i><code><b>{</b></code> <i>DecimalDigits </i><code><b>}</b></code> <i><br></i><code><b>{</b></code> <i>DecimalDigits</i><code><b>,</b></code> <code><b>}</b></code> <i><br></i><code><b>{</b></code> <i>DecimalDigits</i><code><b>,</b></code> <i>DecimalDigits </i><code><b>}</b></code></p>
+	<p class="keep">
+	<i>Atom </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>PatternCharacter<br></i><code>.</code><i><br></i><code><b>\</b></code> <i>AtomEscape<br>CharacterClass</i><code><b><br>(</b></code> <i>Disjunction </i><code><b>)</b></code> <i><br></i><code><b>(</b></code> <code><b>?</b></code> <i><b></b></i><code><b>:</b></code> <i><b></b>Disjunction </i><code><b>)</b></code></p>
+	<p class="keep">
+	<i>PatternCharacter </i><b>::</b><i>SourceCharacter </i><b>но не один из следующих</b><b>:</b></p>
+	<p class="def1-btm">
+	<i>^ </i><code><b>$ \  .  *  +  ?  (  )  [  ]  {  }  |</b></code></p>
+	<p class="keep">
+	<i>AtomEscape </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>DecimalEscape<br>CharacterEscape<br>CharacterClassEscape</i></p>
+	<p class="keep">
+	<i>CharacterEscape </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>ControlEscape<br></i><code><b>c</b></code> <i>ControlLetter<br>HexEscapeSequence<br>UnicodeEscapeSequence<br>IdentityEscape</i></p>
+	<p class="keep">
+	<i>SingleEscapeCharacter </i><b>:: </b><b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>f n  r  t  v</b></code></p>
+	<p class="keep">
+	<i>ControlLetter </i><b>:: </b><b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>a b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x y  z<br>A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T U  V  W  X  Y  Z</b></code></p>
+	<p class="keep">
+	<i>IdentityEscape </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter </i><b>но не </b><i>IdentifierPart<br></i>&lt;ZWJ&gt;<br>&lt;ZWNJ&gt;</p>
+	<p class="keep">
+	<i>DecimalEscape </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>DecimalIntegerLiteral </i>[<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> DecimalDigit]</p>
+	<p class="keep">
+	<i>CharacterClassEscape </i><b>:: </b><b>один из</b></p>
+	<p class="def1-btm">
+	<code><b>d D  s  S  w  W</b></code></p>
+	<p class="keep">
+	<i>CharacterClass </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>[</b></code>[<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> {<code><b>^</b></code>}]<code></code> <i>ClassRanges</i><code><b>]</b></code> <i><br></i><code><b>[ ^</b></code> <i>ClassRanges</i><code><b>]</b></code></p>
+	<p class="keep">
+	<i>ClassRanges </i><b>::</b></p>
+	<p class="def1-btm">
+	[пусто]<i><br>NonemptyClassRanges</i></p>
+	<p class="keep">
+	<i>NonemptyClassRanges </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>ClassAtom<br>ClassAtom NonemptyClassRangesNoDash<br>ClassAtom</i><code><b>-</b></code> <i>ClassAtom ClassRanges</i></p>
+	<p class="keep">
+	<i>NonemptyClassRangesNoDash </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>ClassAtom<br>ClassAtomNoDash NonemptyClassRangesNoDash<br>ClassAtomNoDash</i><code><b>-</b></code> <i>ClassAtom ClassRanges</i></p>
+	<p class="keep">
+	<i>ClassAtom </i><b>::</b></p>
+	<p class="def1-btm">
+	<code><b>-</b></code> <i><br>ClassAtomNoDash</i></p>
+	<p class="keep">
+	<i>ClassAtomNoDash </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>SourceCharacter </i><b>но не один из</b><i> </i><code><b>\</b></code> <b>или</b> <code><b>]</b></code> <b>или</b> <code><b>-</b></code> <i><br></i><code>\</code><i>ClassEscape</i></p>
+	<p class="keep">
+	<i>ClassEscape </i><b>::</b></p>
+	<p class="def1-btm">
+	<i>DecimalEscape<br></i><code><b>b</b></code> <i><br>CharacterEscape</i><code><b><br></b></code> <i>CharacterClassEscape</i></p>
+	<h4 id="x15.10.2">15.10.2 Семантика шаблонов <a href="#x15.10.2">#</a> <a href="#x15.10.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Шаблон регулярного выражения преобразуется во внутреннюю процедуру с помощью описанных ниже алгоритмов. Реализации рекомендуется использовать более эффективные алгоритмы, чем представленные ниже, если их результат будет таким же. Внутренняя процедура используется в качестве значения внутреннего свойства [[Match]] объекта RegExp.</p>
+	<h5 id="x15.10.2.1">15.10.2.1 Обозначения <a href="#x15.10.2.1">#</a> <a href="#x15.10.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	В приведённых ниже описаниях используются следующие переменные:</p>
+	<ul><li><p>
+		<dfn id="Input-RegExp"><i>Input</i></dfn> &ndash; строка, в которой производится поиск совпадения с шаблоном регулярного выражения. Запись <i>input</i>[<i>n</i>] означает символ номер <i>n</i> строки <i>input</i>, где <i>n</i> может находиться в диапазоне от 0 включительно до <i>InputLength</i> (не включительно).</p>
+		</li>
+		<li><p>
+		<dfn id="InputLength"><i>InputLength</i></dfn> &ndash; количество символов в строке <i>Input</i>.</p>
+		</li>
+		<li><p>
+		<dfn id="NcapturingParens"><i>NcapturingParens</i></dfn> &ndash; общее количество открывающих захватывающих скобок (то есть, общее количество развёртываний правила <i>Atom</i> <b>::</b> <code><b>(</b></code><i>Disjunction</i> <code><b>)</b></code>) в шаблоне. Открывающая захватывающая скобка &ndash; символ шаблона <code><b>(</b></code>, которому соответствует терминал <code><b>(</b></code> правила <i>Atom</i> <b>::</b> <code><b>(</b></code><i>Disjunction</i> <code><b>)</b></code>.</p>
+		</li>
+		<li><p>
+		<dfn id="IgnoreCase"><i>IgnoreCase</i></dfn> &ndash; установочное значение свойства <code><b>ignoreCase</b></code> <tt>игнорировать регистр</tt> объекта RegExp.</p>
+		</li>
+		<li><p>
+		<dfn id="Multiline"><i>Multiline</i></dfn> &ndash; установочное значение свойства <code><b>multiline</b></code> <tt>многострочный</tt> объекта RegExp.</p>
+	</li></ul><p>
+	Кроме того, в приведённых ниже описаниях используются следующие внутренние структуры данных:</p>
+	<ul><li><p>
+		<dfn id="CharSet"><i>CharSet</i></dfn> <tt>набор символов</tt> представляет собой математический набор символов.</p>
+		</li>
+		<li><p>
+		<dfn id="State"><i>State</i></dfn> <tt>состояние</tt> &ndash; упорядоченная пара (<i>endIndex</i>, <i>captures</i>), где <dfn id="endIndex"><i>endIndex</i></dfn> &ndash; целое число, а <dfn id="captures"><i>captures</i></dfn> &ndash; внутренний массив значений в количестве <i><a href="#NcapturingParens">NcapturingParens</a></i>. Состояния <i>states</i> используются для представления состояний частичного совпадения в алгоритмах нахождения совпадений с регулярным выражением. Значение <i>endIndex</i> на единицу больше, чем индекс последнего на данный момент входного символа, совпадающего с шаблоном, а <i>captures</i> хранит результаты захватывающих скобок. Элемент номер <i>n</i> из <i>captures</i> либо равен строке, представляющей собой значение, полученное <i>n</i>-ным набором захватывающих скобок, либо равен <b>undefined</b>, если <i>n</i>-ный набор захватывающих скобок еще не был достигнут. Поскольку производится поиск с возвратами, в процессе поиска совпадений в любой момент может использоваться несколько состояний&nbsp;<i>States</i>.</p>
+		</li>
+		<li><p>
+		<dfn id="MatchResult"><i>MatchResult</i></dfn> <tt>результат совпадения</tt> представляет собой либо <i><a href="#State">State</a></i>, либо специальный токен <b>failure</b>, который указывает на то, что поиск совпадений оказался неуспешным.</p>
+		</li>
+		<li><p>
+		Процедура <dfn id="Continuation"><i>Continuation</i></dfn> <tt>продолжение</tt> представляет собой внутреннее замкнутое выражение (то есть, внутреннюю процедуру, у которой некоторые аргументы уже привязаны к значениям), принимающее один аргумент <i><a href="#State">State</a></i> и возвращающее результат <i><a href="#MatchResult">MatchResult</a></i>. Если внутреннее замкнутое выражение ссылается на переменные, привязанные к функции, создавшей это замкнутое выражение, то это выражение будет использовать значения этих переменных в момент создания этого замкнутого выражения. <i><a href="#Continuation">Continuation</a></i> предпринимает попытку найти совпадения с оставшейся частью шаблона (заданной аргументами, уже привязанными к замкнутому выражению) во входной строке, начиная с промежуточного состояния, указанного его аргументом <i><a href="#State">State</a></i>. Если совпадение было успешно найдено, то <i><a href="#Continuation">Continuation</a></i> возвращает последний достигнутый <i><a href="#State">State</a></i>, если же поиск совпадений оказался неуспешным, то <i><a href="#Continuation">Continuation</a></i> возвращает <b>failure</b>.</p>
+		</li>
+		<li><p>
+		Процедура <dfn id="Matcher"><i>Matcher</i></dfn> <tt>обнаружитель совпадений</tt> представляет собой внутреннее замкнутое выражение, принимающее два аргумента &ndash; <i><a href="#State">State</a></i> и <i><a href="#Continuation">Continuation</a></i>, и возвращающее результат <i><a href="#MatchResult">MatchResult</a></i>. <i>Matcher</i> предпринимает попытку найти совпадения со средним подшаблоном (заданным аргументами, уже привязанными к замкнутому выражению) во входной строке, начиная с промежуточного состояния, указанного его аргументом <i><a href="#State">State</a></i>. Аргумент <i><a href="#Continuation">Continuation</a></i> должен быть замкнутыми выражением, который ищет совпадения с оставшейся частью шаблона. После нахождения совпадения с  подшаблоном для получения нового <i><a href="#State">State</a></i>, <i><a href="#Matcher">Matcher</a></i> вызывает для этого нового <i><a href="#State">State</a></i> продолжение <i><a href="#Continuation">Continuation</a></i>, чтобы проверить, можно ли найти совпадение и в оставшейся части шаблона. Если это возможно, обнаружитель совпадений возвращает <i><a href="#State">State</a></i>, полученное в результате вызова <i><a href="#Continuation">Continuation</a></i>. Если это невозможно, <i><a href="#Matcher">Matcher</a></i> может в точках выбора попробовать сделать другой выбор, постоянно вызывая <i><a href="#Continuation">Continuation</a></i> то тех пор, пока либо эта процедура не увенчается успехом, либо все варианты будут исчерпаны.</p>
+		</li>
+		<li><p>
+		Процедура <dfn id="AssertionTester"><i>AssertionTester</i></dfn> <tt>тестер утверждений</tt> представляет собой внутреннее замкнутое выражение, принимающее аргумент <i><a href="#State">State</a></i> и возвращающее булев результат. Это тестер утверждений проверяет особое условие (заданное аргументами, уже привязанными к замкнутому выражению) в текущем месте входной строки, и возвращает <b>true</b> при совпадении условия, и <b>false</b>, если условие на выполняется.</p>
+		</li>
+		<li><p>
+		<dfn id="EscapeValue"><i>EscapeValue</i></dfn> <tt>значение escape</tt> представляет собой либо символ, либо целое число. <i>EscapeValue</i> используется для обозначения способа интерпретации управляющей последовательности <i>DecimalEscape</i>: символ <i>ch</i> означает, что управляющая последовательность интерпретируется как символ <i>ch</i>, а целое число <i>n</i> означает, что управляющая последовательность интерпретируется как обратная ссылка на <i>n</i>-ный набор захватывающих скобок.</p>
+	</li></ul>
+	<h5 id="x15.10.2.2">15.10.2.2 Шаблон (Pattern) <a href="#x15.10.2.2">#</a> <a href="#x15.10.2.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>Pattern</i><b>:: </b><i>Disjunction</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Disjunction</i> , получив в результате <a href="#Matcher">Matcher</a> <i>m</i>.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение, принимающее два аргумента &ndash; строку <i>str</i> и целое число <i>index</i>, и выполняющее следующие действия:</p>
+		</li>
+</ol><ol class="indent1"><li><p>
+		Пусть <i><a href="#Input-RegExp">Input</a></i> будет заданной строкой <i>str</i>. Эта переменная будет использоваться во всех алгоритмах в пункте&nbsp;<a href="#x15.10.2">15.10.2</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i><a href="#InputLength">InputLength</a></i> будет длиной для&nbsp;<i><a href="#Input-RegExp">Input</a></i>. Эта переменная будет использоваться во всех алгоритмах в пункте&nbsp;<a href="#x15.10.2">15.10.2</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>c</i> будет <a href="#Continuation">Continuation</a>, которое всегда возвращает свой аргумент <a href="#State">State</a> в качестве успешного результата совпадений <a href="#MatchResult">MatchResult</a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>cap</i> будет внутренним массивом из значений <b>undefined</b> в количестве <i><a href="#NcapturingParens">NcapturingParens</a></i> с индексом от 1 до <i><a href="#NcapturingParens">NcapturingParens</a></i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>x</i> будет <a href="#State">State</a> (<i>index</i>, <i>cap</i>).</p>
+		</li>
+		<li><p>
+		Вызвать <i>m</i>(<i>x</i>, <i>c</i>) и вернуть результат.</p>
+	</li>
+</ol><p><b>ПРИМЕЧАНИЕ</b> Шаблон вычисляет ("компилирует") значение внутренней процедуры. Затем <code><b><a href="#x15.10.6.2">RegExp.prototype.exec</a></b></code> может применить эту процедуру к строке и к смещению в этой строке, чтобы определить, будет ли найдено соответствие для шаблона, если начать именно с места  смещения, и, если да &ndash; то какими будут значения захватывающих скобок. Алгоритмы в пункте&nbsp;<a href="#x15.10.2">15.10.2</a> рассчитаны на то, чтобы при компиляции шаблона было возможно сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>. С другой стороны, после того, как компиляция шаблона была успешно произведена, применение результирующей внутренней процедуры для нахождения соответствия в строке не может сгенерировать исключения (кроме исключений, заданных средой, которые могут возникнуть где угодно &ndash; например, исключительная ситуация из-за нехватки памяти).</p>
+	<h5 id="x15.10.2.3">15.10.2.3 Дизъюнкция (Disjunction) <a href="#x15.10.2.3">#</a> <a href="#x15.10.2.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>Disjunction</i> <b>:: </b><i>Alternative</i> производится вычисление <i>Alternative</i> для получения <i><a href="#Matcher">Matcher</a></i>, а затем возврат этого <i><a href="#Matcher">Matcher</a></i>.</p>
+	<p>
+	Для вычисления <i>Disjunction</i> <b>:: </b><i>Alternative</i> <code><b>|</b></code> <i>Disjunction</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Alternative</i> для получения <a href="#Matcher">Matcher</a> <i>m1</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>Disjunction</i> для получения <a href="#Matcher">Matcher</a> <I>m2</I>.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполнить следующие шаги:</p>
+		<ol><ol><ol><li><p>
+					Вызвать <i>m1</i>(<i>x</i>, <i>c</i>), и пусть <i>r</i> будет его результатом.</p>
+					</li>
+					<li><p>
+					Если <i>r</i> не равно <b>failure</b>, вернуть <i>r</i>.</p>
+					</li>
+					<li><p>
+					Вызвать <i>m2</i>(<i>x</i>, <i>c</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li></ol><p>
+	</p><p><b>ПРИМЕЧАНИЕ</b> Оператор регулярного выражения <code><b>|</b></code> разделяет две альтернативы. Сначала шаблон пытается найти совпадение с левой альтернативой <i>Alternative</i> (за которой следует продолжение регулярного выражения). Если это ему не удаётся, он пытается найти совпадение с правой дизъюнкцией <i>Disjunction</i> (за которой следует продолжение регулярного выражения). Если точки выбора альтернативы есть и в левой <i>Альтернативе</i>, и в правой <i>Дизъюнкции</i>, и в продолжении, то перед тем, как переходить к следующему варианту выбора в левой <i>Альтернативе</i>, необходимо попробовать все варианты выбора в продолжении.  Если все варианты выбора в левой <i>Альтернативе</i> исчерпаны, то вместо левой <i>Альтернативы</i> необходимо проверить правую <i>Дизъюнкцию</i>. Если в результате использования оператора <code><b>|</b></code> пропускаются захватывающие скобки внутри части шаблона, то вместо строк получается значение <b>undefined</b>. Так, например,</p>
+	<p class="code-example">
+	<code><b>/a|ab/.exec(&quot;abc&quot;)</b></code></p>
+	<p>возвращает результат <code><b>&quot;a&quot;</b></code>, а не <code><b>&quot;ab&quot;</b></code>. Кроме того, </p>
+	<p class="code-example">
+	<code><b>/((a)|(ab))((c)|(bc))/.exec(&quot;abc&quot;)</b></code></p>
+	<p>возвращает массив</p>
+	<p class="code-example">
+	<code><b>[&quot;abc&quot;, &quot;a&quot;, &quot;a&quot;, undefined, &quot;bc&quot;, undefined, &quot;bc&quot;]</b></code></p>
+	<p>а не </p>
+	<p class="code-example">
+	<code><b>[&quot;abc&quot;, &quot;ab&quot;, undefined, &quot;ab&quot;, &quot;c&quot;, &quot;c&quot;, undefined]</b></code></p>
+	<h5 id="x15.10.2.4">15.10.2.4 Альтернатива (Alternative) <a href="#x15.10.2.4">#</a> <a href="#x15.10.2.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>Alternative</i> <b>:: </b>[пусто] производится возврат <a href="#Matcher">Matcher</a>, принимающего два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и возвращающего результат вызова&nbsp;<i>c</i>(<i>x</i>).</p>
+	<p>
+	Для вычисления <i>Alternative</i> <b>:: </b><i>Alternative</i> <I>Term </I>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Alternative</i> для получения <a href="#Matcher">Matcher</a> <i>m1</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>Term</i> для получения <a href="#Matcher">Matcher</a> <I>m2</I>.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполняющее следующие шаги:</p>
+		<ol><ol><ol><li><p>
+					Создать <a href="#Continuation">Continuation</a> <i>d</i>, принимающее аргумент <a href="#State">State</a> <i>y</i> и возвращающее результат вызова <i>m2</i>(<i>y</i>, <i>c</i>).</p>
+					</li>
+					<li><p>
+					Вызвать <i>m1</i>(<i>x</i>, <i>d</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li></ol><p><b>ПРИМЕЧАНИЕ</b> Последовательно следующие друг за другом <i>Terms</i> пытаются одновременно соответствовать последовательным частям входной строки. Если точки выбора есть и в левом <i>Alternative</i>, и в правом элементе <i>Term</i>, и в продолжении регулярного выражения, то перед тем, как переходить к следующему варианту выбора в правом <i>Term</i>, необходимо попробовать все варианты выбора в продолжении, и прежде чем перейти к следующему варианту выбора в левом <i>Alternative</i>, необходимо проверить все варианты выбора в правом <i>Term</i>.</p>
+	<h5 id="x15.10.2.5">15.10.2.5 Элемент (Term) <a href="#x15.10.2.5">#</a> <a href="#x15.10.2.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>Term</i> <b>::</b><i>Assertion</i> вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполняющее следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Assertion</i> для получения <a href="#AssertionTester">AssertionTester</a> <i>t</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i>t</i>(<i>x</i>), и пусть <i>r</i> будет полученным булевым значением.</p>
+		</li>
+		<li><p>
+		Если <i>r</i> равно <b>false</b>, вернуть <b>failure</b>.</p>
+		</li>
+		<li><p>
+		Вызвать <i>c</i>(<i>x</i>) и вернуть результат.</p>
+	</li></ol><p>
+	Для вычисления <i>Term</i> <b>::</b><i>Atom</i> производится вычисление <i>Atom</i> для получения <a href="#Matcher">Matcher</a>, а затем возврат этого <a href="#Matcher">Matcher</a>.</p>
+	<p>
+	Для вычисления <i>Term</i> <b>::</b><i>Atom</i> <i>Quantifier</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Atom</i> для получения <a href="#Matcher">Matcher</a> <i>m</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>Quantifier</i> и получить три результата: целое <i>min</i>, целое (или <span class="symbol">&#8734;</span>) <i>max</i>, и булево <i>greedy</i>.</p>
+		</li>
+		<li><p>
+		Если <i>max</i> &ndash; конечное число, меньшее чем <i>min</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>parenIndex</i> будет количеством открывающих захватывающих скобок во всём регулярном выражении, которые находятся слева от элемента <i>Term</i> этого правила. Оно равно общему количеству раз, когда правило <i>Atom</i> :: <code><b>(</b></code><i>Disjunction</i> <code><b>)</b></code> развёртывалось до элемента <i>Term</i> этого правила, плюс общее количество раз, когда этот элемент <I>Term </I>вложен в правило <i>Atom</i> :: <code><b>(</b></code><i>Disjunction</i> <code><b>)</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>parenCount</i> будет количеством открывающих захватывающих скобок в развёртывании атома <i>Atom</i> этого правила. Оно равно общему количеству раз, когда правило <i>Atom</i> :: <code><b>(</b></code><i>Disjunction</i> <code><b>)</b></code> вложено в атом <i>Atom</i> этого правила.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполнить следующие шаги:</p>
+		<ol><ol><ol><li><p>
+					Вызвать <a href="#RepeatMatcher">RepeatMatcher</a>(<i>m</i>, <i>min</i>, <i>max</i>, <i>greedy</i>, <i>x</i>, <i>c</i>, <i>parenIndex</i>, <i>parenCount</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li></ol><p>
+	Абстрактная операция <dfn id="RepeatMatcher"><i>RepeatMatcher</i></dfn> принимает восемь параметров &ndash; <a href="#Matcher">Matcher</a> <i>m</i>, целое <i>min</i>, целое (или <span class="symbol">&#8734;</span>) <i>max</i>, булево <i>greedy</i>, <a href="#State">State</a> <i>x</i>, <a href="#Continuation">Continuation</a> <i>c</i>, целое <i>parenIndex</i>, и целое <i>parenCount</i>, и выполняет следующие действия:</p>
+	<ol><li><p>
+		Если <i>max</i> равно нулю, то вызвать <i>c</i>(<i>x</i>) и вернуть результат.</p>
+		</li>
+		<li><p>
+		Создать внутреннее замкнутое выражение <a href="#Continuation">Continuation</a> <i>d</i>, принимающее один аргумент <a href="#State">State</a> <i>y</i>, и выполняющее следующие действия:</p>
+		<ol><ol><ol><li><p>
+					Если <i>min</i> равно нулю, а <i><a href="#endIndex">endIndex</a></i> для <i>y</i> равно <i><a href="#endIndex">endIndex</a></i> для <i>x</i>, вернуть <b>failure</b>.</p>
+					</li>
+					<li><p>
+					Если <i>min</i> равно нулю, пусть <i>min2</i> будет ноль; в противном случае пусть <i>min2</i> будет <i>min</i>&ndash;1.</p>
+					</li>
+					<li><p>
+					Если <i>max</i> равно <span class="symbol">&#8734;</span>, пусть <i>max2</i> будет <span class="symbol">&#8734;</span>; в противном случае пусть <i>max2</i> будет <i>max</i>&ndash;1.</p>
+					</li>
+					<li><p>
+					Вызвать <a href="#RepeatMatcher">RepeatMatcher</a>(<i>m</i>, <i>min2</i>, <i>max2</i>, <i>greedy</i>, <i>y</i>, <i>c</i>, <i>parenIndex</i>, <i>parenCount</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li>
+		<li><p>
+		Пусть <i>cap</i> будет новой копией внутреннего массива <i><a href="#captures">captures</a></i> для <i>x</i>.</p>
+		</li>
+		<li><p>
+		Для каждого целого числа <i>k</i>, удовлетворяющего условиям <i>parenIndex</i> &lt; <i>k</i> и <i>k</i> <span class="symbol">&#8804;</span> <i>parenIndex</i>+<i>parenCount</i>, установить значение <i>cap</i>[<i>k</i>] равное <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>e</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>xr</i> будет <a href="#State">State</a> (<i>e</i>, <i>cap</i>).</p>
+		</li>
+		<li><p>
+		Если <i>min</i> не равно нулю, вызвать <i>m</i>(<i>xr</i>, <i>d</i>) и вернуть результат.</p>
+		</li>
+		<li><p>
+		Если <i>greedy</i> равно <b>false</b>, то</p>
+		<ol><li><p>
+			Вызвать <i>c</i>(<i>x</i>), и пусть <i>z</i> будет результатом.</p>
+			</li>
+			<li><p>
+			Если <i>z</i> не равно <b>failure</b>, вернуть <i>z</i>.</p>
+			</li>
+			<li><p>
+			Вызвать <i>m</i>(<i>xr</i>, <i>d</i>) и вернуть результат.</p>
+		</li></ol></li>
+		<li><p>
+		Вызвать <i>m</i>(<i>xr</i>, <i>d</i>), и пусть <i>z</i> будет результатом.</p>
+		</li>
+		<li><p>
+		Если <i>z</i> не равно <b>failure</b>, вернуть <i>z</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i>c</i>(<i>x</i>) и вернуть результат.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> <I>Quantifier </I>указывает, сколько раз за атомом <i>Atom</i> следует <i>Quantifier</i>. Квантификатор <i>Quantifier</i> может быть &quot;нежадным&quot; <em>non-greedy</em> &ndash; в этом случае шаблон <i>Atom</i> повторяется наименьшее возможное количество раз, при котором он совпадает с продолжением регулярного выражения. Либо он может быть &quot;жадным&quot; <em>greedy</em>, и в этом случае он повторяется наибольшее возможное количество раз, при котором он совпадает с продолжением. Повторяется шаблон <i>Atom</i>, а не входная строка, с которой он совпадает, поэтому различные повторения <i>Atom</i> могут совпадать с различными входными подстроками.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Если точки выбора альтернативы есть и у <i>Atom</i>, и у продолжения регулярного выражения, то сначала поиск совпадений производится в <i>Atom</i> в течение наиболее возможного количества раз (или наименее возможного количества раз, если квантификатор &quot;нежадный&quot;). Прежде чем переходить к следующему варианту выбора в последнем повторении <i>Atom</i>, необходимо проверить все варианты выбора в продолжении регулярного выражения. Необходимо проверить все варианты выбора последнего (n-ного) повторения <i>Atom</i>, прежде чем переходить к следующему варианту выбора в следующем повторении <i>Atom</i> (номер n&ndash;1). В этот момент может оказаться, что теперь доступно большее или меньшее количество повторений <i>Atom</i>. Тогда необходимо исчерпать все эти повторения (опять начиная либо с наименее возможного, либо с наиболее возможного количества раз), прежде чем переходить к следующему  варианту выбора в повторении <i>Atom</i> номер n-1, и так далее.</p>
+	<p>Сравните</p>
+	<p class="code-example">
+	<code><b>/a[a-z]{2,4}/.exec(&quot;abcdefghi&quot;)</b></code></p>
+	<p>где возвращается <code><b>&quot;abcde&quot;</b></code>, с</p>
+	<p class="code-example">
+	<code><b>/a[a-z]{2,4}?/.exec(&quot;abcdefghi&quot;)</b></code></p>
+	<p class="sp">где возвращается <code><b>&quot;abc&quot;</b></code>.</p>
+	<p>Также обратите внимание на</p>
+	<p class="code-example">
+	<code><b>/(aa|aabaac|ba|b|c)*/.exec(&quot;aabaac&quot;)</b></code></p>
+	<p>которое, с учётом указанного выше порядка точки выбора возвращает массив</p>
+	<p class="code-example">
+	<code><b>[&quot;aaba&quot;, &quot;ba&quot;]</b></code></p>
+	<p>а не один из нижеперечисленных массивов:</p>
+	<p class="code-example">
+	<code><b>[&quot;aabaac&quot;, &quot;aabaac&quot;]</b></code></p>
+	<p class="code-example">
+	<code><b>[&quot;aabaac&quot;, &quot;c&quot;]</b></code></p>
+	<p>Вышеуказанный порядок точки выбора может быть использован для написания регулярного выражения, вычисляющего наибольший общий делитель из двух чисел (в унарной записи). В следующем примере вычисляется наибольший общий делитель для 10 и&nbsp;15:</p>
+	<p class="code-example">
+	<code><b>&quot;aaaaaaaaaa,aaaaaaaaaaaaaaa&quot;.replace(/^(a+)\1*,\1+$/,&quot;$1&quot;)</b></code></p>
+	<p>
+	возвращающий наибольший общий делитель в унарной записи <code><b>&quot;aaaaa&quot;</b></code>.</p>
+	<p><b class="note">ПРИМЕЧАЕНИЕ 3</b> Каждый раз при повторении <I>Atom </I>выполнение шага&nbsp;4 из <a href="#RepeatMatcher">RepeatMatcher</a> очищает <a href="#captures">captures</a> в элементе <i>Atom</i>. Можно увидеть его поведение в следующем регулярном выражении:</p>
+	<p class="code-example">
+	<code><b>/(z)((a+)?(b+)?(c))*/.exec(&quot;zaacbbbcac&quot;)</b></code></p>
+	<p>которое возвращает массив</p>
+	<p class="code-example">
+	<code><b>[&quot;zaacbbbcac&quot;, &quot;z&quot;, &quot;ac&quot;, &quot;a&quot;, undefined, &quot;c&quot;]</b></code></p>
+	<p>а не</p>
+	<p class="code-example">
+	<code><b>[&quot;zaacbbbcac&quot;, &quot;z&quot;, &quot;ac&quot;, &quot;a&quot;, &quot;bbb&quot;, &quot;c&quot;]</b></code></p>
+	<p>
+	потому что каждая итерация самого крайнего <code><b>*</b></code> очищает все захваченные строки, содержащиеся в квантифицированном <i>Atom</i>, который в этом случае включает в себя захватываемые строки номер 2, 3 и&nbsp;4.</p>
+	<p><b>ПРИМЕЧАНИЕ 4</b> Шаг 1 замкнутого выражения <i>d</i> из <a href="#RepeatMatcher">RepeatMatcher</a> утверждает, что как только было получено минимальное количество повторений, для дальнейших повторений больше не рассматриваются развёртывания <i>Atom</i>, совпадающие с пустой строкой. Это не позволяет механизму регулярного выражения оказаться в бесконечном цикле с такими шаблонами, как:</p>
+	<p class="code-example">
+	<code><b>/(a*)*/.exec(&quot;b&quot;)</b></code></p>
+	<p>или с чуть более сложным:</p>
+	<p class="code-example">
+	<code><b>/(a*)b\1+/.exec(&quot;baaaac&quot;)</b></code></p>
+	<p>который возвращает массив</p>
+	<p class="code-example">
+	<code><b>[&quot;b&quot;, &quot;&quot;]</b></code></p>
+	<h5 id="x15.10.2.6">15.10.2.6 Утверждение (Assertion) <a href="#x15.10.2.6">#</a> <a href="#x15.10.2.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>Assertion</i> <b>:: </b><code><b>^</b></code> возвращается внутреннее замкнутое выражение <a href="#AssertionTester">AssertionTester</a>, принимающее аргумент <i>x</i> для <a href="#State">State</a>, и выполняются следующие действия:</p>
+	<ol><li><p>
+		Пусть <i>e</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+		</li>
+		<li><p>
+		Если <i>e</i> равно нулю, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <i><a href="#Multiline">Multiline</a></i> равно <b>false</b>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Если символ <i><a href="#Input-RegExp">Input</a></i>[<i>e</i>&ndash;1] является одним из <i><a href="x7.html#LineTerminator">LineTerminator</a></i>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol><p>
+	Для вычисления <i>Assertion</i> <b>:: </b><code><b>$</b></code> возвращается внутреннее замкнутое выражение <a href="#AssertionTester">AssertionTester</a>, принимающее аргумент <i>x</i> для <a href="#State">State</a>, и выполняются следующие действия:</p>
+	<ol><li><p>
+		Пусть <i>e</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+		</li>
+		<li><p>
+		Если <i>e</i> равно <i><a href="#InputLength">InputLength</a></i>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <i>multiline</i> равно <b>false</b>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Если символ <i><a href="#Input-RegExp">Input</a></i>[<i>e</i>] является одним из <i><a href="x7.html#LineTerminator">LineTerminator</a></i>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol><p>
+	Для вычисления <i>Assertion</i> <b>:: </b><code><b>\ b</b></code> возвращается внутреннее замкнутое выражение <a href="#AssertionTester">AssertionTester</a>, принимающее аргумент <i>x</i> для <a href="#State">State</a>, и выполняются следующие действия:</p>
+	<ol><li><p>
+		Пусть <i>e</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#IsWordChar">IsWordChar</a></i>(<i>e</i>&ndash;1), и пусть <i>a</i> будет булевым результатом.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#IsWordChar">IsWordChar</a></i>(<i>e</i>) и пусть <i>b</i> будет булевым результатом.</p>
+		</li>
+		<li><p>
+		Если <i>a</i> равно <b>true</b> и <i>b</i> равно <b>false</b>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Если <i>a</i> равно <b>false</b> и <i>b</i> равно <b>true</b>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol><p>
+	Для вычисления <i>Assertion</i> <b>:: </b><code><b>\ B</b></code> возвращается внутреннее замкнутое выражение <a href="#AssertionTester">AssertionTester</a>, принимающее аргумент <i>x</i> для <a href="#State">State</a>, и выполняются следующие действия:</p>
+	<ol><li><p>
+		Пусть <i>e</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#IsWordChar">IsWordChar</a></i>(<i>e</i>&ndash;1), и пусть <i>a</i> будет булевым результатом.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#IsWordChar">IsWordChar</a></i>(<i>e</i>) и пусть b будет булевым результатом.</p>
+		</li>
+		<li><p>
+		Если a равно <b>true</b>, а b равно <b>false</b>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Если a равно <b>false</b>, а b равно <b>true</b>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>true</b>.</p>
+	</li></ol><p>
+	Для вычисления <i>Assertion</i> <b>:: </b><code><b>( ? =</b></code> <i>Disjunction</i><code><b>)</b></code>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Disjunction</i> для получения <a href="#Matcher">Matcher</a> <i>m</i>.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполнить следующие шаги:</p>
+		<ol><ol><ol><li><p>
+					Пусть <i>d</i> будет <a href="#Continuation">Continuation</a>, которое всегда возвращает свой аргумент <a href="#State">State</a> в качестве успешного результата совпадений <a href="#MatchResult">MatchResult</a>.</p>
+					</li>
+					<li><p>
+					Вызвать <i>m</i>(<i>x</i>, <i>d</i>) и пусть <i>r</i> будет результатом.</p>
+					</li>
+					<li><p>
+					Если <i>r</i> равно <b>failure</b>, вернуть <b>failure</b>.</p>
+					</li>
+					<li><p>
+					Пусть <i>y</i> будет State для <i>r</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>cap</i> будет внутренним массивом <i><a href="#captures">captures</a></i> для <i>y</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>xe</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>z</i> будет <a href="#State">State</a> (<i>xe</i>, <i>cap</i>).</p>
+					</li>
+					<li><p>
+					Вызвать <i>c</i>(<i>z</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li></ol><p>
+	Для вычисления <i>Assertion </i><b>::</b><code><b>( ? !</b></code> <i>Disjunction</i><code><b>)</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Disjunction</i> для получения <a href="#Matcher">Matcher</a> <i>m</i>.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполнить следующие шаги:</p>
+		<ol><ol><ol><li><p>
+					Пусть <i>d</i> будет <a href="#Continuation">Continuation</a>, которое всегда возвращает свой аргумент <a href="#State">State</a> в качестве успешного результата совпадений <a href="#MatchResult">MatchResult</a>.</p>
+					</li>
+					<li><p>
+					Вызвать <i>m</i>(<i>x</i>, <i>d</i>) и пусть <i>r</i> будет результатом.</p>
+					</li>
+					<li><p>
+					Если <i>r</i> не равно <b>failure</b>, вернуть <b>failure</b>.</p>
+					</li>
+					<li><p>
+					Вызвать <i>c</i>(<i>x</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li></ol><p>
+	Абстрактная операция <dfn id="IsWordChar"><i>IsWordChar</i></dfn> принимает целочисленный параметр <i>e</i> и производит следующие действия:</p>
+	<ol><li><p>
+		Если <i>e</i> == &ndash;1 или <i>e</i> == <i><a href="#InputLength">InputLength</a></i>, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>c</i> будет символом <i><a href="#Input-RegExp">Input</a></i>[<i>e</i>].</p>
+		</li>
+		<li><p>
+		Если <i>c</i> является одним из ниже перечисленных шестидесяти трёх символов, вернуть <b>true</b>.</p>
+		<table width="582" border="0" cellpadding="0" cellspacing="0"><colgroup><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"></colgroup><thead><tr valign="TOP"><td width="22">
+						<p><code><b>a</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>b</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>c</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>d</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>e</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>f</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>g</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>h</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>i</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>j</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>k</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>l</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>m</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>n</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>o</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>p</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>q</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>r</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>s</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>t</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>u</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>v</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>w</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>x</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>y</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>z</b></code></p>
+					</td>
+				</tr></thead><tbody><tr valign="TOP"><td width="22">
+						<p><code><b>A</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>B</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>C</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>D</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>E</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>F</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>G</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>H</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>I</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>J</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>K</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>L</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>M</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>N</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>O</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>P</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>Q</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>R</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>S</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>T</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>U</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>V</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>W</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>X</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>Y</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>Z</b></code></p>
+					</td>
+				</tr><tr valign="TOP"><td width="22">
+						<p><code><b>0</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>1</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>2</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>3</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>4</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>5</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>6</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>7</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>8</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>9</b></code></p>
+					</td>
+					<td width="22">
+						<p><code><b>_</b></code></p>
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+					<td width="22">
+					</td>
+				</tr></tbody></table></li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol>
+	<h5 id="x15.10.2.7">15.10.2.7 Квантификатор (Quantifier) <a href="#x15.10.2.7">#</a> <a href="#x15.10.2.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>Quantifier</i> :: <i>QuantifierPrefix</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>QuantifierPrefix</i> и получить два результата: целое <i>min</i> и целое (или <span class="symbol">&#8734;</span>) <i>max</i>.</p>
+		</li>
+		<li><p>
+		Вернуть три результата <i>min</i> , <i>max</i>, и <b>true</b>.</p>
+	</li></ol><p>
+	Для вычисления <i>Quantifier</i> ::<b> </b><i>QuantifierPrefix</i><code><b>?</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>QuantifierPrefix</i> и получить два результата: целое <i>min</i> и целое (или <span class="symbol">&#8734;</span>) <i>max</i>.</p>
+		</li>
+		<li><p>
+		Вернуть три результата: <i>min</i> , <i>max</i>, и <b>false</b>.</p>
+	</li></ol><p>
+	Для вычисления <i>QuantifierPrefix</i> <b>:: </b><code><b>*</b></code> возвращается два результата: 0 и <span class="symbol">&#8734;</span>.</p>
+	<p>
+	Для вычисления <i>QuantifierPrefix</i> <b>:: </b><code><b>+</b></code> возвращается два результата: 1 и <span class="symbol">&#8734;</span>.</p>
+	<p>
+	Для вычисления <i>QuantifierPrefix</i> <b>:: </b><code><b>?</b></code> возвращается два результата: 0 и 1.</p>
+	<p>
+	Для вычисления <i>QuantifierPrefix</i> <b>:: </b><code><b>{</b></code> <i>DecimalDigits</i><code><b>}</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>i</i> будет <a href="x7.html#mv">MV для </a> <i>DecimalDigits</i> (см.&nbsp;<a href="x7.html#x7.8.3">7.8.3</a>).</p>
+		</li>
+		<li><p>
+		Вернуть два результата: <i>i</i> и <i>i</i>. (Return the two results <i>i</i> and <i>i</i>.)</p>
+	</li></ol><p>
+	Для вычисления <i>QuantifierPrefix</i> <b>:: </b><code><b>{</b></code> <i>DecimalDigits</i><code><b>, }</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>i</i> будет <a href="x7.html#mv">MV для </a> <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		Вернуть два результата: <i>i</i> и <span class="symbol">&#8734;</span>.</p>
+	</li></ol><p>
+	Для вычисления <i>QuantifierPrefix</i> <b>:: </b><code><b>{</b></code> <i>DecimalDigits</i><code><b>,</b></code> <i>DecimalDigits</i><code><b>}</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>i</i> будет <a href="x7.html#mv">MV для </a> первого  <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>j</i> будет <a href="x7.html#mv">MV для </a> второго <i>DecimalDigits</i>.</p>
+		</li>
+		<li><p>
+		Вернуть два результата: <i>i</i> и <i>j</i>.</p>
+	</li></ol>
+	<h5 id="x15.10.2.8">15.10.2.8 Атом (Atom) <a href="#x15.10.2.8">#</a> <a href="#x15.10.2.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>Atom</i> <b>::</b><i>PatternCharacter</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>ch</i> будет символом, представленным <i>PatternCharacter</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет одноэлементным  <a href="#CharSet">CharSet</a>, содержащим символ&nbsp;<i>ch</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#CharacterSetMatcher">CharacterSetMatcher</a></i>(<i>A</i>, <b>false</b>) и вернуть результат <a href="#Matcher">Matcher</a>.</p>
+	</li></ol><p>
+	Для вычисления <i>Atom</i> <b>::</b><code><b>.</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>A</i> будет набором всех символов, кроме <i><a href="x7.html#LineTerminator">LineTerminator</a></i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#CharacterSetMatcher">CharacterSetMatcher</a></i>(<i>A</i>, <b>false</b>) и вернуть результат <a href="#Matcher">Matcher</a>.</p>
+	</li></ol><p>
+	Для вычисления <i>Atom</i> <b>::</b><code><b>\</b></code> <i>AtomEscape</i> производится вычисление <i>AtomEscape</i> для получения <a href="#Matcher">Matcher</a>, а затем возврат этого <a href="#Matcher">Matcher</a>.</p>
+	<p>
+	Для вычисления <i>Atom</i> <b>::</b><i>CharacterClass</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>CharacterClass</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>A</i> и булево&nbsp;<i>invert</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#CharacterSetMatcher">CharacterSetMatcher</a></i>(<i>A</i>, <i>invert</i>) и вернуть результат <a href="#Matcher">Matcher</a>.</p>
+	</li></ol><p>
+	Для вычисления <i>Atom</i> <b>::</b><code><b>(</b></code> <i>Disjunction</i><code><b>)</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>Disjunction</i> для получения <a href="#Matcher">Matcher</a> <i>m</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>parenIndex</i> будет количеством открывающих захватывающих скобок во всём регулярном выражении, которые находятся слева от начальной левой скобки этого правила. Оно равно общему количеству раз, когда правило <i>Atom</i> ::&nbsp;<code><b>(</b></code><i>Disjunction</i> <code><b>)</b></code> развёртывалось до <i>Atom</i> этого правила, плюс общее количество раз, когда этот <I>Atom </I>вложен в правило <i>Atom</i> ::&nbsp;<code><b>(</b></code><i>Disjunction</i> <code><b>)</b></code>.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполняющее следующие шаги:</p>
+		<ol><ol><ol><li><p>
+					Создать внутреннее замкнутое выражение <a href="#Continuation">Continuation</a> <i>d</i>, принимающее один аргумент <a href="#State">State</a> <i>y</i>, и выполняющее следующие шаги:</p>
+					<ol><ol><ol><li><p>
+								Пусть <i>cap</i> будет новой копией внутреннего массива <i><a href="#captures">captures</a></i> для <i>y</i>.</p>
+								</li>
+								<li><p>
+								Пусть <i>xe</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+								</li>
+								<li><p>
+								Пусть <i>ye</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>y</i>.</p>
+								</li>
+								<li><p>
+								Пусть <i>s</i> будет новой строкой, символами которой являются символы <i><a href="#Input-RegExp">Input</a></i> в позициях с <i>xe</i> (включительно) по <i>ye</i> (не включительно).</p>
+								</li>
+								<li><p>
+								Установить <i>cap</i>[<i>parenIndex</i>+1] в значение <i>s</i>.</p>
+								</li>
+								<li><p>
+								Пусть <i>z</i> будет <a href="#State">State</a> (<i>ye</i>, <i>cap</i>).</p>
+								</li>
+								<li><p>
+								Вызвать <i>c</i>(<i>z</i>) и вернуть результат.</p>
+							</li></ol></ol></ol></li>
+					<li><p>
+					Вызвать <i>m</i>(<i>x</i>, <i>d</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li></ol><p>
+	Для вычисления <i>Atom</i> <b>::</b><code><b>( ? :</b></code> <i>Disjunction</i> производится вычисление <i>Disjunction</i> для получения <a href="#Matcher">Matcher</a>, а затем возврат этого <a href="#Matcher">Matcher</a>.</p>
+	<p>
+	Абстрактная операция <dfn id="CharacterSetMatcher"><i>CharacterSetMatcher </i></dfn> принимает два аргумента &ndash; <a href="#CharSet">CharSet</a> <i>A</i> и булев флаг <i>invert</i>, и выполняет следующие действия:</p>
+	<ol><li value="1"><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполнить следующие шаги:</p>
+		<ol class="decimal"><li><p>
+					Пусть <i>e</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+					</li>
+					<li><p>
+					Если <i>e</i> == <i><a href="#InputLength">InputLength</a></i>, вернуть <b>failure</b>.</p>
+					</li>
+					<li><p>
+					Пусть <I>ch</I> будет символом <i><a href="#Input-RegExp">Input</a></i>[<i>e</i>].</p>
+					</li>
+					<li><p>
+					Пусть <i>cc</i> будет результатом <i><a href="#Canonicalize">Canonicalize</a></i>(<i>ch</i>).</p>
+					</li>
+					<li><p>
+					Если <i>invert</i> равно <b>false</b>, вернуть</p>
+					<ol class="lower-alpha"><li><p>
+						Если не существует такого элемента <i>a</i> в наборе <i>A</i>, чтобы <i><a href="#Canonicalize">Canonicalize</a></i>(<i>a</i>) == <i>cc</i>, вернуть <b>failure</b>.</p>
+					</li></ol></li>
+					<li><p>
+					Иначе <i>invert</i> равно <B>true</B>.</p>
+					<ol class="lower-alpha"><li><p>
+						Если существует такой элемент <i>a</i> в наборе <i>A</i>, чтобы <i><a href="#Canonicalize">Canonicalize</a></i>(<i>a</i>) == <i>cc</i>, вернуть <b>failure</b>.</p>
+					</li></ol></li>
+					<li><p>
+					Пусть <i>cap</i> будет внутренним массивом <i><a href="#captures">captures</a></i> для <i>x</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>y</i> будет <a href="#State">State</a> (<i>e</i>+1, <i>cap</i>).</p>
+					</li>
+					<li><p>
+					Вызвать <i>c</i>(<i>y</i>) и вернуть результат.</p>
+				</li></ol></li></ol><p>
+	Абстрактная операция <dfn id="Canonicalize"><i>Canonicalize </i></dfn> принимает символьный параметр <I>ch </I>и выполняет следующие шаги:</p>
+	<ol><li><p>
+		Если <i><a href="#IgnoreCase">IgnoreCase</a></i> равно <b>false</b>, вернуть <i>ch</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>u</i> будет преобразованным в верхний регистр <i>ch</i>, как если бы посредством вызова стандартного встроенного метода <code><b><a href="x15.5.html#x15.5.4.18">String.prototype.toUpperCase</a></b></code> для состоящей из одного символа строки <i>ch</i>. </p>
+		</li>
+		<li><p>
+		Если <i>u</i> состоит не из одного символа, вернуть <i>ch</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>cu</i> будет символом для <i>u</i>.</p>
+		</li>
+		<li><p>
+		Если кодовое значение символа <i>ch</i> больше или равно десятичному 128, и кодовое значение символа <i>cu</i> меньше десятичного 128, вернуть&nbsp;<i>ch</i>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>cu</i>.</p>
+	</li></ol><p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Скобки формата <code><b>(</b></code> <i>Disjunction</i><code><b>)</b></code> служат как для группировки компонентов шаблона <i>Disjunction</i>, так и для сохранения результатов поиска совпадений. Этот результат либо может быть использован в обратной ссылке (символ <code><b>\</b></code>, за которым следует ненулевое десятичное число), на которую ссылается заменяющая строка, либо   возвращён как часть массива из регулярного выражения, совпадающего с внутренней процедурой. Для запрета захватывающего поведения скобок используется формат <code><b>(?:</b></code> <i>Disjunction</i><code><b>)</b></code>.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Формат <code><b>(?=</b></code> <i>Disjunction</i><code><b>)</b></code> означает положительный предпросмотр нулевой ширины. Чтобы он увенчался успехом, шаблон внутри <i>Disjunction</i> должен совпадать в текущей позиции, но текущая позиция не перемещается вперёд, прежде чем  она совпадёт с продолжением. Если <i>Disjunction</i> может иметь несколько совпадений в текущей позиции, проверяется только первое из них. В отличие от других операторов регулярного выражения, здесь отсутствует поиск с возвратами в формат <code><b>(?=</b></code> (это необычное поведение унаследовано из языка&nbsp;Perl). Это имеет значение только в том случае, если <i>Disjunction</i> содержит захватывающие скобки, а продолжение шаблона содержит обратные ссылки на эти <a href="#captures">захватывающие скобки</a>.</p>
+	<p>Например,</p>
+	<p class="code-example">
+	<code><b>/(?=(a+))/.exec(&quot;baaabac&quot;)</b></code></p>
+	<p>совпадает с пустой строкой сразу же после первого <code><b>b</b></code>, и поэтому возвращает массив:</p>
+	<p class="code-example">
+	<code><b>[&quot;&quot;, &quot;aaa&quot;]</b></code></p>
+	<p>Чтобы проиллюстрировать отсутствие поиска с возвратами в предпросмотре, рассмотрим следующее выражение:</p>
+	<p class="code-example">
+	<code><b>/(?=(a+))a*b\1/.exec(&quot;baaabac&quot;)</b></code></p>
+	<p>Это выражение возвращает</p>
+	<p class="code-example">
+	<code><b>[&quot;aba&quot;, &quot;a&quot;]</b></code></p>
+	<p>а не</p>
+	<p class="code-example">
+	<code><b>[&quot;aaaba&quot;, &quot;a&quot;]</b></code></p>
+	<p><b>ПРИМЕЧАНИЕ 3</b> Формат <code><b>(?!</b></code> <i>Disjunction</i><code><b>)</b></code> означает отрицательный предпросмотр нулевой ширины. Чтобы он был успешным, шаблон в дизъюнкции <i>Disjunction</i> не должен содержать совпадения в текущей позиции. Текущая позиция не перемещается вперёд до поиска соответствия в продолжении. <i>Disjunction</i> может содержать захватывающие скобки, но обратные ссылки на них имеют смысл только из самого <i>Disjunction</i>. Обратные ссылки на эти захватывающие скобки из любого другого места в шаблоне всегда возвращают <b>undefined</b>, поскольку, чтобы для этого шаблона нашлось соответствие, отрицательный предпросмотр должен оказаться неуспешным. Например,</p>
+	<p class="code-example">
+	<code><b>/(.*?)a(?!(a+)b\2c)\2(.*)/.exec(&quot;baaabaac&quot;)</b></code></p>
+	<p>ищет <code><b>a</b></code>, сразу же за которой не идёт последовательность из некоторого положительного количества n символов <code><b>a</b></code>, символа <code><b>b</b></code>, ещё одного количества n символов <code><b>a</b></code> (заданного первой ссылкой <code><b>\2</b></code>) и символа <code><b>c</b></code>. Вторая последовательность <code><b>\2</b></code> находится за пределами отрицательного предпросмотра, поэтому она ищет совпадение с <b>undefined</b> и поэтому всегда оказывается находит. Всё выражение возвращает массив:</p>
+	<p class="code-example">
+	<code><b>[&quot;baaabaac&quot;, &quot;ba&quot;, undefined, &quot;abaac&quot;]</b></code></p>
+	<p>
+	При поиске совпадений, где регистр не имеет значения, все символы непосредственно перед сравнением явным образом преобразуются в верхнему регистру. Однако, если при преобразовании символа в верхний регистр он разрастётся до более чем одного символа (например, как в случае с символом <code><b>&quot;&szlig;&quot;</b></code> (<code>\u00DF</code>), который преобразуется в <code><b>&quot;SS&quot;</b></code>), то этот символ остаётся без изменений. Кроме того, символ также остаётся без изменений, если он не является символом&nbsp;ASCII, но в результате его преобразования в верхний регистр он превратился бы в символ&nbsp;ASCII. Это позволяет избежать того, чтобы такие символы Юникода, как <code>\u0131</code> и <code>\u017F</code> не совпадали с регулярным выражением <code><b>/[a&nbsp;z]/i</b></code>, которые должны соответствовать только буквам ASCII. Более того, если бы такие преобразования были разрешены, то <code><b>/[^\W]/i</b></code> совпадали бы с любым символом из <code><b>a</b></code>, <code><b>b</b></code>, …, <code><b>h</b></code>, но не с <code><b>i</b></code> или <code><b>s</b></code>.</p>
+	<h5 id="x15.10.2.9">15.10.2.9 AtomEscape <a href="#x15.10.2.9">#</a> <a href="#x15.10.2.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>AtomEscape</i> <b>:: </b><i>DecimalEscape</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>DecimalEscape</i> для получения <a href="#EscapeValue">EscapeValue</a> <i>E</i>.</p>
+		</li>
+		<li><p>
+		Если <i>E</i> &ndash; символ, то </p>
+		<ol><li><p>
+			Пусть <i>ch</i> будет символом для <i>E</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>A</i> будет одноэлементным  <a href="#CharSet">CharSet</a>, содержащим символ&nbsp;<i>ch</i>.</p>
+			</li>
+			<li><p>
+			Вызвать <i><a href="#CharacterSetMatcher">CharacterSetMatcher</a></i>(<i>A</i>, <b>false</b>) и вернуть результат <a href="#Matcher">Matcher</a>.</p>
+		</li></ol></li>
+		<li><p>
+		<i>E</i> должно быть целым числом. Пусть <i>n</i> будет этим целым числом.</p>
+		</li>
+		<li><p>
+		Если <i>n</i>=0 или <i>n</i>&gt;<i><a href="#NcapturingParens">NCapturingParens</a></i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть внутреннее замкнутое выражение <a href="#Matcher">Matcher</a>, принимающее два аргумента &ndash; <a href="#State">State</a> <i>x</i> и <a href="#Continuation">Continuation</a> <i>c</i>, и выполнить следующие шаги:</p>
+		<ol><ol><ol><li><p>
+					Пусть <i>cap</i> будет внутренним массивом <i><a href="#captures">captures</a></i> для <i>x</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>s</i> будет <i>cap</i>[<i>n</i>].</p>
+					</li>
+					<li><p>
+					Если <i>s</i> равно <b>undefined</b>, вызвать <i>c</i>(<i>x</i>) и вернуть результат.</p>
+					</li>
+					<li><p>
+					Пусть <i>e</i> будет <i><a href="#endIndex">endIndex</a></i> для <i>x</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>len</i> будет длиной для <i>s</i>.</p>
+					</li>
+					<li><p>
+					Пусть <i>f</i> будет <i>e</i>+<i>len</i>.</p>
+					</li>
+					<li><p>
+					Если <i>f</i>&gt;<i><a href="#InputLength">InputLength</a></i>, вернуть <b>failure</b>.</p>
+					</li>
+					<li><p>
+					Если существует такое целое число <i>i</i> между 0 (включительно) и <i>len</i> (не включительно), чтобы <i><a href="#Canonicalize">Canonicalize</a></i>(<i>s</i>[<i>i</i>]) не являлось таким же символом, что и <i><a href="#Canonicalize">Canonicalize</a></i>(<i><a href="#Input-RegExp">Input</a></i> [<i>e</i>+<i>i</i>]), то вернуть <b>failure</b>.</p>
+					</li>
+					<li><p>
+					Пусть <i>y</i> будет <a href="#State">State</a> (<i>f</i>, <i>cap</i>).</p>
+					</li>
+					<li><p>
+					Вызвать <i>c</i>(<i>y</i>) и вернуть результат.</p>
+				</li></ol></ol></ol></li></ol><p>
+	Для вычисления <i>AtomEscape</i> <b>:: </b><i>CharacterEscape</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>CharacterEscape</i>, чтобы получить символ&nbsp;<i>ch</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет одноэлементным  <a href="#CharSet">CharSet</a>, содержащим символ&nbsp;<i>ch</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#CharacterSetMatcher">CharacterSetMatcher</a></i>(<i>A</i>, <b>false</b>) и вернуть результат <a href="#Matcher">Matcher</a>.</p>
+	</li></ol><p>
+	Для вычисления <i>AtomEscape</i> <b>:: </b><i>CharacterClassEscape</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>CharacterClassEscape</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>A</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#CharacterSetMatcher">CharacterSetMatcher</a></i>(<i>A</i>, <b>false</b>) и вернуть результат <a href="#Matcher">Matcher</a>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Управляющая последовательность, представляющая собой <code><b>\</b></code> с последующим ненулевым десятичным числом <i>n</i>, соответствует результату <i>n</i>-ного набора захватывающих скобок (см.&nbsp;<a href="#x15.10.2.11">15.10.2.11</a>). Если регулярное выражение имеет меньше захватывающих скобок, чем <i>n</i>, это является ошибкой. Если регулярное выражение имеет <i>n</i> или более захватывающих скобок, но значение <i>n</i>-ной захватывающей скобки является <b>undefined</b>, поскольку она ничего не захватила, то обратная ссылка всегда считается успешной.</p>
+	<h5 id="x15.10.2.10">15.10.2.10 CharacterEscape <a href="#x15.10.2.10">#</a> <a href="#x15.10.2.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p class="sm-btm">
+	Для вычисления <i>CharacterEscape</i> <b>:: </b><i>ControlEscape</i> возвращается символ в соответствии с Таблицей&nbsp;23 
+	</p>
+	<center>
+		<table width="507" border="1" bordercolor="#000000" cellpadding="8" cellspacing="0" rules="GROUPS"><caption>Таблица 23. Значения символов ControlEscape </caption>
+			<colgroup><col width="130"><col width="117"><col width="131"><col width="62"></colgroup><tbody><tr valign="TOP"><td width="130" bgcolor="#c0c0c0">
+						<p>
+						<i><b>ControlEscape</b></i>
+						</p>
+					</td>
+					<td width="117" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Кодовая единица</span></b></i></p>
+					</td>
+					<td width="131" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Наименование</span></b></i></p>
+					</td>
+					<td width="62" bgcolor="#c0c0c0">
+						<p>
+						<i><b><span class="table-header">Символ</span></b></i></p>
+					</td>
+				</tr></tbody><tbody><tr valign="TOP"><td width="130">
+						<p align="CENTER">
+						<code><b>t</b></code></p>
+					</td>
+					<td width="117">
+						<p>
+						<code><b>\u0009</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						горизонтальная табуляция</p>
+					</td>
+					<td width="62">
+						<p>
+						&lt;HT&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="130">
+						<p align="CENTER">
+						<code><b>n</b></code></p>
+					</td>
+					<td width="117">
+						<p>
+						<code><b>\u000A</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						перевод строки (новая строка)</p>
+					</td>
+					<td width="62">
+						<p>
+						&lt;LF&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="130">
+						<p align="CENTER">
+						<code><b>v</b></code></p>
+					</td>
+					<td width="117">
+						<p>
+						<code><b>\u000B</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						вертикальная табуляция</p>
+					</td>
+					<td width="62">
+						<p>
+						&lt;VT&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="130">
+						<p align="CENTER">
+						<code><b>f</b></code></p>
+					</td>
+					<td width="117">
+						<p>
+						<code><b>\u000C</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						перевод страницы</p>
+					</td>
+					<td width="62">
+						<p>
+						&lt;FF&gt;</p>
+					</td>
+				</tr><tr valign="TOP"><td width="130">
+						<p align="CENTER">
+						<code><b>r</b></code></p>
+					</td>
+					<td width="117">
+						<p>
+						<code><b>\u000D</b></code></p>
+					</td>
+					<td width="131">
+						<p>
+						возврат каретки</p>
+					</td>
+					<td width="62">
+						<p>
+						&lt;CR&gt;</p>
+					</td>
+				</tr></tbody></table></center>
+	<p>
+	Для вычисления <i>CharacterEscape</i> <b>:: </b><code><b>c</b></code> <i>ControlLetter</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>ch</i> будет символом, представленным посредством <i>ControlLetter</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>i</i> будет значением кодовой единицы <i>ch</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>j</i> будет остатком от деления <i>i</i> на 32.</p>
+		</li>
+		<li><p>
+		Вернуть кодовую единицу под номером&nbsp;<i>j</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>CharacterEscape</i> <b>:: </b><i>HexEscapeSequence</i> вычислить CV для <i>HexEscapeSequence</i> (см. <a href="x7.html#x7.8.4">7.8.4</a>) и вернуть реузльтат его символа.</p>
+	<p>
+	Для вычисления <i>CharacterEscape</i> <b>:: </b><i>UnicodeEscapeSequence</i> вычислить CV для <i>UnicodeEscapeSequence</i> (см. <a href="x7.html#x7.8.4">7.8.4</a>) и вернуть реузльтат его символа.</p>
+	<p>
+	Для вычисления <i>CharacterEscape</i> <b>:: </b><i>IdentityEscape</i> вернуть символ, представленный посредством <i>IdentityEscape</i>.</p>
+	<h5 id="x15.10.2.11">15.10.2.11 DecimalEscape <a href="#x15.10.2.11">#</a> <a href="#x15.10.2.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>DecimalEscape</i> <b>:: </b><i>DecimalIntegerLiteral</i> [<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> <i>DecimalDigit</i>] выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>i</i> будет <a href="x7.html#mv">MV для </a> <i>DecimalIntegerLiteral</i>.</p>
+		</li>
+		<li><p>
+		Если <i>i</i> равно нулю, вернуть <a href="#EscapeValue">EscapeValue</a>, состоящее из символа &lt;NUL&gt; (значение Юникода&nbsp;0000).</p>
+		</li>
+		<li><p>
+		Вернуть <a href="#EscapeValue">EscapeValue</a>, состоящее из целого числа&nbsp;<i>i</i>.</p>
+	</li></ol><p>
+	Определение <a href="x7.html#mv">MV для </a> <i>DecimalIntegerLiteral</i>&rdquo; приведено в <a href="x7.html#x7.8.3">7.8.3</a>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Если после символа <code><b>\</b></code> следует десятичное число <i>n</i>, первая цифра которого не равна&nbsp;<code><b>0</b></code>, то управляющая последовательность считается обратной ссылкой. Если <i>n</i> больше, чем общее количество открывающих захватывающих скобок во всём регулярном выражении, это является ошибкой. Псоледовательность <code><b>\0</b></code> представляет символ &lt;NUL&gt;; после него не может следовать десятичная цифра.</p>
+	<h5 id="x15.10.2.12">15.10.2.12 CharacterClassEscape <a href="#x15.10.2.12">#</a> <a href="#x15.10.2.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>CharacterClassEscape</i> <b>:: </b><code><b>d</b></code> возвращается набор символов из десяти элементов, содержащий символы от <code><b>0</b></code> до <code><b>9</b></code> включительно.</p>
+	<p>
+	Для вычисления <i>CharacterClassEscape</i> <b>:: </b><code><b>D</b></code> возвращается набор всех символов, не входящих в набор, возвращаемый посредством <b>:: </b><code><b>d</b></code>.</p>
+	<p>
+	Для вычисления <i>CharacterClassEscape</i> <b>:: </b><code><b>s</b></code> возвращаются набор символов, содержащий символы, расположенные с правой стороны от правил <i><a href="x7.html#WhiteSpace">WhiteSpace</a></i> (<a href="x7.html#x7.2">7.2</a>) или <i><a href="x7.html#LineTerminator">LineTerminator</a></i> (<a href="x7.html#x7.3">7.3</a>).</p>
+	<p>
+	Для вычисления <i>CharacterClassEscape</i> <b>:: </b><code><b>S</b></code> возвращается набор всех символов, не входящих в набор, возвращаемый посредством <b>:: </b><code><b>s</b></code>.</p>
+	<p>
+	Для вычисления <i>CharacterClassEscape</i> <b>:: </b><code><b>w</b></code> возвращается набор символов, содержащий шестьдесят три символа:</p>
+	<dl><dl><dl><dd>
+				<table width="582" border="0" cellpadding="0" cellspacing="0"><colgroup><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"><col width="22"></colgroup><thead><tr valign="TOP"><td width="22">
+								<p class="sm-btm">
+								<code><b>a</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>b</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>c</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>d</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>e</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>f</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>g</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>h</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>i</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>j</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>k</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>l</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>m</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>n</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>o</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>p</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>q</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>r</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>s</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>t</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>u</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>v</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>w</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>x</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>y</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>z</b></code></p>
+							</td>
+						</tr><tr valign="TOP"><td width="22">
+								<p class="sm-btm">
+								<code><b>A</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>B</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>C</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>D</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>E</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>F</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>G</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>H</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>I</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>J</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>K</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>L</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>M</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>N</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>O</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>P</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>Q</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>R</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>S</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>T</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>U</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>V</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>W</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>X</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>Y</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>Z</b></code></p>
+							</td>
+						</tr></thead><tbody><tr valign="TOP"><td width="22">
+								<p class="sm-btm">
+								<code><b>0</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>1</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>2</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>3</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>4</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>5</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>6</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>7</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>8</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>9</b></code></p>
+							</td>
+							<td width="22">
+								<p class="sm-btm">
+								<code><b>_</b></code></p>
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+							<td width="22">
+							</td>
+						</tr></tbody></table></dd></dl></dl></dl><p>
+	Для вычисления <i>CharacterClassEscape</i> <b>:: </b><code><b>W</b></code> возвращается набор всех символов, не входящих в набор, возвращаемый посредством <b>:: </b><code><b>w</b></code>.</p>
+	<h5 id="x15.10.2.13">15.10.2.13 CharacterClass <a href="#x15.10.2.13">#</a> <a href="#x15.10.2.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>CharacterClass</i> <b>:: </b><code><b>[ </b></code>[<a href="x5.html#lookahead-not-in">lookahead <span class="symbol">&#8713;</span></a> {<b>^</b>}]<code></code> <i>ClassRanges</i><code><b>]</b></code> вычисляется <i>ClassRanges</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a> и булево&nbsp;<b>false</b>.</p>
+	<p>
+	Для вычисления <i>CharacterClass</i> <b>:: </b><code><b>[ ^</b></code> <i>ClassRanges</i><code><b>]</b></code> вычисляется <i>ClassRanges</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a> и булево&nbsp;<b>true</b>.</p>
+	<h5 id="x15.10.2.14">15.10.2.14 ClassRanges <a href="#x15.10.2.14">#</a> <a href="#x15.10.2.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>ClassRanges</i><code></code><b>:: </b>[empty] возвращается пустой <a href="#CharSet">CharSet</a>.</p>
+	<p>
+	Для вычисления <i>ClassRanges</i><code></code><b>:: </b><i>NonemptyClassRanges</i> вычисляется <i>NonemptyClassRanges</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a>.</p>
+	<h5 id="x15.10.2.15">15.10.2.15 NonemptyClassRanges <a href="#x15.10.2.15">#</a> <a href="#x15.10.2.15-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>NonemptyClassRanges</i> <b>:: </b><i>ClassAtom</i> вычисляется <i>ClassAtom</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a>.</p>
+	<p>
+	Для вычисления NonemptyClassRanges <b>:: </b>ClassAtom NonemptyClassRangesNoDash выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>ClassAtom</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>A</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>NonemptyClassRangesNoDash</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>B</i>.</p>
+		</li>
+		<li><p>
+		Вернуть объединение <a href="#CharSet">CharSet</a> <i>A</i> и <a href="#CharSet">CharSet</a> <i>B</i>.</p>
+	</li></ol><p>
+	Для вычисления NonemptyClassRanges <b>:: </b>ClassAtom<code><b>- </b></code>ClassAtom ClassRanges выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить первый <i>ClassAtom</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>A</i>.</p>
+		</li>
+		<li><p>
+		Вычислить второй <i>ClassAtom</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>B</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>ClassRanges</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>C</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#CharacterRange">CharacterRange</a></i>(<i>A</i>, <i>B</i>) и пусть <i>D</i> будет полученным <a href="#CharSet">CharSet</a>.</p>
+		</li>
+		<li><p>
+		Вернуть объединение <a href="#CharSet">CharSet</a> <i>D</i> и <a href="#CharSet">CharSet</a> <i>C</i>.</p>
+	</li></ol><p>
+	Абстрактная операция <dfn id="CharacterRange"><i>CharacterRange</i></dfn> принимает два параметра <a href="#CharSet">CharSet</a> <i>A</i> и <i>B</i> и выполняет следующие действия:</p>
+	<ol><li><p>
+		Если <i>A</i> не содержит ровно один символ, или <i>B</i> не содержит ровно один символ, сгенерировать исключение&nbsp;<b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>a</i> будет этим единственным символом в <a href="#CharSet">CharSet</a> <i>A</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>b</i> будет этим единственным символом <a href="#CharSet">CharSet</a> <i>B</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>i</i> будет значением кодовой единицы символа&nbsp;<i>a</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i><i>j</i></i> будет значением кодовой единицы символа&nbsp;<i>b</i>.</p>
+		</li>
+		<li><p>
+		Если <i>i </i>&gt; <i>j</i>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть набор, содержащий все символы с номерами от <i>i</i> до <i>j</i> включительно.</p>
+	</li></ol>
+	<h5 id="x15.10.2.16">15.10.2.16 NonemptyClassRangesNoDash <a href="#x15.10.2.16">#</a> <a href="#x15.10.2.16-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>NonemptyClassRangesNoDash</i> <b>:: </b><i>ClassAtom</i> вычисляется <i>ClassAtom</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a>.</p>
+	<p>
+	Для вычисления <i>NonemptyClassRangesNoDash</i> <b>:: </b><i>ClassAtomNoDash</i> <i>NonemptyClassRangesNoDash</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>ClassAtomNoDash</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>A</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>NonemptyClassRangesNoDash</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>B</i>.</p>
+		</li>
+		<li><p>
+		Вернуть объединение <a href="#CharSet">CharSet</a>A и <a href="#CharSet">CharSet</a> B.</p>
+	</li></ol><p>
+	Для вычисления <i>NonemptyClassRangesNoDash</i> <b>:: </b><i>ClassAtomNoDash</i><code><b>-</b></code> <i>ClassAtom</i> <i>ClassRanges</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>ClassAtomNoDash</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>A</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>ClassAtom</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>B</i>.</p>
+		</li>
+		<li><p>
+		Вычислить <i>ClassRanges</i>, чтобы получить <a href="#CharSet">CharSet</a> <i>C</i>.</p>
+		</li>
+		<li><p>
+		Вызвать <i><a href="#CharacterRange">CharacterRange</a></i>(<i>A</i>, <i>B</i>) и пусть <i>D</i> будет полученным <a href="#CharSet">CharSet</a>.</p>
+		</li>
+		<li><p>
+		Вернуть объединение <a href="#CharSet">CharSet</a> <I>D </I>и <a href="#CharSet">CharSet</a> <I>C</I>.</p>
+	</li></ol><p class="sp"><b>ПРИМЕЧАНИЕ 1</b> <i>ClassRanges</i> может быть разложен на одиночные <i>ClassAtoms</i> и/или диапазоны из двух <i>ClassAtoms</i>, разделённых тире. В последнем случае <i>ClassRanges</i> включают все символы между первым <i>ClassAtom</i> и вторым <i>ClassAtom</i>, включительно. Если <i>ClassAtom</i> не является одиночным символом (например, если он представляет собой <code><b>\w</b></code>), или если кодовое значение первого <i>ClassAtom</i> больше, чем кодовое значение второго <i>ClassAtom</i>, это является ошибкой.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Даже если шаблон не чувствителен к регистру, важен регистр двух концов диапазона, чтобы определить, какие символы входят в этот диапазон. Например, шаблон <code><b>/[E-F]/i</b></code> совпадает только с буквами <code><b>E</b></code>, <code><b>F</b></code>, <code><b>e</b></code> и <code><b>f</b></code>. А вот шаблон <code><b>/[E-f]/i</b></code> совпадает со всеми буквами стандарта ASCII в верхнем и в нижнем регистре, а также с символами <code><b>[</b></code>, <code><b>\</b></code>, <code><b>]</b></code>, <code><b>^</b></code>, <code><b>_</b></code> и <code><b>`</b></code>.</p>
+	<p><b>ПРИМЕЧАНИЕ 3</b> Символ <code><b>-</b></code> может интерпретироваться буквально, либо же он может означать диапазон. Он интерпретируется буквально, если он является первым или последним символом  <i>ClassRanges</i>, начальным или конечным ограничителем диапазона, или следует сразу же описанием диапазона.</p>
+	<h5 id="x15.10.2.17">15.10.2.17 ClassAtom <a href="#x15.10.2.17">#</a> <a href="#x15.10.2.17-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>ClassAtom</i> <b>:: </b><code><b>-</b></code> возвращается <a href="#CharSet">CharSet</a>, содержащий один символ&nbsp;<code><b>-</b></code>.</p>
+	<p>
+	Для вычисления <i>ClassAtom</i> <b>:: </b><i>ClassAtomNoDash</i> вычисляется <i>ClassAtomNoDash</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a>.</p>
+	<h5 id="x15.10.2.18">15.10.2.18 ClassAtomNoDash <a href="#x15.10.2.18">#</a> <a href="#x15.10.2.18-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>ClassAtomNoDash</i> <b>:: </b><i>SourceCharacter</i> <b>но не один из </b><code><b>\</b></code> <b>или </b><code><b>]</b></code><b> или </b><code><b>-</b></code> возвращается одноэлементный <a href="#CharSet">CharSet</a>, содержащий символ, представленный посредством&nbsp;<i>SourceCharacter</i>.</p>
+	<p>
+	Для вычисления <i>ClassAtomNoDash</i> <b>:: </b><code><b>\</b></code> <i>ClassEscape</i> вычисляется <i>ClassEscape</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a>.</p>
+	<h5 id="x15.10.2.19">15.10.2.19 ClassEscape <a href="#x15.10.2.19">#</a> <a href="#x15.10.2.19-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Для вычисления <i>ClassEscape</i> <b>:: </b><i>DecimalEscape</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Вычислить <i>DecimalEscape</i> для получения <a href="#EscapeValue">EscapeValue</a> <i>E</i>.</p>
+		</li>
+		<li><p>
+		Если <i>E</i> не является символом, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>ch</i> будет символом для <i>E</i>.</p>
+		</li>
+		<li><p>
+		Вернуть одноэлементный <a href="#CharSet">CharSet</a>, содержащий символ&nbsp;<i>ch</i>.</p>
+	</li></ol><p>
+	Для вычисления <i>ClassEscape</i> <b>:: </b><code><b>b</b></code> возвращается <a href="#CharSet">CharSet</a>, содержащий один символ &lt;BS&gt; (значение Юникода&nbsp;0008).</p>
+	<p>
+	Для вычисления <i>ClassEscape</i> <b>:: </b><i>CharacterEscape</i> вычислить <i>CharacterEscape</i>, чтобы получить символ и вернуть одноэлементный <a href="#CharSet">CharSet</a>, содержащий этот символ.</p>
+	<p>
+	Для вычисления <i>ClassEscape</i> <b>:: </b>CharacterClassEscape вычисляется <i>CharacterClassEscape</i>, чтобы получить <a href="#CharSet">CharSet</a> и вернуть этот <a href="#CharSet">CharSet</a>.</p>
+	<p><b>ПРИМЕЧАНИЕ </b><i>ClassAtom</i> может использовать любую управляющую последовательность, разрешённую в оставшейся части регулярного выражения, кроме <code><b>\b</b></code>, <code><b>\B</b></code> и обратных ссылок. Внутри <i>CharacterClass</i> <code><b>\b</b></code> означает символ возврата на одну позицию, а <code><b>\B</b></code> и обратные ссылки генерируют ошибки. Использование обратной ссылки внутри <i>ClassAtom</i> генерирует ошибку.</p>
+	<h4 id="x15.10.3">15.10.3 Вызов конструктора RegExp как функции <a href="#x15.10.3">#</a> <a href="#x15.10.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<h5 id="x15.10.3.1">15.10.3.1 RegExp(pattern, flags) <a href="#x15.10.3.1">#</a> <a href="#x15.10.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>pattern</i> представляет собой объект <i>R</i>, у которого внутреннее свойство [[Class]] равно <code><b>&quot;RegExp&quot;</b></code>, а <i>flags</i> равно <b>undefined</b>, вернуть <i>R</i> без изменений. В противном случае вызвать стандартный встроенный конструктор <code><b>RegExp</b></code> (<a href="#x15.10.4.1">15.10.4.1</a>),  как если бы он был создан выражением <code><b>new RegExp(</b></code> <i>pattern</i><code><b>,</b></code> <i>flags</i><code><b>)</b></code> и вернуть объект, созданный этим конструктором.</p>
+	<h4 id="x15.10.4">15.10.4 Конструктор RegExp <a href="#x15.10.4">#</a> <a href="#x15.10.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><b>RegExp</b></code> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует созданный объект.</p>
+	<h5 id="x15.10.4.1">15.10.4.1 new RegExp(pattern, flags) <a href="#x15.10.4.1">#</a> <a href="#x15.10.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Если <i>pattern</i> представляет собой объект <i>R</i>, у которого внутреннее свойства [[Class]] равно <code><b>&quot;RegExp&quot;</b></code>, а <i>flags</i> равно <b>undefined</b>, пусть <i>P</i> будет <i>pattern</i>, используемым для создания <i>R</i>, и пусть <i>F</i> будет <I>flags</I>, используемым для создания <i>R</i>. Если <i>pattern</i> представляет собой объект <i>R</i>, у которого внутреннее свойство [[Class]] равно <code><b>&quot;RegExp&quot;</b></code>, а <i>flags</i> не равно <b>undefined</b>, сгенерировать исключение <a href="x15.11.html#x15.11.6.5" class="term-ref"><B>TypeError</B></a>. Иначе, пусть <i>P</i> будет пустой строкой, если <i>pattern</i> равно <b>undefined</b>, а в противном случае будет равно <a href="x9.html#x9.8">ToString</a>(<i>pattern</i>), и пусть <i>F</i> будет пустой строкой, если <i>flags</i> равно <b>undefined</b>, а в противном случае будет равно <a href="x9.html#x9.8">ToString</a>(<i>flags</i>).</p>
+	<p>
+	Если символы из <i>P</i> не имеют синтаксической формы <i>Pattern</i>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>. В противном случае, пусть у создаваемого объекта будет внутреннее свойство [[Match]], полученное в результате вычисления ("компилирования") символов для <i>P</i> в качестве <i>Pattern</i>, как описано в пункте&nbsp;<a href="#x15.10.2">15.10.2</a>. 
+	</p>
+	<p>
+	Если <i>F</i> содержит символ, отличный от символов <code><b>&quot;g&quot;</b></code>, <code><b>&quot;i&quot;</b></code> или <code><b>&quot;m&quot;</b></code>, или если он содержит один и тот же символ более одного раза, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>. 
+	</p>
+	<p>
+	Если исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b> не сгенерировано, то: 
+	</p>
+	<p>
+	Пусть <i>S</i> будет строкой в формате <i>Pattern</i>, эквивалентом <i>P</i>, в котором определённые символы отключаются, как описано далее. <i>S</i> может быть идентичным <i>P</i> или <i>pattern</i>, или нет; однако, внутренняя процедура, полученная в результате вычисления <i>S</i> в качестве <i>Pattern</i>, должна вести себя так же, как и внутренняя процедура, предоставленная внутренним свойством [[Match]] создаваемого объекта.
+	
+	</p>
+	<p>
+	Символы <code><b>/</b></code> или <i>обратная косая черта </i> <code><b>\</b></code>, встречающиеся в шаблоне, в строке <i>S</i> должны отключаться, если это необходимо для того, чтобы строковое значение, полученное в результате конкатенации строк <code><b>&quot;/&quot;</b></code>, <i>S</i>, <code><b>&quot;/&quot;</b></code> и <i>F</i>, могли быть подвергнуты синтаксическому разбору (в соответствующем лексическом контексте) как <i><a href="x7.html#x7.8.5">RegularExpressionLiteral</a></i>, который ведёт себя аналогично создаваемому регулярному выражению. Например, если <i>P</i> равно <code><b>&quot;/&quot;</b></code>, то <i>S</i>, среди прочих возможных вариантов, могло бы быть <code><b>&quot;\/&quot;</b></code> или <code><b>&quot;\u002F&quot;</b></code>, но не <code><b>&quot;/&quot;</b></code>, потому что в результате синтаксического разбора <code><b>///</b></code> с последующим <i>F</i> передавалось бы как <i>SingleLineComment</i>, а не как <i><a href="x7.html#x7.8.5">RegularExpressionLiteral</a></i>. Если <i>P</i> &ndash; пустая строка, то этой спецификации можно соответствовать, если <i>S</i> будет <code><b>&quot;(?:)&quot;</b></code>.
+	
+	</p>
+	<p>
+	Следующие свойства создаваемого объекта являются свойствами данных с атрибутами, указанными в пункте&nbsp;<a href="#x15.10.7">15.10.7</a>. [[Value]] каждого свойства задаётся следующим образом:</p>
+	<p>
+	Свойству <code><b>source</b></code> создаваемого объекта присваивается значение&nbsp;<i>S</i>.</p>
+	<p>
+	Свойству <code><b>global</b></code> создаваемого объекта присваивается булево значение, равное <b>true</b>, если <i>F</i> содержит символ <code><b>&quot;</b></code><code><b>g</b></code><code><b>&quot;</b></code>, а в противном случае &ndash; равное <b>false</b>.</p>
+	<p>
+	Свойству <code><b>ignoreCase</b></code> создаваемого объекта присваивается булево значение, равное <b>true</b>, если <i>F</i> содержит символ <code><b>&quot;</b></code><code><b>g</b></code><code><b>&quot;</b></code>, а в противном случае &ndash; равное <b>false</b>.</p>
+	<p>
+	Свойству <code><b>multiline</b></code> создаваемого объекта присваивается булево значение, равное <b>true</b>, если <i>F</i> содержит символ <code><b>&quot;</b></code><code><b>g</b></code><code><b>&quot;</b></code>, а в противном случае &ndash; равное <b>false</b>.</p>
+	<p>
+	Свойству <code><b>multiline</b></code> создаваемого объекта присваивается значение&nbsp;<b>0</b>.</p>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным стандартному встроенному объекту-прототипу RegExp, как указано в пункте&nbsp;<a href="#x15.10.6">15.10.6</a>.</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;RegExp&quot;</b></code>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Если строка представляет собой <i><a href="x7.html#x7.8.4">StringLiteral</a></i>, то прежде чем производить обработку строки регулярным выражением, производятся обычные замены управляющей последовательности. Если шаблон содержит управляющую последовательно, распознаваемую регулярным выражением, то символы обратной косой черты <code><b>\</b></code> внутри <i><a href="x7.html#x7.8.4">StringLiteral</a></i> должны отключаться, чтобы они не удалялись при формировании содержимого <i><a href="x7.html#x7.8.4">StringLiteral</a></i>. 
+	</p>
+	<h4 id="x15.10.5">15.10.5 Свойства конструктора  RegExp <a href="#x15.10.5">#</a> <a href="#x15.10.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора RegExp является стандартный встроенный объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Кроме внутренних свойств и свойства <code><b>length</b></code> со значением <b>2</b>, конструктор RegExp имеет следующие свойства:</p>
+	<h5 id="x15.10.5.1">15.10.5.1 RegExp.prototype <a href="#x15.10.5.1">#</a> <a href="#x15.10.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>RegExp.prototype</b></code> является объект-прототип RegExp (<a href="#x15.10.6">15.10.6</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>&nbsp;}.</p>
+	<h4 id="x15.10.6">15.10.6 Свойства объекта-прототипа RegExp <a href="#x15.10.6">#</a> <a href="#x15.10.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа RegExp является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>). Объект-прототип RegExp сам по себе является объектом регулярного выражения. Его [[Class]] равен <code>&quot;</code><code><b>RegExp</b></code><code>&quot;</code>. Начальные значения свойств данных объекта-прототипа RegExp (<a href="#x15.10.7">15.10.7</a>) устанавливаются такими, как если бы этот объект был создан выражением <code><b>new RegExp()</b></code>, где <code><b>RegExp</b></code> является этим стандартным встроенным конструктором с этим именем.</p>
+	<p>
+	Объект-прототип RegExp не имеет собственного свойства <code><b>valueOf</b></code>, но он наследует свойство <code><b>valueOf</b></code> от объекта-прототипа Object.</p>
+	<p>
+	В приведённых ниже описаниях функций, которые являются свойствами объекта-прототипа RegExp, фраза &quot;объект this типа RegExp&quot; означает объект, который представляет собой значение <b>this</b>, переданное при вызове функции. Если значение <b>this</b> не является объектом, или является объектом, для которого значение внутреннего свойства [[Class]] не равно <code><b>&quot;RegExp&quot;</b></code>, генерируется исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<h5 id="x15.10.6.1">15.10.6.1 RegExp.prototype.constructor <a href="#x15.10.6.1">#</a> <a href="#x15.10.6.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>RegExp.prototype.constructor</b></code> является стандартный встроенный конструктор <code><b>RegExp</b></code>.</p>
+	<h5 id="x15.10.6.2">15.10.6.2 RegExp.prototype.exec(string) <a href="#x15.10.6.2">#</a> <a href="#x15.10.6.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Производит поиск соответствия регулярному выражению в строке <i>string</i> и возвращает объект Array, содержащий результаты соответствия, или <b>null</b>, если соответствие не найдено.</p>
+	<p>
+	Поиск по строке <a href="x9.html#x9.8">ToString</a>(<i>string</i>) экземпляров шаблона регулярного выражения производится следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>R</i> будет объектом this типа RegExp.</p>
+		</li>
+		<li><p>
+		Пусть <i>S</i> будет значением <a href="x9.html#x9.8">ToString</a>(<i>string</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>length</i> будет длиной для <i>S</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>lastIndex</i> будет результатом вызова внутреннего метода [[Get]] для <i><i>R</i></i> с аргументом <code><b>&quot;lastIndex&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>i</i> будет значением <a href="x9.html#x9.4">ToInteger</a>(<i>lastIndex</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>global</i> будет результатом вызова внутреннего метода [[Get]] для <i>R</i> с аргументом <code><b>&quot;global&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <i>global</i> равно <b>false</b>, пусть <i>i</i> = 0.</p>
+		</li>
+		<li><p>
+		Пусть <i>matchSucceeded</i> будет <b>false</b>.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>matchSucceeded</i> равно <b>false</b>.</p>
+		<ol><li><p>
+			Если <i>i </i>&lt; 0 или <i>i </i>&gt; <i>length</i>, то</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[Put]] для <i>R</i> с аргументами &quot;<code><b>lastIndex</b></code><code><b>&quot;</b></code>, 0 и <b>true</b>.</p>
+				</li>
+				<li><p>
+				Вернуть <code><b>null</b></code>.</p>
+			</li></ol></li>
+			<li><p>
+			Вызвать <i>внутренний</i> метод [[Match]] для <i>R</i> с аргументами <i>S</i> и <i>i</i>.</p>
+			</li>
+			<li><p>
+			Если [[Match]] вернол <b>failure</b>, то 
+			</p>
+			<ol><li><p>
+				<i><I><I>Пусть </I></I>i = i+1.</i></p>
+			</li></ol></li>
+			<li><p>
+			else
+			
+			</p>
+			<ol><li><p>
+				Пусть <i>r</i> будет результатом <a href="#State">State</a> для вызова [[Match]].</p>
+				</li>
+				<li><p>
+				Присвоить <i>matchSucceeded</i> значение <b>true</b>.</p>
+			</li></ol></li>
+</ol></li>
+		<li><p>
+		Пусть <i>e</i> будет значением <i><a href="#endIndex">endIndex</a></i> для <i>r</i>.</p>
+		</li>
+		<li><p>
+		Если <i>global</i> равно <B>true</B>,</p>
+		<ol><li><p>
+			Вызвать внутренний метод [[Put]] для <i>R</i> с аргументами &quot;<code><b>lastIndex</b></code><code><b>&quot;</b></code>, <i>e</i>, и <b>true</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>n</i> будет длиной массива <i><a href="#captures">captures</a></i> для <i>r</i>. (Это точно такое же значение, что и значение <i><a href="#NcapturingParens">NCapturingParens</a></i> из пункта&nbsp;<a href="#x15.10.2.1">15.10.2.1</a>).</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array()</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>matchIndex</i> будет позицией совпавшей подстроки в целой строке&nbsp;<i>S</i>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <b>&quot;</b><b><code>index</code></b><code>&quot;</code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>matchIndex</i>, [[Writable]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <b>&quot;</b><b><code>input</code></b><code>&quot;</code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>S</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <b>&quot;</b><b><code>length</code></b><code>&quot;</code>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>n</i> + 1} и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>matchedSubstr</i> будет совпавшей подстрокой (то есть, частью строки <i>S</i> между смещением <i>i</i> включительтно и смещением <i>e</i> не включительно).</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <code>&quot;</code><code><b>0</b></code><b>&quot;</b>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>matchedSubstr</i>, [[Writable]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Для каждого такого целого числа <i>i</i> , чтобы <i>I </i>&gt; 0 и <i>I </i><span class="symbol">&#8804;</span> <i>n</i></p>
+		<ol><li><p>
+			Пусть <i>captureI</i> будет элементом № <i>i</i> массива <i><a href="#captures">captures</a> для <i>r</i></i>.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>i</i>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>captureI</i>, [[Writable]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>true</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>А</i>.</p>
+	</li></ol>
+	<h5 id="x15.10.6.3">15.10.6.3 RegExp.prototype.test(string) <a href="#x15.10.6.3">#</a> <a href="#x15.10.6.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>match</i> будет результатом вычисления алгоритма <code><b><a href="#x15.10.6.2">RegExp.prototype.exec</a></b></code> (<a href="#x15.10.6.2">15.10.6.2</a>) над объектом this типа RegExp, с использованием <i>string</i> в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Если <i>match</i> не равно null, вернуть <b>true</b>; иначе вернуть <b>false</b>.</p>
+	</li></ol>
+	<h5 id="x15.10.6.4">15.10.6.4 RegExp.prototype.toString() <a href="#x15.10.6.4">#</a> <a href="#x15.10.6.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращает строковое значение, полученное в результате конкатенации строк <code>&quot;</code><code><b>/</b></code><code>&quot;</code>, строкового значения свойства <b>source</b> объекта this типа RegExp, и <code>&quot;</code><code><b>/</b></code><code>&quot;</code>; а также <code>&quot;</code><code><b>g</b></code><code>&quot;</code>, если свойство <code><b>global</b></code> равно <b>true</b>, <code>&quot;</code><code><b>i</b></code><code>&quot;</code>, если свойства <code><b>ignoreCase</b></code> равно <b>true</b>, и <code>&quot;</code><code><b>m</b></code><code>&quot;</code>, если свойство <code><b>multiline</b></code> равно <b>true</b><code><b>.</b></code></p>
+	<p><b>ПРИМЕЧАНИЕ</b> Возвращаемая строка имеет формат <i><a href="x7.html#x7.8.5">RegularExpressionLiteral</a></i>, который преобразуется в другой объект типа RegExp с таким же поведением, что и объект this. 
+	</p>
+	<h4 id="x15.10.7">15.10.7 Свойства экземпляров RegExp <a href="#x15.10.7">#</a> <a href="#x15.10.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Экземпляры RegExp наследуют свойства объекта-прототипа RegExp. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;RegExp&quot;</b></code>. Экземпляры RegExp также имеют внутреннее свойство [[Match]] и свойство <code><b>length</b></code>.</p>
+	<p>
+	Значение внутреннего свойства [[Match]] представляет собой зависящее от реализации представление шаблона <i>Pattern</i> объекта типа&nbsp;RegExp.</p>
+	<p>
+	Кроме того, экземпляры RegExp обладают следующими свойствами:</p>
+	<h5 id="x15.10.7.1">15.10.7.1 source <a href="#x15.10.7.1">#</a> <a href="#x15.10.7.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>source</b></code> представляет собой строку в формате <i>Pattern</i>, представляющую текущее регулярное выражение. Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>&nbsp;}.</p>
+	<h5 id="x15.10.7.2">15.10.7.2 global <a href="#x15.10.7.2">#</a> <a href="#x15.10.7.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>global</b></code> представляет собой булево значение, указывающее, содержат ли флаги символ <code><b>&ldquo;g&rdquo;</b></code>. Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>&nbsp;}.</p>
+	<h5 id="x15.10.7.3">15.10.7.3 ignoreCase <a href="#x15.10.7.3">#</a> <a href="#x15.10.7.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>ignoreCase</b></code> представляет собой булево значение, указывающее, содержат ли флаги символ <code><b>&ldquo;i&rdquo;</b></code>. Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>&nbsp;}.</p>
+	<h5 id="x15.10.7.4">15.10.7.4 multiline <a href="#x15.10.7.4">#</a> <a href="#x15.10.7.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>multiline</b></code> представляет собой булево значение, указывающее, содержат ли флаги символ <code><b>&ldquo;m&rdquo;</b></code>. Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>&nbsp;}.</p>
+	<h5 id="x15.10.7.5">15.10.7.5 lastIndex <a href="#x15.10.7.5">#</a> <a href="#x15.10.7.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>lastIndex</b></code> указывает на позицию в строке, с которой начинается следующий поиск совпадения. При использовании оно приводится к целому числу (см.&nbsp;<a href="#x15.10.6.2">15.10.6.2</a>). Это свойство имеет атрибуты { [[Writable]]: <b>true</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>&nbsp;}.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> В отличие от других стандартных встроенных свойства экземпляров RegExp, <code><b>lastIndex</b></code> является перезаписываемым свойством.</p>
+	</body><script src="anno.js"></script></html>

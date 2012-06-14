@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.3 Объекты Function # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.2.html" title="15.2 Объекты Object " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.4.html" title="15.2 Объекты Array " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+   <a href="x15.2.html">&#8592; 15.2 Объекты Object </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.4.html">15.4 Объекты Array &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.3.html#x15.3" id="x15.3-toc">15.3  Объекты Function</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.3.html#x15.3.1" id="x15.3.1-toc">15.3.1 Вызов конструктора Function как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.3.html#x15.3.1.1" id="x15.3.1.1-toc">15.3.1.1 Function (p1, p2, &#8230; , pn, body)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.3.html#x15.3.2" id="x15.3.2-toc">15.3.2 Конструктор Function</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.3.html#x15.3.2.1" id="x15.3.2.1-toc">15.3.2.1 new Function (p1, p2, &#8230; , pn, body)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.3.html#x15.3.3" id="x15.3.3-toc">15.3.3 Свойства конструктора Function</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.3.html#x15.3.3.1" id="x15.3.3.1-toc">15.3.3.1 Function.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.3.2" id="x15.3.3.2-toc">15.3.3.2 Function.length</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.3.html#x15.3.4" id="x15.3.4-toc">15.3.4 Свойства объекта-прототипа Function</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.3.html#x15.3.4.1" id="x15.3.4.1-toc">15.3.4.1 Function.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.4.2" id="x15.3.4.2-toc">15.3.4.2 Function.prototype.toString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.4.3" id="x15.3.4.3-toc">15.3.4.3 Function.prototype.apply (thisArg, argArray)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.4.4" id="x15.3.4.4-toc">15.3.4.4 Function.prototype.call (thisArg [ , arg1 [ , arg2, &#8230; ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.4.5" id="x15.3.4.5-toc">15.3.4.5 Function.prototype.bind (thisArg [, arg1 [, arg2, &#8230;]])</a>
+                <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.3.html#x15.3.4.5.1" id="x15.3.4.5.1-toc">15.3.4.5.1 [[Call]]</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.4.5.2" id="x15.3.4.5.2-toc">15.3.4.5.2 [[Construct]]</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.4.5.3" id="x15.3.4.5.3-toc">15.3.4.5.3 [[HasInstance]] (V)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li><li><a href="x15.3.html#x15.3.5" id="x15.3.5-toc">15.3.5 Свойства экземпляров Function</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.3.html#x15.3.5.1" id="x15.3.5.1-toc">15.3.5.1 length</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.5.2" id="x15.3.5.2-toc">15.3.5.2 prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.5.3" id="x15.3.5.3-toc">15.3.5.3 [[HasInstance]] (V)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.3.html#x15.3.5.4" id="x15.3.5.4-toc">15.3.5.4 [[Get]] (P)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.3" class="splitme">15.3 Объекты Function <a href="#x15.3">#</a> <a href="#x15.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<h4 id="x15.3.1">15.3.1 Вызов конструктора Function как функции <a href="#x15.3.1">#</a> <a href="#x15.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове <code><b>Function</b></code> не в качестве конструктора, а в качестве функции, создается и инициализируется новый объект Function. Таким образом, вызов функции <code><b>Function(</b></code><code>…</code><code><b>)</b></code> эквивалентен выражению для создания объекта <code><b>new Function(</b></code><code>…</code><code><b>)</b></code> с теми же аргументами.</p>
+		<h5 id="x15.3.1.1">15.3.1.1 Function (p1, p2, &#8230; , pn, body) <a href="#x15.3.1.1">#</a> <a href="#x15.3.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове функции <code><b>Function</b></code> с аргументами <i>p1</i>, <i>p2</i>, … , <i>pn</i>, <i>body</i> (где <i>n</i> может быть равно 0, что означает отсутствие аргументов &ldquo;<i>p</i>&rdquo;, и где аргумент <i>body</i> также может быть не передан) выполняются следующие шаги:</p>
+	<ol><li><p>
+		Создать и вернуть новый объект Function, как если бы этот стандартный встроенный конструктор Function был использован в выражении <b>new </b>с такими же аргументами (<a href="#x15.3.2.1">15.3.2.1</a>).</p>
+	</li></ol>
+	<h4 id="x15.3.2">15.3.2 Конструктор Function <a href="#x15.3.2">#</a> <a href="#x15.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><b>Function</b></code> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует созданный объект.</p>
+	<h5 id="x15.3.2.1">15.3.2.1 new Function (p1, p2, &#8230; , pn, body) <a href="#x15.3.2.1">#</a> <a href="#x15.3.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Последний аргумент указывает тело (исполняемый код) функции, а все предыдущие аргументы указывают формальные параметры.</p>
+	<p>
+	При вызове конструктора <code><b>Function</b></code> с аргументами <i>p1</i>, <i>p2</i>, … , <i>pn</i>, <i>body</i> (где <i>n</i> может быть равно 0, что означает отсутствие аргументов &ldquo;<i>p</i>&rdquo;, и где аргумент <i>body</i> также может быть не передан) выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>argCount</i> будет общим количеством параметров, переданных при вызове этой функции.</p>
+		</li>
+		<li><p>
+		Пусть <i>P</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Если <i>argCount</i> = 0, пусть <i>body</i> будет пустой строкой.</p>
+		</li>
+		<li><p>
+		Иначе, если <i>argCount</i> = 1, пусть <i>body</i> будет этим аргументом.</p>
+		</li>
+		<li><p>
+		Иначе, <i>argCount</i> &gt; 1</p>
+		<ol><li><p>
+			Пусть <i>firstArg</i> будет первым аргументом.</p>
+			</li>
+			<li><p>
+			Пусть <i>P</i> будет <a href="x9.html#x9.8">ToString</a>(<I>firstArg</I>).</p>
+			</li>
+			<li><p>
+			Пусть <i>k</i> будет 2.</p>
+			</li>
+			<li><p>
+			Повторить, пока <i>k</i> &lt; <i>argCount</i></p>
+			<ol><li><p>
+				Пусть <i>nextArg</i> будет <i>k</i>-тым аргументом.</p>
+				</li>
+				<li><p>
+				Пусть <i>P</i> будет результатом конкатенации предыдущего значения&nbsp;<i>P</i>, строки <code><b>&quot;,&quot;</b></code> (запятая) и <a href="x9.html#x9.8">ToString</a>(<i>nextArg</i>).</p>
+				</li>
+				<li><p>
+				Увеличить <i>k</i> на 1.</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>body</i> будет <i>k</i>-тым аргументом.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>body</i> будет <a href="x9.html#x9.8">ToString</a>(<i>body</i>).</p>
+		</li>
+		<li><p>
+		Если <i>P</i> не может подвергнуться синтаксическому разбору как <i>FormalParameterList</i><sub>opt</sub>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <I>body</I> не может подвергнуться синтаксическому разбору как <a href="x13.html#x13"><I>FunctionBody</I></a>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>body </i>&ndash; <a href="x10.html#x10.1.1" class="term-ref">код в строгом режиме</a> (см. пункт&nbsp;<a href="x10.html#x10.1.1">10.1.1</a>), то пусть <i>strict</i> будет <b>true</b>, иначе пусть <i>strict</i> будет <b>false</b>.</p>
+		</li>
+		<li><p>
+		Если <i>strict</i> равно <b>true</b>, сгенерировать все применимые исключения, описанные в пункте&nbsp;<a href="x13.html#x13.1">13.1</a>. 
+		</p>
+		</li>
+		<li><p>
+		Вернуть новый объект Function, созданный как указано в пункте&nbsp;<a href="x13.html#x13.2">13.2</a>, с передачей <i>P</i> в качестве <i>FormalParameterList</i> и <i>body</i> в качестве <i><a href="x13.html#x13">FunctionBody</a></i>. Передать <a href="x10.html#x10.2.3">Global Environment</a> в качестве параметра <i>Scope</i>, и <i>strict</i> в качестве флага <i>Strict</i>.</p>
+	</li></ol><p>
+	Для каждой функции автоматически создаётся свойство <code><b>prototype</b></code>, чтобы предусмотреть возможность использования этой функции в качестве конструктора.</p>
+	<p>
+	</p><p><b>ПРИМЕЧАНИЕ </b>Допустимо (но необязательно) указывать в каждом задаваемом формальном параметре только один аргумент. Например, все три приведенных ниже выражения имеют одинаковый результат:</p>
+	<p class="code-example">
+	<code><b>new Function(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;return a+b+c&quot;)</b></code></p>
+	<p class="code-example">
+	<code><b>new Function(&quot;a, b, c&quot;, &quot;return a+b+c&quot;)</b></code></p>
+	<p class="code-example">
+	<code><b>new Function(&quot;a,b&quot;, &quot;c&quot;, &quot;return a+b+c&quot;)</b></code></p>
+	<h4 id="x15.3.3">15.3.3 Свойства конструктора Function <a href="#x15.3.3">#</a> <a href="#x15.3.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Конструктор Function является объектом Function, а его [[Class]] равен <code><b>&quot;Function&quot;</b></code>. Значением внутреннего свойства [[Prototype]] конструктора Function является стандартный встроенный объект-прототип Function (<a href="#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Значение внутреннего свойства [[Extensible]] конструктора Function равно <b>true</b>.</p>
+	<p>
+	Конструктор Function обладает следующими свойствами:</p>
+	<h5 id="x15.3.3.1">15.3.3.1 Function.prototype <a href="#x15.3.3.1">#</a> <a href="#x15.3.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Function.prototype</b></code> является стандартный встроенный объект-прототип Function (<a href="#x15.3.4">15.3.4</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.3.3.2">15.3.3.2 Function.length <a href="#x15.3.3.2">#</a> <a href="#x15.3.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Это свойство данных, его значение равно&nbsp;1. Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h4 id="x15.3.4">15.3.4 Свойства объекта-прототипа Function <a href="#x15.3.4">#</a> <a href="#x15.3.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Объект-прототип Function представляет собой объект Function (его [[Class]] равен <code><b>&quot;Function&quot;</b></code>), который при его вызове принимает любые аргументы и возвращает <b>undefined</b>.</p>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа Function является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>). Начальное значение внутреннего свойства [[Extensible]] объекта-прототипа Function равно <b>true</b>.</p>
+	<p>
+	Объект-прототип Function не имеет собственного свойства <code><b>valueOf</b></code>, но он наследует свойство <code><b>valueOf</b></code> от объекта-прототипа Object.</p>
+	<p>
+	Свойство <code><b>length</b></code> объекта-прототипа Function равно&nbsp;<b>0</b>.</p>
+	<h5 id="x15.3.4.1">15.3.4.1 Function.prototype.constructor <a href="#x15.3.4.1">#</a> <a href="#x15.3.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Function.prototype.constructor</b></code> является встроенный конструктор <code><b>Function</b></code>.</p>
+	<h5 id="x15.3.4.2">15.3.4.2 Function.prototype.toString ( ) <a href="#x15.3.4.2">#</a> <a href="#x15.3.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Возвращается зависящее от реализации представление функции, которое имеет синтаксис <i><a href="x13.html#x13">FunctionDeclaration</a></i>. В частности, обратите внимание, что использование и расстановка пробелов, символов окончания строки и точек с запятой в строковом представлении зависит от реализации.</p>
+	<p>
+	Функция <code><b>toString</b></code> не является родовой функцией. Если её значение <b>this</b> &ndash; не объект Function, она генерирует исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Поэтому она не может передаваться другим типам объектов для использования в качестве метода.</p>
+	<h5 id="x15.3.4.3">15.3.4.3 Function.prototype.apply (thisArg, argArray) <a href="#x15.3.4.3">#</a> <a href="#x15.3.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове методом <code><b>apply</b></code> объекта <i>func</i> с агрументами <i>thisArg</i> и <i>argArray</i> выполняются следующие шаги: 
+	</p>
+	<ol><li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>func</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>argArray</i> &ndash; <b>null</b> или <b>undefined</b>, то</p>
+		<ol><li><p>
+			Вернуть результат вызова внутреннего метода [[Call]] для <i>func</i>, передавая <i>thisArg</i> в качестве значения <b>this</b> и пустой список аргументов.</p>
+		</li></ol></li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>argArray</i>) &ndash; не Object, сгенерировать исключение <a href="x15.11.html#x15.11.6.5" class="term-ref"><B>TypeError</B></a>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len </i>будет результатом вызова внутреннего метода [[Get]] для <I>argArray </I>с аргументом <b>&quot;</b><code>length</code>&quot;.</p>
+		</li>
+		<li><p>
+		Пусть <i>n</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>argList</i>  будет пустым списком <a href="x8.html#x8.8">List</a>.</p>
+		</li>
+		<li><p>
+		Пусть <I>index</I> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <I>index</I> &lt; <i>n</i></p>
+		<ol><li><p>
+			Пусть <i>indexName</i> будет <a href="x9.html#x9.8">ToString</a>(<i>index</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>nextArg</i> будет результатом вызова внутреннего метода [[Get]] для <i>argArray</i> с передачей <I>indexName</I> в качестве аргумента.</p>
+			</li>
+			<li><p>
+			Присоедините <i>nextArg</i> в качестве последнего элемента <i>argList</i>.</p>
+			</li>
+			<li><p>
+			Присвойте <i>index</i> значение <i>index</i> + 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Call]] для <i>func</i>, передавая <i>thisArg</i> в качестве значения <b>this</b> и <I>argList </I>в качестве списка аргументов.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><b>apply</b></code> равно <b>2</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Значение thisArg передаётся без изменения как значение <b>this</b>. Это отличие от 3-й редакции, в которой thisArg, равное <b>undefined</b> или <b>null</b>, заменяется <a href="x15.1.html#x15.1" class="term-ref">глобальным объектом</a>, а <a href="x9.html#x9.9">ToObject</a> применяется ко всем другим значениям, и этот результат передаётся в качестве значения <b>this</b>.</p>
+	<h5 id="x15.3.4.4">15.3.4.4 Function.prototype.call (thisArg [ , arg1 [ , arg2, &#8230; ] ] ) <a href="#x15.3.4.4">#</a> <a href="#x15.3.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове методом <code><b>call</b></code> объекта <i>func</i> с аргументом <i>thisArg</i> и необязательными аргументами <i>arg1</i>, <i>arg2</i>, и т.д.,выполняются следующие шаги:</p>
+	<ol><li><p>
+		 Если <a href="x9.html#x9.11">IsCallable</a>(<i>func</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>argList</i>  будет пустым списком <a href="x8.html#x8.8">List</a>.</p>
+		</li>
+		<li><p>
+		Если данный метод вызывался более чем с одним аргументом, то слева направо, начиная с аргумента <i>arg1</i>, присоединить каждый аргумент как последний элемент&nbsp;<I>argList</I>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Call]] для <i>func</i>, передавая <i>thisArg</i> в качестве значения <b>this</b> и <I>argList </I>в качестве списка аргументов.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><b>call</b></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Значение thisArg передаётся без изменения как значение <b>this</b>. Это отличие от 3-й редакции, в которой thisArg, равное <b>undefined</b> или <b>null</b>, заменяется <a href="x15.1.html#x15.1" class="term-ref">глобальным объектом</a>, а <a href="x9.html#x9.9">ToObject</a> применяется ко всем другим значениям, и этот результат передаётся в качестве значения <b>this</b>.</p>
+	<h5 id="x15.3.4.5">15.3.4.5 Function.prototype.bind (thisArg [, arg1 [, arg2, &#8230;]]) <a href="#x15.3.4.5">#</a> <a href="#x15.3.4.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Метод bind принимает один или несколько аргументов, <i>thisArg</i> и необязательные аргументы <i>arg1</i>, <i>arg2</i>, и т.д., и возвращает новый объект function, выполняя при этом следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>Target </i>будет значением <b>this</b>.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>Target</i>) &ndash; <b>false</b>, сгенерировать исключение <b>TypeError</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>A </i>будет новым (возможно, пустым) внутренним списком всех значений аргументов, передаваемых после <i>thisArg </i>(<i>arg1</i>, <i>arg2</i>, и т.д.), по порядку.</p>
+		</li>
+		<li><p>
+		Пусть <i>F</i> будет новым родным объектом ECMAScript.</p>
+		</li>
+		<li><p>
+		Установить все внутренние методы для <i>F</i>, кроме метода&nbsp;[[Get]], как указано в пункте&nbsp;<a href="x8.html#x8.12">8.12</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[Get]] для <i>F</i>, как указано в пункте&nbsp;<a href="#x15.3.5.4">15.3.5.4</a>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[TargetFunction]] для <i>F </i>значение <i>Target</i>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[BoundThis]] для <i>F</i> значение&nbsp;<i>thisArg</i>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[BoundArgs]] для <i>F </i>значение <i>A</i>.</p>
+		</li>
+		<li><p>
+		Внутреннему свойству [[Class]] для <i>F</i> присвоить  <b>&quot;Function&quot;</b>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Prototype]] для <i>F</i> значение стандартного встроенного объекта-прототипа Function, как описано в пункте&nbsp;<a href="#x15.3.3.1">15.3.3.1</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[Call]] для <i>F</i>, как описано в пункте <a href="#x15.3.4.5.1">15.3.4.5.1</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[Construct]] для <i>F</i>, как описано в пункте <a href="#x15.3.4.5.2">15.3.4.5.2</a>.</p>
+		</li>
+		<li><p>
+		Установить внутреннее свойство [[HasInstance]] для <i>F</i>, как описано в пункте <a href="#x15.3.4.5.3">15.3.4.5.3</a>.</p>
+		</li>
+		<li><p>
+		Если внутреннее свойство [[Class]] для <i>Target </i>равно <b>&quot;Function&quot;</b>, то</p>
+		<ol><li><p>
+			Пусть <i>L </i>будет свойством <b>length </b>для <i>Target</i>, минус длина&nbsp;<i>A</i>.</p>
+			</li>
+			<li><p>
+			Присвоить собственному свойству <b>length </b>для <i>F </i>значение 0 или <i>L</i> (то из них, которое больше). 
+			</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, присвоить собственному свойству <b>length </b>для <i>F </i>на&nbsp;0.</p>
+		</li>
+		<li><p>
+		Присвоить атрибутам собственного свойства <b>length</b> для <i>F</i>  значения, указанные в пункте&nbsp;<a href="#x15.3.5.1">15.3.5.1</a>.</p>
+		</li>
+		<li><p>
+		Присвоить внутреннему свойству [[Extensible]] для <i>F </i>значение <b>true</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>thrower</i> будет объектом функции [[ThrowTypeError]]&nbsp;(<a href="x13.html#x13.2.3">13.2.3</a>).</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <I>F </I>с аргументами <code><b>&quot;caller&quot;</b></code>, PropertyDescriptor {[[Get]]: <i>thrower</i>, [[Set]]: <i>thrower</i>, [[Enumerable]]: <b>false</b>, [[Configurable]]:<b> false</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[DefineOwnProperty]] для <i>F</i> с аргументами <code><b>&quot;arguments&quot;</b></code>, PropertyDescriptor {[[Get]]: <i>thrower</i>, [[Set]]: <i>thrower</i>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>} и <b>false</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>F</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><b>bind</b></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> У объектов Function, созданных посредством <code><b>Function.prototype.bind</b></code>, отсутствует свойство <code><b>prototype</b></code> или внутренние свойства [[Code]], [[FormalParameters]] и [[Scope]].</p>
+	<h6 id="x15.3.4.5.1">15.3.4.5.1 [[Call]] <a href="#x15.3.4.5.1">#</a> <a href="#x15.3.4.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h6>
+	<p>
+	При вызове внутреннего метода [[Call]] для <i>F</i> (объекта Function, созданного посредством функции bind) со значением <b>this</b> и списком аргументов <i>ExtraArgs</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>boundArgs</i> будет значением внутреннего свойства [[BoundArgs]] для&nbsp;F.</p>
+		</li>
+		<li><p>
+		Пусть <i>boundThis</i> будет значением внутреннего свойства [[BoundThis]] для&nbsp;F.</p>
+		</li>
+		<li><p>
+		Пусть <i>target</i> будет значением внутреннего свойства [[TargetFunction]] для&nbsp;F.</p>
+		</li>
+		<li><p>
+		Пусть <i>args</i> будет новым списком, содержащим такие же значения, что и список <i>boundArgs</i>, в том же порядке, за которым следуют такие же значения, что и в списке <i>ExtraArgs</i>, в том же порядке.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Call]] для <i>target</i>, передавая <i>boundThis</i> в качестве значения <b>this</b> и передавая <I>args </I>в качестве аргументов.</p>
+	</li></ol>
+	<h6 id="x15.3.4.5.2">15.3.4.5.2 [[Construct]] <a href="#x15.3.4.5.2">#</a> <a href="#x15.3.4.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h6>
+	<p>
+	При вызове внутреннего метода [[Construct]] для <i>F</i> (объекта Function, созданного посредством функции bind) со списком аргументов <I>ExtraArgs </I>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>target</i> будет значением внутреннего свойства [[TargetFunction]] для&nbsp;<I>F</I>.</p>
+		</li>
+		<li><p>
+		Если у <i>target</i> отсутствует внутренний метод [[Construct]], сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>boundArgs</i> будет значением внутреннего свойства [[BoundArgs]] для&nbsp;F.</p>
+		</li>
+		<li><p>
+		Пусть <i>args</i> будет новым списком, содержащим такие же значения, что и список <i>boundArgs</i>, в том же порядке, за которым следуют такие же значения, что и в списке <i>ExtraArgs</i>, в том же порядке.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Construct]] для <i>target</i>, передавая <i>args</i> в качестве аргументов.</p>
+	</li></ol>
+	<h6 id="x15.3.4.5.3">15.3.4.5.3 [[HasInstance]] (V) <a href="#x15.3.4.5.3">#</a> <a href="#x15.3.4.5.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h6>
+	<p>
+	При вызове внутреннего метода [[HasInstance]] для <i>F</i> (объекта Function, созданного посредством функции bind) с аргументом <I><i>V</i> </I>выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>target</i> будет значением внутреннего свойства [[TargetFunction]] для&nbsp;<I>F</I>.</p>
+		</li>
+		<li><p>
+		Если у <i>target</i> отсутствует внутренний метод [[HasInstance]], сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[HasInstance]] для <i>target</i>, передавая <i><i>V</i></i> в качестве аргумента.</p>
+	</li></ol>
+	<h4 id="x15.3.5">15.3.5 Свойства экземпляров Function <a href="#x15.3.5">#</a> <a href="#x15.3.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Кроме обязательных внутренних свойств, каждый экземпляр function имеет внутреннее свойство [[Call]] и чаще всего использует другую версию внутреннего свойства [[Get]]. В зависимости от способа их создания (см. пункты&nbsp;<a href="x8.html#x8.6.2">8.6.2</a> ,<a href="x13.html#x13.2">13.2</a>, 15 и <a href="#x15.3.4.5">15.3.4.5</a>), экземпляры function могут иметь следующие внутренние свойства: [[HasInstance]], [[Scope]], [[Construct]], [[FormalParameters]], [[Code]], [[TargetFunction]], [[BoundThis]] и [[BoundArgs]].</p>
+	<p>
+	Значение внутреннего свойства [[Class]] равно <b>&quot;Function&quot;</b>.</p>
+	<p>
+	У экземпляров Function, соответствующих функциям в строгом режиме (см. пункт&nbsp;<a href="x13.html#x13.2">13.2</a>), и у экземпляров function, созданных посредством <B>метода </B><b>Function.prototype.bind</b> (<a href="#x15.3.4.5">15.3.4.5</a>), есть свойства &ldquo;caller&rdquo; и &ldquo;arguments&rdquo;, которые генерируют исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. Реализация ECMAScript не должна ассоциировать зависящее от реализации поведение с доступом к этим свойствам из <a href="x10.html#function-code">кода функции</a> в строгом режиме. 
+	</p>
+	<h5 id="x15.3.5.1">15.3.5.1 length <a href="#x15.3.5.1">#</a> <a href="#x15.3.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>length</b></code> представляет собой целое число, означающее &quot;типичное&quot; количество аргументов, ожидаемых функцией. Однако в ECMAScript возможен вызов функции и с другим количеством аргументов. Поведение функции при её вызове с аргументами, количество которых отличается от количества, заданного свойством <code><b>length</b></code>, зависит от этой функции. Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b>&nbsp;}.</p>
+	<h5 id="x15.3.5.2">15.3.5.2 prototype <a href="#x15.3.5.2">#</a> <a href="#x15.3.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Значение свойства <code><b>prototype</b></code> используется для инициализации внутреннего свойства [[Prototype]] нового объекта перед тем, как для этого нового объекта будет вызван объект Function в качестве конструктора. Это свойство имеет атрибут { [[Writable]]: <b>true</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> У объектов Function, созданных посредством <code><b><a href="#x15.3.4.5">Function.prototype.bind</a></b></code>, отсутствует свойство <code><b>prototype</b></code>.</p>
+	<h5 id="x15.3.5.3">15.3.5.3 [[HasInstance]] (V) <a href="#x15.3.5.3">#</a> <a href="#x15.3.5.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Допустим, что <i>F</i> &ndash; объект Function.</p>
+	<p>
+	При вызове внутреннего метода [[HasInstance]] для <i>F</i> со значением <i>V</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если <i>V</i> &ndash; не объект, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>O</i> будет результатом вызова внутреннего метода [[Get]] для <i>F</i> с именем свойства <code><b>&quot;prototype&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>O</i>) &ndash; не Object, сгенерировать исключение <a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a>.</p>
+		</li>
+		<li><p>
+		Повторить</p>
+		<ol><li><p>
+			Пусть <i>V</i> будет значением внутреннего свойства [[Prototype]] для&nbsp;<i>V</i>.</p>
+			</li>
+			<li><p>
+			Если <i>V</i> &ndash; <b>null</b>, вернуть <B>false</B>.</p>
+			</li>
+			<li><p>
+			Если <i>O</i> и <i>V</i> относятся к одному и тому же объекту, вернуть <b>true</b>.</p>
+		</li></ol></li></ol><p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> У объектов Function, созданных посредством метода <code><b><a href="#x15.3.4.5">Function.prototype.bind</a></b></code>, другая реализация внутреннего метода [[HasInstance]], описанная в пункте&nbsp;<a href="#x15.3.4.5.3">15.3.4.5.3</a>.</p>
+	<h5 id="x15.3.5.4">15.3.5.4 [[Get]] (P) <a href="#x15.3.5.4">#</a> <a href="#x15.3.5.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Объекты Function используют вариацию внутреннего метода [[Get]], используемую для других родных объектов ECMAScript (см. пункт <a href="x8.html#x8.12.3">8.12.3</a>).</p>
+	<p>
+	Допустим, что <i>F</i> &ndash; объект Function. При вызове внутреннего метода [[Get]] для <i>F</i> с именем свойства <i>P</i> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>v</i> будет результатом вызова внутреннего метода по умолчанию [[Get]] (<a href="x8.html#x8.12.3">8.12.3</a>) для <i>F</i> с передачей <i>P</i> в качестве аргумента имени свойства.</p>
+		</li>
+		<li><p>
+		Если <i>P</i> &ndash; <code><b>&quot;caller&quot;</b></code> и <i>v</i> &ndash; объект функции в строгом режиме, сгенерировать исключение&nbsp;<b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>. 
+		</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>v</i></i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ </b>Объекты Function, созданные посредством <code><b><a href="#x15.3.4.5">Function.prototype.bind</a></b></code>, используют внутренний метод по умолчанию [[Get]].</p>
+	</body><script src="anno.js"></script></html>

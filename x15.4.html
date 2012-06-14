@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html class="split chapter"><head>
+
+<meta charset="utf-8"><title>15.4 Объекты Array # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.3.html" title="15.3 Объекты Function " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="x15.5.html" title="15.5 Объекты String  " rel="next">
+  </head><body><div class="head">
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
+<nav>
+   <a href="x15.3.html">&#8592; 15.3 Объекты Function </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="x15.5.html">15.5 Объекты String  &#8594;</a>
+
+  <ol class="toc"><li><ol><li><a href="x15.4.html#x15.4" id="x15.4-toc">15.4 Объекты Array</a>
+        <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.4.html#x15.4.1" id="x15.4.1-toc">15.4.1 Вызов конструктора Array как функции</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.4.html#x15.4.1.1" id="x15.4.1.1-toc">15.4.1.1 Array ( [ item1 [ , item2 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.4.html#x15.4.2" id="x15.4.2-toc">15.4.2 Конструктор Array</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.4.html#x15.4.2.1" id="x15.4.2.1-toc">15.4.2.1 new Array ( [ item0 [ , item1 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.2.2" id="x15.4.2.2-toc">15.4.2.2 new Array (len)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.4.html#x15.4.3" id="x15.4.3-toc">15.4.3 Свойства конструктора Array</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.4.html#x15.4.3.1" id="x15.4.3.1-toc">15.4.3.1 Array.prototype</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.3.2" id="x15.4.3.2-toc">15.4.3.2 Array.isArray ( arg )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.4.html#x15.4.4" id="x15.4.4-toc">15.4.4 Свойства объекта-прототипа Array</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.4.html#x15.4.4.1" id="x15.4.4.1-toc">15.4.4.1 Array.prototype.constructor</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.2" id="x15.4.4.2-toc">15.4.4.2 Array.prototype.toString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.3" id="x15.4.4.3-toc">15.4.4.3 Array.prototype.toLocaleString ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.4" id="x15.4.4.4-toc">15.4.4.4 Array.prototype.concat ( [ item1 [ , item2 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.5" id="x15.4.4.5-toc">15.4.4.5 Array.prototype.join (separator)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.6" id="x15.4.4.6-toc">15.4.4.6 Array.prototype.pop ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.7" id="x15.4.4.7-toc">15.4.4.7 Array.prototype.push ( [ item1 [ , item2 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.8" id="x15.4.4.8-toc">15.4.4.8 Array.prototype.reverse ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.9" id="x15.4.4.9-toc">15.4.4.9 Array.prototype.shift ( )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.10" id="x15.4.4.10-toc">15.4.4.10 Array.prototype.slice (start, end)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.11" id="x15.4.4.11-toc">15.4.4.11 Array.prototype.sort (comparefn)</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.12" id="x15.4.4.12-toc">15.4.4.12 Array.prototype.splice (start, deleteCount [ , item1 [ , item2 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.13" id="x15.4.4.13-toc">15.4.4.13 Array.prototype.unshift ( [ item1 [ , item2 [ , &#8230; ] ] ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.14" id="x15.4.4.14-toc">15.4.4.14 Array.prototype.indexOf ( searchElement [ , fromIndex ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.15" id="x15.4.4.15-toc">15.4.4.15 Array.prototype.lastIndexOf ( searchElement [ , fromIndex ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.16" id="x15.4.4.16-toc">15.4.4.16 Array.prototype.every ( callbackfn [ , thisArg ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.17" id="x15.4.4.17-toc">15.4.4.17 Array.prototype.some ( callbackfn [ , thisArg ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.18" id="x15.4.4.18-toc">15.4.4.18 Array.prototype.forEach ( callbackfn [ , thisArg ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.19" id="x15.4.4.19-toc">15.4.4.19 Array.prototype.map ( callbackfn [ , thisArg ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.20" id="x15.4.4.20-toc">15.4.4.20 Array.prototype.filter ( callbackfn [ , thisArg ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.21" id="x15.4.4.21-toc">15.4.4.21 Array.prototype.reduce ( callbackfn [ , initialValue ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.4.22" id="x15.4.4.22-toc">15.4.4.22 Array.prototype.reduceRight ( callbackfn [ , initialValue ] )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li><li><a href="x15.4.html#x15.4.5" id="x15.4.5-toc">15.4.5 Свойства экземпляров Array</a>
+            <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> <ol><li><a href="x15.4.html#x15.4.5.1" id="x15.4.5.1-toc">15.4.5.1 [[DefineOwnProperty]] ( P, Desc, Throw )</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li><li><a href="x15.4.html#x15.4.5.2" id="x15.4.5.2-toc">15.4.5.2 length</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b> </li></ol></li></ol></li></ol></li></ol></nav>
+
+  <h3 id="x15.4" class="splitme">15.4 Объекты Array <a href="#x15.4">#</a> <a href="#x15.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h3>
+	<p>
+	Объекты Array специальным образом обрабатывают определённые классы имён свойств. Имя свойства <i>P</i> (в форме строкового значения) является <i>индексом массива</i> <em>array index</em> только в том случае, если <a href="x9.html#x9.8">ToString</a>(<a href="x9.html#x9.6">ToUint32</a>(<i>P</i>)) равно <i>P</i>, а <a href="x9.html#x9.6">ToUint32</a>(<i>P</i>) не равно 2<sup>32</sup><span class="symbol">&#8722;</span>1. Если имя свойства представляет собой индекс массива, такое свойство также называется <dfn id="array-element"><i>элементом</i></dfn> <em>element</em>. У каждого объекта Array есть свойство <code><b>length</b></code>, значение которого всегда представляет собой неотрицательное целое число меньше чем 2<sup>32</sup>. Значение свойства <code><b>length</b></code> численно больше, чем имя каждого свойства, имя которого является индексом массива. Каждый раз при создании или изменении свойства объекта Array другие свойства по мере необходимости изменяются, чтобы сохранить этот инвариант. А именно: каждый раз при добавлении свойства, имя которого &ndash; индекс массива, при необходимости изменяется свойство <code><b>length</b></code> таким образом, чтобы оно на одну единицу превышало числовое значение этого индекса массива. А всякий раз при изменении свойства <code><b>length</b></code> автоматически удаляется каждое свойство, у которого имя &ndash; индекс массива, значение которого не меньше новой длины. Это ограничение применяется только к собственным свойствам объекта Array. На него не влияет свойство  <code><b>length</b></code> или свойство индекса массива, которые могут быть унаследованы от его прототипов.</p>
+	<p>
+	Объект <i>O</i> считается <dfn id="sparse"><i>разреженным</i></dfn> <em>sparse</em>, если следующий алгоритм возвращает значение <b>true</b>:</p>
+	<ol><li><p class="sm-btm">
+		Пусть <i>len </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом &quot;<B>length</B>&quot;.</p>
+		</li>
+		<li><p class="sm-btm">
+		Для каждого целого числа <i>i</i> в пределах 0&#8804;<i>i</i>&lt;<a href="x9.html#x9.6">ToUint32</a>(<i>len</i>)</p>
+		<ol><li><p class="sm-btm">
+			Пусть <i>elem</i> будет результатом вызова внутреннего метода [[GetOwnProperty]] объекта <I>O </I>с аргументом <a href="x9.html#x9.8">ToString</a>(<i>i</i>).</p>
+			</li>
+			<li><p class="sm-btm">
+			Если <i>elem &ndash; </i><b>undefined</b>, вернуть <b>true</b>.</p>
+		</li></ol></li>
+		<li><p class="sm-btm">
+		Вернуть <b>false</b>.</p>
+	</li></ol>
+	<h4 id="x15.4.1">15.4.1 Вызов конструктора Array как функции <a href="#x15.4.1">#</a> <a href="#x15.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	При вызове <code><b>Array</b></code> не в качестве конструктора, а в качестве функции, создается и инициализируется новый объект Array. Таким образом, вызов функции <code><b>Array(</b></code><code>…</code><code><b>)</b></code> эквивалентен выражению для создания объекта <code><b>new Array(</b></code><code>…</code><code><b>)</b></code> с теми же аргументами.</p>
+	<h5 id="x15.4.1.1">15.4.1.1 Array ( [ item1 [ , item2 [ , &#8230; ] ] ] ) <a href="#x15.4.1.1">#</a> <a href="#x15.4.1.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове функции <code><b>Array</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Создать и вернуть новый объект Array, как если бы в выражении <code><b>new</b></code> был использован стандартный встроенный конструктор <code><b>Array</b></code> с такими же аргументами (<a href="#x15.4.2">15.4.2</a>).</p>
+	</li></ol>
+	<h4 id="x15.4.2">15.4.2 Конструктор Array <a href="#x15.4.2">#</a> <a href="#x15.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Если <code><b>Array</b></code> вызывается как часть выражения <code><b>new</b></code>, он является конструктором, так как он инициализирует создаваемый объект.</p>
+	<h5 id="x15.4.2.1">15.4.2.1 new Array ( [ item0 [ , item1 [ , &#8230; ] ] ] ) <a href="#x15.4.2.1">#</a> <a href="#x15.4.2.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Данное описание применяется только в том случае, если конструктору Array не передаётся ни одного аргумента, или передаётся два и более аргументов.</p>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Array, который представляет собой начальное значение свойства <code><b>Array.prototype</b></code> (<a href="#x15.4.3.1">15.4.3.1</a>).</p>
+	<p>
+	Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;Array&quot;</b></code>.</p>
+	<p>
+	Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Свойство <code><b>length</b></code> создаваемого объекта устанавливается равным количеству аргументов.</p>
+	<p>
+	Свойство <code><b>0</b></code> создаваемого объекта устанавливается равным аргументу <i>item0</i> (если он передавался); свойство <code><b>1</b></code> создаваемого объекта устанавливается равным <i>item1</i> (если он передавался); и, в целом, для всех имеющихся аргументов свойство <i>k</i> создаваемого объекта устанавливается равным аргументу номер <i>k</i>, при этом первый аргумент считается аргументом номер <code><b>0</b></code>. Все эти свойства имеют атрибуты {[[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>}.</p>
+	<h5 id="x15.4.2.2">15.4.2.2 new Array (len) <a href="#x15.4.2.2">#</a> <a href="#x15.4.2.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Внутреннее свойство [[Prototype]] создаваемого объекта устанавливается равным исходному объекту-прототипу Array, который представляет собой начальное значение свойства <code><b>Array.prototype</b></code> (<a href="#x15.4.3.1">15.4.3.1</a>). Внутреннее свойство [[Class]] создаваемого объекта устанавливается равным <code><b>&quot;Array&quot;</b></code>. Внутреннее свойство [[Extensible]] создаваемого объекта устанавливается равным <b>true</b>.</p>
+	<p>
+	Если аргумент <i>len</i> &ndash; Number, а <a href="x9.html#x9.6">ToUint32</a>(<i>len</i>) равно <i>len</i>, то свойству <code><b>length</b></code> создаваемого объекта присваивается <a href="x9.html#x9.6">ToUint32</a>(<i>len</i>). Если аргумент <i>len</i> &ndash; Number, а <a href="x9.html#x9.6">ToUint32</a>(<i>len</i>) не равно <i>len</i>, генерируется исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+	<p>
+	Если аргумент <i>len</i> &ndash; не Number, то свойство <code><b>length</b></code> создаваемого объекта устанавливается равным <code><b>1</b></code>, а свойство <code><b>0</b></code> создаваемого объекта устанавливается равным <i>len</i> с атрибутами {[[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>}.</p>
+	<h4 id="x15.4.3">15.4.3 Свойства конструктора Array <a href="#x15.4.3">#</a> <a href="#x15.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] конструктора Array является объект-прототип Function (<a href="x15.3.html#x15.3.4">15.3.4</a>).</p>
+	<p>
+	В дополнение ко внутренним свойствам и к свойству <code><b>length</b></code> со значением <b>1</b>, конструктор Array имеет следующие свойства:</p>
+	<h5 id="x15.4.3.1">15.4.3.1 Array.prototype <a href="#x15.4.3.1">#</a> <a href="#x15.4.3.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Array.prototype</b></code> является объект-прототип Array (<a href="#x15.4.4">15.4.4</a>).</p>
+	<p>
+	Это свойство имеет атрибуты { [[Writable]]: <b>false</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<h5 id="x15.4.3.2">15.4.3.2 Array.isArray ( arg ) <a href="#x15.4.3.2">#</a> <a href="#x15.4.3.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция isArray принимает один аргумент&nbsp;<i>arg</i> и возвращает булево значение <b>true</b>, если этот аргумент является объектом, у которого внутреннее свойство class равно <code><b>&quot;Array&quot;</b></code>. В противном случае функция возвращает&nbsp;<b>false</b>. При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Если <a href="x8.html#Type">Type</a>(<i>arg</i>) не Object, вернуть <b>false</b>.</p>
+		</li>
+		<li><p>
+		Если значение внутреннего свойства [[Class]] для <i>arg </i>равно <code><b>&quot;Array&quot;</b></code>, вернуть <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol>
+	<h4 id="x15.4.4">15.4.4 Свойства объекта-прототипа Array <a href="#x15.4.4">#</a> <a href="#x15.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Значением внутреннего свойства [[Prototype]] объекта-прототипа Array является стандартный встроенный объект-прототип Object (<a href="x15.2.html#x15.2.4">15.2.4</a>).</p>
+	<p>
+	Объект-прототип Array сам является массивом. Его значение [[Class]] равно <code><b>&quot;Array&quot;</b></code>. Он имеет свойство <code><b>length</b></code> (с начальным значением <b>+0</b>) и специальный внутренний метод [[DefineOwnProperty]], описанный в пункте&nbsp;<a href="#x15.4.5.1">15.4.5.1</a>.</p>
+	<p>
+	В приведённых ниже описаниях функций, которые являются свойствами объекта-прототипа Array, фраза &quot;объект this&quot; означает объект, который представляет собой значение <b>this</b>, переданное при вызове функции. Допускается, чтобы <b>this</b> являлось объектом, для которого значение внутреннего свойства [[Class]]  не является <code><b>&quot;Array&quot;</b></code>.</p>
+	<p><B>ПРИМЕЧАНИЕ </B>Объект-прототип Array не имеет собственного свойства <code><b>valueOf</b></code>, но он наследует его от стандартного встроенного объекта-прототипа Object.</p>
+	<h5 id="x15.4.4.1">15.4.4.1 Array.prototype.constructor <a href="#x15.4.4.1">#</a> <a href="#x15.4.4.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Начальным значением <code><b>Array.prototype.constructor</b></code> является стандартный встроенный конструктор <code><b>Array</b></code>.</p>
+	<h5 id="x15.4.4.2">15.4.4.2 Array.prototype.toString ( ) <a href="#x15.4.4.2">#</a> <a href="#x15.4.4.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове метода <code><b>toString</b></code> выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>array</i> будет результатом вызова <a href="x9.html#x9.9">ToObject</a> on the <b>this</b> value.</p>
+		</li>
+		<li><p>
+		Пусть <i>func</i> будет результатом вызова внутреннего метода [[Get]] для <i>array</i> с аргументом <code><b>&quot;join&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>func</i>) равно <b>false</b>, то пусть <i>func</i> будет стандартным встроенным методом <a href="x15.2.html#x15.2.4.2">Object.prototype.toString</a> (<a href="x15.2.html#x15.2.4.2">15.2.4.2</a>).</p>
+		</li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода [[Call]] для <i>func</i>, передавая <i>array</i> в качестве значения <b>this</b> и пустой список аргументов.</p>
+	</li></ol><p class="sp">
+	</p><p><b>ПРИМЕЧАНИЕ</b> Функция <code><b>toString</b></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>toString</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.3">15.4.4.3 Array.prototype.toLocaleString ( ) <a href="#x15.4.4.3">#</a> <a href="#x15.4.4.3-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	<a href="#array-element">Элементы массива</a> преобразуются в строки посредством методов <code><b>toLocaleString</b></code>. Затем эти строки конкатенируются, разделённые экземплярами строки-разделителя, которая определяется в соответствии с языковыми настройками, обусловленными конкретной реализацией. Результат вызова этой функции должен быть аналогичным результату <code><b>toString</b></code>, за тем исключением, что результат этой функции должен соответствовать языковым настройкам конкретной реализации.</p>
+	<p>
+	Результат вычисляется следующим образом:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>arrayLen</i> будет результатом вызова внутреннего метода [[Get]] для <i>array</i> с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>arrayLen</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>separator</i> будет строковым значением строки-разделителя списка, соответствующим языковым настройкам текущей среды (определяется в зависимости от реализации).</p>
+		</li>
+		<li><p>
+		Если <i>len</i> &ndash; ноль, вернуть пустую строку.</p>
+		</li>
+		<li><p>
+		Пусть <i>firstElement</i> будет результатом вызова внутреннего метода [[Get]] для <i>array</i> с аргументом <code><b>&quot;0&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <i>firstElement</i> равно <b>undefined</b> или <b>null</b>, то</p>
+		<ol><li><p>
+			Пусть <i>R</i> будет пустой строкой.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе
+		
+		</p>
+		<ol><li><p>
+			Песть <i>elementObj</i> будет <a href="x9.html#x9.9">ToObject</a>(<i>firstElement</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>func</i> будет результатом вызова внутреннего метода [[Get]] для <i>elementObj</i> с аргументом <code><b>&quot;toLocaleString&quot;</b></code>.</p>
+			</li>
+			<li><p>
+			Если <a href="x9.html#x9.11">IsCallable</a>(<i>func</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+			</li>
+			<li><p>
+			Пусть <i>R</i> будет результатом вызова внутреннего метода [[Call]] для <i>func</i> с передачей <i>elementObj</i> в качестве значения&nbsp;<B>this </B>и с пустым списком аргументов. 
+			</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>k</i> будет <code><b>1</b></code>.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>S</i> будет строковым значением, полученным в результате конкатенации <i>R</i> и разделителя <i>separator</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>nextElement</i> будет результатом вызова внутреннего метода [[Get]] для <i>array</i> с аргументом <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Если <i>nextElement</i> равно <b>undefined</b> или <b>null</b>, то</p>
+			<ol><li><p>
+				Пусть <i>R</i> будет пустой строкой.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе
+			
+			</p>
+			<ol><li><p>
+				Пусть <i>elementObj</i> будет <a href="x9.html#x9.9">ToObject</a>(<i>nextElement</i>).</p>
+				</li>
+				<li><p>
+				Пусть <i>func</i> будет результатом вызова внутреннего метода [[Get]] для <i>elementObj</i> с аргументом <code><b>&quot;toLocaleString&quot;</b></code>.</p>
+				</li>
+				<li><p>
+				Если <a href="x9.html#x9.11">IsCallable</a>(<i>func</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+				</li>
+				<li><p>
+				Пусть <i>R</i> будет результатом вызова внутреннего метода [[Call]] для <i>func</i> с передачей <i>elementObj</i> в качестве значения&nbsp;<B>this </B>и с пустым списком аргументов. 
+				</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>R</i> будет строковым значением, полученным в результате конкатенации <i>S</i> и&nbsp;<i><i>R</i></i>.</p>
+			</li>
+			<li><p>
+			Увеличить <i>k</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть&nbsp;<i><i>R</i></i>.</p>
+	</li></ol><p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Первый параметр этой функции наверняка будет использоваться в будущей версии данного стандарта. Реализациям не рекомендуется использовать этот параметр для других целей.</p>
+	<p><b>ПРИМЕЧАНИЕ 2</b> Функция <code><b>toLocaleString</b></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>toLocaleString</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.4">15.4.4.4 Array.prototype.concat ( [ item1 [ , item2 [ , &#8230; ] ] ] ) <a href="#x15.4.4.4">#</a> <a href="#x15.4.4.4-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове метода <code><b>concat</b></code> с аргументами в количестве ноль или более (<i>item1</i>, <i>item2</i>, и т.д.) он возвращает массив, содержащий <a href="#array-element">элементы массива</a> объекта, за которыми следуют <a href="#array-element">элементы массива</a> каждого аргумента по порядку.</p>
+	<p>
+	При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array()</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>n</i> будет 0.</p>
+		</li>
+		<li><p>
+		Пусть <i>items</i> будет внутренним списком <a href="x8.html#x8.8">List</a>, где первый элемент &ndash; <i>O</i>, а последующие элементы слева направо &ndash; аргументы, которые были переданы при этом вызове функции.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>items</i> не равно пусто</p>
+		<ol><li><p>
+			Удалить из <i>items</i> первый элемент, и пусть <i>E</i> будет значением этого элемента.</p>
+			</li>
+			<li><p>
+			Если значение внутреннего свойства [[Class]] для <i><i>E</i> </i>равно <code><b>&quot;Array&quot;</b></code>, то</p>
+			<ol><li><p>
+				Пусть <i>k</i> будет 0.</p>
+				</li>
+				<li><p>
+				Пусть <i>len </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>E</i> </I>с аргументом <b>&quot;</b><code><B>length</B></code>&quot;.</p>
+				</li>
+				<li><p>
+				Повторить, пока <i>k</i> &lt; <i>len</i></p>
+				<ol><li><p>
+					Пусть <i>P</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+					</li>
+					<li><p>
+					Пусть <i>exists</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>E </i>с аргументом&nbsp;<i>P</i>.</p>
+					</li>
+					<li><p>
+					Если <i>exists </i>&ndash; <b>true</b>, то</p>
+					<ol><li><p>
+						Пусть <i>subElement </i>будет результатом вызова внутреннего метода [[Get]] для <I>E </I>с аргументом <i>P</i>.</p>
+						</li>
+						<li><p>
+						Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>n</i>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>subElement</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+					</li></ol></li>
+					<li><p>
+					Увеличить <i>n</i> на 1.</p>
+					</li>
+					<li><p>
+					Увеличить <i>k</i> на 1.</p>
+				</li></ol></li></ol></li>
+			<li><p>
+			Иначе, <i>E</i> не является Array</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>n</i>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>E</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+				</li>
+				<li><p>
+				Увеличить <I>n </I>на 1.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Вернуть <i>А</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><b>concat</b></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><b>concat</b></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>concat</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.5">15.4.4.5 Array.prototype.join (separator) <a href="#x15.4.4.5">#</a> <a href="#x15.4.4.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	<a href="#array-element">Элементы массива</a> преобразуются в строки, а затем эти строки конкатенируются, разделённые экземплярами <I>разделителя</I> <em>separator</em>. Если разделитель не передан, то в качестве разделителя используется одна запятая.</p>
+	<p>
+	Метод <code><b>join</b></code> принимает один аргумент <i>separator</i> и выполяет следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Если <i>separator</i> &ndash; <b>undefined</b>, пусть <i>separator</i> будет строкой из одного символа <code><b>&quot;,&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>sep</i> будет <a href="x9.html#x9.8">ToString</a>(<i>separator</i>).</p>
+		</li>
+		<li><p>
+		Если <i>len</i> &ndash; ноль, вернуть пустую строку.</p>
+		</li>
+		<li><p>
+		Пусть <i>element0 </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;0&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Если <i>element0</i> &ndash; <b>undefined</b> или <b>null</b>, пусть <i>R</i> будет пустой строкой. Иначе пусть <i>R</i> будет <a href="x9.html#x9.8">ToString</a>(<i>element0</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет <code><b>1</b></code>.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>S</i> будет строковым значением, полученным в результате конкатенации <i>R</i> и <i>sep</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>element</i> будет результатом вызова внутреннего метода [[Get]] для <i><i>O</i></i> с аргументом <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Если <i>element</i> &ndash; <b>undefined</b> или <b>null</b>, пусть <i>next</i> будет пустой строкой, иначе пусть <i>next</i> будет <a href="x9.html#x9.8">ToString</a>(<i>element</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>R</i> будет строковым значением, полученным в результате конкатенации <i>S</i> и&nbsp;<i>next</i>.</p>
+			</li>
+			<li><p>
+			Увеличить <i>k</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть&nbsp;<i><i>R</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><b>join</b></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><b>join</b></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>join</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.6">15.4.4.6 Array.prototype.pop ( ) <a href="#x15.4.4.6">#</a> <a href="#x15.4.4.6-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Последний <a href="#array-element">элемент массива</a> удаляется из массива и возвращается.</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Если <i>len</i> равно ноль, 
+		</p>
+		<ol><li><p>
+			Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, 0 и <b>true</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <b>undefined</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>len</i> &gt; 0</p>
+		<ol><li><p>
+			Пусть <i>indx</i> будет <a href="x9.html#x9.8">ToString</a>(<i>len</i>&ndash;1).</p>
+			</li>
+			<li><p>
+			Пусть <i>element</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>indx</i>.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <i>indx</i> и <b>true</b>.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, <I>indx </I>и <B>true</B>.</p>
+			</li>
+			<li><p>
+			Вернуть <i>element</i>.</p>
+		</li></ol></li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><b>pop</b></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>pop</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.7">15.4.4.7 Array.prototype.push ( [ item1 [ , item2 [ , &#8230; ] ] ] ) <a href="#x15.4.4.7">#</a> <a href="#x15.4.4.7-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Аргументы добавляются в конец массива в порядке их появления. В результате вызова функции возвращается новая длина массива.</p>
+	<p>
+	При вызове метода <code><b>push</b></code> с аргументами в количестве ноль или более (<i>item1</i>,<i>item2</i>, и т.д.) выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>n</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>items</i> будет внутренним списком <a href="x8.html#x8.8">List</a>, элементы которого слева направо &ndash; аргументы, переданные при этом вызове функции.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>items</i> не равно пусто</p>
+		<ol><li><p>
+			Удалить из <i>items</i> первый элемент, и пусть <i>E</i> будет значением этого элемента.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>n</i>), <i>E</i> и <b>true</b>.</p>
+			</li>
+			<li><p>
+			Увеличить <i>n</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, <I>n </I>и <B>true</B>.</p>
+		</li>
+		<li><p>
+		Вернуть <i><i>n</i></i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><b>push</b></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>push</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b><B>push</B></b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.8">15.4.4.8 Array.prototype.reverse ( ) <a href="#x15.4.4.8">#</a> <a href="#x15.4.4.8-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	<a href="#array-element">Элементы массива </a> перестраиваются в обратном порядке, и этот объект является результатом, возвращаемым при вызове.</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>middle</i> будет <a href="x5.html#floor">floor</a>(<i>len</i>/2).</p>
+		</li>
+		<li><p>
+		Пусть <i>lower</i> будет <b>0</b>.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>lower</i> <span class="symbol">&#8800;</span> <i>middle</i></p>
+		<ol><li><p>
+			Пусть <i>upper</i> будет <i>len</i><span class="symbol">&#8722;</span><i>lower</i> <span class="symbol">&#8722;</span>1.</p>
+			</li>
+			<li><p>
+			Пусть <i>upperP</i> будет <a href="x9.html#x9.8">ToString</a>(<i>upper</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>lowerP</i> будет <a href="x9.html#x9.8">ToString</a>(<i>lower</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>lowerValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>lowerP</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>upperValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>upperP</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>lowerExists</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>lowerP</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>upperExists</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>upperP</i>.</p>
+			</li>
+			<li><p>
+			Если <i>lowerExists</i> равно <b>true</b> и <i>upperExists</i> равно <b>true</b>, то</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>lowerP</i>, <i>upperValue</i> и <b>true</b>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>upperP</i>, <i>lowerValue</i> и <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Если <i>lowerExists</i> равно <b>false</b> и <i>upperExists</i> равно <b>true</b>, то</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>lowerP</i>, <i>upperValue</i> и <b>true</b>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <i>upperP</i> и <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, если <i>lowerExists</i> равно <b>true</b> и <i>upperExists</i> равно <b>false</b>, то</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <I>lowerP </I>и <b>true</b>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>upperP</i>, <i>lowerValue</i> и <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Инача, <i>lowerExists</i> и <i>upperExists</i> равны <b>false</b></p>
+			<ol><li><p>
+				Действий не требуется.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>lower </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i><i>O</i></i>.</p>
+	</li></ol><p><b class="note">ПРИМЕЧАНИЕ</b> Функция <code><B>reverse</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b><B>reverse</B></b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.9">15.4.4.9 Array.prototype.shift ( ) <a href="#x15.4.4.9">#</a> <a href="#x15.4.4.9-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Первый <a href="#array-element">элемент массива</a> удаляется из массива и возвращается.</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Если <i>len</i> равно ноль, то</p>
+		<ol><li><p>
+			Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, 0 и <b>true</b>.</p>
+			</li>
+			<li><p>
+			Вернуть <b>undefined</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>first </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;<b>0</b>&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 1.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <I>from</I> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>to</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>&ndash;1).</p>
+			</li>
+			<li><p>
+			Пусть <i>fromPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+			</li>
+			<li><p>
+			Если <i>fromPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>fromVal</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>to</i>, <i>fromVal</i> и <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, <I>fromPresent </I>равно <B>false</B>.</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <i>to</i> и <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <i>k</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>len</i>&ndash;1) и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, (<i>len</i>&ndash;1) и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>first</i>.</p>
+	</li></ol><p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>shift</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b><B>shift</B></b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.10">15.4.4.10 Array.prototype.slice (start, end) <a href="#x15.4.4.10">#</a> <a href="#x15.4.4.10-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Метод <code><b>slice</b></code> принимает два аргумента <i>start</i> и <i>end</i> и возвращает массив, содержащий <a href="#array-element">элементы массива</a> начиная с элемента <i>start</i> и до элемента (не включительно) <i>end</i> (или до конца массива, если <i>end</i> равно <b>undefined</b>). Если <i>start</i> имеет отрицательное значение, вместо него вычисляется <i>length</i>+<i>start</i>, где <i>length</i> равно длине массива. Если <i>end</i> имеет отрицательное значение, вместо него вычисляется <i>length</i>+<i>end</i>, где <i>length</i> равно длине массива. При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array()</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>relativeStart</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>start</i>).</p>
+		</li>
+		<li><p>
+		Если <i>relativeStart</i> имеет отрицательное значение, пусть <i>k</i> будет max((<i>len</i> +<i>relativeStart</i>),0); иначе пусть <i>k</i> будет min(<i>relativeStart</i>,<i>len</i>).</p>
+		</li>
+		<li><p>
+		Если <i>end</i> &ndash; <b>undefined</b>, пусть <i>relativeEnd</i> будет <i>len</i>; иначе пусть <i>relativeEnd</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>end</i>).</p>
+		</li>
+		<li><p>
+		Если <i>relativeEnd</i> имеет отрицательное значение, пусть <i>final</i> будет max((<i>len</i> +<i> relativeEnd</i>),0); иначе пусть <i>final</i> будет min(<i>relativeEnd</i>,<i>len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>n</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>final</i></p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>n</i>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>kValue</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <i>k</i> на 1.</p>
+			</li>
+			<li><p>
+			Увеличить <i>n</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>А</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>slice</B></code> равно <b>2</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><B>slice</B></B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b><B><B>slice</B></B></b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.11">15.4.4.11 Array.prototype.sort (comparefn) <a href="#x15.4.4.11">#</a> <a href="#x15.4.4.11-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Производится сортировка <a href="#array-element">элементов массива</a>. Сортировка не обязательно устойчива (то есть, для элементов, которые сравниваются как равные, не обязательно сохраняется их первоначальный порядок). Если <i>comparefn</i> &ndash; не <b>undefined</b>, то эта функция принимает два аргумента, <i>x</i> и <i>y</i>, и возвращает отрицательное значение, если <i>x</i> &lt; <i>y</i>, возвращает ноль, если <i>x</i> = <i>y</i>, и возвращает положительное значение, если <i>x</i> &gt; <i>y</i>.</p>
+	<p>
+	Пусть <i>obj </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+	<p>
+	Пусть <i>len</i> будет результатом применения Uint32 к результату вызова внутреннего метода [[Get]]  для <i>obj</i> с аргументом &quot;<code><b>length</b></code>&quot;.</p>
+	<p>
+	Если <i>comparefn</i> не равно <b>undefined</b> и не является последовательной функцией сравнения <a href="#array-element">элементов of массива</a> (см. далее), поведение <code><b>sort</b></code> зависит от реализации.</p>
+	<p>
+	Пусть <i>proto</i> будет значением внутреннего свойства [[Prototype]] объекта <I>obj</I><i>.</i> Если <i>proto</i> не равно <b>null</b>, и при этом существует такое целое число <i>j</i>, чтобы выполнялись все приведённые ниже условия, то поведение <code><b>sort</b></code> зависит от реализации:</p>
+	<ul><li><p>
+		<i>obj</i> равно <a href="#sparse">sparse</a> (<a href="#x15.4">15.4</a>)</p>
+		</li>
+		<li><p>
+		0 <span class="symbol">&#8804;</span> <i>j</i> &lt; <i>len</i></p>
+		</li>
+		<li><p>
+		Результат вызова внутреннего метода [[HasProperty]] для <i>proto</i> с аргументом <a href="x9.html#x9.8">ToString</a>(<i>j</i>) равен <b>true</b>.</p>
+	</li></ul><p>
+	Поведение <code><b>sort</b></code> также зависит от реализации, если <i>obj </i>равен <a href="#sparse">sparse</a>, и при этом выполняется хотя бы одно из двух условий:</p>
+	<ul><li><p>
+		Внутреннее свойство [[Extensible]] для <i>obj</i> равно <b>false</b>.</p>
+		</li>
+		<li><p>
+		Свойство индекса массива для <i>obj</i>, имя которого представляет собой неотрицательное целое число меньше <i>len, </i>является свойством данных, у которого атрибут [[Configurable]] равен <b>false</b>.</p>
+	</li></ul><p>
+	Поведение <code><b>sort</b></code> также зависит от реализации, если свойство индекса массива для <i>obj</i>, имя которого представляет собой неотрицательное целое число меньше <i>len</i>, является свойством-аксессором, или является свойством данных с атрибутом [[Writable]]  равным <b>false</b>.</p>
+	<p>
+	В противном случае выполняются следующие шаги:</p>
+	<ol><li><p>
+		Выполнить обусловленную реализацией последовательность вызовов внутренних методов [[Get]], [[Put]] и [[Delete]] для <i>obj</i> и абстрактной операции <a href="#SortCompare">SortCompare</a> (описанной далее), где первый аргумент для каждого вызова внутренних методов [[Get]], [[Put]] или [[Delete]] является неотрицательным целым числом меньше <i>len</i>, и где аргументы для вызовов абстрактной операции <a href="#SortCompare">SortCompare</a> являются результатами предыдущих вызовов внутреннего метода [[Get]]. Аргумент throw для внутренних методов [[Put]] и [[Delete]] будет иметь значение&nbsp;<b>true</b>. Если <i>obj</i> не является <a href="#sparse">sparse</a>, вызов внутреннего метода [[Delete]] не должен производиться.</p>
+		</li>
+		<li><p>
+		Вернуть <i>obj</i>.</p>
+	</li></ol><p>
+	Возвращаемый объект должен обладать двумя следующими свойствами:</p>
+	<ul><li><p>
+		Должна иметь место математическая перестановка <span class="symbol">&#960;</span> неотрицательных целых чисел меньше <i>len</i>, так чтобы для каждого неотрицательного целого <i>j</i> меньше <i>len</i>, если свойство old[<i>j</i>]<code></code> существовало, то свойсто new[<span class="symbol">&#960;</span>(<i>j</i>)] имеет точно такое же значение, что и old[<i>j</i>],  но если свойства old[<i>j</i>]<code></code> не существовало, то и свойства new[<span class="symbol">&#960;</span>(<i>j</i>)] тоже не существует.</p>
+		</li>
+		<li><p>
+		Тогда для всех неотрицательных целых чисел <i>j</i> и <i>k</i>, каждое из которых меньше <i>len</i>, если <a href="#SortCompare">SortCompare</a>(<i>j</i>,<i>k</i>) &lt; 0<code> </code>(см. <a href="#SortCompare">SortCompare</a> ниже), то <span class="symbol"><b>&#960;</b></span>(<i>j</i>) &lt; <span class="symbol"><b>&#960;</b></span>(<i>k</i>).</p>
+	</li></ul><p>
+	Здесь запись old[<i>j</i>] используется для обозначения гипотетического результата вызова внутреннего метода [[Get]] для <i>obj</i> с аргументом <i>j</i> перед выполнением этой функции, а запись new[<i>j</i>] используется для обозначения гипотетического результата вызова внутреннего метода [[Get]] для <i>obj</i> с аргументом <i>j</i> после выполнения этой функции.</p>
+	<p>
+	Функция <i>comparefn</i> является последовательной функцией сравнения для набора значений <i>S</i>, при условии выполнения всех указанных ниже требований для всех значений <i>a</i>, <i>b</i> и <i>c</i> (возможно, одинаковых) в наборе&nbsp;<i>S</i>: Запись <i>a</i>&nbsp;&lt;<sub>CF</sub>&nbsp;<i>b</i> означает <i>comparefn</i>(<i>a</i>,<i>b</i>)&nbsp;&lt;&nbsp;0; запись <i>a</i>&nbsp;=<sub>CF</sub>&nbsp;<i>b</i> означает <i>comparefn</i>(<i>a</i>,<i>b</i>)&nbsp;=&nbsp;0 (любого знака); а запись <i>a</i>&nbsp;&gt;<sub>CF</sub>&nbsp;<i>b</i> означает <i>comparefn</i>(<i>a</i>,<i>b</i>)&nbsp;&gt;&nbsp;0.</p>
+	<ul><li><p>
+		При вызове <i>comparefn</i>(<i>a</i>,<i>b</i>) всегда возвращается одинаковое значение <i>v</i> при передаче в качестве двух аргументов некоторой пары значений <i>a</i> и <i>b</i>. Кроме того, <a href="x8.html#Type">Type</a>(<i>v</i>) равно Number, а <i>v</i> не равно NaN. Обратите внимание, это подразумевает, что справедливым для некоторой пары <i>a</i> и <i>b</i> будет только одно из следующих равенств: <i>a</i>&nbsp;&lt;<sub>CF</sub>&nbsp;<i>b</i>, <i>a</i>&nbsp;=<sub>CF</sub>&nbsp;<i>b</i>, и <i>a</i>&nbsp;&gt;<sub>CF</sub>&nbsp;<i>b</i>.</p>
+		</li>
+		<li><p>
+		Вызов <i>comparefn</i>(<i>a</i>,<i>b</i>) не изменяет объект <b>this</b>.</p>
+		</li>
+		<li><p>
+		<i>a</i>&nbsp;=<sub>CF</sub>&nbsp;<i>a</i> (рефлексивность)</p>
+		</li>
+		<li><p>
+		Если <i>a</i>&nbsp;=<sub>CF</sub>&nbsp;<i>b</i>, то <i>b</i>&nbsp;=<sub>CF</sub>&nbsp;<i>a</i> (симметрия)</p>
+		</li>
+		<li><p>
+		Если <i>a</i>&nbsp;=<sub>CF</sub>&nbsp;<i>b</i> и <i>b</i>&nbsp;=<sub>CF</sub>&nbsp;<i>c</i>, то <i>a</i>&nbsp;=<sub>CF</sub>&nbsp;<i>c</i> (транзитивность =<sub>CF</sub>)</p>
+		</li>
+		<li><p>
+		Если <i>a</i>&nbsp;&lt;<sub>CF</sub>&nbsp;<i>b</i> и <i>b</i>&nbsp;&lt;<sub>CF</sub>&nbsp;<i>c</i>, то <i>a</i>&nbsp;&lt;<sub>CF</sub>&nbsp;<i>c</i> (транзитивность &lt;<sub>CF</sub>)</p>
+		</li>
+		<li><p>
+		Если <i>a</i>&nbsp;&gt;<sub>CF</sub>&nbsp;<i>b</i> и <i>b</i>&nbsp;&gt;<sub>CF</sub>&nbsp;<i>c</i>, то <i>a</i>&nbsp;&gt;<sub>CF</sub>&nbsp;<i>c</i> (транзитивность &gt;<sub>CF</sub>)</p>
+	</li></ul><p><b>ПРИМЕЧАНИЕ</b> Приведённые выше условия являются необходимыми и достаточными для того, чтобы обеспечить, что <i>comparefn</i> делит набор&nbsp;<i>S</i> на классы эквивалентности, и что эти классы эквивалентности полностью упорядочены.</p>
+	<p>
+	При вызове абстрактной операции <dfn id="SortCompare">SortCompare</dfn> с двумя аргументами <i>j</i> и <i>k</i> выполнятся следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>jString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>j</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>kString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>hasj</i> будет результатом вызова внутреннего метода [[HasProperty]] для <I>obj</I> с аргументом&nbsp;<i>jString</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>hask</i> будет результатом вызова внутреннего метода [[HasProperty]] для <I>obj</I> с аргументом&nbsp;<i>kString</i>.</p>
+		</li>
+		<li><p>
+		Если и <i>hasj, </i>и<i> hask </i>равны <b>false</b>, вернуть <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>hasj </i>равно <b>false</b>, вернуть 1.</p>
+		</li>
+		<li><p>
+		Если <i>hasj </i>равно <b>false</b>, вернуть &ndash;1.</p>
+		</li>
+		<li><p>
+		Пусть <i><i>x</i></i> будет результатом вызова внутреннего метода [[Get]] для <I>obj</I> с аргументом&nbsp;<i>jString</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i><i>y</i></i> будет результатом вызова внутреннего метода [[Get]] для <I>obj</I> с аргументом&nbsp;<i>kString</i>.</p>
+		</li>
+		<li><p>
+		Если и <i>x</i>, и <i>y</i> равны <b>undefined</b>, вернуть <b>+0</b>.</p>
+		</li>
+		<li><p>
+		Если <i>x</i> равно <b>undefined</b>, вернуть 1.</p>
+		</li>
+		<li><p>
+		Если <i>y</i> равно <b>undefined</b>, вернуть <span class="symbol">&#8722;</span>1.</p>
+		</li>
+		<li><p>
+		Если аргумент <i>comparefn</i> не равен <b>undefined</b>, то</p>
+		<ol><li><p>
+			Если <a href="x9.html#x9.11">IsCallable</a>(<i>comparefn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+			</li>
+			<li><p>
+			Вернуть результат вызова внутреннего метода [[Call]] для <i>comparefn</i>, передавая <b>undefined</b> в качестве значения <b>this</b>, и аргументы <i>x</i> и <i>y</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>xString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>x</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>yString</i> будет <a href="x9.html#x9.8">ToString</a>(<i>y</i>).</p>
+		</li>
+		<li><p>
+		Если <i>xString</i> &lt; <i>yString</i>, вернуть <span class="symbol">&#8722;</span>1.</p>
+		</li>
+		<li><p>
+		Если <i>xString</i> &gt; <i>yString</i>, вернуть 1.</p>
+		</li>
+		<li><p>
+		Вернуть <b>+0</b>.</p>
+	</li></ol><p class="sp"><b>ПРИМЕЧАНИЕ 1</b> Поскольку несуществующие значения свойств всегда больше, чем значения  <b>undefined</b>, а <b>undefined</b> всегда больше, чем любое другое значение, то свойства со значениями undefined при сортировке всегда оказываются в конце результирующего массива, а за ними следуют несуществующие значения свойств.</p>
+	<p class="sp"><b>ПРИМЕЧАНИЕ 2</b> Функция <code><b>sort</b></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>sort</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.12">15.4.4.12 Array.prototype.splice (start, deleteCount [ , item1 [ , item2 [ , &#8230; ] ] ] ) <a href="#x15.4.4.12">#</a> <a href="#x15.4.4.12-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	При вызове метода <code><b>splice</b></code> с двумя или более аргументами <i>start</i>, <i>deleteCount</i> и необязательными аргументами <i>item1</i>, <i>item2</i> и т.д., <a href="#array-element">элементы массива</a> в количестве <i>deleteCount</i>, которые начинаются с индекса массива <i>start</i>, заменяются аргументами <i>item1</i>, <i>item2</i> и т.д. Возвращается объект Array, содержащий удалённые элементы (если есть). При этом выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array()</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>relativeStart</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>start</i>).</p>
+		</li>
+		<li><p>
+		Если <i>relativeStart</i> имеет отрицательное значение, пусть <I>actualStart</I> будет max((<i>len</i> +<i>relativeStart</i>),0); иначе пусть <I>actualStart</I> будет min(<i>relativeStart</i>,<i>len</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>actualDeleteCount</i> будет min(max(<a href="x9.html#x9.4">ToInteger</a>(<i>deleteCount</i>),0),<i>len</i> &ndash;<i> actualStart</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>actualDeleteCount</i></p>
+		<ol><li><p>
+			Пусть <i>from</i> будет <a href="x9.html#x9.8">ToString</a>(<i>actualStart</i>+<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>fromPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+			</li>
+			<li><p>
+			Если <i>fromPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>fromValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>k</i>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>fromValue</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <i>k</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>items</i> будет внутренним списком <a href="x8.html#x8.8">List</a>, элементы которого слева направо &ndash; часть фактического списка аргументов, начиная с&nbsp;<i>item1</i>. Если таких элементов нет, список будет пустым.</p>
+		</li>
+		<li><p>
+		Пусть <i>itemCount</i> будет количеством элементов в&nbsp;<i>items</i>.</p>
+		</li>
+		<li><p>
+		Если <i>itemCount</i> &lt; <i>actualDeleteCount</i>, то</p>
+		<ol><li><p>
+			Пусть <i>k</i> будет <i>actualStart</i>.</p>
+			</li>
+			<li><p>
+			Повторить, пока <i>k</i> &lt; (<i>len</i> &ndash; <i>actualDeleteCount</i>)</p>
+			<ol><li><p>
+				Пусть <i>from</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>+<i>actualDeleteCount</i>).</p>
+				</li>
+				<li><p>
+				Пусть <i>to</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>+<i>itemCount</i>).</p>
+				</li>
+				<li><p>
+				Пусть <i>fromPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+				</li>
+				<li><p>
+				Если <i>fromPresent </i>&ndash; <b>true</b>, то</p>
+				<ol><li><p>
+					Пусть <i>fromValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+					</li>
+					<li><p>
+					Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>to</i>, <i>fromValue</i> и <b>true</b>.</p>
+				</li></ol></li>
+				<li><p>
+				Иначе, <I>fromPresent </I>равно <B>false</B>.</p>
+				<ol><li><p>
+					Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <i>to</i> и <b>true</b>.</p>
+				</li></ol></li>
+				<li><p>
+				Увеличить k на 1.</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>k</i> будет <i>len</i>.</p>
+			</li>
+			<li><p>
+			Повторить, пока <i>k</i> &gt; (<i>len</i> &ndash;<i> actualDeleteCount</i> +<i>itemCount</i>) 
+			</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i><i>k</i></i>&ndash;1) и <b>true</b>.</p>
+				</li>
+				<li><p>
+				Уменьшить <i>k</i> на 1.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Иначе, если <i>itemCount</i> &gt; <i>actualDeleteCount</i>, то</p>
+		<ol><li><p>
+			Пусть <i>k</i> будет (<i>len</i> &ndash;<i> actualDeleteCount</i>).</p>
+			</li>
+			<li><p>
+			Повторить, пока <i>k</i> &gt; <i>actualStart</i></p>
+			<ol><li><p>
+				Пусть <i>from</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k </i>+<i> actualDeleteCount</i> &ndash; 1).</p>
+				</li>
+				<li><p>
+				Пусть <i>to</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k </i>+<i> itemCount</i> &ndash; 1)</p>
+				</li>
+				<li><p>
+				Пусть <i>fromPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+				</li>
+				<li><p>
+				Если <i>fromPresent </i>&ndash; <b>true</b>, то</p>
+				<ol><li><p>
+					Пусть <i>fromValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+					</li>
+					<li><p>
+					Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>to</i>, <i>fromValue</i> и <b>true</b>.</p>
+				</li></ol></li>
+				<li><p>
+				Иначе, <I>fromPresent </I>равно <B>false</B>.</p>
+				<ol><li><p>
+					Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <i>to</i> и <b>true</b>.</p>
+				</li></ol></li>
+				<li><p>
+				Уменьшить <i>k</i> на 1.</p>
+			</li></ol></li></ol></li>
+		<li><p>
+		Пусть <i>k</i> будет <i>actualStart</i>.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>items</i> не равно пусто</p>
+		<ol><li><p>
+			Удалить из <i>items</i> первый элемент, и пусть <i>E</i> будет значением этого элемента.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>k</i>), <i>E</i> и <b>true</b>.</p>
+			</li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, (<i>len </i>&ndash;<i> actualDeleteCount</i> +<i> itemCount</i>) и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>А</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>splice</B></code> равно <b>2</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B><B>splice</B></B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b><B><B>splice</B></B></b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.13">15.4.4.13 Array.prototype.unshift ( [ item1 [ , item2 [ , &#8230; ] ] ] ) <a href="#x15.4.4.13">#</a> <a href="#x15.4.4.13-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Аргументы вставляются в начало массива, при этом их порядок в массиве аналогичен тому порядку, в котором они были расположены в списке аргументов.</p>
+	<p>
+	При вызове метода <code><b>unshift</b></code> с аргументами в количестве ноль или более (<i>item1</i>,<i>item2</i>, и т.д.) выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenVal </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenVal</i>).</p>
+		</li>
+		<li><p>
+		Пусть <i>argCount</i> будет количеством фактических аргументов.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет <i>len</i>.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &gt; 0, 
+		</p>
+		<ol><li><p>
+			Пусть <i>from</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>&ndash;1).</p>
+			</li>
+			<li><p>
+			Пусть <i>to</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>+<i>argCount</i> &ndash;1).</p>
+			</li>
+			<li><p>
+			Пусть <i>fromPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+			</li>
+			<li><p>
+			Если <i>fromPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>fromValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>from</i>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <i>to</i>, <i>fromValue</i> и <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Иначе, <I>fromPresent </I>равно <B>false</B>.</p>
+			<ol><li><p>
+				Вызвать внутренний метод [[Delete]] для <i>O</i> с аргументами <i>to</i> и <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Уменьшить <i>k</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Пусть <i>j</i> будет 0.</p>
+		</li>
+		<li><p>
+		Пусть <i>items</i> будет внутренним списком <a href="x8.html#x8.8">List</a>, элементы которого слева направо &ndash; аргументы, переданные при этом вызове функции.</p>
+		</li>
+		<li><p>
+		Повторять, пока <i>items</i> не равно пусто</p>
+		<ol><li><p>
+			Удалить из <i>items</i> первый элемент, и пусть <i>E</i> будет значением этого элемента.</p>
+			</li>
+			<li><p>
+			Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<i>j</i>), <i>E</i> и <b>true</b>.</p>
+			</li>
+			<li><p>
+			Увеличить <i>j</i>  на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вызвать внутренний метод [[Put]] для <i>O</i> с аргументами <code>&quot;</code><code><b>length</b></code><code>&quot;</code>, <i>len</i>+<i>argCount</i> и <b>true</b>.</p>
+		</li>
+		<li><p>
+		Вернуть <i>len</i>+<i>argCount</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>unshift</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>unshift</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>unshift</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.14">15.4.4.14 Array.prototype.indexOf ( searchElement [ , fromIndex ] ) <a href="#x15.4.4.14">#</a> <a href="#x15.4.4.14-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Метод <code><b>indexOf</b></code> сравнивает <i>searchElement</i> с <a href="#array-element">элементами массива</a> в порядке по возрастанию, используя Алгоритм сравнения строгого равенства (<a href="x11.html#x11.9.6">11.9.6</a>). Если сравниваемый элемент найден в одной или нескольких позициях, возвращает индекс первой позиции. В противном случае возвращает -1.</p>
+	<p>
+	Значение по умолчанию второго необязательного аргумента <i>fromIndex</i> равно 0 (то есть, производится поиск по всему массиву). Если его значение больше или равно длине массива, возвращается -1, то есть поиск по массиву не будет производиться. Если его значение отрицательно, он используется для смещения от конца массива для вычисления индекса <i>fromIndex</i>. Если вычисленный индекс меньше 0, будет производиться поиск по всему массиву.</p>
+	<p>
+	При вызове метода <code><b>indexOf</b></code> с одним или двумя аргументами выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <i>len</i> равно 0, вернуть -1.</p>
+		</li>
+		<li><p>
+		Если был передан аргумент <i>fromIndex</i>, пусть <i>n</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>fromIndex</i>); иначе пусть <i>n</i> будет 0.</p>
+		</li>
+		<li><p>
+		Если <i>n </i>&#8805; <i>len</i>, вернуть -1.</p>
+		</li>
+		<li><p>
+		Если <i>n </i>&#8805; 0, то 
+		</p>
+		<ol><li><p>
+			Пусть <i>k </i>будет <i>n</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>n</i>&lt;0</p>
+		<ol><li><p>
+			Пусть <i>k </i>будет <i>len</i> - <a href="x5.html#abs">abs</a>(<i>n</i>).</p>
+			</li>
+			<li><p>
+			Если <i>k </i>меньше чем 0, пусть <i>k</i> будет 0.</p>
+		</li></ol></li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <I>kPresent </I>будет результатом вызова внутреннего метода [[HasProperty]] для O с аргументом ToString(k).</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <I>elementK </I>будет результатом вызова внутреннего метода [[Get]] для <I>O </I>с аргументом <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+				</li>
+				<li><p>
+				Пусть <i>same</i> будет результатом применения Алгоритма сравнения строгого равенства к<i> searchElement</i> и к&nbsp;<i>elementK</i>.</p>
+				</li>
+				<li><p>
+				Если <i>same</i> равно <b>true, </b>вернуть <i>k</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть -1.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>indexOf</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>indexOf</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>indexOf</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.15">15.4.4.15 Array.prototype.lastIndexOf ( searchElement [ , fromIndex ] ) <a href="#x15.4.4.15">#</a> <a href="#x15.4.4.15-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Метод <code><b>lastIndexOf</b></code> сравнивает <i>searchElement</i> с <a href="#array-element">элементами массива</a> в убывающем порядке, используя Алгоритм сравнения строгого равенства (<a href="x11.html#x11.9.6">11.9.6</a>). Если сравниваемый элемент найден в одной или нескольких позициях, возвращает индекс последней позиции. В противном случае возвращает -1.</p>
+	<p>
+	Значение по умолчанию второго необязательного аргумента <i>fromIndex</i> равно длине массива минус один (то есть, производится поиск по всему массиву). Если его значение больше или равно длине массива, будет производиться поиск по всему массиву. Если этот аргумент имеет отрицательное значение, оно используется для того, чтобы отступить от конца массива и получить индекс <i>fromIndex</i>. Если полученный индекс меньше 0, возвращается -1.</p>
+	<p>
+	При вызове метода <code><b>lastIndexOf</b></code> с одним или двумя аргументами выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <b><code>&quot;length&quot;</code></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <i>len</i> равно 0, вернуть -1.</p>
+		</li>
+		<li><p>
+		Если был передан аргумент <i>fromIndex</i>, пусть <i>n</i> будет <a href="x9.html#x9.4">ToInteger</a>(<i>fromIndex</i>); иначе пусть <i>n</i> будет <I>len</I>.</p>
+		</li>
+		<li><p>
+		Если <i>n</i> &#8805; <i>0</i>, пусть <i>k</i> будет min(<i>n</i>, <i>len</i> &ndash; 1).</p>
+		</li>
+		<li><p>
+		Иначе, <i>n</i> &lt; 0</p>
+		<ol><li><p>
+			Пусть <i>k </i>будет <i>len</i> - <a href="x5.html#abs">abs</a>(<i>n</i>).</p>
+		</li></ol></li>
+		<li><p>
+		Повторить, пока <i>k</i> &#8805; 0,</p>
+		<ol><li><p>
+			Пусть <I>kPresent </I>будет результатом вызова внутреннего метода [[HasProperty]] для <I>O </I>с аргументом ToString(k).</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <I>elementK </I>будет результатом вызова внутреннего метода [[Get]] для <I>O </I>с аргументом <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+				</li>
+				<li><p>
+				Пусть <i>same</i> будет результатом применения Алгоритма сравнения строгого равенства к<i> searchElement</i> и к&nbsp;<i>elementK</i>.</p>
+				</li>
+				<li><p>
+				Если <i>same</i> равно <b>true, </b>вернуть <i>k</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Уменьшить <i>k</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть -1.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>lastIndexOf</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>lastIndexOf</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>lastIndexOf</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.16">15.4.4.16 Array.prototype.every ( callbackfn [ , thisArg ] ) <a href="#x15.4.4.16">#</a> <a href="#x15.4.4.16-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <i>callbackfn </i>&ndash; функция, принимающая три аргумента, и возвращающая значение, которое может быть приведено к булевому значению <b>true</b> или <b>false</b>. Метод <code><b>every</b></code> вызывает функцию <i>callbackfn</i> по одному разу для <a href="#array-element">каждого элемента, присутствующего в массиве</a>, в возрастающем порядке, пока не найдёт элемент, для которого <i>callbackfn</i> возвращает <b>false</b>. Как только такой элемент найден, <code><b>every</b></code> сразу же возвращает значение <b>false</b>. В противном случае, если функция <i>callbackfn</i> вернула значение <b>true</b> для всех элементов, <code><b>every</b></code> возвращает <b>true</b>. Функция <i>callbackfn</i> вызывается только для фактически существующих <a href="#array-element">элементов массива</a>. Она не вызывается для отсутствующих <a href="#array-element">элементов массива</a>.</p>
+	<p>
+	Если передаётся параметр <i>thisArg</i>, он будет использоваться в качестве значения <b>this </b>при каждом вызове функции <i>callbackfn</i>. Если этот параметр не передаётся, вместо него используется значение <b>undefined</b>.</p>
+	<p>
+	Функция <i>callbackfn</i> вызывается с тремя аргументами: значение элемента, индекс элемента и проходимый объект.</p>
+	<p>
+	Метод <code><b>every</b></code> не напрямую видоизменяет объект, для которого он вызывается, но этот объект может быть видоизменён посредством вызовов функции <i>callbackfn</i>.
+	
+	</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>every</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова <code><b>every</b></code>. Если существующие <a href="#array-element">элементы массива</a> изменяются, их значением, передаваемым в функцию <i>callbackfn</i>, будет их значение в то время, как их посетит <code><b>every</b></code>. Элементы, которые удаляются после начала вызова <code><b>every</b></code> и перед их посещением, не будут посещены. Метод <code><b>every</b></code> действует как квантор &quot;for all&quot; в математике. В частности, для пустого массива он возвращает <b>true</b>.</p>
+	<p>
+	При вызове метода <code><b>every</b></code> с одним или двумя аргументами выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>callbackfn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>thisArg</i> передавался, пусть <i>T</i> будет <i>thisArg</i>; иначе пусть <i>T</i> будет <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>testResult</i> будет результатом вызова внутреннего метода [[Call]] для <i>callbackfn</i> с <i>T</i> в качестве значения <b>this</b> и списком аргументов, содержащим <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+				</li>
+				<li><p>
+				Если <a href="x9.html#x9.2">ToBoolean</a>(<i>testResult</i>) равно <b>false</b>, вернуть <b><b>false</b></b>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <b>true</b>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>every</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>every</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>every</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.17">15.4.4.17 Array.prototype.some ( callbackfn [ , thisArg ] ) <a href="#x15.4.4.17">#</a> <a href="#x15.4.4.17-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <i>callbackfn </i>&ndash; функция, принимающая три аргумента, и возвращающая значение, которое может быть приведено к булевому значению <b>true</b> или <b>false</b>. Метод <code><b>some</b></code> вызывает функцию <i>callbackfn</i> по одному разу для <a href="#array-element">каждого элемента, присутствующего в массиве</a>, в возрастающем порядке, пока не найдёт элемент, для которого <i>callbackfn</i> возвращает <b>true</b>. Как только такой элемент найден, <code><b>some</b></code> сразу же возвращает значение <b>true</b>. В противном случае <code><b>some</b></code> возвращает <b>false</b>. Функция <i>callbackfn</i> вызывается только для фактически существующих <a href="#array-element">элементов массива</a>. Она не вызывается для отсутствующих <a href="#array-element">элементов массива</a>.</p>
+	<p>
+	Если передаётся параметр <i>thisArg</i>, он будет использоваться в качестве значения <b>this </b>при каждом вызове функции <i>callbackfn</i>. Если этот параметр не передаётся, будет использоваться значение <b>undefined</b>.</p>
+	<p>
+	Функция <i>callbackfn</i> вызывается с тремя аргументами: значение элемента, индекс элемента и проходимый объект.</p>
+	<p>
+	Метод <code><b>some</b></code> не видоизменяет напрямую объект, для которого он вызывается, но объект может быть видоизменён посредством вызовов функции <i>callbackfn</i>.</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>some</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова метода <code><b>some</b></code>. Если существующие <a href="#array-element">элементы массива</a> изменяются, их значением, передаваемым в функцию <i>callbackfn</i>, будет их значение в то время, как их посетит <code><b>some</b></code>. Элементы, которые удаляются после начала вызова <code><b>some</b></code> и перед их посещением, не будут посещены. Метод <code><b>some</b></code> действует как квантор &quot;for all&quot; в математике. В частности, для пустого массива он возвращает <b>false</b>.</p>
+	<p>
+	При вызове метода <code><b>some</b></code> с одним или двумя аргументами выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>callbackfn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>thisArg</i> передавался, пусть <i>T</i> будет <i>thisArg</i>; иначе пусть <i>T</i> будет <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>testResult</i> будет результатом вызова внутреннего метода [[Call]] для <i>callbackfn</i> с <i>T</i> в качестве значения <b>this</b> и списком аргументов, содержащим <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+				</li>
+				<li><p>
+				Если <a href="x9.html#x9.2">ToBoolean</a>(<i>testResult</i>) равно <b>true</b>, вернуть <b><b>true</b></b>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <b>false</b>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>some</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>some</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>some</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.18">15.4.4.18 Array.prototype.forEach ( callbackfn [ , thisArg ] ) <a href="#x15.4.4.18">#</a> <a href="#x15.4.4.18-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <i>callbackfn </i>&ndash; функция, принимающая три аргумента. Метод <code><b>forEach</b></code> вызывает функцию <i>callbackfn</i> по одному разу для <a href="#array-element">каждого элемента, присутствующего в массиве</a>, в возрастающем порядке. Функция <i>callbackfn</i> вызывается только для фактически существующих <a href="#array-element">элементов массива</a>. Она не вызывается для отсутствующих <a href="#array-element">элементов массива</a>.</p>
+	<p>
+	Если передаётся параметр <i>thisArg</i>, он будет использоваться в качестве значения <b>this </b>при каждом вызове функции <i>callbackfn</i>. Если этот параметр не передаётся, будет использоваться значение <b>undefined</b>.</p>
+	<p>
+	Функция <i>callbackfn</i> вызывается с тремя аргументами: значение элемента, индекс элемента и проходимый объект. 
+	</p>
+	<p>
+	Метод <code><b>forEach</b></code> не видоизменяет напрямую объект, для которого он вызывается, но объект может быть видоизменён посредством вызовов функции <i>callbackfn</i>.
+	
+	</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>forEach</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова <code><b>forEach</b></code>. Если существующие <a href="#array-element">элементы массива</a> изменяются, их значением, передаваемым в функцию callback, будет их значение в то время, как их посетит <code><b>forEach</b></code>. Элементы, которые удаляются после начала вызова метода <code><b>forEach</b></code> и перед их посещением, не будут посещены.</p>
+	<p>
+	При вызове метода <code>forEach</code> с одним или двумя аргументами выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>callbackfn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>thisArg</i> передавался, пусть <i>T</i> будет <i>thisArg</i>; иначе пусть <i>T</i> будет <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[Call]] для <i>callbackfn</i> с <i>T</i> в качестве значения <b>this</b> и списком аргументов, содержащим <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <b>undefined</b>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>forEach</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>forEach</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>forEach</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.19">15.4.4.19 Array.prototype.map ( callbackfn [ , thisArg ] ) <a href="#x15.4.4.19">#</a> <a href="#x15.4.4.19-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <i>callbackfn </i>&ndash; функция, принимающая три аргумента. Метод <code><b>map</b></code> вызывает функцию <i>callbackfn</i> по одному разу для <a href="#array-element">каждого элемента, присутствующего в массиве</a>, в возрастающем порядке, и создаёт новый объект Array из полученных результатов. Функция <i>callbackfn</i> вызывается только для фактически существующих <a href="#array-element">элементов массива</a>. Она не вызывается для отсутствующих <a href="#array-element">элементов массива</a>.</p>
+	<p>
+	Если передаётся параметр <i>thisArg</i>, он будет использоваться в качестве значения <b>this </b>при каждом вызове функции <i>callbackfn</i>. Если этот параметр не передаётся, будет использоваться значение <b>undefined</b>.</p>
+	<p>
+	Функция <i>callbackfn</i> вызывается с тремя аргументами: значение элемента, индекс элемента и проходимый объект.</p>
+	<p>
+	Метод <code><b>map</b></code> не видоизменяет напрямую объект, для которого он вызывается, но объект может быть видоизменён посредством вызовов функции <i>callbackfn</i>.</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>map</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова <code><b>map</b></code>. Если существующие <a href="#array-element">элементы массива</a> изменяются, их значением, передаваемым в функцию <i>callbackfn</i>, будет их значение в то время, как их посетит метод <code><b>map</b></code>. Элементы, которые удаляются после начала вызова <code><b>map</b></code> и перед их посещением, не будут посещены.</p>
+	<p>
+	При вызове метода <code>map</code> с одним или двумя аргументами выполняются следующие шаги: 
+	</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>callbackfn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>thisArg</i> передавался, пусть <i>T</i> будет <i>thisArg</i>; иначе пусть <i>T</i> будет <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array(</b></code> <i>len</i><code><b>)</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем, а <i>len</i> &ndash; значение для <i>len</i>.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>mappedValue</i> будет результатом вызова внутреннего метода [[Call]] для <i>callbackfn</i> с <i>T</i> в качестве значения <b>this</b> и списком аргументов, содержащим <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <i>Pk</i>, <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>mappedValue</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>А</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>map</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>map</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>map</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.20">15.4.4.20 Array.prototype.filter ( callbackfn [ , thisArg ] ) <a href="#x15.4.4.20">#</a> <a href="#x15.4.4.20-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Функция <i>callbackfn </i>&ndash; функция, принимающая три аргумента, и возвращающая значение, которое может быть приведено к булевому значению <b>true</b> или <b>false</b>. <code><b>filter</b></code> вызывает функцию <i>callbackfn</i> по одному разу для <a href="#array-element">каждого элемента, присутствующего в массиве</a>, в возрастающем порядке, и создаёт новый массив из всех значений, для которых функция <i>callbackfn</i> возвращает значение <b>true</b>. Функция <i>callbackfn</i> вызывается только для фактически существующих <a href="#array-element">элементов массива</a>. Она не вызывается для отсутствующих <a href="#array-element">элементов массива</a>.</p>
+	<p>
+	Если передаётся параметр <i>thisArg</i>, он будет использоваться в качестве значения <b>this </b>при каждом вызове функции <i>callbackfn</i>. Если этот параметр не передаётся, будет использоваться значение <b>undefined</b>.</p>
+	<p>
+	Функция <i>callbackfn</i> вызывается с тремя аргументами: значение элемента, индекс элемента и проходимый объект.</p>
+	<p>
+	<code><b>filter</b></code> не видоизменяет напрямую объект, для которого он вызывается, но объект может быть видоизменён посредством вызовов функции <i>callbackfn</i>.</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>filter</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова <code><b>filter</b></code>. Если существующие <a href="#array-element">элементы массива</a> изменяются, их значением, передаваемым в функцию <i>callbackfn</i>, будет их значение в то время, как их посетит <code><b>filter</b></code>. Элементы, которые удаляются после начала вызова <code><b>filter</b></code> и перед их посещением, не будут посещены.</p>
+	<p>
+	При вызове метода <code>filter</code> с одним или двумя аргументами выполняются следующие шаги: 
+	</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>callbackfn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <i>thisArg</i> передавался, пусть <i>T</i> будет <i>thisArg</i>; иначе пусть <i>T</i> будет <b>undefined</b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>A</i> будет новым массивом, как если бы он был создан выражением <code><b>new Array()</b></code>, где <code><b>Array</b></code> является стандартным встроенным конструктором с этим именем.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Пусть <I>to</I> будет 0.</p>
+		</li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>selected</i> будет результатом вызова внутреннего метода [[Call]] для <i>callbackfn</i> с <i>T</i> в качестве значения <b>this</b> и списком аргументов, содержащим <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+				</li>
+				<li><p>
+				Если <a href="x9.html#x9.2">ToBoolean</a>(<i>selected</i>) &ndash; <b>true</b>, то</p>
+				<ol><li><p>
+					Вызвать внутренний метод [[DefineOwnProperty]] для <i>A</i> с аргументами <a href="x9.html#x9.8">ToString</a>(<I>to</I>), <a href="x8.html#x8.10">Property Descriptor</a> {[[Value]]: <i>kValue</i>, [[Writable]]: <b>true</b>, [[Enumerable]]: <b>true</b>, [[Configurable]]: <b>true</b>} и <b>false</b>.</p>
+					</li>
+					<li><p>
+					Увеличить <I>to </I>на 1.</p>
+				</li></ol></li></ol></li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>А</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>filter</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>filter</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>filter</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.21">15.4.4.21 Array.prototype.reduce ( callbackfn [ , initialValue ] ) <a href="#x15.4.4.21">#</a> <a href="#x15.4.4.21-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	<i>callbackfn </i>&ndash; функция, принимающая четыре аргумента. <code><b>reduce</b></code> вызывает callback в качестве функции по одному разу для <a href="#array-element">каждого элемента, присутствующего в массиве</a>, в возрастающем порядке.</p>
+	<p>
+	Функция <i>callbackfn </i>вызывается с четырьмя аргументами: <i>previousValue</i> (или значение от предыдущего вызова функции <i>callbackfn</i>), <i>currentValue</i> (значение текущего элемента), <i>currentIndex</i> и проходимый объект. Когда callback вызывается в первый раз, <i>previousValue</i> и <i>currentValue</i> могут иметь одно из двух значений. Если <i>initialValue </i>передавалось при вызове <code><b>reduce</b></code>, то <i>previousValue</i> будет равно <i>initialValue</i>, а <i>currentValue</i> будет равно первому значению в массиве. Если <i>initialValue </i>не передавалось, то <i>previousValue</i> будет равно первому значению в массиве, а <i>currentValue</i> будет равно второму. Если массив не содержит элементов, и при этом не передавалось значение <i>initialValue</i>, будет сгенерировано исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<p>
+	<code>reduce</code> не видоизменяет напрямую объект, для которого он вызывается, но объект может быть видоизменён посредством вызовов функции <i>callbackfn</i>.</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>reduce</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова <code><b>reduce</b></code>. Если существующие <a href="#array-element">элементы массива</a> изменяются, их значением, передаваемым в функцию <i>callbackfn</i>, будет их значение в то время, как их посетит <code><b>reduce</b></code>. Элементы, которые удаляются после начала вызова <code><b>reduce</b></code> и перед их посещением, не будут посещены.</p>
+	<p>
+	При вызове метода <code>reduce</code> с одним или двумя аргументами выполняются следующие шаги: 
+	</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>callbackfn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <I>len </I>равно 0, и при этом <i>initialValue</i> отсутствует, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет 0.</p>
+		</li>
+		<li><p>
+		Если присутствует <i>initialValue</i>, то</p>
+		<ol><li><p>
+			Присвоить <i>accumulator</i> значение <i>initialValue</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>initialValue</i> отсутствует</p>
+		<ol><li><p>
+			Пусть <i>kPresent</i> будет <b>false</b>.</p>
+			</li>
+			<li><p>
+			Повторить, пока <i>kPresent</i> равно <b>false</b> и <i>k</i> &lt; <i>len</i></p>
+			<ol><li><p>
+				Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+				</li>
+				<li><p>
+				Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+				<ol><li><p>
+					Пусть <i>accumulator</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li></ol></li>
+				<li><p>
+				Увеличить <I>k </I>на 1.</p>
+			</li></ol></li>
+			<li><p>
+			Если <i>kPresent</i> равно <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li></ol></li>
+		<li><p>
+		Повторить, пока <i>k</i> &lt; <i>len</i></p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>accumulator</i> будет результатом вызова внутреннего метода [[Call]] для <i>callbackfn</i> с <B>undefined</B> в качестве значения <b>this</b> и списком аргументов, содержащим <i>accumulator</i>, <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Увеличить <I>k </I>на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>accumulator</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code>reduce</code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>reduce</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение <b>this</b> было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>reduce</b></code> к объекту среды зависит от реализации.</p>
+	<h5 id="x15.4.4.22">15.4.4.22 Array.prototype.reduceRight ( callbackfn [ , initialValue ] ) <a href="#x15.4.4.22">#</a> <a href="#x15.4.4.22-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	<i>callbackfn </i>&ndash; функция, принимающая четыре аргумента. <code><b>reduceRight</b></code> вызывает callback в качестве функции по одному разу для <a href="#array-element">каждого элемента, присутствующего в массиве</a> в убывающем порядке.</p>
+	<p>
+	Функция <i>callbackfn </i>вызывается с четырьмя аргументами: previousValue (или значение от предыдущего вызова <i>callbackfn</i>), currentValue (значение текущего элемента), currentIndex и проходимый объект. Когда эта функция вызывается в первый раз, previousValue и currentValue могут иметь одно из двух значений. Если <i>initialValue </i>передавалось при вызове <code><b>reduceRight</b></code>, то previousValue будет равно <i>initialValue</i>, а currentValue будет равно последнему значению в массиве. Если <i>initialValue </i>не передавалось, то previousValue будет равно последнему значению в массиве, а currentValue будет равно предпоследнему. Если массив не содержит <a href="#array-element">элементов</a> элементов, и при этом не передавалось значение <i>initialValue</i>, будет сгенерировано исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+	<p>
+	<code><b>reduceRight</b></code> не видоизменяет напрямую объект, для которого он вызывается, но объект может быть видоизменён посредством вызовов функции <i>callbackfn</i>.</p>
+	<p>
+	Диапазон элементов, которые обрабатывает <code><b>reduceRight</b></code>, устанавливается перед первым вызовом функции <i>callbackfn</i>. Функция <I>callbackfn </I>не будет посещать элементы, добавляемые к массиву после начала вызова <code><b>reduceRight</b></code>. Если функция <i>callbackfn</i> изменяет существующие <a href="#array-element">элементы массива</a>, их значением, передаваемым в функцию <i>callbackfn</i>, будет их значение в то время, как их посетит <code><b>reduceRight</b></code>. Элементы, которые удаляются после начала вызова <code><b>reduceRight</b></code> и перед их посещением, не будут посещены.</p>
+	<p>
+	При вызове метода <code><B>reduceRight</B></code> с одним или двумя аргументами выполняются следующие шаги: 
+	</p>
+	<ol><li><p>
+		Пусть <i>O </i>будет результатом вызова абстрактной операции <a href="x9.html#x9.9">ToObject</a> с передачей значения <B>this </B>в качестве аргумента.</p>
+		</li>
+		<li><p>
+		Пусть <i>lenValue </i>будет результатом вызова внутреннего метода [[Get]] для <I><i>O</i> </I>с аргументом <code><b>&quot;length&quot;</b></code>.</p>
+		</li>
+		<li><p>
+		Пусть <i>len</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>lenValue</i>).</p>
+		</li>
+		<li><p>
+		Если <a href="x9.html#x9.11">IsCallable</a>(<i>callbackfn</i>) &ndash; <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Если <I>len </I>равно 0, и при этом <i>initialValue</i> отсутствует, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li>
+		<li><p>
+		Пусть <i>k</i> будет <i>len</i>-1.</p>
+		</li>
+		<li><p>
+		Если присутствует <i>initialValue</i>, то</p>
+		<ol><li><p>
+			Присвоить <i>accumulator</i> значение <i>initialValue</i>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, <i>initialValue</i> отсутствует</p>
+		<ol><li><p>
+			Пусть <i>kPresent</i> будет <b>false</b>.</p>
+			</li>
+			<li><p>
+			Повторить, пока <i>kPresent</i> равно <b>false</b> и <i>k</i> &#8805; 0</p>
+			<ol><li><p>
+				Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+				</li>
+				<li><p>
+				Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+				<ol><li><p>
+					Пусть <i>accumulator</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li></ol></li>
+				<li><p>
+				Уменьшить <i>k</i> на 1.</p>
+			</li></ol></li>
+			<li><p>
+			Если <i>kPresent</i> равно <b>false</b>, сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>.</p>
+		</li></ol></li>
+		<li><p>
+		Повторить, пока <i>k</i> &#8805; 0</p>
+		<ol><li><p>
+			Пусть <i>Pk</i> будет <a href="x9.html#x9.8">ToString</a>(<i>k</i>).</p>
+			</li>
+			<li><p>
+			Пусть <i>kPresent</i> будет результатом вызова внутреннего метода [[HasProperty]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+			</li>
+			<li><p>
+			Если <i>kPresent </i>&ndash; <b>true</b>, то</p>
+			<ol><li><p>
+				Пусть <i>kValue</i> будет результатом вызова внутреннего метода [[Get]] для <i>O</i> с аргументом&nbsp;<i>Pk</i>.</p>
+				</li>
+				<li><p>
+				Пусть <i>accumulator</i> будет результатом вызова внутреннего метода [[Call]] для <i>callbackfn</i> с <B>undefined</B> в качестве значения <b>this</b> и списком аргументов, содержащим <i>accumulator</i>, <i>kValue</i>, <i>k</i> и <i>O</i>.</p>
+			</li></ol></li>
+			<li><p>
+			Уменьшить <i>k</i> на 1.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть <i>accumulator</i>.</p>
+	</li></ol><p>
+	Свойство <code><b>length</b></code> для метода <code><B>reduceRight</B></code> равно <b>1</b>.</p>
+	<p><b>ПРИМЕЧАНИЕ</b> Функция <code><B>reduceRight</B></code> является нарочито родовой функцией. Она не требует, чтобы её значение this было объектом&nbsp;Array. Поэтому она может передаваться другим типам объектов для использования в качестве метода. Возможность успешного применения функции <code><b>reduceRight</b></code> к объекту среды зависит от реализации.</p>
+	<h4 id="x15.4.5">15.4.5 Свойства экземпляров Array <a href="#x15.4.5">#</a> <a href="#x15.4.5-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h4>
+	<p>
+	Экземпляры Array наследуют свойства объекта-прототипа Array. Значение их внутреннего свойства [[Class]] равно <code><b>&quot;Array&quot;</b></code>. Кроме того, экземпляры Array обладают следующими свойствами:</p>
+	<h5 id="x15.4.5.1">15.4.5.1 [[DefineOwnProperty]] ( P, Desc, Throw ) <a href="#x15.4.5.1">#</a> <a href="#x15.4.5.1-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Объекты Array используют разновидность внутреннего метода [[DefineOwnProperty]], используемую для других родных объектов ECMAScript (см. пункт <a href="x8.html#x8.12.9">8.12.9</a>).</p>
+	<p>
+	Допустим, что <i>A </i>&ndash; объект Array, <i>Desc</i> &ndash; <a href="x8.html#x8.10">Дескриптор свойства</a>, а <i>Throw </i> &ndash; булев флаг.</p>
+	<p>
+	В приведенном ниже алгоритме термин <dfn id="reject-DefineOwnProperty-2">&ldquo;Отказать&rdquo;</dfn> <em>Reject</em> означает &ldquo;Если <i>Throw</i> &ndash; <b>true</b>, то сгенерировать исключение <b><a href="x15.11.html#x15.11.6.5" class="term-ref">TypeError</a></b>, иначе вернуть <b>false</b>&rdquo;.</p>
+	<p>
+	При вызове внутреннего метода [[DefineOwnProperty]] объекта <i>A</i> со свойством <i>P</i> , <a href="x8.html#x8.10">дескриптором свойства</a> <i>Desc</i> и булевым флагом <i>Throw</i>  выполняются следующие шаги:</p>
+	<ol><li><p>
+		Пусть <i>oldLenDesc</i> &ndash; результат вызова внутреннего метода [[GetOwnProperty]] для <i>A</i> с передачей <b>&quot;</b><code><b>length</b></code><b>&quot;</b> в качестве аргумента.  Результат никогда не будет иметь значение <b>undefined </b>и не будет дескриптором аксессора, так как объекты Array создаются со свойством данных length, которое не может быть удалено или изменено.</p>
+		</li>
+		<li><p>
+		Пусть <i>oldLen</i> будет <i>oldLenDesc</i>.[[Value]].</p>
+		</li>
+		<li><p>
+		Если <i>P</i> равно <b>&quot;</b><code><b>length</b></code><b>&quot;</b>, то</p>
+		<ol><li><p>
+			Если поле [[Value]] для <i>Desc</i> отсутствует, то</p>
+			<ol><li><p>
+				Вернуть результат вызова внутреннего метода по умолчанию [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей в качестве аргументов <b>&quot;</b><code><b>length</b></code><b>&quot;</b>, <i>Desc</i> и <i>Throw</i> .</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>newLenDesc</i> будет копией <i>Desc</i>.</p>
+			</li>
+			<li><p>
+			Пусть <i>newLen</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>Desc</i>.[[Value]]).</p>
+			</li>
+			<li><p>
+			Если <i>newLen</i> не равно <a href="x9.html#x9.3">ToNumber</a>(<i> Desc</i>.[[Value]]), сгенерировать исключение <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>.</p>
+			</li>
+			<li><p>
+			Присвоить <i>newLenDesc</i>.[[Value] значение <i>newLen</i>.</p>
+			</li>
+			<li><p>
+			Если <i>newLen</i> &#8805;<i>oldLen</i>, то</p>
+			<ol><li><p>
+				Вернуть результат вызова внутреннего метода по умолчанию [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей в качестве аргументов <b>&quot;</b><code><b>length</b></code><b>&quot;</b>, <i>newLenDesc</i> и <i>Throw</i> .</p>
+			</li></ol></li>
+			<li><p>
+			<a href="#reject-DefineOwnProperty-2">Отказ</a>, если <i>oldLenDesc</i>.[[Writable]] равно <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>newLenDesc</i>.[[Writable]] отсутствует или имеет значение <b>true</b>, пусть <i>newWritable</i> будет <b>true</b>.</p>
+			</li>
+			<li><p>
+			Иначе</p>
+			<ol><li><p>
+				Необходимо отложить присвоение атрибуту [[Writable]] значение <b>false</b>, если <a href="#array-element">элементы</a> не могут быть удалены.</p>
+				</li>
+				<li><p>
+				Пусть <i>newWritable</i> будет <b>false</b>.</p>
+				</li>
+				<li><p>
+				Присвоить <i>newLenDesc</i>.[[Writable] значение <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Пусть <i>succeeded</i> будет результатом вызова внутреннего метода по умолчанию [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей в качестве аргументов <b>&quot;</b><code><b>length</b></code><b>&quot;</b>, <i>newLenDesc</i> и <i>Throw</i> .</p>
+			</li>
+			<li><p>
+			Если <i>succeeded</i> равно <b>false</b>, вернуть <b>false</b>.</p>
+			</li>
+			<li><p>
+			Пока <i>newLen</i> &lt; <i>oldLen</i> повторить,</p>
+			<ol><li><p>
+				Присвоить <i>oldLen</i> значение <i>oldLen</i> &ndash; 1.</p>
+				</li>
+				<li><p>
+				Пусть <i>deleteSucceeded</i> будет результатом вызова внутреннего метода [[Delete]] для <i>A</i> с передачей в качестве аргументов <a href="x9.html#x9.8">ToString</a>(<i>oldLen</i>) и <b>false</b>.</p>
+				</li>
+				<li><p>
+				Если <i>deleteSucceeded</i> равно <b>false</b>, то</p>
+				<ol><li><p>
+					Присвоить <i>newLenDesc</i>.[[Value] значение <i><i>oldLen+1</i></i>.</p>
+					</li>
+					<li><p>
+					Если <i>newWritable</i> равно <b>false</b>, присвоить <i>newLenDesc</i>.[[Writable] значение <b>false</b>.</p>
+					</li>
+					<li><p>
+					Вызвать внутренний метод [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей в качестве аргументов <b>&quot;</b><code><b>length</b></code><b>&quot;</b>, <i>newLenDesc</i> и <b>false</b>. 
+					</p>
+					</li>
+					<li><p>
+					<a href="#reject-DefineOwnProperty-2">Отказ</a>.</p>
+				</li></ol></li></ol></li>
+			<li><p>
+			Если <i>newWritable </i>равно <b>false</b>, то</p>
+			<ol><li><p>
+				Вызвать внутренний метод по умолчанию [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей <b>&quot;</b><code><b>length</b></code><b>&quot;</b>, <a href="x8.html#x8.10">Property Descriptor</a>{[[Writable]]: <b>false</b>} и <b>false</b> в качестве аргументов. Этот вызов всегда будет возвращать значение <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Вернуть <b>true</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Иначе, если <i>P</i> &ndash; индекс массива (<a href="#x15.4">15.4</a>), то</p>
+		<ol><li><p>
+			Пусть <i>index</i> будет <a href="x9.html#x9.6">ToUint32</a>(<i>P</i>).</p>
+			</li>
+			<li><p>
+			<a href="#reject-DefineOwnProperty-2">Отказ</a>, если <i>index</i> &#8805; <i>oldLen</i> и <i>oldLenDesc</i>.[[Writable]] равно <b>false</b>.</p>
+			</li>
+			<li><p>
+			Пусть <i>succeeded</i> будет результатом вызова внутреннего метода по умолчанию [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей в качестве аргументов <i>P</i>, <i>Desc</i> и <b>false</b>.</p>
+			</li>
+			<li><p>
+			<a href="#reject-DefineOwnProperty-2">Отказ</a>, если <i>succeeded</i> равно <b>false</b>.</p>
+			</li>
+			<li><p>
+			Если <i>index</i> &#8805; <i>oldLen</i></p>
+			<ol><li><p>
+				Присвоить <i>oldLenDesc</i>.[[Value]] значение <i>index</i> + 1.</p>
+				</li>
+				<li><p>
+				Вызвать внутренний метод [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей в качестве аргументов <b>&quot;</b><code><b>length</b></code><b>&quot;</b>, <i>oldLenDesc</i> и <b>false</b>. Этот вызов всегда будет возвращать значение <b>true</b>.</p>
+			</li></ol></li>
+			<li><p>
+			Вернуть <b>true</b>.</p>
+		</li></ol></li>
+		<li><p>
+		Вернуть результат вызова внутреннего метода по умолчанию [[DefineOwnProperty]] (<a href="x8.html#x8.12.9">8.12.9</a>) для <i>A</i> с передачей в качестве аргументов <i>P</i>, <i>Desc</i> и <i>Throw</i>.</p>
+	</li></ol>
+	<h5 id="x15.4.5.2">15.4.5.2 length <a href="#x15.4.5.2">#</a> <a href="#x15.4.5.2-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h5>
+	<p>
+	Свойство <code><b>length</b></code> данного объекта Array представляет собой свойство данных, значение которого всегда численно больше, чем имя каждого удаляемого свойства, имя которого является индексом массива.</p>
+	<p>
+	Свойство <code><b>length</b></code> изначально имеет атрибуты { [[Writable]]: <b>true</b>, [[Enumerable]]: <b>false</b>, [[Configurable]]: <b>false</b> }.</p>
+	<p><B>ПРИМЕЧАНИЕ </B>Попытка присвоить свойству length объекта Array значение, численно меньшее или равное самому большому числовому имени свойства неудаляемого индексированного свойства существующего массива приведёт к тому, что length будет иметь численное значение, на один больше, чем самое большое числовое имя свойства. См. <a href="#x15.4.5.1">15.4.5.1</a>.</p>
+	</body><script src="anno.js"></script></html>
