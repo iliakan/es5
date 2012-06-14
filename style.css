@@ -756,3 +756,14 @@ em:after {
 		margin-right: 10px;
 	}
 }
+
+.share {
+  height:120px;
+  margin-top:20px;
+  font-size:100%;
+  text-align:left;
+}
+
+
+.vk-share-wrapper td { padding: 0 }
+
