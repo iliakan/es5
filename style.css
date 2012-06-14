@@ -251,7 +251,7 @@ b {
   color: green;
 }
 .note::after {
-  content: "   ";
+  content: "Â Â Â ";
 }
 .keeps {
   margin-top: 0cm;
@@ -738,7 +738,7 @@ em {
   font-style: normal;
 }
 em:before {
-  content: '(îðèã. "';
+  content: '(Ð¾Ñ€Ð¸Ð³. "';
 }
 
 em:after {
@@ -756,3 +756,14 @@ em:after {
 		margin-right: 10px;
 	}
 }
+
+.share {
+  height:120px;
+  margin-top:20px;
+  font-size:100%;
+  text-align:left;
+}
+
+
+.vk-share-wrapper td { padding: 0 }
+
