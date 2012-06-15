@@ -1,148 +1,64 @@
 <!DOCTYPE html>
-<html class="split chapter"><head><meta charset="utf-8"><title>16 Errors # &#9417; &#9402; &#9312; &#9398; &#8212; Annotated ES5</title><link rel="stylesheet" href="style.css"><link href="x15.12.html" title="15.12 The JSON Object " rel="prev">
-  <link href="index.html" title="TOC" rel="index">
-  <link href="A.html" title="Annex A (informative) Grammar Summary " rel="next">
+<html class="split chapter"><head>
+<meta charset="utf-8"><title>16 Ошибки # # &#9417; &#9402; &#9312; &#9398; &#8212; ES5 с аннотациями</title><link rel="stylesheet" href="style.css"><link href="x15.12.html" title="15.12 Объект JSON " rel="prev">
+  <link href="spec.html" title="Содержание" rel="index">
+  <link href="A.html" title="Приложение A (информационное) Краткое описание грамматик " rel="next">
   </head><body><div class="head">
-<h2 id="top">Annotated ECMAScript 5.1 <span id="timestamp"></span></h2>
-<!--left..-->
-<div id="mascot-treehouse"><img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
-<div id="slogan">&#8223;Ex igne vita&#8221;
-  <div class="share">
-  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://es5.javascript.ru/" data-lang="ru" data-size="large" data-count="horizontal">Твитнуть</a>
-  <div id="fb-root"></div>
-  <div style="margin-bottom:5px" class="fb-like" data-href="http://es5.javascript.ru/" data-send="false" data-action="recommend" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
-  <div class="vk-share-wrapper">
-  <script src="http://vkontakte.ru/js/api/share.js?9" charset="windows-1251"></script>  
-  <script src="misc.js"></script>
-  </div>
-
-  <div style="margin-top:6px">
-  <g:plusone annotation="inline" href="http://es5.javascript.ru/" width="120" size="standard" style="vertical-align:middle"></g:plusone>
-  </div>
-  </div>
-</div>
-<!--..left-->
-
-<div id="annotations">
-
-
-
-</div>
-</div>
+<h2 id="top">Спецификация ECMAScript 5.1 с аннотациями <span id="timestamp"></span></h2>
+<div id="mascot-treehouse">
+	<img id="mascot" align="left" src="js-mascot.svg" alt=""><img id="bubble" src="bubble.svg" alt=""></div>
+<p id="slogan">&#8223;Ex igne vita&#8221;</p>
+<div id="annotations"></div>
+<script src="timestamp.js"></script></div>
 <nav>
-   <a href="x15.12.html">&#8592; 15.12 The JSON Object </a> &#8211;
-   <a href="index.html" class="toc-nav">TOC</a> &#8211;
-   <a href="A.html">Annex A (informative) Grammar Summary  &#8594;</a>
-  </nav>
+   <a href="x15.12.html">&#8592; 15.12 Объект JSON </a> &#8211;
+   <a href="spec.html" class="toc-nav">Содержание</a> &#8211;
+   <a href="A.html">Приложение A (информационное) Краткое описание грамматик &#8594;</a>
 
-  <h2 id="x16">16 Errors <a href="#x16">#</a> <a href="#x16-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
+  <h2 id="x16">16 Ошибки <a href="#x16">#</a> <a href="#x16-toc" class="bak">&#9417;</a> <b class="erra">&#9402;</b> <b class="rev1">&#9312;</b> <b class="anno">&#9398;</b></h2>
 	<p>
-	An
-	implementation must report most errors at the time the relevant
-	ECMAScript language construct is evaluated. An <i>early error</i> is
-	an error that can be detected and reported prior to the evaluation
-	of any construct in the <i><a href="x14.html#x14">Program</a></i>
-	containing the error.  An implementation must report early errors in
-	a <i><a href="x14.html#x14">Program</a></i> prior to
-	the first evaluation of that <i><a href="x14.html#x14">Program</a></i>.
-	Early errors in <b>eval</b> code are reported at the time <code><b>eval</b></code>
-	is called but prior to evaluation of any construct within the <b>eval</b>
-	code. All errors that are not early errors are runtime errors.</p>
+	В большинстве случаев реализация должна сообщать об ошибках в момент вычисления соответствующей языковой конструкции ECMAScript. <i>Ранняя ошибка </i><em>early error</em> &ndash; это ошибка, которую реализация может обнаружить и о которой может сообщить до вычисления конструкции в <i><a href="x14.html#x14">Программе</a></i>, содержащей эту ошибку.  Реализация должна сообщать о ранних ошибках в <i><a href="x14.html#x14">Программе</a></i> до первого вычисления этой <i><a href="x14.html#x14">Программы</a></i>. Сообщения о ранних ошибках в <b>eval</b>-коде появляются в момент вызова <code><b>eval</b></code>, но до момента вычисления какой-либо конструкции внутри этого <b>eval</b>-кода. Все ошибки, не являющиеся ранними ошибками, представляют собой ошибки времени исполнения <em>runtime errors</em>.</p>
 	<p>
-	An
-	implementation must treat any instance of the following kinds of
-	errors as an early error:</p>
+	Реализация должна рассматривать все случаи следующих ошибок как раннюю ошибку:</p>
 	<ul><li><p>
-		Any
-		syntax error.</p>
+		Любая синтаксическая ошибка.</p>
 		</li>
 		<li><p>
-		Attempts
-		to define an <i>ObjectLiteral</i> that has multiple <b>get </b>property assignments with
-		the same name or multiple <b>set </b>property assignments with the
-		same name.</p>
+		Попытка определить <i>ObjectLiteral</i>, который имеет несколько присваиваний свойств <b>get </b>с одинаковым именем или несколько присваиваний свойств <b>set </b>с одинаковым именем.</p>
 		</li>
 		<li><p>
-		Attempts
-		to define an <i>ObjectLiteral</i><b>
-		</b>that has both a data property assignment and a <b>get </b>or
-		<b>set </b>property assignment with the same name.</p>
+		Попытка определить <i>ObjectLiteral</i>, который имеет одновременно и присваивание свойства данных и присваивание свойства <b>get </b>или <b>set </b>с одинаковым именем.</p>
 		</li>
 		<li><p>
-		Errors
-		in <a href="x7.html#x7.8.5">regular expression literals</a> that are not implementation-defined
-		syntax extensions.</p>
+		Ошибки в <a href="x7.html#x7.8.5">литералах регулярного выражения</a>, которые не являются синтаксическими расширениями, зависящими от реализации.</p>
 		</li>
 		<li><p>
-		Attempts
-		in <a href="x10.html#x10.1.1" class="term-ref">strict mode code</a> to define an <i>ObjectLiteral</i>
-		that has multiple data property assignments with the same name.</p>
+		Попытки в <a href="x10.html#x10.1.1" class="term-ref">коде в строгом режиме</a> определить <i>ObjectLiteral</i>, имеющий несколько присваиваний свойств данных с одним и тем же именем.</p>
 		</li>
 		<li><p>
-		The
-		occurrence of a <i>WithStatement</i>
-		in <a href="x10.html#x10.1.1" class="term-ref">strict mode code</a>.</p>
+		Появление <i>WithStatement</i> в <a href="x10.html#x10.1.1" class="term-ref">коде в строгом режиме</a>.</p>
 		</li>
 		<li><p>
-		The
-		occurrence of an <i>Identifier</i>
-		value appearing more than once within a <i>FormalParameterList</i>
-		of an individual strict mode <i><a href="x13.html#x13">FunctionDeclaration</a></i>
-		or <i><a href="x13.html#x13">FunctionExpression</a></i>.</p>
+		Появление значения идентификатора <i>Identifier</i> более одного раза в <i>FormalParameterList</i> для отдельного <a href="x13.html#x13">FunctionDeclaration</a> или <a href="x13.html#x13">FunctionExpression</a> в строгом режиме.</p>
 		</li>
 		<li><p>
-		Improper
-		uses of <code><b>return</b></code>,
-		<code><b>break</b></code>, and
-		<code><b>continue</b></code>.</p>
+		Некорректное использование <code><b>return</b></code>, <code><b>break</b></code> и <code><b>continue</b></code>.</p>
 		</li>
 		<li><p>
-		Attempts
-		to call <a href="x8.html#x8.7.2">PutValue</a> on any value for which an early determination can
-		be made that the value is not a <a href="x8.html#x8.7">Reference</a> (for example, executing
-		the assignment statement <code>3=4</code>).</p>
+		Попытки вызвать <a href="x8.html#x8.7.2">PutValue</a> для значения, по которому можно заранее определить, что оно не является <a href="x8.html#x8.7">Reference</a> (например, при выполнении инструкции присваивания <code>3=4</code>).</p>
 	</li></ul><p>
-	An
-	implementation shall not treat other kinds of errors as early errors
-	even if the compiler can prove that a construct cannot execute
-	without error under any circumstances. An implementation may issue
-	an early warning in such a case, but it should not report the error
-	until the relevant construct is actually executed. 
+	Реализация не должна трактовать другие ошибки как ранние ошибки, даже если компилятор может доказать, что конструкция ни при каких обстоятельствам не может быть выполнена без ошибки. В таком случае реализация может выдать ранее предупреждение, но она не должна сообщать об ошибке до момента фактического выполнения соответствующей конструкции. 
 	</p>
 	<p>
-	An
-	implementation shall report all errors as specified, except for the
-	following:</p>
+	Реализация должна сообщать обо всех ошибках как указано, за исключением следующих моментов:</p>
 	<ul><li><p>
-		An
-		implementation may extend program syntax and regular expression
-		pattern or flag syntax. To permit this, all operations (such as
-		calling <code><b>eval</b></code>,
-		using a regular expression literal, or using the <code><b>Function</b></code>
-		or <code><b>RegExp</b></code>
-		constructor) that are allowed to throw <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>
-		are permitted to exhibit implementation-defined behaviour instead
-		of throwing <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>
-		when they encounter an implementation-defined extension to the
-		program syntax or regular expression pattern or flag syntax.</p>
+		Реализация может расширить синтаксис программы и шаблон регулярного выражения или синтаксис флага. Для этого всем операциям, которым разрешено генерировать <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b>, (таким как вызов <code><b>eval</b></code>, использование литерала регулярного выражения, или использование конструктора <code><b>Function</b></code> или <code><b>RegExp</b></code>), разрешается демонстрировать поведение, зависящее от реализации, а не генерировать <b><a href="x15.11.html#x15.11.6.4" class="term-ref">SyntaxError</a></b> в случае, когда они встречают зависящее от реализации расширение синтаксиса программы или шаблона регулярного выражения или синтаксиса флагов.</p>
 		</li>
 		<li><p>
-		An
-		implementation may provide additional types, values, objects,
-		properties, and functions beyond those described in this
-		specification. This may cause constructs (such as looking up a
-		variable in the global scope) to have implementation-defined
-		behaviour instead of throwing an error (such as <b><a href="x15.11.html#x15.11.6.3" class="term-ref">ReferenceError</a></b>).</p>
+		Реализация может предоставлять дополнительные типы, значения, объекты, свойства и функции, кроме описанных в данной спецификации. В результате некоторые конструкции (например, поиск переменной в глобальной области видимости) могут демонстрировать зависящее от реализации поведение, а не генерировать ошибку (например, <b><a href="x15.11.html#x15.11.6.3" class="term-ref">ReferenceError</a></b>).</p>
 		</li>
 		<li><p>
-		An
-		implementation may define behaviour other than throwing <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b>
-		for <code><b>toFixed</b></code>,
-		<code><b>toExponential</b></code>,
-		and <code><b>toPrecision</b></code>
-		when the <i>fractionDigits</i>
-		or <i>precision</i>
-		argument is outside the specified range.</p>
+		Реализация может определить поведение, отличное от генерирования ошибки <b><a href="x15.11.html#x15.11.6.2" class="term-ref">RangeError</a></b> для методов <code><b>toFixed</b></code>, <code><b>toExponential</b></code> и <code><b>toPrecision</b></code>, когда их аргументы <i>fractionDigits</i> или <i>precision</i> находятся вне заданного диапазона.</p>
 	</li></ul><p>
 	</p>
 	</body><script src="anno.js"></script></html>

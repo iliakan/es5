@@ -1,12 +1,10 @@
 <link rel="stylesheet" href="../style.css">
-<h5>Web Platform discrepancies</h5>
-<p>Identifiers containing escape sequences are not equivalent to fully
-unescaped identifiers in the case that, after fully unescaping <i>Identifier</i>,
-it is a <i>ReservedWord</i>. In particular it is possible to create Identifiers
-that unescape to a reserved word so long as at least one character is fully
-escaped. Subsequent use of such identifiers must also have at least one
-character escaped (otherwise the reserved word will be used instead) but it
-need not be the same character(s) as that originally used to create the
-identifier.</p>
-<p>See also <a
+<h5>Различия в web-платформах</h5>
+<p>Идентификаторы, содержащие управляющие последовательности, не эквивалентны полностью неэкранированным идентификаторам в том смысле, 
+что после полного снятия экранирования идентификатора <i>Identifier</i> он является зарезервированным словом <i>ReservedWord</i>. 
+В частности, возможно создать такие идентификаторы, которые снимают экранирование до зарезервированного слова, 
+если хотя бы один символ полностью экранирован. При последующем использовании таких идентификаторов также хотя бы один символ должен быть 
+экранированным (в противном случае вместо него будет использоваться зарезервированное слово), но это не обязательно должен быть тот же 
+символ (или символы), который изначально использовался для создания идентификатора.</p>
+<p>Также см. <a
 href="http://wiki.whatwg.org/wiki/Web_ECMAScript#Identifiers">http://wiki.whatwg.org/wiki/Web_ECMAScript#Identifiers</a></p>
