@@ -1,3 +1,16 @@
+var disqus_shortname = 'es5';
+
+(function() {
+  var el = document.createElement('div');
+  el.id = "disqus_thread";
+  document.body.appendChild(el);
+
+  var dsq = document.createElement('script'); 
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+
+
 // No copyright is asserted on this file.
 var annoPanel;
 var annotations = document.getElementById("annotations");

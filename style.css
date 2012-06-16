@@ -767,3 +767,7 @@ em:after {
 
 .vk-share-wrapper td { padding: 0 }
 
+a.dsq-subscribe-email em:before, a.dsq-subscribe-rss em:before,
+a.dsq-subscribe-email em:after, a.dsq-subscribe-rss em:after {
+  content: '';
+}
