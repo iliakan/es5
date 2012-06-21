@@ -435,7 +435,7 @@ span.table-header { }
 #slogan {
   width: 150px;
   position: fixed;
-  top: 215px;
+  top: 0px;
   left: 10px;
   text-align: center;
   font-weight: bold;
