@@ -1,8 +1,3 @@
-window.VK && document.write(VK.Share.button({
-  url: "http://es5.javascript.ru/",
-  title: "EcmaScript 5 на русском",
-  image: "http://es5.javascript.ru/ecma.png",
-  noparse: true}, { type: "round", text: 'Поделиться' }));
 
 
 !function(d,s,id){
@@ -47,3 +42,9 @@ setTimeout(function() {
 
 }, 0);
   
+
+window.VK && document.write(VK.Share.button({
+  url: "http://es5.javascript.ru/",
+  title: "EcmaScript 5 на русском",
+  image: "http://es5.javascript.ru/ecma.png",
+  noparse: true}, { type: "round", text: 'Поделиться' }));
