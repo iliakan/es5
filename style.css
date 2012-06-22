@@ -761,6 +761,7 @@ em:after {
   border: 1px solid #eee;
   margin-top:20px;
   min-height: 26px;
+  padding-left: 3px;
 }
 
 .share {
@@ -783,7 +784,7 @@ em:after {
   font-size: 14px;
   padding-left: 23px;
   cursor: pointer;
-  background: url(minus.gif) 4px 4px no-repeat;
+  background: url(minus.gif) 3px 4px no-repeat;
 }
 
 .share-close #share-toggler {
